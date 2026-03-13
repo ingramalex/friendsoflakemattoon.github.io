@@ -26,7 +26,7 @@
   body { font-family: 'Source Serif 4', Georgia, serif; background: var(--parchment); color: var(--text-dark); overflow-x: hidden; }
 
   /* NAV */
-  nav {
+  nav.site-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     background: rgba(13,46,63,0.97);
     border-bottom: 1px solid rgba(58,143,168,0.3);
@@ -152,8 +152,8 @@
 
   /* MOBILE */
   @media (max-width: 860px) {
-    .nav-center { display: none; }
-    .nav-donate-btn { display: none; }
+    .site-nav .nav-center { display: none; }
+    .site-nav .nav-donate-btn { display: none; }
     .nav-hamburger { display: flex; }
   }
   @media (max-width: 768px) {
@@ -200,7 +200,7 @@
 <body>
 
 <!-- NAV -->
-<nav>
+<nav class="site-nav">
   <div class="nav-inner">
     <a class="nav-brand" href="#">
       <svg class="nav-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
