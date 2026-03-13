@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Friends of Lake Mattoon is a nonprofit dedicated to conserving Lake Mattoon in Neoga, IL — the drinking water source for Mattoon and surrounding communities in Coles, Cumberland, and Shelby counties.">
+<meta name="keywords" content="Lake Mattoon, conservation, Neoga Illinois, clean water, Coles County, Cumberland County, Shelby County, nonprofit">
+<title>Friends of Lake Mattoon | Clean Water, Strong Economy | Neoga, IL</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --lake-deep: #0d2e3f;
+    --lake-mid: #1a5068;
+    --lake-light: #3a8fa8;
+    --lake-sky: #b8dce8;
+    --shore-green: #2d5a27;
+    --leaf-green: #4a8c3f;
+    --warm-sand: #f5f0e8;
+    --parchment: #faf7f2;
+    --text-dark: #1a2628;
+    --text-mid: #3d5a60;
+    --accent-gold: #c49a2a;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--parchment); color: var(--text-dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,46,63,0.97);
+    border-bottom: 1px solid rgba(58,143,168,0.3);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.875rem 2rem; gap: 1rem;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo { width: 36px; height: 36px; flex-shrink: 0; }
+  .nav-brand-text { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--lake-sky); line-height: 1.2; white-space: nowrap; }
+  .nav-center { display: flex; gap: 1.5rem; list-style: none; flex-shrink: 1; }
+  .nav-center a { font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(184,220,232,0.8); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
+  .nav-center a:hover { color: #fff; }
+  .nav-donate-btn { background: var(--accent-gold); color: #fff; font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; padding: 0.45rem 1rem; border-radius: 2px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.2s; display: inline-block; }
+  .nav-donate-btn:hover { background: #a8821e; }
+
+  /* hamburger */
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--lake-sky); border-radius: 2px; transition: all 0.25s; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* mobile drawer */
+  .nav-drawer { display: none; flex-direction: column; background: rgba(13,46,63,0.99); border-top: 1px solid rgba(58,143,168,0.2); padding: 1rem 2rem 1.5rem; gap: 0; }
+  .nav-drawer.open { display: flex; }
+  .nav-drawer a { font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(184,220,232,0.85); text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid rgba(58,143,168,0.12); }
+  .nav-drawer a:last-child { border-bottom: none; }
+  .nav-drawer a:hover { color: #fff; }
+  .nav-drawer .drawer-donate { background: var(--accent-gold); color: #fff; text-align: center; padding: 0.75rem; border-radius: 2px; margin-top: 0.75rem; border-bottom: none; font-weight: 600; }
+  .nav-drawer .drawer-donate:hover { background: #a8821e; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: linear-gradient(175deg, #0d2e3f 0%, #1a5068 40%, #2d7a90 70%, #3a8fa8 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem 4rem; }
+  .hero-bg { position: absolute; bottom: 0; left: 0; right: 0; height: 55%; opacity: 0.18; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(184,220,232,0.4) 28px, rgba(184,220,232,0.4) 30px); animation: ripple 8s ease-in-out infinite alternate; }
+  @keyframes ripple { 0% { transform: scaleX(1) translateY(0); } 100% { transform: scaleX(1.02) translateY(-6px); } }
+  .hero-trees { position: absolute; bottom: 0; left: 0; right: 0; height: 160px; opacity: 0.5; }
+  .hero-content { position: relative; z-index: 2; text-align: center; max-width: 760px; }
+  .hero-eyebrow { font-size: 12px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-sky); margin-bottom: 1.25rem; opacity: 0.85; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; color: #fff; margin-bottom: 0.5rem; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+  .hero-title em { font-style: italic; color: var(--lake-sky); }
+  .hero-slogan { display: inline-flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--accent-gold); letter-spacing: 0.04em; margin-bottom: 1.25rem; }
+  .hero-slogan::before, .hero-slogan::after { content: ''; display: block; width: 28px; height: 1px; background: var(--accent-gold); opacity: 0.6; }
+  .hero-divider { width: 60px; height: 1px; background: var(--accent-gold); margin: 1rem auto 1.5rem; opacity: 0.8; }
+  .hero-mission { font-size: 1.05rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto 2.5rem; }
+  .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--accent-gold); color: #fff; font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 2rem; border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
+  .btn-primary:hover { background: #a8821e; }
+  .btn-outline { background: transparent; color: var(--lake-sky); font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 2rem; border: 1px solid rgba(184,220,232,0.5); border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
+  .btn-outline:hover { border-color: var(--lake-sky); color: #fff; }
+
+  /* SLOGAN BANNER */
+  .slogan-banner { background: var(--accent-gold); padding: 1rem 2rem; text-align: center; }
+  .slogan-banner-text { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
+  .slogan-banner-text span { opacity: 0.7; margin: 0 0.75rem; font-weight: 400; }
+
+  /* STATS */
+  .stats-strip { background: var(--lake-deep); padding: 2.5rem 2rem; display: flex; justify-content: center; flex-wrap: wrap; }
+  .stat-item { text-align: center; padding: 1rem 3rem; border-right: 1px solid rgba(58,143,168,0.25); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--lake-sky); line-height: 1; margin-bottom: 0.25rem; }
+  .stat-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(184,220,232,0.6); font-weight: 300; }
+
+  /* ABOUT */
+  .about { padding: 6rem 2rem; background: var(--parchment); }
+  .section-inner { max-width: 1060px; margin: 0 auto; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .section-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.75rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.2; color: var(--lake-deep); margin-bottom: 1.25rem; }
+  .section-title em { font-style: italic; color: var(--lake-mid); }
+  .body-text { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
+  .slogan-callout { border-left: 3px solid var(--accent-gold); padding: 0.75rem 1.25rem; margin: 1.5rem 0; background: rgba(196,154,42,0.07); border-radius: 0 2px 2px 0; }
+  .slogan-callout p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--accent-gold); line-height: 1.5; margin: 0 0 4px; }
+  .slogan-callout small { font-size: 11px; color: var(--text-mid); letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Source Serif 4', serif; }
+  .lake-illustration { background: linear-gradient(160deg, var(--lake-deep) 0%, var(--lake-mid) 50%, var(--lake-light) 100%); border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; position: relative; box-shadow: 8px 8px 0 var(--lake-sky); }
+
+  /* PILLARS */
+  .pillars { background: var(--lake-deep); padding: 6rem 2rem; }
+  .pillars .section-title { color: var(--lake-sky); }
+  .pillars .section-tag { color: rgba(184,220,232,0.6); }
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .pillar-card { background: rgba(26,80,104,0.5); border: 1px solid rgba(58,143,168,0.2); border-radius: 4px; padding: 2rem; transition: border-color 0.3s, transform 0.3s; }
+  .pillar-card:hover { border-color: rgba(58,143,168,0.6); transform: translateY(-3px); }
+  .pillar-card.economy { border-color: rgba(196,154,42,0.35); }
+  .pillar-card.economy:hover { border-color: rgba(196,154,42,0.7); }
+  .pillar-icon { width: 48px; height: 48px; margin-bottom: 1.25rem; }
+  .pillar-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem; }
+  .pillar-text { font-size: 0.9rem; line-height: 1.75; color: rgba(184,220,232,0.7); font-weight: 300; }
+  .pillar-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(196,154,42,0.2); color: var(--accent-gold); padding: 2px 8px; border-radius: 2px; margin-bottom: 0.5rem; font-family: 'Source Serif 4', serif; }
+
+  /* GET INVOLVED */
+  .involved { padding: 6rem 2rem; background: var(--warm-sand); }
+  .involved .section-title { color: var(--lake-deep); }
+  .involved-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .involved-card { background: var(--parchment); border: 1px solid rgba(26,80,104,0.12); border-radius: 4px; padding: 2rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: box-shadow 0.2s; }
+  .involved-card:hover { box-shadow: 0 4px 20px rgba(26,80,104,0.12); }
+  .involved-icon-wrap { width: 44px; height: 44px; flex-shrink: 0; background: var(--lake-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .involved-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--lake-deep); margin-bottom: 0.4rem; }
+  .involved-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
+
+  /* DONATE */
+  .donate-section { padding: 7rem 2rem; background: linear-gradient(135deg, var(--lake-deep) 0%, #0f3d55 50%, var(--lake-mid) 100%); text-align: center; position: relative; overflow: hidden; }
+  .donate-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(58,143,168,0.04) 60px, rgba(58,143,168,0.04) 61px); }
+  .donate-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+  .donate-section .section-tag { color: rgba(184,220,232,0.6); }
+  .donate-section .section-title { color: #fff; }
+  .donate-section .body-text { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+  .donate-slogan { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; color: rgba(196,154,42,0.7); margin-bottom: 0.5rem; }
+  .donate-amounts { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
+  .amt-btn { background: rgba(58,143,168,0.2); color: var(--lake-sky); border: 1px solid rgba(58,143,168,0.4); font-family: 'Playfair Display', serif; font-size: 1.1rem; padding: 0.6rem 1.25rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+  .amt-btn:hover, .amt-btn.active { background: var(--lake-light); color: #fff; border-color: var(--lake-light); }
+  .donate-note { font-size: 12px; color: rgba(184,220,232,0.5); margin-top: 1rem; font-weight: 300; }
+
+  /* FOOTER */
+  footer { background: #070f14; padding: 3rem 2rem; text-align: center; }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--lake-sky); margin-bottom: 0.25rem; }
+  .footer-slogan { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--accent-gold); opacity: 0.7; margin-bottom: 0.75rem; }
+  .footer-text { font-size: 12px; color: rgba(184,220,232,0.4); font-weight: 300; line-height: 1.8; margin-bottom: 1rem; }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .footer-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(184,220,232,0.45); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--lake-sky); }
+
+  /* MOBILE */
+  @media (max-width: 860px) {
+    .nav-center { display: none; }
+    .nav-donate-btn { display: none; }
+    .nav-hamburger { display: flex; }
+  }
+  @media (max-width: 768px) {
+    .nav-inner { padding: 0.875rem 1.25rem; }
+
+    .hero { padding: 5rem 1.5rem 3rem; min-height: 90vh; }
+    .hero-slogan { font-size: 1rem; }
+    .hero-mission { font-size: 0.95rem; }
+    .hero-cta-group { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
+
+    .slogan-banner { padding: 0.875rem 1rem; }
+    .slogan-banner-text { font-size: 0.85rem; letter-spacing: 0.1em; }
+
+    .stats-strip { flex-direction: column; align-items: center; padding: 1.5rem; }
+    .stat-item { border-right: none; border-bottom: 1px solid rgba(58,143,168,0.2); padding: 1rem 2rem; width: 100%; max-width: 280px; }
+    .stat-item:last-child { border-bottom: none; }
+
+    .about { padding: 4rem 1.5rem; }
+    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+    .lake-illustration { box-shadow: 4px 4px 0 var(--lake-sky); }
+
+    .pillars { padding: 4rem 1.5rem; }
+    .pillar-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .pillar-card:hover { transform: none; }
+
+    .involved { padding: 4rem 1.5rem; }
+    .involved-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+    .donate-section { padding: 5rem 1.5rem; }
+    .donate-amounts { gap: 0.5rem; }
+    .amt-btn { padding: 0.5rem 1rem; font-size: 1rem; }
+
+    footer { padding: 2.5rem 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title { font-size: 2.2rem; }
+    .section-title { font-size: 1.7rem; }
+    .stat-num { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <svg class="nav-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" stroke="#3a8fa8" stroke-width="1"/>
+        <path d="M6 26 Q13 20 20 24 Q27 28 34 22" stroke="#3a8fa8" stroke-width="1.5" fill="none"/>
+        <path d="M6 30 Q13 24 20 28 Q27 32 34 26" stroke="#3a8fa8" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M12 22 Q14 10 20 8 Q26 10 28 22" fill="#1a5068" stroke="#3a8fa8" stroke-width="1"/>
+        <circle cx="20" cy="14" r="2.5" fill="#b8dce8" opacity="0.6"/>
+      </svg>
+      <div class="nav-brand-text">Friends of<br>Lake Mattoon</div>
+    </a>
+    <ul class="nav-center">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Our Work</a></li>
+      <li><a href="#involved">Get Involved</a></li>
+      <li><a href="#donate">Donate</a></li>
+    </ul>
+    <a href="#donate" class="nav-donate-btn">Donate</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#about" class="drawer-link">About</a>
+    <a href="#mission" class="drawer-link">Our Work</a>
+    <a href="#involved" class="drawer-link">Get Involved</a>
+    <a href="#donate" class="drawer-donate">Donate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="hero-trees" viewBox="0 0 1400 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,160 L0,100 Q50,60 80,90 Q100,60 130,80 Q160,40 190,70 Q210,50 240,75 Q260,45 290,72 Q320,30 350,68 Q380,50 410,78 Q440,25 470,65 Q500,45 530,70 Q560,30 590,68 Q620,50 650,80 Q680,35 710,70 Q740,50 770,75 Q800,30 830,65 Q860,50 890,78 Q920,25 950,65 Q980,48 1010,72 Q1040,35 1070,68 Q1100,50 1130,78 Q1160,28 1190,65 Q1220,48 1250,72 Q1280,42 1310,70 Q1340,55 1370,80 L1400,90 L1400,160 Z" fill="#2d5a27" opacity="0.8"/>
+    <path d="M0,160 L0,120 Q40,95 70,115 Q100,85 120,105 Q150,70 180,100 Q210,90 240,115 Q280,75 310,100 Q340,85 370,108 Q400,70 430,98 Q460,82 490,110 Q520,72 550,98 Q580,85 610,112 Q640,75 670,100 Q700,90 730,115 Q760,75 790,102 Q820,85 850,110 Q880,72 910,100 Q940,88 970,115 Q1000,78 1030,105 Q1060,85 1090,110 Q1120,72 1150,98 Q1180,85 1210,112 Q1240,78 1270,105 Q1300,88 1330,115 Q1360,90 1400,110 L1400,160 Z" fill="#4a8c3f" opacity="0.6"/>
+  </svg>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Neoga, Illinois &middot; Coles, Cumberland &amp; Shelby Counties</p>
+    <h1 class="hero-title">Protecting <em>Lake Mattoon</em><br>For Generations to Come</h1>
+    <div class="hero-slogan">Clean Water, Strong Economy</div>
+    <div class="hero-divider"></div>
+    <p class="hero-mission">Dedicated to promoting the preservation, conservation, and responsible recreation of Lake Mattoon &mdash; a vital water source serving the communities of Central Illinois.</p>
+    <div class="hero-cta-group">
+      <a href="#donate" class="btn-primary">Support Our Mission</a>
+      <a href="#about" class="btn-outline">Learn More</a>
+    </div>
+  </div>
+</section>
+
+<!-- SLOGAN BANNER -->
+<div class="slogan-banner">
+  <p class="slogan-banner-text">Clean Water<span>&middot;</span>Strong Economy<span>&middot;</span>Healthy Communities</p>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Counties Served</div></div>
+  <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Vital Water Source</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Community Driven</div></div>
+  <div class="stat-item"><div class="stat-num">501(c)</div><div class="stat-label">Nonprofit Organization</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="two-col">
+      <div>
+        <p class="section-tag">Who We Are</p>
+        <h2 class="section-title">Guardians of a <em>Community Treasure</em></h2>
+        <p class="body-text">Lake Mattoon isn't just a beautiful natural resource &mdash; it's the drinking water source for the City of Mattoon and the lifeblood of communities across Coles, Cumberland, and Shelby counties in Illinois.</p>
+        <div class="slogan-callout">
+          <p>"Clean Water, Strong Economy"</p>
+          <small>The Friends of Lake Mattoon</small>
+        </div>
+        <p class="body-text">A healthy lake means healthy communities. Clean water sustains local businesses, supports property values, draws recreation and tourism, and protects the long-term economic vitality of our region.</p>
+        <p class="body-text">Friends of Lake Mattoon is a community-led nonprofit working to ensure the lake's health, clarity, and long-term vitality through conservation efforts, community education, and responsible recreation stewardship.</p>
+      </div>
+      <div>
+        <div class="lake-illustration">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+            <defs>
+              <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#0d2e3f"/>
+                <stop offset="60%" style="stop-color:#1a5068"/>
+                <stop offset="100%" style="stop-color:#3a8fa8"/>
+              </linearGradient>
+              <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#3a8fa8"/>
+                <stop offset="100%" style="stop-color:#1a5068"/>
+              </linearGradient>
+            </defs>
+            <rect width="400" height="300" fill="url(#skyGrad)"/>
+            <circle cx="320" cy="60" r="35" fill="rgba(255,230,140,0.15)"/>
+            <circle cx="320" cy="60" r="22" fill="rgba(255,220,100,0.25)"/>
+            <circle cx="320" cy="60" r="12" fill="rgba(255,210,80,0.5)"/>
+            <path d="M0,170 Q100,150 200,165 Q300,180 400,160 L400,300 L0,300 Z" fill="url(#waterGrad)" opacity="0.9"/>
+            <path d="M0,178 Q80,168 160,175 Q240,182 320,170 Q360,165 400,172" stroke="rgba(184,220,232,0.3)" stroke-width="1.5" fill="none"/>
+            <path d="M0,192 Q100,185 200,190 Q300,195 400,186" stroke="rgba(184,220,232,0.2)" stroke-width="1" fill="none"/>
+            <path d="M0,155 Q40,110 70,145 Q90,120 110,148 Q140,105 165,142 Q180,112 200,148" fill="#2d5a27"/>
+            <path d="M230,145 Q260,108 285,140 Q305,115 320,145 Q345,108 370,142 Q385,120 400,148 L400,300 L230,300Z" fill="#2d5a27" opacity="0.7"/>
+            <text x="20" y="285" fill="rgba(255,255,255,0.35)" font-family="Georgia, serif" font-style="italic" font-size="12">Lake Mattoon, Illinois</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="mission">
+  <div class="section-inner">
+    <p class="section-tag">Our Work</p>
+    <h2 class="section-title" style="max-width:500px">Three Pillars of <em>Lake Stewardship</em></h2>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="#3a8fa8" stroke-width="1"/><path d="M24 12 Q28 20 24 28 Q20 20 24 12Z" fill="#4a8c3f"/><path d="M14 20 Q22 22 24 28 Q16 28 14 20Z" fill="#2d5a27"/><path d="M34 20 Q26 22 24 28 Q32 28 34 20Z" fill="#2d5a27"/><path d="M10 34 Q24 28 38 34" stroke="#3a8fa8" stroke-width="1.5" fill="none"/></svg>
+        <h3 class="pillar-title">Conservation</h3>
+        <p class="pillar-text">Monitoring water quality, protecting shoreline ecosystems, and advocating for policies that safeguard the lake's long-term environmental health for both wildlife and people.</p>
+      </div>
+      <div class="pillar-card">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="#3a8fa8" stroke-width="1"/><circle cx="24" cy="22" r="7" stroke="#b8dce8" stroke-width="1.5"/><path d="M18 32 Q24 38 30 32" stroke="#b8dce8" stroke-width="1.5" fill="none"/><path d="M12 20 Q16 14 24 14 Q32 14 36 20" stroke="#3a8fa8" stroke-width="1" fill="none"/></svg>
+        <h3 class="pillar-title">Community Education</h3>
+        <p class="pillar-text">Engaging residents, anglers, boaters, and local youth with programs that build awareness about clean water stewardship and the importance of Lake Mattoon.</p>
+      </div>
+      <div class="pillar-card economy">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" stroke="#c49a2a" stroke-width="1"/><path d="M14 32 L18 22 L24 28 L30 18 L34 24" stroke="#c49a2a" stroke-width="1.5" fill="none"/><circle cx="34" cy="24" r="2.5" fill="#c49a2a"/><path d="M10 36 Q24 32 38 36" stroke="#3a8fa8" stroke-width="1.5" fill="none"/></svg>
+        <div class="pillar-tag">Clean Water, Strong Economy</div>
+        <h3 class="pillar-title">Economic Stewardship</h3>
+        <p class="pillar-text">Clean water is the foundation of a thriving local economy. We champion the connection between a healthy lake and the prosperity of businesses, families, and communities who depend on it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section class="involved" id="involved">
+  <div class="section-inner">
+    <p class="section-tag">Take Action</p>
+    <h2 class="section-title">Get Involved</h2>
+    <div class="involved-grid">
+      <div class="involved-card">
+        <div class="involved-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3 L13.5 8.5 L20 9.3 L15.5 13.7 L16.7 20 L11 17 L5.3 20 L6.5 13.7 L2 9.3 L8.5 8.5 Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg>
+        </div>
+        <div>
+          <h4 class="involved-title">Become a Member</h4>
+          <p class="involved-text">Join a growing community of lake stewards. Your membership supports ongoing conservation work and gives you a voice in protecting Lake Mattoon.</p>
+        </div>
+      </div>
+      <div class="involved-card">
+        <div class="involved-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#b8dce8" stroke-width="1.2"/><path d="M4 19 Q4 14 11 14 Q18 14 18 19" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg>
+        </div>
+        <div>
+          <h4 class="involved-title">Volunteer</h4>
+          <p class="involved-text">From shoreline cleanups to outreach events, there are many ways to roll up your sleeves and make a direct difference for the lake and your community.</p>
+        </div>
+      </div>
+      <div class="involved-card">
+        <div class="involved-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="1" stroke="#b8dce8" stroke-width="1.2"/><path d="M3 9 L11 13 L19 9" stroke="#b8dce8" stroke-width="1.2"/></svg>
+        </div>
+        <div>
+          <h4 class="involved-title">Stay Informed</h4>
+          <p class="involved-text">Follow us on Facebook for updates on water quality reports, community events, conservation milestones, and ways to help protect Lake Mattoon.</p>
+        </div>
+      </div>
+      <div class="involved-card">
+        <div class="involved-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4 L11 18 M4 11 L18 11" stroke="#b8dce8" stroke-width="1.5"/></svg>
+        </div>
+        <div>
+          <h4 class="involved-title">Spread the Word</h4>
+          <p class="involved-text">Tell your neighbors, your fishing buddies, and your family about the work we're doing. Awareness is the first step toward a healthier lake.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section class="donate-section" id="donate">
+  <div class="donate-inner">
+    <p class="section-tag">Support the Lake</p>
+    <p class="donate-slogan">Clean Water, Strong Economy</p>
+    <h2 class="section-title">Make a Difference Today</h2>
+    <p class="body-text">Every contribution goes directly toward protecting Lake Mattoon's water quality, funding conservation programs, and building a community of stewards who care about this vital resource.</p>
+    <div class="donate-amounts">
+      <button class="amt-btn" onclick="setAmt(this)">$25</button>
+      <button class="amt-btn active" onclick="setAmt(this)">$50</button>
+      <button class="amt-btn" onclick="setAmt(this)">$100</button>
+      <button class="amt-btn" onclick="setAmt(this)">$250</button>
+      <button class="amt-btn" onclick="setAmt(this)">Custom</button>
+    </div>
+    <!-- REPLACE the href below with your Square donation link -->
+    <a href="https://square.link/YOUR-DONATION-LINK" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:1rem 2.5rem;">Donate via Square &#8599;</a>
+    <p class="donate-note">Secure donation processing via Square &middot; Friends of Lake Mattoon is a 501(c)(3) nonprofit</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-brand">Friends of Lake Mattoon</p>
+  <p class="footer-slogan">Clean Water, Strong Economy</p>
+  <p class="footer-text">
+    Neoga, Illinois &middot; Serving Coles, Cumberland &amp; Shelby Counties<br>
+    <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" style="color:rgba(184,220,232,0.5);text-decoration:none;">Follow us on Facebook</a>
+  </p>
+  <nav class="footer-links" aria-label="Footer navigation">
+    <a href="#about">About</a>
+    <a href="#mission">Our Work</a>
+    <a href="#involved">Get Involved</a>
+    <a href="#donate">Donate</a>
+  </nav>
+  <p style="margin-top:1.5rem;font-size:11px;color:rgba(184,220,232,0.25);">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
+</footer>
+
+<script>
+  function setAmt(el) {
+    document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
+    el.classList.add('active');
+  }
+
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('nav-drawer');
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  drawer.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
