@@ -28,19 +28,37 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 2.5rem;
-    background: rgba(13,46,63,0.95);
+    background: rgba(13,46,63,0.97);
     border-bottom: 1px solid rgba(58,143,168,0.3);
   }
-  .nav-brand { display: flex; align-items: center; gap: 12px; }
-  .nav-logo { width: 40px; height: 40px; }
-  .nav-brand-text { font-family: 'Playfair Display', serif; font-size: 15px; color: var(--lake-sky); line-height: 1.2; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(184,220,232,0.8); text-decoration: none; transition: color 0.2s; }
-  .nav-links a:hover { color: #fff; }
-  .nav-donate-btn { background: var(--accent-gold); color: #fff; font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; padding: 0.5rem 1.25rem; border-radius: 2px; text-decoration: none; transition: background 0.2s; display: inline-block; }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.875rem 2rem; gap: 1rem;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+  .nav-logo { width: 36px; height: 36px; flex-shrink: 0; }
+  .nav-brand-text { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--lake-sky); line-height: 1.2; white-space: nowrap; }
+  .nav-center { display: flex; gap: 1.5rem; list-style: none; flex-shrink: 1; }
+  .nav-center a { font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(184,220,232,0.8); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
+  .nav-center a:hover { color: #fff; }
+  .nav-donate-btn { background: var(--accent-gold); color: #fff; font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; padding: 0.45rem 1rem; border-radius: 2px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.2s; display: inline-block; }
   .nav-donate-btn:hover { background: #a8821e; }
+
+  /* hamburger */
+  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--lake-sky); border-radius: 2px; transition: all 0.25s; }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* mobile drawer */
+  .nav-drawer { display: none; flex-direction: column; background: rgba(13,46,63,0.99); border-top: 1px solid rgba(58,143,168,0.2); padding: 1rem 2rem 1.5rem; gap: 0; }
+  .nav-drawer.open { display: flex; }
+  .nav-drawer a { font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(184,220,232,0.85); text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid rgba(58,143,168,0.12); }
+  .nav-drawer a:last-child { border-bottom: none; }
+  .nav-drawer a:hover { color: #fff; }
+  .nav-drawer .drawer-donate { background: var(--accent-gold); color: #fff; text-align: center; padding: 0.75rem; border-radius: 2px; margin-top: 0.75rem; border-bottom: none; font-weight: 600; }
+  .nav-drawer .drawer-donate:hover { background: #a8821e; }
 
   /* HERO */
   .hero { min-height: 100vh; background: linear-gradient(175deg, #0d2e3f 0%, #1a5068 40%, #2d7a90 70%, #3a8fa8 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem 4rem; }
@@ -133,10 +151,13 @@
   .footer-links a:hover { color: var(--lake-sky); }
 
   /* MOBILE */
+  @media (max-width: 860px) {
+    .nav-center { display: none; }
+    .nav-donate-btn { display: none; }
+    .nav-hamburger { display: flex; }
+  }
   @media (max-width: 768px) {
-    nav { padding: 0.875rem 1.25rem; }
-    .nav-links { display: none; }
-    .nav-brand-text { font-size: 13px; }
+    .nav-inner { padding: 0.875rem 1.25rem; }
 
     .hero { padding: 5rem 1.5rem 3rem; min-height: 90vh; }
     .hero-slogan { font-size: 1rem; }
@@ -180,23 +201,34 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">
-    <svg class="nav-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="20" cy="20" r="19" stroke="#3a8fa8" stroke-width="1"/>
-      <path d="M6 26 Q13 20 20 24 Q27 28 34 22" stroke="#3a8fa8" stroke-width="1.5" fill="none"/>
-      <path d="M6 30 Q13 24 20 28 Q27 32 34 26" stroke="#3a8fa8" stroke-width="1" fill="none" opacity="0.5"/>
-      <path d="M12 22 Q14 10 20 8 Q26 10 28 22" fill="#1a5068" stroke="#3a8fa8" stroke-width="1"/>
-      <circle cx="20" cy="14" r="2.5" fill="#b8dce8" opacity="0.6"/>
-    </svg>
-    <div class="nav-brand-text">Friends of<br>Lake Mattoon</div>
+  <div class="nav-inner">
+    <a class="nav-brand" href="#">
+      <svg class="nav-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" stroke="#3a8fa8" stroke-width="1"/>
+        <path d="M6 26 Q13 20 20 24 Q27 28 34 22" stroke="#3a8fa8" stroke-width="1.5" fill="none"/>
+        <path d="M6 30 Q13 24 20 28 Q27 32 34 26" stroke="#3a8fa8" stroke-width="1" fill="none" opacity="0.5"/>
+        <path d="M12 22 Q14 10 20 8 Q26 10 28 22" fill="#1a5068" stroke="#3a8fa8" stroke-width="1"/>
+        <circle cx="20" cy="14" r="2.5" fill="#b8dce8" opacity="0.6"/>
+      </svg>
+      <div class="nav-brand-text">Friends of<br>Lake Mattoon</div>
+    </a>
+    <ul class="nav-center">
+      <li><a href="#about">About</a></li>
+      <li><a href="#mission">Our Work</a></li>
+      <li><a href="#involved">Get Involved</a></li>
+      <li><a href="#donate">Donate</a></li>
+    </ul>
+    <a href="#donate" class="nav-donate-btn">Donate</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#mission">Our Work</a></li>
-    <li><a href="#involved">Get Involved</a></li>
-    <li><a href="#donate">Donate</a></li>
-  </ul>
-  <a href="#donate" class="nav-donate-btn">Donate</a>
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="#about" class="drawer-link">About</a>
+    <a href="#mission" class="drawer-link">Our Work</a>
+    <a href="#involved" class="drawer-link">Get Involved</a>
+    <a href="#donate" class="drawer-donate">Donate</a>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -392,6 +424,19 @@
     document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
     el.classList.add('active');
   }
+
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('nav-drawer');
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  drawer.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    });
+  });
 </script>
 </body>
 </html>
