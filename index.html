@@ -193,6 +193,40 @@
   .footer-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(184,220,232,0.45); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--lake-sky); }
 
+  /* EVENTS CAROUSEL */
+  .events { padding: 6rem 2rem; background: var(--parchment); }
+  .events .section-title { color: var(--lake-deep); }
+  .events-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
+  .events-header-text { flex: 1; }
+  .view-calendar-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--lake-deep); color: var(--lake-sky); font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.65rem 1.25rem; border-radius: 2px; text-decoration: none; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
+  .view-calendar-btn:hover { background: var(--lake-mid); }
+  .carousel-outer { position: relative; }
+  .carousel-track-wrap { overflow: hidden; border-radius: 4px; }
+  .carousel-track { display: flex; gap: 1.5rem; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
+  .event-card { background: #fff; border: 1px solid rgba(26,80,104,0.1); border-radius: 4px; padding: 1.75rem; flex: 0 0 calc(33.333% - 1rem); min-width: 0; display: flex; flex-direction: column; gap: 0.75rem; transition: box-shadow 0.25s, transform 0.25s; }
+  .event-card:hover { box-shadow: 0 4px 20px rgba(26,80,104,0.12); transform: translateY(-2px); }
+  .event-date-badge { display: inline-flex; flex-direction: column; align-items: center; background: var(--lake-deep); border-radius: 3px; padding: 0.4rem 0.75rem; width: fit-content; }
+  .event-date-month { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lake-sky); font-weight: 300; line-height: 1; }
+  .event-date-day { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; line-height: 1.1; }
+  .event-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--lake-deep); line-height: 1.3; }
+  .event-meta { font-size: 12px; color: var(--text-mid); font-weight: 300; display: flex; flex-direction: column; gap: 3px; }
+  .event-meta span { display: flex; align-items: center; gap: 6px; }
+  .event-desc { font-size: 0.85rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; flex: 1; }
+  .event-tag { display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(58,143,168,0.1); color: var(--lake-mid); padding: 3px 8px; border-radius: 2px; font-family: 'Source Serif 4', serif; align-self: flex-start; }
+  .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; }
+  .carousel-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(26,80,104,0.2); background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .carousel-btn:hover { background: var(--lake-deep); border-color: var(--lake-deep); }
+  .carousel-btn:hover svg path { stroke: #fff; }
+  .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .carousel-btn:disabled:hover { background: #fff; border-color: rgba(26,80,104,0.2); }
+  .carousel-btn:disabled:hover svg path { stroke: var(--lake-deep); }
+  .carousel-dots { display: flex; gap: 6px; }
+  .carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(26,80,104,0.2); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
+  .carousel-dot.active { background: var(--lake-deep); }
+  .events-no-calendar { background: rgba(58,143,168,0.07); border: 1px dashed rgba(58,143,168,0.3); border-radius: 4px; padding: 2.5rem; text-align: center; }
+  .events-no-calendar p { font-size: 0.9rem; color: var(--text-mid); font-weight: 300; line-height: 1.7; }
+  .events-loading { text-align: center; padding: 3rem; color: var(--text-mid); font-size: 0.9rem; font-weight: 300; }
+
   /* DONATE MODAL */
   .modal-overlay {
     display: none; position: fixed; inset: 0; z-index: 999;
@@ -283,6 +317,11 @@
     .involved { padding: 4rem 1.5rem; }
     .involved-grid { grid-template-columns: 1fr; gap: 1rem; }
 
+    .events { padding: 4rem 1.5rem; }
+    .events-header { flex-direction: column; align-items: flex-start; }
+    .event-card { flex: 0 0 calc(100% - 0px); }
+    .view-calendar-btn { width: 100%; justify-content: center; }
+
     .cleanup { padding: 4rem 1.5rem; }
     .cleanup-grid { grid-template-columns: 1fr; gap: 1rem; }
     .cleanup-stats { grid-template-columns: 1fr; }
@@ -320,6 +359,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#mission">Our Work</a></li>
       <li><a href="#involved">Get Involved</a></li>
+      <li><a href="#events">Events</a></li>
       <li><a href="#socials">Socials</a></li>
       <li><a href="#donate">Donate</a></li>
     </ul>
@@ -332,6 +372,7 @@
     <a href="#about" class="drawer-link">About</a>
     <a href="#mission" class="drawer-link">Our Work</a>
     <a href="#involved" class="drawer-link">Get Involved</a>
+    <a href="#events" class="drawer-link">Events</a>
     <a href="#socials" class="drawer-link">Socials</a>
     <button onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');" class="drawer-donate" style="font-family:'Source Serif 4',serif;width:100%;text-align:center;cursor:pointer;">Donate</button>
   </div>
@@ -523,6 +564,27 @@
   </div>
 </section>
 
+<!-- EVENTS -->
+<section class="events" id="events">
+  <div class="section-inner">
+    <div class="events-header">
+      <div class="events-header-text">
+        <p class="section-tag">Mark Your Calendar</p>
+        <h2 class="section-title">Upcoming <em>Events</em></h2>
+      </div>
+      <a href="#" id="viewCalendarBtn" class="view-calendar-btn" target="_blank" rel="noopener">
+        View Full Calendar
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+    <div id="eventsContainer">
+      <div class="events-loading">Loading upcoming events&hellip;</div>
+    </div>
+
+  </div>
+</section>
+
 <!-- SOCIALS -->
 <section class="socials" id="socials">
   <div class="section-inner">
@@ -617,6 +679,15 @@
 </footer>
 
 <script>
+  // ─── CONFIGURATION ───────────────────────────────────────────────
+  // Paste your Google Calendar ID here once you have it
+  // e.g. 'abc123xyz@group.calendar.google.com'
+  var CALENDAR_ID = '';
+  // ─────────────────────────────────────────────────────────────────
+
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
   function setAmt(el) {
     document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
     el.classList.add('active');
@@ -636,27 +707,161 @@
   });
 
   var modal = document.getElementById('donateModal');
-
   function openDonateModal() {
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
-
   function closeDonateModal() {
     modal.classList.remove('open');
     document.body.style.overflow = '';
   }
-
   document.getElementById('modalClose').addEventListener('click', closeDonateModal);
   document.getElementById('modalClosBtn').addEventListener('click', closeDonateModal);
+  modal.addEventListener('click', function(e) { if (e.target === modal) closeDonateModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDonateModal(); });
 
-  modal.addEventListener('click', function(e) {
-    if (e.target === modal) closeDonateModal();
-  });
+  // ─── CAROUSEL ────────────────────────────────────────────────────
+  var carouselIndex = 0;
+  var carouselItems = [];
 
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeDonateModal();
-  });
+  function cardsPerView() {
+    return window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
+  }
+
+  function buildCarousel(events) {
+    carouselItems = events;
+    var container = document.getElementById('eventsContainer');
+
+    if (!events.length) {
+      container.innerHTML = '<div class="events-no-calendar"><p>No upcoming events scheduled yet.<br>Follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" style="color:var(--lake-light);">Facebook</a> to stay informed about future cleanup days and community gatherings.</p></div>';
+      return;
+    }
+
+    var cards = events.map(function(ev) {
+      var d = new Date(ev.start);
+      var tagColor = ev.tag === 'Cleanup' ? 'rgba(58,143,168,0.1);color:var(--lake-mid)' : ev.tag === 'Meeting' ? 'rgba(196,154,42,0.15);color:#8a6a10' : 'rgba(45,90,39,0.1);color:var(--shore-green)';
+      return '<div class="event-card">'
+        + '<div class="event-date-badge"><span class="event-date-month">' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</span><span class="event-date-day">' + d.getDate() + '</span></div>'
+        + '<h3 class="event-title">' + ev.title + '</h3>'
+        + '<div class="event-meta">'
+        + '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5V7L8.5 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' + ev.time + '</span>'
+        + '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5C3 8.5 7 12.5 7 12.5C7 12.5 11 8.5 11 5.5C11 3.29 9.21 1.5 7 1.5Z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5.5" r="1.2" stroke="currentColor" stroke-width="1.2"/></svg>' + ev.location + '</span>'
+        + '</div>'
+        + '<p class="event-desc">' + ev.desc + '</p>'
+        + '<span class="event-tag" style="background:' + tagColor + '">' + ev.tag + '</span>'
+        + '</div>';
+    }).join('');
+
+    container.innerHTML = '<div class="carousel-outer">'
+      + '<div class="carousel-track-wrap"><div class="carousel-track" id="carouselTrack">' + cards + '</div></div>'
+      + '<div class="carousel-controls">'
+      + '<button class="carousel-btn" id="prevBtn" aria-label="Previous" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="var(--lake-deep)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+      + '<div class="carousel-dots" id="carouselDots"></div>'
+      + '<button class="carousel-btn" id="nextBtn" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="var(--lake-deep)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
+      + '</div></div>';
+
+    carouselIndex = 0;
+    updateCarousel();
+
+    document.getElementById('prevBtn').addEventListener('click', function() { moveCarousel(-1); });
+    document.getElementById('nextBtn').addEventListener('click', function() { moveCarousel(1); });
+    window.addEventListener('resize', function() { carouselIndex = 0; updateCarousel(); });
+  }
+
+  function updateCarousel() {
+    var cpv = cardsPerView();
+    var track = document.getElementById('carouselTrack');
+    var dots = document.getElementById('carouselDots');
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    if (!track) return;
+
+    var totalSlides = Math.ceil(carouselItems.length / cpv);
+    if (carouselIndex >= totalSlides) carouselIndex = totalSlides - 1;
+    if (carouselIndex < 0) carouselIndex = 0;
+
+    var cardWidth = track.parentElement.offsetWidth;
+    var gap = 24;
+    var singleCard = (cardWidth - (gap * (cpv - 1))) / cpv;
+    var offset = carouselIndex * (singleCard + gap) * cpv;
+    track.style.transform = 'translateX(-' + offset + 'px)';
+
+    track.querySelectorAll('.event-card').forEach(function(c) {
+      c.style.flex = '0 0 ' + singleCard + 'px';
+    });
+
+    dots.innerHTML = '';
+    for (var i = 0; i < totalSlides; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === carouselIndex ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i+1));
+      dot.addEventListener('click', (function(idx){ return function(){ carouselIndex = idx; updateCarousel(); }; })(i));
+      dots.appendChild(dot);
+    }
+
+    prevBtn.disabled = carouselIndex === 0;
+    nextBtn.disabled = carouselIndex >= totalSlides - 1;
+  }
+
+  function moveCarousel(dir) {
+    var cpv = cardsPerView();
+    var totalSlides = Math.ceil(carouselItems.length / cpv);
+    carouselIndex = Math.max(0, Math.min(carouselIndex + dir, totalSlides - 1));
+    updateCarousel();
+  }
+
+  // ─── GOOGLE CALENDAR FETCH ────────────────────────────────────────
+  function loadCalendarEvents() {
+    if (!CALENDAR_ID) {
+      buildCarousel(getSampleEvents());
+      return;
+    }
+
+    var calUrl = 'https://www.googleapis.com/calendar/v3/calendars/'
+      + encodeURIComponent(CALENDAR_ID)
+      + '/events?key=YOUR_API_KEY&orderBy=startTime&singleEvents=true&timeMin='
+      + new Date().toISOString()
+      + '&maxResults=9';
+
+    document.getElementById('viewCalendarBtn').href =
+      'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(CALENDAR_ID);
+
+    fetch(calUrl)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (!data.items || !data.items.length) { buildCarousel([]); return; }
+        var events = data.items.map(function(item) {
+          var start = item.start.dateTime || item.start.date;
+          var d = new Date(start);
+          return {
+            title: item.summary || 'Event',
+            start: start,
+            time: item.start.dateTime ? d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) : 'All Day',
+            location: item.location || 'Lake Mattoon, IL',
+            desc: item.description ? item.description.replace(/<[^>]+>/g,'').substring(0,100) + '...' : 'Join us for this community event at Lake Mattoon.',
+            tag: item.summary && item.summary.toLowerCase().includes('clean') ? 'Cleanup' : item.summary && item.summary.toLowerCase().includes('meet') ? 'Meeting' : 'Community'
+          };
+        });
+        buildCarousel(events);
+      })
+      .catch(function() { buildCarousel(getSampleEvents()); });
+  }
+
+  function getSampleEvents() {
+    var now = new Date();
+    var y = now.getFullYear();
+    var m = now.getMonth();
+    return [
+      { title: 'Spring Shoreline Cleanup', start: new Date(y, m+1, 12).toISOString(), time: '9:00 AM', location: 'Lake Mattoon Boat Launch', desc: 'Join volunteers for our spring shoreline cleanup. Gloves and bags provided. All ages welcome.', tag: 'Cleanup' },
+      { title: 'Friends of Lake Mattoon Board Meeting', start: new Date(y, m+1, 19).toISOString(), time: '6:30 PM', location: 'Neoga City Hall', desc: 'Monthly board meeting open to all members. Agenda includes water quality updates and upcoming event planning.', tag: 'Meeting' },
+      { title: 'Community Conservation Day', start: new Date(y, m+2, 3).toISOString(), time: '10:00 AM', location: 'Lake Mattoon, Neoga IL', desc: 'A family-friendly day of conservation activities, educational exhibits, and shoreline stewardship.', tag: 'Community' },
+      { title: 'Summer Debris Removal', start: new Date(y, m+2, 21).toISOString(), time: '8:00 AM', location: 'North Shoreline Access', desc: 'Focused removal of debris and invasive vegetation from the north shoreline area. Boots recommended.', tag: 'Cleanup' },
+      { title: 'Water Quality Forum', start: new Date(y, m+3, 8).toISOString(), time: '7:00 PM', location: 'Neoga Community Center', desc: 'Public forum on Lake Mattoon water quality results with county officials and conservation experts.', tag: 'Community' },
+      { title: 'Fall Shoreline Cleanup', start: new Date(y, m+3, 25).toISOString(), time: '9:00 AM', location: 'Lake Mattoon Boat Launch', desc: 'Our annual fall cleanup before winter. Help us keep the lake pristine heading into the colder months.', tag: 'Cleanup' }
+    ];
+  }
+
+  loadCalendarEvents();
 </script>
 </body>
 </html>
