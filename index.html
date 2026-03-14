@@ -158,12 +158,13 @@
   .highlights .body-text { max-width: 620px; margin-bottom: 3rem; }
   .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .highlight-card { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(160deg, var(--lake-deep), var(--lake-mid)); }
-  .highlight-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .highlight-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; position: relative; z-index: 1; }
   .highlight-card:hover img { transform: scale(1.04); }
-  .highlight-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.25rem 1rem; background: linear-gradient(0deg, rgba(13,46,63,0.92) 0%, transparent 100%); }
+  .highlight-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.25rem 1rem; background: linear-gradient(0deg, rgba(13,46,63,0.92) 0%, transparent 100%); z-index: 2; }
   .highlight-tag { display: inline-block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--accent-gold); color: #fff; padding: 3px 8px; border-radius: 2px; margin-bottom: 0.4rem; font-family: 'Source Serif 4', serif; font-weight: 600; }
   .highlight-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; font-weight: 400; line-height: 1.3; margin: 0; }
-  .highlight-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; opacity: 0.35; }
+  .highlight-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; opacity: 0.35; z-index: 0; }
+  .highlight-placeholder.hidden { display: none; }
   .highlight-placeholder svg { width: 36px; height: 36px; }
   .highlight-placeholder p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--lake-sky); }
 
@@ -405,8 +406,8 @@
       <li><a href="#about">About</a></li>
       <li><a href="#mission">Our Work</a></li>
       <li><a href="#involved">Get Involved</a></li>
-      <li><a href="#highlights">Recreation</a></li>
       <li><a href="#cleanup">Cleanup</a></li>
+      <li><a href="#highlights">Recreation</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#officers">Officers</a></li>
       <li><a href="#socials">Socials</a></li>
@@ -421,8 +422,8 @@
     <a href="#about" class="drawer-link">About</a>
     <a href="#mission" class="drawer-link">Our Work</a>
     <a href="#involved" class="drawer-link">Get Involved</a>
-    <a href="#highlights" class="drawer-link">Recreation</a>
     <a href="#cleanup" class="drawer-link">Cleanup</a>
+    <a href="#highlights" class="drawer-link">Recreation</a>
     <a href="#events" class="drawer-link">Events</a>
     <a href="#officers" class="drawer-link">Officers</a>
     <a href="#socials" class="drawer-link">Socials</a>
@@ -627,7 +628,7 @@
 
       <div class="highlight-card">
         <img src="images/fireworks.jpg" alt="Fourth of July fireworks over Lake Mattoon"
-          onerror="this.style.display='none'">
+          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder">
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 4 L18 14 M18 4 L14 10 M18 4 L22 10" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
@@ -640,13 +641,13 @@
         </div>
         <div class="highlight-overlay">
           <span class="highlight-tag">Annual Tradition</span>
-          <p class="highlight-title">Fourth of July Fireworks</p>
+          <p class="highlight-title">Annual Labor Day Weekend Fireworks</p>
         </div>
       </div>
 
       <div class="highlight-card">
         <img src="images/sailboat-races.jpg" alt="Sailboat races on Lake Mattoon"
-          onerror="this.style.display='none'">
+          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder">
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 6 L18 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
@@ -664,7 +665,7 @@
 
       <div class="highlight-card">
         <img src="images/wreath-drop.jpg" alt="Holiday wreath drop ceremony on Lake Mattoon"
-          onerror="this.style.display='none'">
+          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder">
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="18" cy="18" r="11" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
@@ -681,7 +682,7 @@
 
       <div class="highlight-card">
         <img src="images/community-gathering.jpg" alt="Community gathering at Lake Mattoon"
-          onerror="this.style.display='none'">
+          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder">
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/>
@@ -699,7 +700,7 @@
 
       <div class="highlight-card">
         <img src="images/dock-dogs.jpg" alt="Dogs jumping from a dock at Lake Mattoon"
-          onerror="this.style.display='none'">
+          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder">
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 24 L32 24" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
@@ -718,7 +719,7 @@
 
       <div class="highlight-card">
         <img src="images/dog-on-boat.jpg" alt="Dog enjoying a boat ride on Lake Mattoon"
-          onerror="this.style.display='none'">
+          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder">
           <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 26 Q18 22 32 26" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
