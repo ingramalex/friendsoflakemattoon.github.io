@@ -152,6 +152,21 @@
   .off-accent { width: 24px; height: 1px; background: var(--accent-gold); margin: 0.65rem auto 0.9rem; opacity: 0.7; }
   .off-bio { font-size: 0.82rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; text-align: center; }
 
+  /* LAKE HIGHLIGHTS */
+  .highlights { padding: 6rem 2rem; background: var(--warm-sand); }
+  .highlights .section-title { color: var(--lake-deep); }
+  .highlights .body-text { max-width: 620px; margin-bottom: 3rem; }
+  .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .highlight-card { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(160deg, var(--lake-deep), var(--lake-mid)); }
+  .highlight-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .highlight-card:hover img { transform: scale(1.04); }
+  .highlight-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.25rem 1rem; background: linear-gradient(0deg, rgba(13,46,63,0.92) 0%, transparent 100%); }
+  .highlight-tag { display: inline-block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--accent-gold); color: #fff; padding: 3px 8px; border-radius: 2px; margin-bottom: 0.4rem; font-family: 'Source Serif 4', serif; font-weight: 600; }
+  .highlight-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; font-weight: 400; line-height: 1.3; margin: 0; }
+  .highlight-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; opacity: 0.35; }
+  .highlight-placeholder svg { width: 36px; height: 36px; }
+  .highlight-placeholder p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--lake-sky); }
+
   /* CLEANUP */
   .cleanup { padding: 6rem 2rem; background: var(--lake-deep); }
   .cleanup .section-tag { color: rgba(184,220,232,0.6); }
@@ -311,6 +326,7 @@
   @media (max-width: 860px) {
     .site-nav .nav-center { display: none; }
     .nav-hamburger { display: flex; }
+    .nav-donate-btn { font-size: 11px; padding: 0.4rem 0.85rem; }
   }
   @media (max-width: 768px) {
     .nav-inner { padding: 0.875rem 1.25rem; }
@@ -349,6 +365,9 @@
     .off-grid-top { grid-template-columns: 1fr; }
     .off-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
 
+    .highlights { padding: 4rem 1.5rem; }
+    .highlights-grid { grid-template-columns: 1fr; }
+
     .cleanup { padding: 4rem 1.5rem; }
     .cleanup-grid { grid-template-columns: 1fr; gap: 1rem; }
     .cleanup-stats { grid-template-columns: 1fr; }
@@ -386,6 +405,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#mission">Our Work</a></li>
       <li><a href="#involved">Get Involved</a></li>
+      <li><a href="#highlights">Recreation</a></li>
       <li><a href="#cleanup">Cleanup</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#officers">Officers</a></li>
@@ -401,6 +421,7 @@
     <a href="#about" class="drawer-link">About</a>
     <a href="#mission" class="drawer-link">Our Work</a>
     <a href="#involved" class="drawer-link">Get Involved</a>
+    <a href="#highlights" class="drawer-link">Recreation</a>
     <a href="#cleanup" class="drawer-link">Cleanup</a>
     <a href="#events" class="drawer-link">Events</a>
     <a href="#officers" class="drawer-link">Officers</a>
@@ -570,7 +591,7 @@
     <div class="cleanup-grid">
       <div class="cleanup-photo-wrap">
         <img src="images/cleanup1.jpg" alt="Volunteers collecting trash along a lake shoreline" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-fallback')">
-        <div class="cleanup-photo-caption"><p>Community members removing debris from the water's edge</p></div>
+        <div class="cleanup-photo-caption"><p>Helping clean up the lake community</p></div>
       </div>
       <div class="cleanup-photo-wrap">
         <img src="images/cleanup2.jpg" alt="Group of volunteers working together on a shoreline cleanup" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-fallback')">
@@ -591,6 +612,127 @@
         <div class="cleanup-stat-num">56</div>
         <div class="cleanup-stat-label">Miles of Shoreline Maintained</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights" id="highlights">
+  <div class="section-inner">
+    <p class="section-tag">Life on the Lake</p>
+    <h2 class="section-title">Recreation &amp; <em>Community</em></h2>
+    <p class="body-text">Lake Mattoon is more than a water source — it's the heart of our community. From dazzling fireworks over the water to beloved annual traditions, the lake brings people together in ways that make life in Central Illinois truly special.</p>
+
+    <div class="highlights-grid">
+
+      <div class="highlight-card">
+        <img src="images/fireworks.jpg" alt="Fourth of July fireworks over Lake Mattoon"
+          onerror="this.style.display='none'">
+        <div class="highlight-placeholder">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 4 L18 14 M18 4 L14 10 M18 4 L22 10" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M4 18 L14 18 M4 18 L10 14 M4 18 L10 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M32 18 L22 18 M32 18 L26 14 M32 18 L26 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M18 32 L18 22 M18 32 L14 26 M18 32 L22 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="3" fill="#b8dce8" opacity="0.6"/>
+          </svg>
+          <p>Add fireworks.jpg to images folder</p>
+        </div>
+        <div class="highlight-overlay">
+          <span class="highlight-tag">Annual Tradition</span>
+          <p class="highlight-title">Fourth of July Fireworks</p>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img src="images/sailboat-races.jpg" alt="Sailboat races on Lake Mattoon"
+          onerror="this.style.display='none'">
+        <div class="highlight-placeholder">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6 L18 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M18 8 L8 22 L18 22 Z" fill="#b8dce8" opacity="0.5"/>
+            <path d="M18 10 L28 20 L18 20 Z" fill="#b8dce8" opacity="0.3"/>
+            <path d="M4 28 Q18 24 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
+          </svg>
+          <p>Add sailboat-races.jpg to images folder</p>
+        </div>
+        <div class="highlight-overlay">
+          <span class="highlight-tag">On the Water</span>
+          <p class="highlight-title">Sailboat Races</p>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img src="images/wreath-drop.jpg" alt="Holiday wreath drop ceremony on Lake Mattoon"
+          onerror="this.style.display='none'">
+        <div class="highlight-placeholder">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="11" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
+            <circle cx="18" cy="18" r="6" stroke="#b8dce8" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M18 7 L18 4 M18 32 L18 29 M7 18 L4 18 M32 18 L29 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <p>Add wreath-drop.jpg to images folder</p>
+        </div>
+        <div class="highlight-overlay">
+          <span class="highlight-tag">Holiday Tradition</span>
+          <p class="highlight-title">Annual Wreath Drop</p>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img src="images/community-gathering.jpg" alt="Community gathering at Lake Mattoon"
+          onerror="this.style.display='none'">
+        <div class="highlight-placeholder">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/>
+            <circle cx="24" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/>
+            <path d="M4 28 Q4 22 12 22 Q18 22 18 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
+            <path d="M18 28 Q18 22 24 22 Q32 22 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
+          </svg>
+          <p>Add community-gathering.jpg to images folder</p>
+        </div>
+        <div class="highlight-overlay">
+          <span class="highlight-tag">Community</span>
+          <p class="highlight-title">Community Gatherings</p>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img src="images/dock-dogs.jpg" alt="Dogs jumping from a dock at Lake Mattoon"
+          onerror="this.style.display='none'">
+        <div class="highlight-placeholder">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 24 L32 24" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 24 L10 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M26 24 L26 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M18 18 Q20 12 24 14 Q22 10 18 12 Q16 8 14 12 Q10 10 12 14 Q16 12 18 18Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
+            <path d="M16 28 Q18 32 20 28" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
+          </svg>
+          <p>Add dock-dogs.jpg to images folder</p>
+        </div>
+        <div class="highlight-overlay">
+          <span class="highlight-tag">Lake Life</span>
+          <p class="highlight-title">Dock Dogs</p>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <img src="images/dog-on-boat.jpg" alt="Dog enjoying a boat ride on Lake Mattoon"
+          onerror="this.style.display='none'">
+        <div class="highlight-placeholder">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 26 Q18 22 32 26" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
+            <path d="M8 26 L6 30 L30 30 L28 26" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
+            <path d="M16 20 Q18 14 22 16 Q20 12 16 14 Q14 10 12 14 Q8 12 10 16 Q14 14 16 20Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
+          </svg>
+          <p>Add dog-on-boat.jpg to images folder</p>
+        </div>
+        <div class="highlight-overlay">
+          <span class="highlight-tag">Lake Life</span>
+          <p class="highlight-title">Our Four-Legged Boaters</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -646,7 +788,7 @@
         <p class="off-role">Secretary</p>
         <p class="off-name">Krystal Little</p>
         <div class="off-accent"></div>
-        <p class="off-bio">Krystal takes the most detailed meeting minutes in the history of Illinois nonprofits. She once documented a full board discussion about a rogue fishing lure with the precision of a legal transcript. Nothing gets past her.</p>
+        <p class="off-bio">When Krystal and her husband found property on Lake Mattoon, they expected a weekend escape — they didn't expect to find their people. The lake quickly became home, and the community became family. She'll admit she has no quirky lake tricks up her sleeve, but what she does have is a deep passion for preserving this place and the friendships it creates for generations to come.</p>
       </div>
     </div>
 
