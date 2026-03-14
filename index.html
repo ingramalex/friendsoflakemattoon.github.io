@@ -193,10 +193,65 @@
   .footer-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(184,220,232,0.45); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--lake-sky); }
 
+  /* DONATE MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(7, 20, 28, 0.75);
+    align-items: center; justify-content: center;
+    padding: 1.5rem;
+  }
+  .modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal-box {
+    background: var(--parchment); border-radius: 6px;
+    max-width: 480px; width: 100%;
+    padding: 3rem 2.5rem 2.5rem;
+    text-align: center; position: relative;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1.25rem;
+    background: none; border: none; cursor: pointer;
+    color: var(--text-mid); font-size: 20px; line-height: 1;
+    padding: 4px; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--lake-deep); }
+  .modal-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--lake-deep), var(--lake-mid));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.5rem;
+  }
+  .modal-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.6rem; }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 400; color: var(--lake-deep); line-height: 1.2; margin-bottom: 1rem; }
+  .modal-title em { font-style: italic; color: var(--lake-mid); }
+  .modal-divider { width: 40px; height: 1px; background: var(--accent-gold); margin: 0 auto 1.25rem; }
+  .modal-text { font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 0.75rem; }
+  .modal-slogan { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--accent-gold); margin-bottom: 2rem; }
+  .modal-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  .modal-btn-fb {
+    background: #1877f2; color: #fff;
+    font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.7rem 1.25rem; border-radius: 2px; border: none;
+    cursor: pointer; text-decoration: none; display: inline-flex;
+    align-items: center; gap: 8px; transition: background 0.2s;
+  }
+  .modal-btn-fb:hover { background: #1464d0; }
+  .modal-btn-close {
+    background: transparent; color: var(--text-mid);
+    font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 300;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.7rem 1.25rem; border-radius: 2px;
+    border: 1px solid rgba(26,80,104,0.2); cursor: pointer;
+    transition: all 0.2s;
+  }
+  .modal-btn-close:hover { border-color: var(--lake-light); color: var(--lake-deep); }
+
   /* MOBILE */
   @media (max-width: 860px) {
     .site-nav .nav-center { display: none; }
-    .site-nav .nav-donate-btn { display: none; }
     .nav-hamburger { display: flex; }
   }
   @media (max-width: 768px) {
@@ -268,7 +323,7 @@
       <li><a href="#socials">Socials</a></li>
       <li><a href="#donate">Donate</a></li>
     </ul>
-    <a href="#donate" class="nav-donate-btn">Donate</a>
+    <button onclick="openDonateModal()" class="nav-donate-btn">Donate</button>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -278,7 +333,7 @@
     <a href="#mission" class="drawer-link">Our Work</a>
     <a href="#involved" class="drawer-link">Get Involved</a>
     <a href="#socials" class="drawer-link">Socials</a>
-    <a href="#donate" class="drawer-donate">Donate</a>
+    <button onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');" class="drawer-donate" style="font-family:'Source Serif 4',serif;width:100%;text-align:center;cursor:pointer;">Donate</button>
   </div>
 </nav>
 
@@ -296,7 +351,7 @@
     <div class="hero-divider"></div>
     <p class="hero-mission">Dedicated to promoting the preservation, conservation, and responsible recreation of Lake Mattoon &mdash; a vital water source serving the communities of Central Illinois.</p>
     <div class="hero-cta-group">
-      <a href="#donate" class="btn-primary">Support Our Mission</a>
+      <button onclick="openDonateModal()" class="btn-primary" style="border:none;cursor:pointer;">Support Our Mission</button>
       <a href="#about" class="btn-outline">Learn More</a>
     </div>
   </div>
@@ -512,10 +567,37 @@
       <button class="amt-btn" onclick="setAmt(this)">Custom</button>
     </div>
     <!-- REPLACE the href below with your Square donation link -->
-    <a href="https://square.link/YOUR-DONATION-LINK" target="_blank" rel="noopener" class="btn-primary" style="font-size:15px;padding:1rem 2.5rem;display:inline-flex;align-items:center;gap:8px;">Donate via Square <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <button onclick="openDonateModal()" class="btn-primary" style="font-size:15px;padding:1rem 2.5rem;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;">Donate via Square <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <p class="donate-note">Secure donation processing via Square &middot; Friends of Lake Mattoon is a 501(c)(3) nonprofit</p>
   </div>
 </section>
+
+<!-- DONATE MODAL -->
+<div class="modal-overlay" id="donateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div class="modal-icon">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 4C14 4 6 9 6 16C6 20.42 9.58 24 14 24C18.42 24 22 20.42 22 16C22 9 14 4 14 4Z" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
+        <path d="M10 16 Q14 12 18 16" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
+        <circle cx="14" cy="19" r="1.5" fill="#b8dce8"/>
+      </svg>
+    </div>
+    <p class="modal-tag">Donation Portal</p>
+    <h2 class="modal-title" id="modalTitle">Something <em>Good</em><br>Is Coming</h2>
+    <div class="modal-divider"></div>
+    <p class="modal-text">Our secure online donation portal is currently being set up. We appreciate your generosity and commitment to protecting Lake Mattoon.</p>
+    <p class="modal-text">In the meantime, please follow us on Facebook for updates on when online giving becomes available, or reach out directly to learn other ways to support our mission.</p>
+    <p class="modal-slogan">Clean Water, Strong Economy</p>
+    <div class="modal-actions">
+      <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" class="modal-btn-fb">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="white"/></svg>
+        Follow on Facebook
+      </a>
+      <button class="modal-btn-close" id="modalClosBtn">Maybe Later</button>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -551,6 +633,29 @@
       hamburger.classList.remove('open');
       drawer.classList.remove('open');
     });
+  });
+
+  var modal = document.getElementById('donateModal');
+
+  function openDonateModal() {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDonateModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeDonateModal);
+  document.getElementById('modalClosBtn').addEventListener('click', closeDonateModal);
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeDonateModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeDonateModal();
   });
 </script>
 </body>
