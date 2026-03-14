@@ -198,8 +198,6 @@
   .events .section-title { color: var(--lake-deep); }
   .events-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
   .events-header-text { flex: 1; }
-  .view-calendar-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--lake-deep); color: var(--lake-sky); font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.65rem 1.25rem; border-radius: 2px; text-decoration: none; white-space: nowrap; transition: background 0.2s; flex-shrink: 0; }
-  .view-calendar-btn:hover { background: var(--lake-mid); }
   .carousel-outer { position: relative; }
   .carousel-track-wrap { overflow: hidden; border-radius: 4px; }
   .carousel-track { display: flex; gap: 1.5rem; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
@@ -320,7 +318,6 @@
     .events { padding: 4rem 1.5rem; }
     .events-header { flex-direction: column; align-items: flex-start; }
     .event-card { flex: 0 0 calc(100% - 0px); }
-    .view-calendar-btn { width: 100%; justify-content: center; }
 
     .cleanup { padding: 4rem 1.5rem; }
     .cleanup-grid { grid-template-columns: 1fr; gap: 1rem; }
@@ -572,10 +569,6 @@
         <p class="section-tag">Mark Your Calendar</p>
         <h2 class="section-title">Upcoming <em>Events</em></h2>
       </div>
-      <a href="#" id="viewCalendarBtn" class="view-calendar-btn" target="_blank" rel="noopener">
-        View Full Calendar
-        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
     </div>
 
     <div id="eventsContainer">
@@ -682,7 +675,7 @@
   // ─── CONFIGURATION ───────────────────────────────────────────────
   // Paste your Google Calendar ID here once you have it
   // e.g. 'abc123xyz@group.calendar.google.com'
-  var CALENDAR_ID = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
+  var CALENDAR_ID = '';
   // ─────────────────────────────────────────────────────────────────
 
   var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -819,12 +812,9 @@
 
     var calUrl = 'https://www.googleapis.com/calendar/v3/calendars/'
       + encodeURIComponent(CALENDAR_ID)
-      + '/events?key=AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ&orderBy=startTime&singleEvents=true&timeMin='
+      + '/events?key=YOUR_API_KEY&orderBy=startTime&singleEvents=true&timeMin='
       + new Date().toISOString()
       + '&maxResults=9';
-
-    document.getElementById('viewCalendarBtn').href =
-      'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(CALENDAR_ID);
 
     fetch(calUrl)
       .then(function(r) { return r.json(); })
