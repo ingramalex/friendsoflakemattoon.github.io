@@ -137,6 +137,21 @@
   .involved-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--lake-deep); margin-bottom: 0.4rem; }
   .involved-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
 
+  /* OFFICERS */
+  .officers { padding: 6rem 2rem; background: var(--parchment); }
+  .officers .section-title { color: var(--lake-deep); }
+  .off-grid-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+  .off-grid-bottom { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 640px; }
+  .off-card { background: #fff; border: 1px solid rgba(26,80,104,0.1); border-radius: 12px; padding: 1.75rem 1.25rem 1.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.25s, transform 0.25s; }
+  .off-card:hover { box-shadow: 0 6px 24px rgba(26,80,104,0.1); transform: translateY(-3px); }
+  .off-photo { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 3px solid var(--lake-sky); background: linear-gradient(160deg, var(--lake-deep), var(--lake-light)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .off-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .off-initials { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: rgba(184,220,232,0.8); font-weight: 400; }
+  .off-role { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.3rem; }
+  .off-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--lake-deep); font-weight: 400; margin-bottom: 0; }
+  .off-accent { width: 24px; height: 1px; background: var(--accent-gold); margin: 0.65rem auto 0.9rem; opacity: 0.7; }
+  .off-bio { font-size: 0.82rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; text-align: center; }
+
   /* CLEANUP */
   .cleanup { padding: 6rem 2rem; background: var(--lake-deep); }
   .cleanup .section-tag { color: rgba(184,220,232,0.6); }
@@ -330,6 +345,10 @@
     .events-header { flex-direction: column; align-items: flex-start; }
     .event-card { flex: 0 0 calc(100% - 0px); }
 
+    .officers { padding: 4rem 1.5rem; }
+    .off-grid-top { grid-template-columns: 1fr; }
+    .off-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
+
     .cleanup { padding: 4rem 1.5rem; }
     .cleanup-grid { grid-template-columns: 1fr; gap: 1rem; }
     .cleanup-stats { grid-template-columns: 1fr; }
@@ -366,6 +385,7 @@
     <ul class="nav-center">
       <li><a href="#about">About</a></li>
       <li><a href="#mission">Our Work</a></li>
+      <li><a href="#officers">Officers</a></li>
       <li><a href="#involved">Get Involved</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#socials">Socials</a></li>
@@ -379,6 +399,7 @@
   <div class="nav-drawer" id="nav-drawer">
     <a href="#about" class="drawer-link">About</a>
     <a href="#mission" class="drawer-link">Our Work</a>
+    <a href="#officers" class="drawer-link">Officers</a>
     <a href="#involved" class="drawer-link">Get Involved</a>
     <a href="#events" class="drawer-link">Events</a>
     <a href="#socials" class="drawer-link">Socials</a>
@@ -586,6 +607,67 @@
       <div class="events-loading">Loading upcoming events&hellip;</div>
     </div>
 
+  </div>
+</section>
+
+<!-- OFFICERS -->
+<section class="officers" id="officers">
+  <div class="section-inner">
+    <p class="section-tag">Leadership</p>
+    <h2 class="section-title">Meet Our <em>Officers</em></h2>
+    <div style="width:48px;height:1px;background:var(--accent-gold);margin:1rem 0 1.25rem;opacity:0.8;"></div>
+    <p class="body-text" style="max-width:520px;margin-bottom:3rem;">Dedicated community members committed to preserving Lake Mattoon for generations to come.</p>
+
+    <div class="off-grid-top">
+      <div class="off-card">
+        <div class="off-photo">
+          <img src="images/president.jpg" alt="Katie O'Dell" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KO</span>'">
+        </div>
+        <p class="off-role">President</p>
+        <p class="off-name">Katie O'Dell</p>
+        <div class="off-accent"></div>
+        <p class="off-bio">Katie once chased a raccoon away from the boat launch with nothing but a granola bar and sheer determination. She runs this organization with that same fearless energy and an unmatched love for Lake Mattoon.</p>
+      </div>
+      <div class="off-card">
+        <div class="off-photo">
+          <img src="images/vicepresident.jpg" alt="Jessica Ingram" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JI</span>'">
+        </div>
+        <p class="off-role">Vice President</p>
+        <p class="off-name">Jessica Ingram</p>
+        <div class="off-accent"></div>
+        <p class="off-bio">Jessica can identify 23 species of local waterfowl by sound alone — a skill she claims is "totally normal." She keeps the team focused, motivated, and well-supplied with homemade trail mix at every cleanup event.</p>
+      </div>
+      <div class="off-card">
+        <div class="off-photo">
+          <img src="images/secretary.jpg" alt="Krystal Little" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KL</span>'">
+        </div>
+        <p class="off-role">Secretary</p>
+        <p class="off-name">Krystal Little</p>
+        <div class="off-accent"></div>
+        <p class="off-bio">Krystal takes the most detailed meeting minutes in the history of Illinois nonprofits. She once documented a full board discussion about a rogue fishing lure with the precision of a legal transcript. Nothing gets past her.</p>
+      </div>
+    </div>
+
+    <div class="off-grid-bottom">
+      <div class="off-card">
+        <div class="off-photo">
+          <img src="images/treasurer.jpg" alt="Roberta Gingerich" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>RG</span>'">
+        </div>
+        <p class="off-role">Treasurer</p>
+        <p class="off-name">Roberta Gingerich</p>
+        <div class="off-accent"></div>
+        <p class="off-bio">Roberta knows exactly where every penny goes — and she will absolutely find it if it tries to go somewhere else. Her spreadsheets are legendary, and her commitment to the lake is even more so.</p>
+      </div>
+      <div class="off-card">
+        <div class="off-photo">
+          <img src="images/eventscoordinator.jpg" alt="Angie Rawlings" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>AR</span>'">
+        </div>
+        <p class="off-role">Events Coordinator</p>
+        <p class="off-name">Angie Rawlings</p>
+        <div class="off-accent"></div>
+        <p class="off-bio">Angie once organized a full shoreline cleanup, a bake sale, and a canoe race on the same Saturday — before noon. If there's fun to be had on Lake Mattoon, Angie planned it, promoted it, and brought the snacks.</p>
+      </div>
+    </div>
   </div>
 </section>
 
