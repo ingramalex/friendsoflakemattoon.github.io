@@ -198,6 +198,18 @@
   .involved-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--lake-deep); margin-bottom: 0.4rem; }
   .involved-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
 
+  .conservation-committee { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(26,80,104,0.12); }
+  .conservation-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf-green); font-weight: 600; margin-bottom: 0.5rem; }
+  .conservation-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--lake-deep); font-weight: 400; margin-bottom: 0.5rem; }
+  .conservation-desc { font-size: 0.88rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 520px; margin-bottom: 2rem; }
+  .conservation-divider { width: 48px; height: 1px; background: var(--leaf-green); margin-bottom: 2rem; opacity: 0.6; }
+  .off-card.conservation { border-color: rgba(45,90,39,0.2); }
+  .off-card.conservation:hover { border-color: rgba(45,90,39,0.5); }
+  .off-card.conservation .off-photo { border-color: rgba(74,140,63,0.5); background: linear-gradient(160deg, #2d5a27, #4a8c3f); }
+  .off-card.conservation .off-role { color: var(--leaf-green); }
+  .off-card.conservation .off-accent { background: var(--leaf-green); }
+  .conservation-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(45,90,39,0.1); color: var(--shore-green); padding: 3px 8px; border-radius: 2px; margin-bottom: 0.75rem; font-family: 'Source Serif 4', serif; font-weight: 600; }
+
   /* OFFICERS */
   .officers { padding: 6rem 2rem; background: var(--parchment); }
   .officers .section-title { color: var(--lake-deep); }
@@ -470,7 +482,7 @@
       <li><a href="#cleanup">Cleanup</a></li>
       <li><a href="#highlights">Recreation</a></li>
       <li><a href="#events">Events</a></li>
-      <li><a href="#officers">Officers</a></li>
+      <li><a href="#officers">Leadership</a></li>
       <li><a href="#socials">Socials</a></li>
       <li><a href="#donate">Donate</a></li>
     </ul>
@@ -486,7 +498,7 @@
     <a href="#cleanup" class="drawer-link">Cleanup</a>
     <a href="#highlights" class="drawer-link">Recreation</a>
     <a href="#events" class="drawer-link">Events</a>
-    <a href="#officers" class="drawer-link">Officers</a>
+    <a href="#officers" class="drawer-link">Leadership</a>
     <a href="#socials" class="drawer-link">Socials</a>
     <button onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');" class="drawer-donate" style="font-family:'Source Serif 4',serif;width:100%;text-align:center;cursor:pointer;">Donate</button>
   </div>
@@ -874,6 +886,27 @@
         <p class="off-bio">Angie once organized a full shoreline cleanup, a bake sale, and a canoe race on the same Saturday — before noon. If there's fun to be had on Lake Mattoon, Angie planned it, promoted it, and brought the snacks.</p>
       </div>
     </div>
+
+    <div class="conservation-committee">
+      <p class="conservation-tag">Conservation Committee</p>
+      <h3 class="conservation-title">Meet Our <em>Conservation Team</em></h3>
+      <div class="conservation-divider"></div>
+      <p class="conservation-desc">Behind every clean shoreline and healthy water quality report is a dedicated team working behind the scenes. Our Conservation Committee leads the strategic efforts to protect and restore Lake Mattoon for future generations.</p>
+
+      <div style="max-width:320px;">
+        <div class="off-card conservation">
+          <div class="conservation-badge">Conservation Committee</div>
+          <div class="off-photo">
+            <img src="images/conservationchair.jpg" alt="Jason Little" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JL</span>'">
+          </div>
+          <p class="off-role">Conservation Chair &amp; Lead Strategist</p>
+          <p class="off-name">Jason Little</p>
+          <div class="off-accent"></div>
+          <p class="off-bio">Jason once spent three hours debating the optimal angle for a riprap installation — and he was right. Armed with an encyclopedic knowledge of watershed management and an unshakeable love for Lake Mattoon, he's the guy who turns environmental data into a battle plan. If the lake has a superhero, Jason is quietly wearing the cape.</p>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
