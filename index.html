@@ -838,9 +838,12 @@
       })
       .then(function(data) {
         if (data.error) throw new Error(data.error.message);
-        console.log('Calendar API response:', JSON.stringify(data.items && data.items[0]));
         if (!data.items || !data.items.length) { buildCarousel([]); return; }
-        var events = data.items.map(function(item) {
+        var events = data.items
+          .filter(function(item) {
+            return item.visibility !== 'private' && item.summary;
+          })
+          .map(function(item) {
           var start = item.start.dateTime || item.start.date;
           var d = new Date(start);
           var title = (item.summary || item.title || '').toString().trim() || 'Untitled Event';
