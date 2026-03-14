@@ -209,7 +209,6 @@
   .event-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--lake-deep); line-height: 1.3; }
   .event-meta { font-size: 12px; color: var(--text-mid); font-weight: 300; display: flex; flex-direction: column; gap: 3px; }
   .event-meta span { display: flex; align-items: center; gap: 6px; }
-  .event-desc { font-size: 0.85rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; flex: 1; }
   .event-tag { display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(58,143,168,0.1); color: var(--lake-mid); padding: 3px 8px; border-radius: 2px; font-family: 'Source Serif 4', serif; align-self: flex-start; }
   .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; }
   .carousel-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(26,80,104,0.2); background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
@@ -750,7 +749,6 @@
         + '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5V7L8.5 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' + ev.time + '</span>'
         + '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5C3 8.5 7 12.5 7 12.5C7 12.5 11 8.5 11 5.5C11 3.29 9.21 1.5 7 1.5Z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5.5" r="1.2" stroke="currentColor" stroke-width="1.2"/></svg>' + ev.location + '</span>'
         + '</div>'
-        + '<p class="event-desc">' + ev.desc + '</p>'
         + '<span class="event-tag" style="background:' + tagColor + '">' + ev.tag + '</span>'
         + '</div>';
     }).join('');
@@ -855,7 +853,6 @@
             start: start,
             time: item.start.dateTime ? d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) : 'All Day',
             location: loc,
-            desc: desc ? desc.substring(0,120) + (desc.length > 120 ? '...' : '') : 'Join us for this community event at Lake Mattoon.',
             tag: tag
           };
         });
