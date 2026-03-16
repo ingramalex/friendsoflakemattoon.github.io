@@ -12,6 +12,12 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://friendsoflakemattoon.org">
 
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/favicon-180.png">
+<meta name="theme-color" content="#0d2e3f">
+
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://friendsoflakemattoon.org">
@@ -92,6 +98,12 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .nav-center a:hover{color:#fff}
 .nav-donate-btn{background:var(--gold);color:#fff;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;padding:.45rem 1rem;border-radius:var(--r);text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background var(--t);display:inline-block}
 .nav-donate-btn:hover{background:var(--gold-dk)}
+.nav-utility{display:flex;align-items:center;gap:.5rem;flex-shrink:0}
+.nav-icon-btn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(58,143,168,.35);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t);position:relative;flex-shrink:0}
+.nav-icon-btn:hover{background:rgba(58,143,168,.15);border-color:var(--sky)}
+.nav-icon-btn svg{pointer-events:none}
+.nav-icon-btn .nav-tooltip{position:absolute;top:calc(100% + 8px);right:0;background:rgba(13,46,63,.97);color:var(--sky);font-family:var(--body);font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:.3rem .6rem;border-radius:var(--r);border:1px solid rgba(58,143,168,.2);opacity:0;pointer-events:none;transition:opacity var(--t)}
+.nav-icon-btn:hover .nav-tooltip{opacity:1}
 .nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
 .nav-hamburger span{display:block;width:22px;height:2px;background:var(--sky);border-radius:2px;transition:all .25s}
 .nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -296,6 +308,26 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .donate-btn-large{font-size:15px;padding:1rem 2.5rem}
 .donate-note{font-size:12px;color:rgba(184,220,232,.5);margin-top:1rem;font-weight:300}
 
+/* ── CONTACT ─────────────────────────────────────────── */
+.contact{padding:6rem 2rem;background:var(--navy)}
+.contact .section-tag{color:rgba(184,220,232,.6)}
+.contact .section-title{color:var(--sky)}
+.contact .body-text{color:rgba(184,220,232,.75);max-width:540px;margin-bottom:3rem}
+.contact-wrap{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:center}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem}
+.contact-info-item{display:flex;align-items:flex-start;gap:1rem}
+.contact-info-icon{width:40px;height:40px;border-radius:50%;background:rgba(58,143,168,.15);border:1px solid rgba(58,143,168,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-info-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,220,232,.5);font-weight:300;margin-bottom:.25rem}
+.contact-info-value{font-size:.95rem;color:var(--sky);font-weight:300}
+.contact-info-value a{color:var(--sky);text-decoration:none;transition:color var(--t)}
+.contact-info-value a:hover{color:#fff}
+.contact-cta-box{background:rgba(26,80,104,.35);border:1px solid rgba(58,143,168,.2);border-radius:8px;padding:2.5rem 2rem;text-align:center}
+.contact-cta-icon{width:72px;height:72px;border-radius:50%;background:rgba(58,143,168,.15);border:1px solid rgba(58,143,168,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.contact-cta-heading{font-family:var(--serif);font-size:1.3rem;color:#fff;font-weight:400;margin-bottom:.75rem}
+.contact-cta-rule{width:36px;height:1px;background:var(--gold);opacity:.7;margin:.75rem auto 1.25rem}
+.contact-cta-text{font-size:.88rem;line-height:1.8;color:rgba(184,220,232,.7);font-weight:300;margin-bottom:1.75rem}
+.contact-cta-note{font-size:11px;color:rgba(184,220,232,.35);margin-top:1rem;font-weight:300}
+
 /* ── FOOTER ─────────────────────────────────────────── */
 footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--sky);margin-bottom:.25rem}
@@ -349,6 +381,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 @media(max-width:860px){
   .site-nav .nav-center{display:none}
   .nav-hamburger{display:flex}
+  .nav-utility{gap:.35rem}
   .nav-donate-btn{font-size:11px;padding:.4rem .85rem}
 }
 @media(max-width:768px){
@@ -381,6 +414,8 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   .donate-section{padding:5rem 1.5rem}
   .donate-amounts{gap:.5rem}
   .amt-btn{padding:.5rem 1rem;font-size:1rem}
+  .contact{padding:4rem 1.5rem}
+  .contact-wrap{grid-template-columns:1fr;gap:2.5rem}
   footer{padding:2.5rem 1.5rem}
 }
 @media(max-width:480px){
@@ -411,11 +446,19 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <li><a href="#highlights">Recreation</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#officers">Leadership</a></li>
-      <li><a href="#socials">Socials</a></li>
-      <li><a href="#donate">Donate</a></li>
-      <li><a href="#" onclick="openSurveyModal();return false;">Survey</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-    <button onclick="openDonateModal()" class="nav-donate-btn">Donate</button>
+    <div class="nav-utility">
+      <button onclick="openSurveyModal()" class="nav-icon-btn" aria-label="Take our survey">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1.5" stroke="#b8dce8" stroke-width="1.2"/><path d="M5 5.5H11M5 8H11M5 10.5H8.5" stroke="#b8dce8" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <span class="nav-tooltip">Take Survey</span>
+      </button>
+      <a href="#contact" class="nav-icon-btn" aria-label="Contact us">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3.5h12a.5.5 0 01.5.5v8a.5.5 0 01-.5.5H2a.5.5 0 01-.5-.5V4a.5.5 0 01.5-.5z" stroke="#b8dce8" stroke-width="1.2"/><path d="M1.5 4.5L8 9l6.5-4.5" stroke="#b8dce8" stroke-width="1.2"/></svg>
+        <span class="nav-tooltip">Contact Us</span>
+      </a>
+      <button onclick="openDonateModal()" class="nav-donate-btn">Donate</button>
+    </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
@@ -427,6 +470,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <a href="#events">Events</a>
     <a href="#officers">Leadership</a>
     <a href="#socials">Socials</a>
+    <a href="#contact">Contact</a>
     <a href="#" onclick="openSurveyModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');return false;">Survey</a>
     <button class="drawer-donate" onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');">Donate</button>
   </div>
@@ -800,6 +844,63 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   </div>
 </div>
 
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-inner">
+    <div class="contact-wrap">
+      <div>
+        <p class="section-tag">Get In Touch</p>
+        <h2 class="section-title">We'd Love to <em>Hear From You</em></h2>
+        <p class="body-text">Whether you want to volunteer, ask a question, report a concern about the lake, or simply learn more — we're here. Reach out and a member of our team will get back to you shortly.</p>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4H15C15.55 4 16 4.45 16 5V13C16 13.55 15.55 14 15 14H3C2.45 14 2 13.55 2 13V5C2 4.45 2.45 4 3 4Z" stroke="#b8dce8" stroke-width="1.2"/><path d="M2 5L9 9.5L16 5" stroke="#b8dce8" stroke-width="1.2"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Email Us</p>
+              <p class="contact-info-value"><a href="/cdn-cgi/l/email-protection#680e1a010d060c1b070e0409030d05091c1c070706280f05090104460b0705"><span class="__cf_email__" data-cfemail="b0d6c2d9d5ded4c3dfd6dcd1dbd5ddd1c4c4dfdfdef0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</span></a></p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7C4 11 9 16 9 16C9 16 14 11 14 7C14 4.24 11.76 2 9 2Z" stroke="#b8dce8" stroke-width="1.2"/><circle cx="9" cy="7" r="2" stroke="#b8dce8" stroke-width="1.2"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Location</p>
+              <p class="contact-info-value">Neoga, Illinois<br>Coles, Cumberland &amp; Shelby Counties</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4H15C15.55 4 16 4.45 16 5V13C16 13.55 15.55 14 15 14H3C2.45 14 2 13.55 2 13V5C2 4.45 2.45 4 3 4Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/><path d="M2 14 L5 11 M16 14 L13 11" stroke="#b8dce8" stroke-width="1.2" stroke-linecap="round"/><circle cx="14.5" cy="4.5" r="2.5" fill="#3a8fa8" stroke="#b8dce8" stroke-width="1"/></svg>
+            </div>
+            <div>
+              <p class="contact-info-label">Follow Us</p>
+              <p class="contact-info-value"><a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Facebook &mdash; Friends of Lake Mattoon</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-cta-wrap">
+        <div class="contact-cta-card">
+          <div class="contact-cta-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M4 7H28C28.55 7 29 7.45 29 8V23C29 23.55 28.55 24 28 24H4C3.45 24 3 23.55 3 23V8C3 7.45 3.45 7 4 7Z" stroke="#b8dce8" stroke-width="1.5" fill="none"/><path d="M3 8.5L16 17L29 8.5" stroke="#b8dce8" stroke-width="1.5"/></svg>
+          </div>
+          <p class="contact-cta-title">Ready to Connect?</p>
+          <p class="contact-cta-text">Click below to send us an email directly. We read every message and look forward to hearing from you. We aim to respond within 48 hours.</p>
+          <a href="/cdn-cgi/l/email-protection#ec8a9e858982889f838a808d8789818d9898838382ac8b818d8580c28f8381d39f998e86898f98d1aa9e858982889fcc838acca08d8789cca18d9898838382cca5829d99859e95" class="btn-primary icon-arrow contact-cta-btn">
+            Send Us an Email
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <p class="contact-cta-note">Opens your email app automatically</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <p class="footer-brand">Friends of Lake Mattoon</p>
@@ -812,13 +913,14 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <a href="#about">About</a>
     <a href="#mission">Our Work</a>
     <a href="#involved">Get Involved</a>
+    <a href="#contact">Contact</a>
     <a href="#donate">Donate</a>
     <a href="#" onclick="openSurveyModal();return false;">Take Our Survey</a>
   </nav>
   <p class="footer-copy">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 'use strict';
 
 /* ── CONFIG ──────────────────────────────────────────────── */
@@ -997,21 +1099,4 @@ function moveCarousel(dir) {
       var events = data.items
         .filter(function(i) { return i.visibility !== 'private' && i.summary; })
         .map(function(i) {
-          var s  = i.start.dateTime || i.start.date;
-          var d  = new Date(s);
-          var tl = (i.summary || '').toLowerCase();
-          return {
-            title:    i.summary.trim(),
-            start:    s,
-            time:     i.start.dateTime ? d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : 'All Day',
-            location: (i.location || 'Lake Mattoon, IL').trim(),
-            tag:      tl.includes('clean') ? 'Cleanup' : tl.includes('meet') ? 'Meeting' : 'Community'
-          };
-        });
-      buildCarousel(events);
-    })
-    .catch(showCalendarError);
-}());
-</script>
-</body>
-</html>
+      
