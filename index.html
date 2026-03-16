@@ -920,49 +920,19 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   <p class="footer-copy">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-'use strict';
-
+<script>
 /* ── CONFIG ──────────────────────────────────────────────── */
 var CAL_ID  = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
 var CAL_KEY = 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ';
 var MONTHS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-/* ── DOM ─────────────────────────────────────────────────── */
-var hamburger   = document.getElementById('hamburger');
-var drawer      = document.getElementById('nav-drawer');
-var donateModal = document.getElementById('donateModal');
-var surveyModal = document.getElementById('surveyModal');
-
-/* ── NAV ─────────────────────────────────────────────────── */
-hamburger.addEventListener('click', function() {
-  hamburger.classList.toggle('open');
-  drawer.classList.toggle('open');
-});
-drawer.querySelectorAll('a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    hamburger.classList.remove('open');
-    drawer.classList.remove('open');
-  });
-});
-
-/* ── MODALS ──────────────────────────────────────────────── */
+/* ── MODAL FUNCTIONS — global so onclick attrs work ─────── */
 function openModal(el)  { el.classList.add('open');    document.body.style.overflow = 'hidden'; }
 function closeModal(el) { el.classList.remove('open'); document.body.style.overflow = ''; }
 
-function openDonateModal()  { openModal(donateModal); }
-function closeDonateModal() { closeModal(donateModal); }
-function openSurveyModal()  { openModal(surveyModal); showSurveyTab('resident'); localStorage.setItem('surveyInteracted','true'); }
-function closeSurveyModal() { closeModal(surveyModal); }
+function openDonateModal()  { openModal(document.getElementById('donateModal')); }
+function closeDonateModal() { closeModal(document.getElementById('donateModal')); }
 
-document.getElementById('modalClose').addEventListener('click', closeDonateModal);
-document.getElementById('modalClosBtn').addEventListener('click', closeDonateModal);
-document.getElementById('surveyClose').addEventListener('click', closeSurveyModal);
-donateModal.addEventListener('click', function(e) { if (e.target === donateModal) closeDonateModal(); });
-surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeDonateModal(); closeSurveyModal(); } });
-
-/* ── SURVEY TABS ─────────────────────────────────────────── */
 function showSurveyTab(tab) {
   document.getElementById('surveyBusiness').style.display = tab === 'business' ? 'block' : 'none';
   document.getElementById('surveyResident').style.display = tab === 'resident'  ? 'block' : 'none';
@@ -970,121 +940,183 @@ function showSurveyTab(tab) {
   document.getElementById('tabResident').classList.toggle('active', tab === 'resident');
 }
 
-/* ── SURVEY POPUP — disabled until surveys finalized ─────── */
-// if (!localStorage.getItem('surveyInteracted')) {
-//   setTimeout(function() {
-//     if (!surveyModal.classList.contains('open') && !donateModal.classList.contains('open')) {
-//       openSurveyModal();
-//     }
-//   }, 45000);
-// }
+function openSurveyModal() {
+  openModal(document.getElementById('surveyModal'));
+  showSurveyTab('resident');
+  localStorage.setItem('surveyInteracted', 'true');
+}
+function closeSurveyModal() { closeModal(document.getElementById('surveyModal')); }
 
-/* ── DONATE AMOUNTS ──────────────────────────────────────── */
 function setAmt(el) {
   document.querySelectorAll('.amt-btn').forEach(function(b) { b.classList.remove('active'); });
   el.classList.add('active');
 }
 
-/* ── EVENTS CAROUSEL ─────────────────────────────────────── */
-var carouselIndex = 0;
-var carouselItems = [];
-var tagColors = {
-  Cleanup:   'rgba(58,143,168,0.1);color:#1a5068',
-  Meeting:   'rgba(196,154,42,0.15);color:#8a6a10',
-  Community: 'rgba(45,90,39,0.1);color:#2d5a27'
-};
+/* ── DOM-DEPENDENT SETUP ─────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function() {
+  var hamburger   = document.getElementById('hamburger');
+  var drawer      = document.getElementById('nav-drawer');
+  var donateModal = document.getElementById('donateModal');
+  var surveyModal = document.getElementById('surveyModal');
 
-function cardsPerView() {
-  return window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
-}
+  /* NAV */
+  hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('open');
+    drawer.classList.toggle('open');
+  });
+  drawer.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      drawer.classList.remove('open');
+    });
+  });
 
-function buildCarousel(events) {
-  carouselItems = events;
-  var el = document.getElementById('eventsContainer');
-  if (!events.length) {
+  /* MODAL CLOSE BUTTONS */
+  document.getElementById('modalClose').addEventListener('click', closeDonateModal);
+  document.getElementById('modalClosBtn').addEventListener('click', closeDonateModal);
+  document.getElementById('surveyClose').addEventListener('click', closeSurveyModal);
+  donateModal.addEventListener('click', function(e) { if (e.target === donateModal) closeDonateModal(); });
+  surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeDonateModal(); closeSurveyModal(); } });
+
+  /* CONTACT FORM */
+  var contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn     = contactForm.querySelector('.form-submit');
+      var success = document.getElementById('formSuccess');
+      var error   = document.getElementById('formError');
+      var orig    = btn.innerHTML;
+      btn.textContent = 'Sending\u2026';
+      btn.disabled = true;
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(r) {
+        if (r.ok) {
+          success.style.display = 'block';
+          error.style.display   = 'none';
+          contactForm.reset();
+          btn.textContent = 'Message Sent \u2713';
+        } else { throw new Error(); }
+      })
+      .catch(function() {
+        error.style.display   = 'block';
+        success.style.display = 'none';
+        btn.innerHTML  = orig;
+        btn.disabled   = false;
+      });
+    });
+  }
+
+  /* SURVEY POPUP — disabled until surveys finalized */
+  // if (!localStorage.getItem('surveyInteracted')) {
+  //   setTimeout(function() {
+  //     if (!surveyModal.classList.contains('open') && !donateModal.classList.contains('open')) {
+  //       openSurveyModal();
+  //     }
+  //   }, 45000);
+  // }
+
+  /* EVENTS CAROUSEL */
+  var carouselIndex = 0;
+  var carouselItems = [];
+  var tagColors = {
+    Cleanup:   'rgba(58,143,168,0.1);color:#1a5068',
+    Meeting:   'rgba(196,154,42,0.15);color:#8a6a10',
+    Community: 'rgba(45,90,39,0.1);color:#2d5a27'
+  };
+
+  function cardsPerView() {
+    return window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
+  }
+
+  function buildCarousel(events) {
+    carouselItems = events;
+    var el = document.getElementById('eventsContainer');
+    if (!events.length) {
+      el.innerHTML =
+        '<div class="events-no-calendar">' +
+        '<div class="events-state-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="22" rx="2" stroke="#3a8fa8" stroke-width="1.5"/><path d="M4 12H28" stroke="#3a8fa8" stroke-width="1.5"/><path d="M10 4V8M22 4V8" stroke="#3a8fa8" stroke-width="1.5" stroke-linecap="round"/><path d="M10 18H16M10 22H14" stroke="#3a8fa8" stroke-width="1.2" stroke-linecap="round"/></svg></div>' +
+        '<p class="events-state-title">No Upcoming Events</p>' +
+        '<p class="events-state-text">We are currently planning our next event. Follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Facebook</a> to be the first to know.</p>' +
+        '</div>';
+      return;
+    }
+    var cards = events.map(function(ev) {
+      var d = new Date(ev.start);
+      var c = tagColors[ev.tag] || tagColors.Community;
+      return '<div class="event-card">' +
+        '<div class="event-date-badge"><span class="event-date-month">' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</span><span class="event-date-day">' + d.getDate() + '</span></div>' +
+        '<h3 class="event-title">' + ev.title + '</h3>' +
+        '<div class="event-meta">' +
+        '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5V7L8.5 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' + ev.time + '</span>' +
+        '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5C3 8.5 7 12.5 7 12.5S11 8.5 11 5.5C11 3.29 9.21 1.5 7 1.5Z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5.5" r="1.2" stroke="currentColor" stroke-width="1.2"/></svg>' + ev.location + '</span>' +
+        '</div>' +
+        '<span class="event-tag" style="background:' + c + '">' + ev.tag + '</span>' +
+        '</div>';
+    }).join('');
+
     el.innerHTML =
-      '<div class="events-no-calendar">' +
-      '<div class="events-state-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="22" rx="2" stroke="#3a8fa8" stroke-width="1.5"/><path d="M4 12H28" stroke="#3a8fa8" stroke-width="1.5"/><path d="M10 4V8M22 4V8" stroke="#3a8fa8" stroke-width="1.5" stroke-linecap="round"/><path d="M10 18H16M10 22H14" stroke="#3a8fa8" stroke-width="1.2" stroke-linecap="round"/></svg></div>' +
-      '<p class="events-state-title">No Upcoming Events</p>' +
-      '<p class="events-state-text">We are currently planning our next event. Follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Facebook</a> to be the first to know.</p>' +
-      '</div>';
-    return;
+      '<div class="carousel-outer">' +
+      '<div class="carousel-track-wrap"><div class="carousel-track" id="carouselTrack">' + cards + '</div></div>' +
+      '<div class="carousel-controls">' +
+      '<button class="carousel-btn" id="prevBtn" aria-label="Previous" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="#0d2e3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+      '<div class="carousel-dots" id="carouselDots"></div>' +
+      '<button class="carousel-btn" id="nextBtn" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="#0d2e3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+      '</div></div>';
+
+    carouselIndex = 0;
+    updateCarousel();
+    document.getElementById('prevBtn').addEventListener('click', function() { moveCarousel(-1); });
+    document.getElementById('nextBtn').addEventListener('click', function() { moveCarousel(1); });
+    window.addEventListener('resize', function() { carouselIndex = 0; updateCarousel(); });
   }
-  var cards = events.map(function(ev) {
-    var d = new Date(ev.start);
-    var c = tagColors[ev.tag] || tagColors.Community;
-    return '<div class="event-card">' +
-      '<div class="event-date-badge"><span class="event-date-month">' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</span><span class="event-date-day">' + d.getDate() + '</span></div>' +
-      '<h3 class="event-title">' + ev.title + '</h3>' +
-      '<div class="event-meta">' +
-      '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5V7L8.5 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' + ev.time + '</span>' +
-      '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5C3 8.5 7 12.5 7 12.5S11 8.5 11 5.5C11 3.29 9.21 1.5 7 1.5Z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5.5" r="1.2" stroke="currentColor" stroke-width="1.2"/></svg>' + ev.location + '</span>' +
-      '</div>' +
-      '<span class="event-tag" style="background:' + c + '">' + ev.tag + '</span>' +
+
+  function showCalendarError() {
+    document.getElementById('eventsContainer').innerHTML =
+      '<div class="events-no-calendar events-error">' +
+      '<div class="events-state-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#c49a2a" stroke-width="1.5"/><path d="M16 10V17" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="21.5" r="1.2" fill="#c49a2a"/></svg></div>' +
+      '<p class="events-state-title error">Unable to Load Events</p>' +
+      '<p class="events-state-text">We were unable to connect to our events calendar. Please check back shortly or follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Facebook</a> for event announcements.</p>' +
       '</div>';
-  }).join('');
-
-  el.innerHTML =
-    '<div class="carousel-outer">' +
-    '<div class="carousel-track-wrap"><div class="carousel-track" id="carouselTrack">' + cards + '</div></div>' +
-    '<div class="carousel-controls">' +
-    '<button class="carousel-btn" id="prevBtn" aria-label="Previous" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="#0d2e3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
-    '<div class="carousel-dots" id="carouselDots"></div>' +
-    '<button class="carousel-btn" id="nextBtn" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="#0d2e3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
-    '</div></div>';
-
-  carouselIndex = 0;
-  updateCarousel();
-  document.getElementById('prevBtn').addEventListener('click', function() { moveCarousel(-1); });
-  document.getElementById('nextBtn').addEventListener('click', function() { moveCarousel(1); });
-  window.addEventListener('resize', function() { carouselIndex = 0; updateCarousel(); });
-}
-
-function showCalendarError() {
-  document.getElementById('eventsContainer').innerHTML =
-    '<div class="events-no-calendar events-error">' +
-    '<div class="events-state-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#c49a2a" stroke-width="1.5"/><path d="M16 10V17" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="21.5" r="1.2" fill="#c49a2a"/></svg></div>' +
-    '<p class="events-state-title error">Unable to Load Events</p>' +
-    '<p class="events-state-text">We were unable to connect to our events calendar. Please check back shortly or follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Facebook</a> for event announcements.</p>' +
-    '</div>';
-}
-
-function updateCarousel() {
-  var cpv   = cardsPerView();
-  var track = document.getElementById('carouselTrack');
-  var dots  = document.getElementById('carouselDots');
-  var prev  = document.getElementById('prevBtn');
-  var next  = document.getElementById('nextBtn');
-  if (!track) return;
-
-  var total  = Math.ceil(carouselItems.length / cpv);
-  carouselIndex = Math.max(0, Math.min(carouselIndex, total - 1));
-
-  var w  = track.parentElement.offsetWidth;
-  var g  = 24;
-  var cw = (w - g * (cpv - 1)) / cpv;
-  track.style.transform = 'translateX(-' + (carouselIndex * (cw + g) * cpv) + 'px)';
-  track.querySelectorAll('.event-card').forEach(function(c) { c.style.flex = '0 0 ' + cw + 'px'; });
-
-  dots.innerHTML = '';
-  for (var i = 0; i < total; i++) {
-    var dot = document.createElement('button');
-    dot.className = 'carousel-dot' + (i === carouselIndex ? ' active' : '');
-    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-    dot.addEventListener('click', (function(idx) { return function() { carouselIndex = idx; updateCarousel(); }; })(i));
-    dots.appendChild(dot);
   }
-  prev.disabled = carouselIndex === 0;
-  next.disabled = carouselIndex >= total - 1;
-}
 
-function moveCarousel(dir) {
-  carouselIndex = Math.max(0, Math.min(carouselIndex + dir, Math.ceil(carouselItems.length / cardsPerView()) - 1));
-  updateCarousel();
-}
+  function updateCarousel() {
+    var cpv   = cardsPerView();
+    var track = document.getElementById('carouselTrack');
+    var dots  = document.getElementById('carouselDots');
+    var prev  = document.getElementById('prevBtn');
+    var next  = document.getElementById('nextBtn');
+    if (!track) return;
+    var total  = Math.ceil(carouselItems.length / cpv);
+    carouselIndex = Math.max(0, Math.min(carouselIndex, total - 1));
+    var w  = track.parentElement.offsetWidth;
+    var g  = 24;
+    var cw = (w - g * (cpv - 1)) / cpv;
+    track.style.transform = 'translateX(-' + (carouselIndex * (cw + g) * cpv) + 'px)';
+    track.querySelectorAll('.event-card').forEach(function(c) { c.style.flex = '0 0 ' + cw + 'px'; });
+    dots.innerHTML = '';
+    for (var i = 0; i < total; i++) {
+      var dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === carouselIndex ? ' active' : '');
+      dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+      dot.addEventListener('click', (function(idx) { return function() { carouselIndex = idx; updateCarousel(); }; })(i));
+      dots.appendChild(dot);
+    }
+    prev.disabled = carouselIndex === 0;
+    next.disabled = carouselIndex >= total - 1;
+  }
 
-/* ── GOOGLE CALENDAR ─────────────────────────────────────── */
-(function loadCalendar() {
+  function moveCarousel(dir) {
+    carouselIndex = Math.max(0, Math.min(carouselIndex + dir, Math.ceil(carouselItems.length / cardsPerView()) - 1));
+    updateCarousel();
+  }
+
+  /* GOOGLE CALENDAR */
   var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
     encodeURIComponent(CAL_ID) +
     '/events?key=' + CAL_KEY +
@@ -1099,4 +1131,22 @@ function moveCarousel(dir) {
       var events = data.items
         .filter(function(i) { return i.visibility !== 'private' && i.summary; })
         .map(function(i) {
-      
+          var s  = i.start.dateTime || i.start.date;
+          var d  = new Date(s);
+          var tl = (i.summary || '').toLowerCase();
+          return {
+            title:    i.summary.trim(),
+            start:    s,
+            time:     i.start.dateTime ? d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : 'All Day',
+            location: (i.location || 'Lake Mattoon, IL').trim(),
+            tag:      tl.includes('clean') ? 'Cleanup' : tl.includes('meet') ? 'Meeting' : 'Community'
+          };
+        });
+      buildCarousel(events);
+    })
+    .catch(showCalendarError);
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
