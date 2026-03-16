@@ -227,6 +227,14 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .event-meta{font-size:12px;color:var(--muted);font-weight:300;display:flex;flex-direction:column;gap:3px}
 .event-meta span{display:flex;align-items:center;gap:6px}
 .event-tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(58,143,168,.1);color:var(--mid);padding:3px 8px;border-radius:2px;align-self:flex-start}
+.event-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.5rem}
+.add-to-cal-wrap{position:relative}
+.add-to-cal-btn{display:inline-flex;align-items:center;gap:5px;font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);background:transparent;border:1px solid rgba(58,143,168,.3);border-radius:var(--r);padding:.3rem .7rem;cursor:pointer;transition:all var(--t)}
+.add-to-cal-btn:hover{background:rgba(58,143,168,.08);border-color:var(--teal)}
+.add-to-cal-dropdown{display:none;position:absolute;bottom:calc(100% + 6px);left:0;background:#fff;border:1px solid rgba(26,80,104,.12);border-radius:var(--r);box-shadow:0 4px 16px rgba(26,80,104,.12);min-width:160px;z-index:50;overflow:hidden}
+.add-to-cal-dropdown.open{display:block}
+.add-to-cal-dropdown a{display:flex;align-items:center;gap:8px;padding:.6rem .875rem;font-size:12px;color:var(--navy);text-decoration:none;transition:background var(--t);white-space:nowrap}
+.add-to-cal-dropdown a:hover{background:rgba(58,143,168,.07)}
 .carousel-controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:2rem}
 .carousel-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(26,80,104,.2);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t)}
 .carousel-btn:hover{background:var(--navy);border-color:var(--navy)}
@@ -954,6 +962,57 @@ function setAmt(el) {
   el.classList.add('active');
 }
 
+/* ── CALENDAR HELPERS — global so onclick attrs work ─────── */
+function toggleCalDropdown(id) {
+  var all = document.querySelectorAll('.add-to-cal-dropdown');
+  all.forEach(function(d) { if (d.id !== id) d.classList.remove('open'); });
+  document.getElementById(id).classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.add-to-cal-wrap')) {
+    document.querySelectorAll('.add-to-cal-dropdown').forEach(function(d) { d.classList.remove('open'); });
+  }
+});
+
+function padZ(n) { return String(n).padStart(2,'0'); }
+
+function toICSDate(dateStr) {
+  var d = new Date(dateStr);
+  return d.getFullYear() + padZ(d.getMonth()+1) + padZ(d.getDate()) + 'T' + padZ(d.getHours()) + padZ(d.getMinutes()) + '00';
+}
+
+function makeCalLinks(ev) {
+  var d     = new Date(ev.start);
+  var end   = new Date(d.getTime() + 60 * 60 * 1000);
+  var title = encodeURIComponent(ev.title);
+  var loc   = encodeURIComponent(ev.location);
+
+  var gStart = d.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  var gEnd   = end.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+  var googleUrl = 'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+    '&text=' + title + '&dates=' + gStart + '/' + gEnd + '&location=' + loc;
+
+  var icsStart = toICSDate(ev.start);
+  var icsEnd   = toICSDate(end.toISOString());
+  var icsContent = [
+    'BEGIN:VCALENDAR','VERSION:2.0','BEGIN:VEVENT',
+    'DTSTART:' + icsStart,
+    'DTEND:'   + icsEnd,
+    'SUMMARY:' + ev.title,
+    'LOCATION:' + ev.location,
+    'DESCRIPTION:Friends of Lake Mattoon Event',
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+  var icsUrl = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent);
+
+  return '<a href="' + googleUrl + '" target="_blank" rel="noopener">' +
+    '<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="1.5" stroke="#4285f4" stroke-width="1.2"/><path d="M1 5h12" stroke="#4285f4" stroke-width="1.2"/><circle cx="7" cy="9" r="1.5" fill="#4285f4"/></svg>' +
+    'Google Calendar</a>' +
+    '<a href="' + icsUrl + '" download="' + ev.title.replace(/\s+/g,'-') + '.ics">' +
+    '<svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="1.5" stroke="#555" stroke-width="1.2"/><path d="M1 5h12" stroke="#555" stroke-width="1.2"/><path d="M5 8l2 2 2-2" stroke="#555" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+    'Apple / Outlook (.ics)</a>';
+}
+
 /* ── DOM-DEPENDENT SETUP ─────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function() {
   var hamburger   = document.getElementById('hamburger');
@@ -1061,9 +1120,10 @@ document.addEventListener('DOMContentLoaded', function() {
         '</div>';
       return;
     }
-    var cards = events.map(function(ev) {
+    var cards = events.map(function(ev, idx) {
       var d = new Date(ev.start);
       var c = tagColors[ev.tag] || tagColors.Community;
+      var id = 'cal-' + idx;
       return '<div class="event-card">' +
         '<div class="event-date-badge"><span class="event-date-month">' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</span><span class="event-date-day">' + d.getDate() + '</span></div>' +
         '<h3 class="event-title">' + ev.title + '</h3>' +
@@ -1071,7 +1131,15 @@ document.addEventListener('DOMContentLoaded', function() {
         '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5V7L8.5 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' + ev.time + '</span>' +
         '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5C3 8.5 7 12.5 7 12.5S11 8.5 11 5.5C11 3.29 9.21 1.5 7 1.5Z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5.5" r="1.2" stroke="currentColor" stroke-width="1.2"/></svg>' + ev.location + '</span>' +
         '</div>' +
+        '<div class="event-footer">' +
         '<span class="event-tag" style="background:' + c + '">' + ev.tag + '</span>' +
+        '<div class="add-to-cal-wrap">' +
+        '<button class="add-to-cal-btn" onclick="toggleCalDropdown(\'' + id + '\')" aria-label="Add to calendar">' +
+        '<svg width="11" height="11" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="2.5" width="11" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><path d="M1.5 6h11M5 1.5V4M9 1.5V4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' +
+        '+ Calendar</button>' +
+        '<div class="add-to-cal-dropdown" id="' + id + '">' +
+        makeCalLinks(ev) +
+        '</div></div></div>' +
         '</div>';
     }).join('');
 
