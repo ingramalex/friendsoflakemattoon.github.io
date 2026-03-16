@@ -396,6 +396,31 @@
   }
   .modal-btn-close:hover { border-color: var(--lake-light); color: var(--lake-deep); }
 
+  /* SURVEY MODAL */
+  .survey-overlay { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(7,20,28,0.75); align-items: center; justify-content: center; padding: 1.5rem; }
+  .survey-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
+  .survey-box { background: var(--parchment); border-radius: 6px; max-width: 620px; width: 100%; position: relative; animation: slideUp 0.3s ease; display: flex; flex-direction: column; max-height: 90vh; overflow: hidden; }
+  .survey-header { padding: 1.75rem 2rem 1.25rem; text-align: center; border-bottom: 1px solid rgba(26,80,104,0.1); flex-shrink: 0; }
+  .survey-close { position: absolute; top: 1rem; right: 1.25rem; background: none; border: none; cursor: pointer; color: var(--text-mid); font-size: 20px; line-height: 1; padding: 4px; transition: color 0.2s; }
+  .survey-close:hover { color: var(--lake-deep); }
+  .survey-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.4rem; }
+  .survey-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--lake-deep); line-height: 1.2; margin-bottom: 0.5rem; }
+  .survey-title em { font-style: italic; color: var(--lake-mid); }
+  .survey-divider { width: 36px; height: 1px; background: var(--accent-gold); margin: 0.6rem auto 0.75rem; }
+  .survey-subtitle { font-size: 0.85rem; color: var(--text-mid); font-weight: 300; line-height: 1.7; max-width: 460px; margin: 0 auto 1rem; }
+  .survey-tabs { display: flex; gap: 0.5rem; justify-content: center; }
+  .survey-tab { font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.5rem 1.25rem; border-radius: 2px; border: 1px solid rgba(26,80,104,0.2); cursor: pointer; background: transparent; color: var(--text-mid); transition: all 0.2s; }
+  .survey-tab.active { background: var(--lake-deep); color: #fff; border-color: var(--lake-deep); }
+  .survey-tab.coming-soon { border-color: rgba(196,154,42,0.3); color: var(--accent-gold); cursor: default; }
+  .survey-body { flex: 1; overflow-y: auto; }
+  .survey-frame-wrap { padding: 0; }
+  .survey-frame-wrap iframe { display: block; width: 100%; border: none; }
+  .survey-coming-soon { padding: 3rem 2rem; text-align: center; }
+  .survey-coming-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(196,154,42,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+  .survey-coming-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.75rem; }
+  .survey-coming-text { font-size: 0.88rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 360px; margin: 0 auto; }
+  .survey-footer-note { padding: 0.75rem 2rem; text-align: center; font-size: 11px; color: rgba(61,90,96,0.5); border-top: 1px solid rgba(26,80,104,0.08); flex-shrink: 0; font-weight: 300; }
+
   /* MOBILE */
   @media (max-width: 860px) {
     .site-nav .nav-center { display: none; }
@@ -478,13 +503,12 @@
     <ul class="nav-center">
       <li><a href="#about">About</a></li>
       <li><a href="#mission">Our Work</a></li>
-      <li><a href="#involved">Get Involved</a></li>
-      <li><a href="#cleanup">Cleanup</a></li>
       <li><a href="#highlights">Recreation</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#officers">Leadership</a></li>
       <li><a href="#socials">Socials</a></li>
       <li><a href="#donate">Donate</a></li>
+      <li><a href="#" onclick="openSurveyModal();return false;">Survey</a></li>
     </ul>
     <button onclick="openDonateModal()" class="nav-donate-btn">Donate</button>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
@@ -494,12 +518,11 @@
   <div class="nav-drawer" id="nav-drawer">
     <a href="#about" class="drawer-link">About</a>
     <a href="#mission" class="drawer-link">Our Work</a>
-    <a href="#involved" class="drawer-link">Get Involved</a>
-    <a href="#cleanup" class="drawer-link">Cleanup</a>
     <a href="#highlights" class="drawer-link">Recreation</a>
     <a href="#events" class="drawer-link">Events</a>
     <a href="#officers" class="drawer-link">Leadership</a>
     <a href="#socials" class="drawer-link">Socials</a>
+    <a href="#" onclick="openSurveyModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');return false;" class="drawer-link">Survey</a>
     <button onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');" class="drawer-donate" style="font-family:'Source Serif 4',serif;width:100%;text-align:center;cursor:pointer;">Donate</button>
   </div>
 </nav>
@@ -902,7 +925,7 @@
           <p class="off-role">Conservation Chair &amp; Lead Strategist</p>
           <p class="off-name">Jason Little</p>
           <div class="off-accent"></div>
-          <p class="off-bio">A lifelong agriculturalist with nearly five decades of roaming 38 states, two territories, five countries, and two continents — and somehow still yet to find a pair of sunglasses that doesn't look good on him. Jason's roots run deep in the land, and water runs even deeper. He's spent the last decade reshaping farming systems for better environmental outcomes, and Lake Mattoon is his real-world proof that clean water and a strong economy aren't opposites — they're the same goal. As Dr. Seuss once said, "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not." Jason cares — and he's confident his grandchildren will tell their kids they were on the right side of this one.</p>
+          <p class="off-bio">A lifelong agriculturalist with nearly five decades of roaming 38 states, two territories, five countries, and two continents — and still has yet to find a pair of sunglasses that don't look good on him. Jason's roots run deep in the land, and his connection to water runs even deeper. He's spent the last decade reshaping farming systems for better environmental outcomes, and Lake Mattoon is his real-world proof that clean water and a strong economy aren't opposites — they're the same goal. As Dr. Seuss once said, "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not." Jason cares — and he's confident his grandchildren will tell their kids they were on the right side of this one.</p>
         </div>
       </div>
     </div>
@@ -959,6 +982,44 @@
   </div>
 </section>
 
+<!-- SURVEY MODAL -->
+<div class="survey-overlay" id="surveyModal" role="dialog" aria-modal="true" aria-labelledby="surveyTitle">
+  <div class="survey-box">
+    <button class="survey-close" id="surveyClose" aria-label="Close">&times;</button>
+    <div class="survey-header">
+      <p class="survey-tag">Your Voice Matters</p>
+      <h2 class="survey-title" id="surveyTitle">Help Us <em>Protect</em> Lake Mattoon</h2>
+      <div class="survey-divider"></div>
+      <p class="survey-subtitle">We are gathering community insights to better understand how Lake Mattoon impacts the lives and livelihoods of people across Coles, Cumberland, and Shelby counties. Your answers help us tell the full story of this lake.</p>
+      <div class="survey-tabs">
+        <button class="survey-tab coming-soon" id="tabResident" onclick="showSurveyTab('resident')">
+          Resident Survey
+        </button>
+        <button class="survey-tab active" id="tabBusiness" onclick="showSurveyTab('business')">
+          Business Survey
+        </button>
+      </div>
+    </div>
+    <div class="survey-body" id="surveyBody">
+      <div id="surveyBusiness" class="survey-frame-wrap">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZcJvrj5wL2_jbHEBPVgv-5O32xT9yRqlzatY_rZEm2sItdQ/viewform?embedded=true&hl=en&rm=minimal" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading&hellip;</iframe>
+      </div>
+      <div id="surveyResident" class="survey-coming-soon" style="display:none;">
+        <div class="survey-coming-icon">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/>
+            <path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/>
+          </svg>
+        </div>
+        <p class="survey-coming-title">Coming Soon</p>
+        <p class="survey-coming-text">Our resident survey is currently being finalized. Check back shortly — your voice as a community member is just as important as ever in protecting Lake Mattoon for generations to come.</p>
+      </div>
+    </div>
+    <div class="survey-footer-note">Takes 2 minutes &nbsp;&middot;&nbsp; Anonymous &nbsp;&middot;&nbsp; Results shared with local government</div>
+  </div>
+</div>
+
 <!-- DONATE MODAL -->
 <div class="modal-overlay" id="donateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-box">
@@ -999,6 +1060,7 @@
     <a href="#mission">Our Work</a>
     <a href="#involved">Get Involved</a>
     <a href="#donate">Donate</a>
+    <a href="#" onclick="openSurveyModal();return false;">Take Our Survey</a>
   </nav>
   <p style="margin-top:1.5rem;font-size:11px;color:rgba(184,220,232,0.25);">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
 </footer>
@@ -1012,6 +1074,39 @@
 
   var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   var MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  var surveyModal = document.getElementById('surveyModal');
+
+  function openSurveyModal() {
+    surveyModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showSurveyTab('business');
+  }
+
+  function closeSurveyModal() {
+    surveyModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showSurveyTab(tab) {
+    document.getElementById('surveyBusiness').style.display = tab === 'business' ? 'block' : 'none';
+    document.getElementById('surveyResident').style.display = tab === 'resident' ? 'block' : 'none';
+    document.getElementById('tabBusiness').classList.toggle('active', tab === 'business');
+    document.getElementById('tabResident').classList.toggle('active', tab === 'resident');
+  }
+
+  document.getElementById('surveyClose').addEventListener('click', closeSurveyModal);
+  surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeSurveyModal(); closeDonateModal(); } });
+
+  if (!sessionStorage.getItem('surveyShown')) {
+    setTimeout(function() {
+      if (!surveyModal.classList.contains('open') && !document.getElementById('donateModal').classList.contains('open')) {
+        openSurveyModal();
+        sessionStorage.setItem('surveyShown', 'true');
+      }
+    }, 45000);
+  }
 
   function setAmt(el) {
     document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
