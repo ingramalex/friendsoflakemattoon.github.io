@@ -12,7 +12,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://friendsoflakemattoon.org">
 
-<!-- Open Graph — controls how the site looks when shared on Facebook -->
+<!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://friendsoflakemattoon.org">
 <meta property="og:title" content="Friends of Lake Mattoon | Clean Water, Strong Economy">
@@ -23,466 +23,371 @@
 <meta property="og:site_name" content="Friends of Lake Mattoon">
 <meta property="og:locale" content="en_US">
 
-<!-- Twitter Card — controls how the site looks when shared on Twitter/X -->
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Friends of Lake Mattoon | Clean Water, Strong Economy">
 <meta name="twitter:description" content="A community nonprofit dedicated to preserving and protecting Lake Mattoon in Neoga, IL.">
 <meta name="twitter:image" content="https://friendsoflakemattoon.org/images/og-image.jpg">
 
-<!-- Geo tags — helps local search -->
+<!-- Geo -->
 <meta name="geo.region" content="US-IL">
 <meta name="geo.placename" content="Neoga, Illinois">
 <meta name="geo.position" content="39.3239;-88.4512">
 <meta name="ICBM" content="39.3239, -88.4512">
 
-<!-- Schema.org structured data — helps Google understand your organization -->
+<!-- Schema.org -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NGO",
-  "name": "Friends of Lake Mattoon",
-  "alternateName": "Friends of Lake Mattoon",
-  "url": "https://friendsoflakemattoon.org",
-  "logo": "https://friendsoflakemattoon.org/images/logo.png",
-  "description": "A nonprofit organization dedicated to the conservation, education, and responsible recreation of Lake Mattoon in Neoga, Illinois — the drinking water source for Mattoon and surrounding communities.",
-  "keywords": "Mattoon, Mattoon IL, Neoga, Neoga IL, Lake Mattoon, Friends of Lake Mattoon",
-  "slogan": "Clean Water, Strong Economy",
-  "foundingLocation": {
-    "@type": "Place",
-    "name": "Neoga, Illinois"
-  },
-  "areaServed": [
-    "Coles County, Illinois",
-    "Cumberland County, Illinois",
-    "Shelby County, Illinois"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "General Inquiry",
-    "url": "https://www.facebook.com/profile.php?id=61588298083140"
-  },
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61588298083140"
-  ]
-}
+{"@context":"https://schema.org","@type":"NGO","name":"Friends of Lake Mattoon","url":"https://friendsoflakemattoon.org","logo":"https://friendsoflakemattoon.org/images/logo.png","description":"A nonprofit organization dedicated to the conservation, education, and responsible recreation of Lake Mattoon in Neoga, Illinois.","keywords":"Mattoon, Mattoon IL, Neoga, Neoga IL, Lake Mattoon, Friends of Lake Mattoon","slogan":"Clean Water, Strong Economy","foundingLocation":{"@type":"Place","name":"Neoga, Illinois"},"areaServed":["Coles County, Illinois","Cumberland County, Illinois","Shelby County, Illinois"],"contactPoint":{"@type":"ContactPoint","contactType":"General Inquiry","url":"https://www.facebook.com/profile.php?id=61588298083140"},"sameAs":["https://www.facebook.com/profile.php?id=61588298083140"]}
 </script>
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NP60T2YF3J"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-NP60T2YF3J');
-</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NP60T2YF3J');</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --lake-deep: #0d2e3f;
-    --lake-mid: #1a5068;
-    --lake-light: #3a8fa8;
-    --lake-sky: #b8dce8;
-    --shore-green: #2d5a27;
-    --leaf-green: #4a8c3f;
-    --warm-sand: #f5f0e8;
-    --parchment: #faf7f2;
-    --text-dark: #1a2628;
-    --text-mid: #3d5a60;
-    --accent-gold: #c49a2a;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Source Serif 4', Georgia, serif; background: var(--parchment); color: var(--text-dark); overflow-x: hidden; }
+/* ── RESET & VARIABLES ─────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2e3f;--mid:#1a5068;--teal:#3a8fa8;--sky:#b8dce8;
+  --green:#2d5a27;--leaf:#4a8c3f;--sand:#f5f0e8;--cream:#faf7f2;
+  --dark:#1a2628;--muted:#3d5a60;--gold:#c49a2a;--gold-dk:#a8821e;
+  --serif:'Playfair Display',Georgia,serif;
+  --body:'Source Serif 4',Georgia,serif;
+  --r:4px;--t:0.2s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--cream);color:var(--dark);overflow-x:hidden}
 
-  /* NAV */
-  nav.site-nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(13,46,63,0.97);
-    border-bottom: 1px solid rgba(58,143,168,0.3);
-  }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0.875rem 2rem; gap: 1rem;
-  }
-  .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-  .nav-logo { width: 36px; height: 36px; flex-shrink: 0; }
-  .nav-brand-text { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--lake-sky); line-height: 1.2; white-space: nowrap; }
-  .nav-center { display: flex; gap: 1.5rem; list-style: none; flex-shrink: 1; }
-  .nav-center a { font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 300; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(184,220,232,0.8); text-decoration: none; white-space: nowrap; transition: color 0.2s; }
-  .nav-center a:hover { color: #fff; }
-  .nav-donate-btn { background: var(--accent-gold); color: #fff; font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; padding: 0.45rem 1rem; border-radius: 2px; text-decoration: none; white-space: nowrap; flex-shrink: 0; transition: background 0.2s; display: inline-block; }
-  .nav-donate-btn:hover { background: #a8821e; }
+/* ── UTILITIES ─────────────────────────────────────── */
+.section-inner{max-width:1060px;margin:0 auto}
+.section-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.75rem}
+.section-title{font-family:var(--serif);font-size:clamp(1.7rem,3.5vw,2.8rem);font-weight:400;line-height:1.2;color:var(--navy);margin-bottom:1.25rem}
+.section-title em{font-style:italic;color:var(--mid)}
+.body-text{font-size:1rem;line-height:1.85;color:var(--muted);font-weight:300;margin-bottom:1rem}
+.gold-rule{width:48px;height:1px;background:var(--gold);opacity:.8;margin-bottom:1.5rem}
+.btn-primary{background:var(--gold);color:#fff;font-family:var(--body);font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 2rem;border:none;border-radius:var(--r);cursor:pointer;text-decoration:none;display:inline-block;transition:background var(--t)}
+.btn-primary:hover{background:var(--gold-dk)}
+.btn-outline{background:transparent;color:var(--sky);font-family:var(--body);font-size:14px;font-weight:300;letter-spacing:.08em;text-transform:uppercase;padding:.9rem 2rem;border:1px solid rgba(184,220,232,.5);border-radius:var(--r);cursor:pointer;text-decoration:none;display:inline-block;transition:all var(--t)}
+.btn-outline:hover{border-color:var(--sky);color:#fff}
+.icon-arrow{display:inline-flex;align-items:center;gap:8px}
+.icon-arrow svg{flex-shrink:0}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close-btn{position:absolute;top:1rem;right:1.25rem;background:none;border:none;cursor:pointer;color:var(--muted);font-size:20px;line-height:1;padding:4px;transition:color var(--t)}
+.modal-close-btn:hover{color:var(--navy)}
 
-  /* hamburger */
-  .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; flex-shrink: 0; }
-  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--lake-sky); border-radius: 2px; transition: all 0.25s; }
-  .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-  .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* ── NAV ────────────────────────────────────────────── */
+nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,46,63,.97);border-bottom:1px solid rgba(58,143,168,.3)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.875rem 2rem;gap:1rem}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logo{width:36px;height:36px;flex-shrink:0}
+.nav-brand-text{font-family:var(--serif);font-size:14px;color:var(--sky);line-height:1.2;white-space:nowrap}
+.nav-center{display:flex;gap:1.5rem;list-style:none;flex-shrink:1}
+.nav-center a{font-family:var(--body);font-size:12px;font-weight:300;letter-spacing:.07em;text-transform:uppercase;color:rgba(184,220,232,.8);text-decoration:none;white-space:nowrap;transition:color var(--t)}
+.nav-center a:hover{color:#fff}
+.nav-donate-btn{background:var(--gold);color:#fff;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;padding:.45rem 1rem;border-radius:var(--r);text-decoration:none;white-space:nowrap;flex-shrink:0;transition:background var(--t);display:inline-block}
+.nav-donate-btn:hover{background:var(--gold-dk)}
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;flex-shrink:0}
+.nav-hamburger span{display:block;width:22px;height:2px;background:var(--sky);border-radius:2px;transition:all .25s}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav-drawer{display:none;flex-direction:column;background:rgba(13,46,63,.99);border-top:1px solid rgba(58,143,168,.2);padding:1rem 2rem 1.5rem}
+.nav-drawer.open{display:flex}
+.nav-drawer a{font-family:var(--body);font-size:14px;font-weight:300;letter-spacing:.08em;text-transform:uppercase;color:rgba(184,220,232,.85);text-decoration:none;padding:.75rem 0;border-bottom:1px solid rgba(58,143,168,.12)}
+.nav-drawer a:hover{color:#fff}
+.drawer-donate{background:var(--gold);color:#fff;text-align:center;padding:.75rem;border-radius:var(--r);margin-top:.75rem;border:none;font-weight:600;font-family:var(--body);width:100%;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
+.drawer-donate:hover{background:var(--gold-dk)}
 
-  /* mobile drawer */
-  .nav-drawer { display: none; flex-direction: column; background: rgba(13,46,63,0.99); border-top: 1px solid rgba(58,143,168,0.2); padding: 1rem 2rem 1.5rem; gap: 0; }
-  .nav-drawer.open { display: flex; }
-  .nav-drawer a { font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(184,220,232,0.85); text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid rgba(58,143,168,0.12); }
-  .nav-drawer a:last-child { border-bottom: none; }
-  .nav-drawer a:hover { color: #fff; }
-  .nav-drawer .drawer-donate { background: var(--accent-gold); color: #fff; text-align: center; padding: 0.75rem; border-radius: 2px; margin-top: 0.75rem; border-bottom: none; font-weight: 600; }
-  .nav-drawer .drawer-donate:hover { background: #a8821e; }
+/* ── HERO ───────────────────────────────────────────── */
+.hero{min-height:100vh;background:linear-gradient(175deg,#0d2e3f 0%,#1a5068 40%,#2d7a90 70%,#3a8fa8 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 4rem}
+.hero-bg{position:absolute;bottom:0;left:0;right:0;height:55%;opacity:.18;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(184,220,232,.4) 28px,rgba(184,220,232,.4) 30px);animation:ripple 8s ease-in-out infinite alternate}
+@keyframes ripple{0%{transform:scaleX(1) translateY(0)}100%{transform:scaleX(1.02) translateY(-6px)}}
+.hero-trees{position:absolute;bottom:0;left:0;right:0;height:160px;opacity:.5}
+.hero-content{position:relative;z-index:2;text-align:center;max-width:760px}
+.hero-eyebrow{font-size:12px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:1.25rem;opacity:.85}
+.hero-title{font-family:var(--serif);font-size:clamp(2.4rem,6vw,5rem);font-weight:400;line-height:1.1;color:#fff;margin-bottom:.5rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero-title em{font-style:italic;color:var(--sky)}
+.hero-slogan{display:inline-flex;align-items:center;gap:10px;font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--gold);letter-spacing:.04em;margin-bottom:1.25rem}
+.hero-slogan::before,.hero-slogan::after{content:'';display:block;width:28px;height:1px;background:var(--gold);opacity:.6}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:1rem auto 1.5rem;opacity:.8}
+.hero-mission{font-size:1.05rem;font-weight:300;line-height:1.75;color:rgba(255,255,255,.85);max-width:580px;margin:0 auto 2.5rem}
+.hero-cta-group{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
 
-  /* HERO */
-  .hero { min-height: 100vh; background: linear-gradient(175deg, #0d2e3f 0%, #1a5068 40%, #2d7a90 70%, #3a8fa8 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 6rem 2rem 4rem; }
-  .hero-bg { position: absolute; bottom: 0; left: 0; right: 0; height: 55%; opacity: 0.18; background: repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(184,220,232,0.4) 28px, rgba(184,220,232,0.4) 30px); animation: ripple 8s ease-in-out infinite alternate; }
-  @keyframes ripple { 0% { transform: scaleX(1) translateY(0); } 100% { transform: scaleX(1.02) translateY(-6px); } }
-  .hero-trees { position: absolute; bottom: 0; left: 0; right: 0; height: 160px; opacity: 0.5; }
-  .hero-content { position: relative; z-index: 2; text-align: center; max-width: 760px; }
-  .hero-eyebrow { font-size: 12px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-sky); margin-bottom: 1.25rem; opacity: 0.85; }
-  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; color: #fff; margin-bottom: 0.5rem; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
-  .hero-title em { font-style: italic; color: var(--lake-sky); }
-  .hero-slogan { display: inline-flex; align-items: center; gap: 10px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.2rem; color: var(--accent-gold); letter-spacing: 0.04em; margin-bottom: 1.25rem; }
-  .hero-slogan::before, .hero-slogan::after { content: ''; display: block; width: 28px; height: 1px; background: var(--accent-gold); opacity: 0.6; }
-  .hero-divider { width: 60px; height: 1px; background: var(--accent-gold); margin: 1rem auto 1.5rem; opacity: 0.8; }
-  .hero-mission { font-size: 1.05rem; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.85); max-width: 580px; margin: 0 auto 2.5rem; }
-  .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-  .btn-primary { background: var(--accent-gold); color: #fff; font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 2rem; border: none; border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s; }
-  .btn-primary:hover { background: #a8821e; }
-  .btn-outline { background: transparent; color: var(--lake-sky); font-family: 'Source Serif 4', serif; font-size: 14px; font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 2rem; border: 1px solid rgba(184,220,232,0.5); border-radius: 2px; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.2s; }
-  .btn-outline:hover { border-color: var(--lake-sky); color: #fff; }
+/* ── SLOGAN BANNER ──────────────────────────────────── */
+.slogan-banner{background:var(--gold);padding:1rem 2rem;text-align:center}
+.slogan-banner-text{font-family:var(--serif);font-size:1rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#fff;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem 0}
+.slogan-phrase{white-space:nowrap}
+.slogan-dot{opacity:.7;margin:0 .75rem;font-weight:400}
 
-  /* SLOGAN BANNER */
-  .slogan-banner { background: var(--accent-gold); padding: 1rem 2rem; text-align: center; }
-  .slogan-banner-text { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.5rem 0; }
-  .slogan-phrase { white-space: nowrap; }
-  .slogan-dot { opacity: 0.7; margin: 0 0.75rem; font-weight: 400; }
+/* ── STATS ──────────────────────────────────────────── */
+.stats-strip{background:var(--navy);padding:2.5rem 2rem;display:flex;justify-content:center;flex-wrap:wrap}
+.stat-item{text-align:center;padding:1rem 3rem;border-right:1px solid rgba(58,143,168,.25)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--serif);font-size:2.4rem;color:var(--sky);line-height:1;margin-bottom:.25rem}
+.stat-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,220,232,.6);font-weight:300}
 
-  /* STATS */
-  .stats-strip { background: var(--lake-deep); padding: 2.5rem 2rem; display: flex; justify-content: center; flex-wrap: wrap; }
-  .stat-item { text-align: center; padding: 1rem 3rem; border-right: 1px solid rgba(58,143,168,0.25); }
-  .stat-item:last-child { border-right: none; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--lake-sky); line-height: 1; margin-bottom: 0.25rem; }
-  .stat-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(184,220,232,0.6); font-weight: 300; }
+/* ── ABOUT ──────────────────────────────────────────── */
+.about{padding:6rem 2rem;background:var(--cream)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.slogan-callout{border-left:3px solid var(--gold);padding:.75rem 1.25rem;margin:1.5rem 0;background:rgba(196,154,42,.07);border-radius:0 var(--r) var(--r) 0}
+.slogan-callout p{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--gold);line-height:1.5;margin:0 0 4px}
+.slogan-callout small{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.lake-illustration{background:linear-gradient(160deg,var(--navy) 0%,var(--mid) 50%,var(--teal) 100%);border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;position:relative;box-shadow:8px 8px 0 var(--sky)}
 
-  /* ABOUT */
-  .about { padding: 6rem 2rem; background: var(--parchment); }
-  .section-inner { max-width: 1060px; margin: 0 auto; }
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .section-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.75rem; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3.5vw, 2.8rem); font-weight: 400; line-height: 1.2; color: var(--lake-deep); margin-bottom: 1.25rem; }
-  .section-title em { font-style: italic; color: var(--lake-mid); }
-  .body-text { font-size: 1rem; line-height: 1.85; color: var(--text-mid); font-weight: 300; margin-bottom: 1rem; }
-  .slogan-callout { border-left: 3px solid var(--accent-gold); padding: 0.75rem 1.25rem; margin: 1.5rem 0; background: rgba(196,154,42,0.07); border-radius: 0 2px 2px 0; }
-  .slogan-callout p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.15rem; color: var(--accent-gold); line-height: 1.5; margin: 0 0 4px; }
-  .slogan-callout small { font-size: 11px; color: var(--text-mid); letter-spacing: 0.08em; text-transform: uppercase; font-family: 'Source Serif 4', serif; }
-  .lake-illustration { background: linear-gradient(160deg, var(--lake-deep) 0%, var(--lake-mid) 50%, var(--lake-light) 100%); border-radius: 4px; overflow: hidden; aspect-ratio: 4/3; position: relative; box-shadow: 8px 8px 0 var(--lake-sky); }
+/* ── PILLARS ────────────────────────────────────────── */
+.pillars{background:var(--navy);padding:6rem 2rem}
+.pillars .section-title{color:var(--sky)}
+.pillars .section-tag{color:rgba(184,220,232,.6)}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+.pillar-card{background:rgba(26,80,104,.5);border:1px solid rgba(58,143,168,.2);border-radius:var(--r);padding:2rem;transition:border-color .3s,transform .3s}
+.pillar-card:hover{border-color:rgba(58,143,168,.6);transform:translateY(-3px)}
+.pillar-card.economy{border-color:rgba(196,154,42,.35)}
+.pillar-card.economy:hover{border-color:rgba(196,154,42,.7)}
+.pillar-icon{width:48px;height:48px;margin-bottom:1.25rem}
+.pillar-title{font-family:var(--serif);font-size:1.25rem;color:#fff;margin-bottom:.75rem}
+.pillar-text{font-size:.9rem;line-height:1.75;color:rgba(184,220,232,.7);font-weight:300}
+.pillar-tag{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(196,154,42,.2);color:var(--gold);padding:2px 8px;border-radius:2px;margin-bottom:.5rem}
 
-  /* PILLARS */
-  .pillars { background: var(--lake-deep); padding: 6rem 2rem; }
-  .pillars .section-title { color: var(--lake-sky); }
-  .pillars .section-tag { color: rgba(184,220,232,0.6); }
-  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
-  .pillar-card { background: rgba(26,80,104,0.5); border: 1px solid rgba(58,143,168,0.2); border-radius: 4px; padding: 2rem; transition: border-color 0.3s, transform 0.3s; }
-  .pillar-card:hover { border-color: rgba(58,143,168,0.6); transform: translateY(-3px); }
-  .pillar-card.economy { border-color: rgba(196,154,42,0.35); }
-  .pillar-card.economy:hover { border-color: rgba(196,154,42,0.7); }
-  .pillar-icon { width: 48px; height: 48px; margin-bottom: 1.25rem; }
-  .pillar-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #fff; margin-bottom: 0.75rem; }
-  .pillar-text { font-size: 0.9rem; line-height: 1.75; color: rgba(184,220,232,0.7); font-weight: 300; }
-  .pillar-tag { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(196,154,42,0.2); color: var(--accent-gold); padding: 2px 8px; border-radius: 2px; margin-bottom: 0.5rem; font-family: 'Source Serif 4', serif; }
+/* ── GET INVOLVED ───────────────────────────────────── */
+.involved{padding:6rem 2rem;background:var(--sand)}
+.involved .section-title{color:var(--navy)}
+.involved-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:3rem}
+.involved-card{background:var(--cream);border:1px solid rgba(26,80,104,.12);border-radius:var(--r);padding:2rem;display:flex;gap:1.25rem;align-items:flex-start;transition:box-shadow var(--t)}
+.involved-card:hover{box-shadow:0 4px 20px rgba(26,80,104,.12)}
+.involved-icon-wrap{width:44px;height:44px;flex-shrink:0;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.involved-title{font-family:var(--serif);font-size:1.1rem;color:var(--navy);margin-bottom:.4rem}
+.involved-text{font-size:.88rem;line-height:1.7;color:var(--muted);font-weight:300}
 
-  /* GET INVOLVED */
-  .involved { padding: 6rem 2rem; background: var(--warm-sand); }
-  .involved .section-title { color: var(--lake-deep); }
-  .involved-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
-  .involved-card { background: var(--parchment); border: 1px solid rgba(26,80,104,0.12); border-radius: 4px; padding: 2rem; display: flex; gap: 1.25rem; align-items: flex-start; transition: box-shadow 0.2s; }
-  .involved-card:hover { box-shadow: 0 4px 20px rgba(26,80,104,0.12); }
-  .involved-icon-wrap { width: 44px; height: 44px; flex-shrink: 0; background: var(--lake-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .involved-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--lake-deep); margin-bottom: 0.4rem; }
-  .involved-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-mid); font-weight: 300; }
+/* ── HIGHLIGHTS ─────────────────────────────────────── */
+.highlights{padding:6rem 2rem;background:var(--sand)}
+.highlights .section-title{color:var(--navy)}
+.highlights .body-text{max-width:620px;margin-bottom:3rem}
+.highlights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.highlight-card{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(160deg,var(--navy),var(--mid))}
+.highlight-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;position:relative;z-index:1}
+.highlight-card:hover img{transform:scale(1.04)}
+.highlight-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem 1.25rem 1rem;background:linear-gradient(0deg,rgba(13,46,63,.92) 0%,transparent 100%);z-index:2}
+.highlight-tag{display:inline-block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--gold);color:#fff;padding:3px 8px;border-radius:2px;margin-bottom:.4rem;font-weight:600}
+.highlight-title{font-family:var(--serif);font-size:1.1rem;color:#fff;font-weight:400;line-height:1.3;margin:0}
+.highlight-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;opacity:.35;z-index:0}
+.highlight-placeholder.hidden{display:none}
+.highlight-placeholder svg{width:36px;height:36px}
+.highlight-placeholder p{font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--sky)}
 
-  .conservation-committee { margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(26,80,104,0.12); }
-  .conservation-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--leaf-green); font-weight: 600; margin-bottom: 0.5rem; }
-  .conservation-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--lake-deep); font-weight: 400; margin-bottom: 0.5rem; }
-  .conservation-desc { font-size: 0.88rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 520px; margin-bottom: 2rem; }
-  .conservation-divider { width: 48px; height: 1px; background: var(--leaf-green); margin-bottom: 2rem; opacity: 0.6; }
-  .off-card.conservation { border-color: rgba(45,90,39,0.2); }
-  .off-card.conservation:hover { border-color: rgba(45,90,39,0.5); }
-  .off-card.conservation .off-photo { border-color: rgba(74,140,63,0.5); background: linear-gradient(160deg, #2d5a27, #4a8c3f); }
-  .off-card.conservation .off-role { color: var(--leaf-green); }
-  .off-card.conservation .off-accent { background: var(--leaf-green); }
-  .conservation-badge { display: inline-block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(45,90,39,0.1); color: var(--shore-green); padding: 3px 8px; border-radius: 2px; margin-bottom: 0.75rem; font-family: 'Source Serif 4', serif; font-weight: 600; }
+/* ── CLEANUP ────────────────────────────────────────── */
+.cleanup{padding:6rem 2rem;background:var(--navy)}
+.cleanup .section-tag{color:rgba(184,220,232,.6)}
+.cleanup .section-title{color:var(--sky);max-width:600px;margin-bottom:1rem}
+.cleanup .body-text{color:rgba(184,220,232,.75);max-width:640px;margin-bottom:3rem}
+.cleanup-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:3rem}
+.cleanup-photo-wrap{position:relative;overflow:hidden;border-radius:var(--r);aspect-ratio:4/3}
+.cleanup-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.cleanup-photo-wrap:hover img{transform:scale(1.04)}
+.cleanup-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1rem .875rem;background:linear-gradient(0deg,rgba(13,46,63,.92) 0%,transparent 100%)}
+.cleanup-photo-caption p{font-family:var(--serif);font-style:italic;font-size:.9rem;color:rgba(255,255,255,.9)}
+.cleanup-photo-wrap.img-fallback{background:linear-gradient(160deg,var(--navy) 0%,var(--mid) 60%,var(--teal) 100%);display:flex;align-items:center;justify-content:center}
+.cleanup-photo-wrap.img-fallback::after{content:'Lake Mattoon Cleanup';font-family:var(--serif);font-style:italic;font-size:1.1rem;color:rgba(184,220,232,.6)}
+.cleanup-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(58,143,168,.2);border:1px solid rgba(58,143,168,.2);border-radius:var(--r);overflow:hidden}
+.cleanup-stat{background:rgba(26,80,104,.4);padding:1.5rem;text-align:center}
+.cleanup-stat-num{font-family:var(--serif);font-size:2rem;color:var(--gold);line-height:1;margin-bottom:.35rem}
+.cleanup-stat-label{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,220,232,.6);font-weight:300;line-height:1.4}
 
-  /* OFFICERS */
-  .officers { padding: 6rem 2rem; background: var(--parchment); }
-  .officers .section-title { color: var(--lake-deep); }
-  .off-grid-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
-  .off-grid-bottom { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 66.666%; margin: 0 auto; }
-  .off-card { background: #fff; border: 1px solid rgba(26,80,104,0.1); border-radius: 12px; padding: 1.75rem 1.25rem 1.5rem; text-align: center; display: flex; flex-direction: column; align-items: center; transition: box-shadow 0.25s, transform 0.25s; }
-  .off-card:hover { box-shadow: 0 6px 24px rgba(26,80,104,0.1); transform: translateY(-3px); }
-  .off-photo { width: 88px; height: 88px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden; border: 3px solid var(--lake-sky); background: linear-gradient(160deg, var(--lake-deep), var(--lake-light)); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-  .off-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .off-initials { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: rgba(184,220,232,0.8); font-weight: 400; }
-  .off-role { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.3rem; }
-  .off-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--lake-deep); font-weight: 400; margin-bottom: 0; }
-  .off-accent { width: 24px; height: 1px; background: var(--accent-gold); margin: 0.65rem auto 0.9rem; opacity: 0.7; }
-  .off-bio { font-size: 0.82rem; line-height: 1.75; color: var(--text-mid); font-weight: 300; text-align: center; }
+/* ── EVENTS ─────────────────────────────────────────── */
+.events{padding:6rem 2rem;background:var(--cream)}
+.events .section-title{color:var(--navy)}
+.events-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2.5rem}
+.events-header-text{flex:1}
+.carousel-outer{position:relative}
+.carousel-track-wrap{overflow:hidden;border-radius:var(--r)}
+.carousel-track{display:flex;gap:1.5rem;transition:transform .4s cubic-bezier(.25,.46,.45,.94);will-change:transform}
+.event-card{background:#fff;border:1px solid rgba(26,80,104,.1);border-radius:var(--r);padding:1.75rem;flex:0 0 calc(33.333% - 1rem);min-width:0;display:flex;flex-direction:column;gap:.75rem;transition:box-shadow .25s,transform .25s}
+.event-card:hover{box-shadow:0 4px 20px rgba(26,80,104,.12);transform:translateY(-2px)}
+.event-date-badge{display:inline-flex;flex-direction:column;align-items:center;background:var(--navy);border-radius:3px;padding:.4rem .75rem;width:fit-content}
+.event-date-month{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--sky);font-weight:300;line-height:1}
+.event-date-day{font-family:var(--serif);font-size:1.6rem;color:#fff;line-height:1.1}
+.event-title{font-family:var(--serif);font-size:1.05rem;color:var(--navy);line-height:1.3}
+.event-meta{font-size:12px;color:var(--muted);font-weight:300;display:flex;flex-direction:column;gap:3px}
+.event-meta span{display:flex;align-items:center;gap:6px}
+.event-tag{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;background:rgba(58,143,168,.1);color:var(--mid);padding:3px 8px;border-radius:2px;align-self:flex-start}
+.carousel-controls{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:2rem}
+.carousel-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(26,80,104,.2);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t)}
+.carousel-btn:hover{background:var(--navy);border-color:var(--navy)}
+.carousel-btn:hover svg path{stroke:#fff}
+.carousel-btn:disabled{opacity:.3;cursor:not-allowed}
+.carousel-btn:disabled:hover{background:#fff;border-color:rgba(26,80,104,.2)}
+.carousel-btn:disabled:hover svg path{stroke:var(--navy)}
+.carousel-dots{display:flex;gap:6px}
+.carousel-dot{width:7px;height:7px;border-radius:50%;background:rgba(26,80,104,.2);border:none;cursor:pointer;padding:0;transition:background var(--t)}
+.carousel-dot.active{background:var(--navy)}
+.events-no-calendar{border:1px solid rgba(58,143,168,.15);border-radius:var(--r);padding:3.5rem 2rem;text-align:center;background:#fff}
+.events-error{border-color:rgba(196,154,42,.25)}
+.events-state-icon{width:64px;height:64px;border-radius:50%;background:rgba(58,143,168,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.events-error .events-state-icon{background:rgba(196,154,42,.08)}
+.events-state-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--navy);margin-bottom:.75rem}
+.events-state-title.error{color:var(--gold)}
+.events-state-text{font-size:.9rem;line-height:1.8;color:var(--muted);font-weight:300;max-width:420px;margin:0 auto}
+.events-state-text a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(58,143,168,.4)}
+.events-loading{text-align:center;padding:3.5rem;color:var(--muted);font-size:.9rem;font-weight:300;letter-spacing:.05em}
 
-  /* LAKE HIGHLIGHTS */
-  .highlights { padding: 6rem 2rem; background: var(--warm-sand); }
-  .highlights .section-title { color: var(--lake-deep); }
-  .highlights .body-text { max-width: 620px; margin-bottom: 3rem; }
-  .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-  .highlight-card { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 4/3; background: linear-gradient(160deg, var(--lake-deep), var(--lake-mid)); }
-  .highlight-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; position: relative; z-index: 1; }
-  .highlight-card:hover img { transform: scale(1.04); }
-  .highlight-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.25rem 1rem; background: linear-gradient(0deg, rgba(13,46,63,0.92) 0%, transparent 100%); z-index: 2; }
-  .highlight-tag { display: inline-block; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--accent-gold); color: #fff; padding: 3px 8px; border-radius: 2px; margin-bottom: 0.4rem; font-family: 'Source Serif 4', serif; font-weight: 600; }
-  .highlight-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; font-weight: 400; line-height: 1.3; margin: 0; }
-  .highlight-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; opacity: 0.35; z-index: 0; }
-  .highlight-placeholder.hidden { display: none; }
-  .highlight-placeholder svg { width: 36px; height: 36px; }
-  .highlight-placeholder p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--lake-sky); }
+/* ── OFFICERS ───────────────────────────────────────── */
+.officers{padding:6rem 2rem;background:var(--cream)}
+.officers .section-title{color:var(--navy)}
+.off-grid-top{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem}
+.off-grid-bottom{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:66.666%;margin:0 auto}
+.off-card{background:#fff;border:1px solid rgba(26,80,104,.1);border-radius:12px;padding:1.75rem 1.25rem 1.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;transition:box-shadow .25s,transform .25s}
+.off-card:hover{box-shadow:0 6px 24px rgba(26,80,104,.1);transform:translateY(-3px)}
+.off-photo{width:88px;height:88px;border-radius:50%;margin:0 auto 1rem;overflow:hidden;border:3px solid var(--sky);background:linear-gradient(160deg,var(--navy),var(--teal));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.off-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.off-initials{font-family:var(--serif);font-size:1.4rem;color:rgba(184,220,232,.8);font-weight:400}
+.off-role{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.3rem}
+.off-name{font-family:var(--serif);font-size:1.05rem;color:var(--navy);font-weight:400;margin-bottom:0}
+.off-bio{font-size:.82rem;line-height:1.75;color:var(--muted);font-weight:300;text-align:center}
+.off-accent{width:24px;height:1px;background:var(--gold);margin:.65rem auto .9rem;opacity:.7}
+.conservation-committee{margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(26,80,104,.12)}
+.conservation-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--leaf);font-weight:600;margin-bottom:.5rem}
+.conservation-title{font-family:var(--serif);font-size:1.3rem;color:var(--navy);font-weight:400;margin-bottom:.5rem}
+.conservation-title em{font-style:italic;color:var(--mid)}
+.conservation-desc{font-size:.88rem;line-height:1.8;color:var(--muted);font-weight:300;max-width:520px;margin-bottom:2rem}
+.conservation-divider{width:48px;height:1px;background:var(--leaf);margin-bottom:2rem;opacity:.6}
+.conservation-card-wrap{max-width:320px}
+.off-card.conservation{border-color:rgba(45,90,39,.2)}
+.off-card.conservation:hover{border-color:rgba(45,90,39,.5)}
+.off-card.conservation .off-photo{border-color:rgba(74,140,63,.5);background:linear-gradient(160deg,#2d5a27,#4a8c3f)}
+.off-card.conservation .off-role{color:var(--leaf)}
+.off-card.conservation .off-accent{background:var(--leaf)}
+.conservation-badge{display:inline-block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(45,90,39,.1);color:var(--green);padding:3px 8px;border-radius:2px;margin-bottom:.75rem;font-weight:600}
 
-  /* CLEANUP */
-  .cleanup { padding: 6rem 2rem; background: var(--lake-deep); }
-  .cleanup .section-tag { color: rgba(184,220,232,0.6); }
-  .cleanup .section-title { color: var(--lake-sky); max-width: 600px; margin-bottom: 1rem; }
-  .cleanup .body-text { color: rgba(184,220,232,0.75); max-width: 640px; margin-bottom: 3rem; }
-  .cleanup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem; }
-  .cleanup-photo-wrap { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 4/3; }
-  .cleanup-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
-  .cleanup-photo-wrap:hover img { transform: scale(1.04); }
-  .cleanup-photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem 1rem 0.875rem; background: linear-gradient(0deg, rgba(13,46,63,0.92) 0%, transparent 100%); }
-  .cleanup-photo-caption p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: rgba(255,255,255,0.9); }
-  .cleanup-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(58,143,168,0.2); border: 1px solid rgba(58,143,168,0.2); border-radius: 4px; overflow: hidden; }
-  .cleanup-stat { background: rgba(26,80,104,0.4); padding: 1.5rem; text-align: center; }
-  .cleanup-photo-wrap.img-fallback { background: linear-gradient(160deg, var(--lake-deep) 0%, var(--lake-mid) 60%, var(--lake-light) 100%); display: flex; align-items: center; justify-content: center; }
-  .cleanup-photo-wrap.img-fallback::after { content: 'Lake Mattoon Cleanup'; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem; color: rgba(184,220,232,0.6); }
-  .cleanup-stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent-gold); line-height: 1; margin-bottom: 0.35rem; }
-  .cleanup-stat-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(184,220,232,0.6); font-weight: 300; line-height: 1.4; }
+/* ── SOCIALS ────────────────────────────────────────── */
+.socials{padding:5rem 2rem;background:var(--sand);text-align:center}
+.socials .section-tag{color:var(--teal)}
+.socials .section-title{color:var(--navy);margin-bottom:.75rem}
+.socials .body-text{max-width:520px;margin:0 auto 3rem}
+.social-cards{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
+.social-card{background:var(--cream);border:1px solid rgba(26,80,104,.12);border-radius:12px;padding:2rem 2.5rem;text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:1rem;min-width:220px;transition:box-shadow .25s,transform .25s}
+.social-card:hover{box-shadow:0 6px 24px rgba(26,80,104,.13);transform:translateY(-3px)}
+.social-icon-wrap{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.social-icon-wrap.fb{background:#1877f2}
+.social-name{font-family:var(--serif);font-size:1.15rem;color:var(--navy)}
+.social-handle{font-size:13px;color:var(--muted);font-weight:300}
+.social-cta{display:inline-flex;align-items:center;gap:5px;margin-top:.25rem;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);font-weight:600;border-bottom:1px solid rgba(58,143,168,.3);padding-bottom:1px;transition:color var(--t)}
+.social-card:hover .social-cta{color:var(--navy)}
+.social-follow-strip{margin-top:2.5rem;display:flex;align-items:center;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.social-follow-strip p{font-size:13px;color:var(--muted);font-weight:300}
+.social-follow-strip a{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--teal);font-weight:600;text-decoration:none}
+.social-follow-strip a:hover{color:var(--navy)}
 
-  /* SOCIALS */
-  .socials { padding: 5rem 2rem; background: var(--warm-sand); text-align: center; }
-  .socials .section-tag { color: var(--lake-light); }
-  .socials .section-title { color: var(--lake-deep); margin-bottom: 0.75rem; }
-  .socials .body-text { max-width: 520px; margin: 0 auto 3rem; }
-  .social-cards { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-  .social-card {
-    background: var(--parchment); border: 1px solid rgba(26,80,104,0.12);
-    border-radius: var(--border-radius-lg, 12px); padding: 2rem 2.5rem;
-    text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 1rem;
-    min-width: 220px; transition: box-shadow 0.25s, transform 0.25s;
-  }
-  .social-card:hover { box-shadow: 0 6px 24px rgba(26,80,104,0.13); transform: translateY(-3px); }
-  .social-icon-wrap { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-  .social-icon-wrap.fb { background: #1877f2; }
-  .social-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--lake-deep); }
-  .social-handle { font-size: 13px; color: var(--text-mid); font-weight: 300; }
-  .social-cta { display: inline-block; margin-top: 0.25rem; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; border-bottom: 1px solid rgba(58,143,168,0.3); padding-bottom: 1px; transition: color 0.2s; }
-  .social-card:hover .social-cta { color: var(--lake-deep); }
-  .social-follow-strip { margin-top: 2.5rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
-  .social-follow-strip p { font-size: 13px; color: var(--text-mid); font-weight: 300; }
-  .social-follow-strip a { font-size: 13px; color: var(--lake-light); font-weight: 600; text-decoration: none; }
-  .social-follow-strip a:hover { color: var(--lake-deep); }
+/* ── DONATE ─────────────────────────────────────────── */
+.donate-section{padding:7rem 2rem;background:linear-gradient(135deg,var(--navy) 0%,#0f3d55 50%,var(--mid) 100%);text-align:center;position:relative;overflow:hidden}
+.donate-section::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(58,143,168,.04) 60px,rgba(58,143,168,.04) 61px)}
+.donate-inner{position:relative;z-index:1;max-width:580px;margin:0 auto}
+.donate-section .section-tag{color:rgba(184,220,232,.6)}
+.donate-section .section-title{color:#fff}
+.donate-section .body-text{color:rgba(255,255,255,.75);margin-bottom:2rem}
+.donate-slogan{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:rgba(196,154,42,.7);margin-bottom:.5rem}
+.donate-amounts{display:flex;gap:.75rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.amt-btn{background:rgba(58,143,168,.2);color:var(--sky);border:1px solid rgba(58,143,168,.4);font-family:var(--serif);font-size:1.1rem;padding:.6rem 1.25rem;border-radius:var(--r);cursor:pointer;transition:all var(--t)}
+.amt-btn:hover,.amt-btn.active{background:var(--teal);color:#fff;border-color:var(--teal)}
+.donate-btn-large{font-size:15px;padding:1rem 2.5rem}
+.donate-note{font-size:12px;color:rgba(184,220,232,.5);margin-top:1rem;font-weight:300}
 
-  /* DONATE */
-  .donate-section { padding: 7rem 2rem; background: linear-gradient(135deg, var(--lake-deep) 0%, #0f3d55 50%, var(--lake-mid) 100%); text-align: center; position: relative; overflow: hidden; }
-  .donate-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(58,143,168,0.04) 60px, rgba(58,143,168,0.04) 61px); }
-  .donate-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
-  .donate-section .section-tag { color: rgba(184,220,232,0.6); }
-  .donate-section .section-title { color: #fff; }
-  .donate-section .body-text { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
-  .donate-slogan { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.5rem; color: rgba(196,154,42,0.7); margin-bottom: 0.5rem; }
-  .donate-amounts { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2rem; flex-wrap: wrap; }
-  .amt-btn { background: rgba(58,143,168,0.2); color: var(--lake-sky); border: 1px solid rgba(58,143,168,0.4); font-family: 'Playfair Display', serif; font-size: 1.1rem; padding: 0.6rem 1.25rem; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
-  .amt-btn:hover, .amt-btn.active { background: var(--lake-light); color: #fff; border-color: var(--lake-light); }
-  .donate-note { font-size: 12px; color: rgba(184,220,232,0.5); margin-top: 1rem; font-weight: 300; }
+/* ── FOOTER ─────────────────────────────────────────── */
+footer{background:#070f14;padding:3rem 2rem;text-align:center}
+.footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--sky);margin-bottom:.25rem}
+.footer-slogan{font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--gold);opacity:.7;margin-bottom:.75rem}
+.footer-text{font-size:12px;color:rgba(184,220,232,.4);font-weight:300;line-height:1.8;margin-bottom:1rem}
+.footer-text a{color:rgba(184,220,232,.5);text-decoration:none}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.footer-links a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(184,220,232,.45);text-decoration:none;transition:color var(--t)}
+.footer-links a:hover{color:var(--sky)}
+.footer-copy{margin-top:1.5rem;font-size:11px;color:rgba(184,220,232,.25)}
 
-  /* FOOTER */
-  footer { background: #070f14; padding: 3rem 2rem; text-align: center; }
-  .footer-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--lake-sky); margin-bottom: 0.25rem; }
-  .footer-slogan { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85rem; color: var(--accent-gold); opacity: 0.7; margin-bottom: 0.75rem; }
-  .footer-text { font-size: 12px; color: rgba(184,220,232,0.4); font-weight: 300; line-height: 1.8; margin-bottom: 1rem; }
-  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-  .footer-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(184,220,232,0.45); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--lake-sky); }
+/* ── DONATE MODAL ───────────────────────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
+.modal-overlay.open{display:flex;animation:fadeIn .25s ease}
+.modal-box{background:var(--cream);border-radius:6px;max-width:480px;width:100%;padding:3rem 2.5rem 2.5rem;text-align:center;position:relative;animation:slideUp .3s ease}
+.modal-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--mid));display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.modal-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.6rem}
+.modal-title{font-family:var(--serif);font-size:1.75rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:1rem}
+.modal-title em{font-style:italic;color:var(--mid)}
+.modal-divider{width:40px;height:1px;background:var(--gold);margin:0 auto 1.25rem}
+.modal-text{font-size:.95rem;line-height:1.8;color:var(--muted);font-weight:300;margin-bottom:.75rem}
+.modal-slogan{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--gold);margin-bottom:2rem}
+.modal-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.modal-btn-fb{background:#1877f2;color:#fff;font-family:var(--body);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.7rem 1.25rem;border-radius:var(--r);border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background var(--t)}
+.modal-btn-fb:hover{background:#1464d0}
+.modal-btn-close{background:transparent;color:var(--muted);font-family:var(--body);font-size:13px;font-weight:300;letter-spacing:.06em;text-transform:uppercase;padding:.7rem 1.25rem;border-radius:var(--r);border:1px solid rgba(26,80,104,.2);cursor:pointer;transition:all var(--t)}
+.modal-btn-close:hover{border-color:var(--teal);color:var(--navy)}
 
-  /* EVENTS CAROUSEL */
-  .events { padding: 6rem 2rem; background: var(--parchment); }
-  .events .section-title { color: var(--lake-deep); }
-  .events-header { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; }
-  .events-header-text { flex: 1; }
-  .carousel-outer { position: relative; }
-  .carousel-track-wrap { overflow: hidden; border-radius: 4px; }
-  .carousel-track { display: flex; gap: 1.5rem; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: transform; }
-  .event-card { background: #fff; border: 1px solid rgba(26,80,104,0.1); border-radius: 4px; padding: 1.75rem; flex: 0 0 calc(33.333% - 1rem); min-width: 0; display: flex; flex-direction: column; gap: 0.75rem; transition: box-shadow 0.25s, transform 0.25s; }
-  .event-card:hover { box-shadow: 0 4px 20px rgba(26,80,104,0.12); transform: translateY(-2px); }
-  .event-date-badge { display: inline-flex; flex-direction: column; align-items: center; background: var(--lake-deep); border-radius: 3px; padding: 0.4rem 0.75rem; width: fit-content; }
-  .event-date-month { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lake-sky); font-weight: 300; line-height: 1; }
-  .event-date-day { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; line-height: 1.1; }
-  .event-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--lake-deep); line-height: 1.3; }
-  .event-meta { font-size: 12px; color: var(--text-mid); font-weight: 300; display: flex; flex-direction: column; gap: 3px; }
-  .event-meta span { display: flex; align-items: center; gap: 6px; }
-  .event-tag { display: inline-block; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(58,143,168,0.1); color: var(--lake-mid); padding: 3px 8px; border-radius: 2px; font-family: 'Source Serif 4', serif; align-self: flex-start; }
-  .carousel-controls { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 2rem; }
-  .carousel-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(26,80,104,0.2); background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
-  .carousel-btn:hover { background: var(--lake-deep); border-color: var(--lake-deep); }
-  .carousel-btn:hover svg path { stroke: #fff; }
-  .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-  .carousel-btn:disabled:hover { background: #fff; border-color: rgba(26,80,104,0.2); }
-  .carousel-btn:disabled:hover svg path { stroke: var(--lake-deep); }
-  .carousel-dots { display: flex; gap: 6px; }
-  .carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(26,80,104,0.2); border: none; cursor: pointer; padding: 0; transition: background 0.2s; }
-  .carousel-dot.active { background: var(--lake-deep); }
-  .events-no-calendar { border: 1px solid rgba(58,143,168,0.15); border-radius: 4px; padding: 3.5rem 2rem; text-align: center; background: #fff; }
-  .events-error { border-color: rgba(196,154,42,0.25); }
-  .events-state-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(58,143,168,0.08); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
-  .events-error .events-state-icon { background: rgba(196,154,42,0.08); }
-  .events-state-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 400; color: var(--lake-deep); margin-bottom: 0.75rem; }
-  .events-state-text { font-size: 0.9rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 420px; margin: 0 auto; }
-  .events-loading { text-align: center; padding: 3.5rem; color: var(--text-mid); font-size: 0.9rem; font-weight: 300; letter-spacing: 0.05em; }
+/* ── SURVEY MODAL ───────────────────────────────────── */
+.survey-overlay{display:none;position:fixed;inset:0;z-index:998;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
+.survey-overlay.open{display:flex;animation:fadeIn .25s ease}
+.survey-box{background:var(--cream);border-radius:6px;max-width:620px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:90vh;overflow:hidden}
+.survey-header{padding:1.75rem 2rem 1.25rem;text-align:center;border-bottom:1px solid rgba(26,80,104,.1);flex-shrink:0}
+.survey-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.4rem}
+.survey-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:.5rem}
+.survey-title em{font-style:italic;color:var(--mid)}
+.survey-divider{width:36px;height:1px;background:var(--gold);margin:.6rem auto .75rem}
+.survey-subtitle{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto 1rem}
+.survey-tabs{display:flex;gap:.5rem;justify-content:center}
+.survey-tab{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.25rem;border-radius:var(--r);border:1px solid rgba(26,80,104,.2);cursor:pointer;background:transparent;color:var(--muted);transition:all var(--t)}
+.survey-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.survey-body{flex:1;overflow-y:auto}
+.survey-frame-wrap iframe{display:block;width:100%;border:none}
+.survey-coming-soon{padding:3rem 2rem;text-align:center}
+.survey-coming-icon{width:56px;height:56px;border-radius:50%;background:rgba(196,154,42,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
+.survey-coming-title{font-family:var(--serif);font-size:1.3rem;color:var(--gold);margin-bottom:.75rem}
+.survey-coming-text{font-size:.88rem;line-height:1.8;color:var(--muted);font-weight:300;max-width:360px;margin:0 auto}
+.survey-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(61,90,96,.5);border-top:1px solid rgba(26,80,104,.08);flex-shrink:0;font-weight:300}
 
-  /* DONATE MODAL */
-  .modal-overlay {
-    display: none; position: fixed; inset: 0; z-index: 999;
-    background: rgba(7, 20, 28, 0.75);
-    align-items: center; justify-content: center;
-    padding: 1.5rem;
-  }
-  .modal-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .modal-box {
-    background: var(--parchment); border-radius: 6px;
-    max-width: 480px; width: 100%;
-    padding: 3rem 2.5rem 2.5rem;
-    text-align: center; position: relative;
-    animation: slideUp 0.3s ease;
-  }
-  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  .modal-close {
-    position: absolute; top: 1rem; right: 1.25rem;
-    background: none; border: none; cursor: pointer;
-    color: var(--text-mid); font-size: 20px; line-height: 1;
-    padding: 4px; transition: color 0.2s;
-  }
-  .modal-close:hover { color: var(--lake-deep); }
-  .modal-icon {
-    width: 64px; height: 64px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--lake-deep), var(--lake-mid));
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.5rem;
-  }
-  .modal-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.6rem; }
-  .modal-title { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 400; color: var(--lake-deep); line-height: 1.2; margin-bottom: 1rem; }
-  .modal-title em { font-style: italic; color: var(--lake-mid); }
-  .modal-divider { width: 40px; height: 1px; background: var(--accent-gold); margin: 0 auto 1.25rem; }
-  .modal-text { font-size: 0.95rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; margin-bottom: 0.75rem; }
-  .modal-slogan { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: var(--accent-gold); margin-bottom: 2rem; }
-  .modal-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
-  .modal-btn-fb {
-    background: #1877f2; color: #fff;
-    font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 600;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 0.7rem 1.25rem; border-radius: 2px; border: none;
-    cursor: pointer; text-decoration: none; display: inline-flex;
-    align-items: center; gap: 8px; transition: background 0.2s;
-  }
-  .modal-btn-fb:hover { background: #1464d0; }
-  .modal-btn-close {
-    background: transparent; color: var(--text-mid);
-    font-family: 'Source Serif 4', serif; font-size: 13px; font-weight: 300;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 0.7rem 1.25rem; border-radius: 2px;
-    border: 1px solid rgba(26,80,104,0.2); cursor: pointer;
-    transition: all 0.2s;
-  }
-  .modal-btn-close:hover { border-color: var(--lake-light); color: var(--lake-deep); }
-
-  /* SURVEY MODAL */
-  .survey-overlay { display: none; position: fixed; inset: 0; z-index: 998; background: rgba(7,20,28,0.75); align-items: center; justify-content: center; padding: 1.5rem; }
-  .survey-overlay.open { display: flex; animation: fadeIn 0.25s ease; }
-  .survey-box { background: var(--parchment); border-radius: 6px; max-width: 620px; width: 100%; position: relative; animation: slideUp 0.3s ease; display: flex; flex-direction: column; max-height: 90vh; overflow: hidden; }
-  .survey-header { padding: 1.75rem 2rem 1.25rem; text-align: center; border-bottom: 1px solid rgba(26,80,104,0.1); flex-shrink: 0; }
-  .survey-close { position: absolute; top: 1rem; right: 1.25rem; background: none; border: none; cursor: pointer; color: var(--text-mid); font-size: 20px; line-height: 1; padding: 4px; transition: color 0.2s; }
-  .survey-close:hover { color: var(--lake-deep); }
-  .survey-tag { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lake-light); font-weight: 600; margin-bottom: 0.4rem; }
-  .survey-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 400; color: var(--lake-deep); line-height: 1.2; margin-bottom: 0.5rem; }
-  .survey-title em { font-style: italic; color: var(--lake-mid); }
-  .survey-divider { width: 36px; height: 1px; background: var(--accent-gold); margin: 0.6rem auto 0.75rem; }
-  .survey-subtitle { font-size: 0.85rem; color: var(--text-mid); font-weight: 300; line-height: 1.7; max-width: 460px; margin: 0 auto 1rem; }
-  .survey-tabs { display: flex; gap: 0.5rem; justify-content: center; }
-  .survey-tab { font-family: 'Source Serif 4', serif; font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.5rem 1.25rem; border-radius: 2px; border: 1px solid rgba(26,80,104,0.2); cursor: pointer; background: transparent; color: var(--text-mid); transition: all 0.2s; }
-  .survey-tab.active { background: var(--lake-deep); color: #fff; border-color: var(--lake-deep); }
-  .survey-tab.coming-soon { border-color: rgba(196,154,42,0.3); color: var(--accent-gold); cursor: default; }
-  .survey-body { flex: 1; overflow-y: auto; }
-  .survey-frame-wrap { padding: 0; }
-  .survey-frame-wrap iframe { display: block; width: 100%; border: none; }
-  .survey-coming-soon { padding: 3rem 2rem; text-align: center; }
-  .survey-coming-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(196,154,42,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
-  .survey-coming-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--accent-gold); margin-bottom: 0.75rem; }
-  .survey-coming-text { font-size: 0.88rem; line-height: 1.8; color: var(--text-mid); font-weight: 300; max-width: 360px; margin: 0 auto; }
-  .survey-footer-note { padding: 0.75rem 2rem; text-align: center; font-size: 11px; color: rgba(61,90,96,0.5); border-top: 1px solid rgba(26,80,104,0.08); flex-shrink: 0; font-weight: 300; }
-
-  /* MOBILE */
-  @media (max-width: 860px) {
-    .site-nav .nav-center { display: none; }
-    .nav-hamburger { display: flex; }
-    .nav-donate-btn { font-size: 11px; padding: 0.4rem 0.85rem; }
-  }
-  @media (max-width: 768px) {
-    .nav-inner { padding: 0.875rem 1.25rem; }
-
-    .hero { padding: 5rem 1.5rem 3rem; min-height: 90vh; }
-    .hero-slogan { font-size: 1rem; }
-    .hero-mission { font-size: 0.95rem; }
-    .hero-cta-group { flex-direction: column; align-items: center; }
-    .btn-primary, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
-
-    .slogan-banner { padding: 0.875rem 1rem; }
-    .slogan-banner-text { font-size: 0.85rem; letter-spacing: 0.08em; gap: 0.4rem 0; }
-    .slogan-dot { display: none; }
-    .slogan-phrase { width: 100%; text-align: center; }
-
-    .stats-strip { flex-direction: column; align-items: center; padding: 1.5rem; }
-    .stat-item { border-right: none; border-bottom: 1px solid rgba(58,143,168,0.2); padding: 1rem 2rem; width: 100%; max-width: 280px; }
-    .stat-item:last-child { border-bottom: none; }
-
-    .about { padding: 4rem 1.5rem; }
-    .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-    .lake-illustration { box-shadow: 4px 4px 0 var(--lake-sky); }
-
-    .pillars { padding: 4rem 1.5rem; }
-    .pillar-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .pillar-card:hover { transform: none; }
-
-    .involved { padding: 4rem 1.5rem; }
-    .involved-grid { grid-template-columns: 1fr; gap: 1rem; }
-
-    .events { padding: 4rem 1.5rem; }
-    .events-header { flex-direction: column; align-items: flex-start; }
-    .event-card { flex: 0 0 calc(100% - 0px); }
-
-    .officers { padding: 4rem 1.5rem; }
-    .off-grid-top { grid-template-columns: 1fr; }
-    .off-grid-bottom { grid-template-columns: 1fr; max-width: 100%; }
-
-    .highlights { padding: 4rem 1.5rem; }
-    .highlights-grid { grid-template-columns: 1fr; }
-
-    .cleanup { padding: 4rem 1.5rem; }
-    .cleanup-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .cleanup-stats { grid-template-columns: 1fr; }
-
-    .donate-section { padding: 5rem 1.5rem; }
-    .donate-amounts { gap: 0.5rem; }
-    .amt-btn { padding: 0.5rem 1rem; font-size: 1rem; }
-
-    footer { padding: 2.5rem 1.5rem; }
-  }
-
-  @media (max-width: 480px) {
-    .hero-title { font-size: 2.2rem; }
-    .section-title { font-size: 1.7rem; }
-    .stat-num { font-size: 2rem; }
-  }
+/* ── RESPONSIVE ─────────────────────────────────────── */
+@media(max-width:860px){
+  .site-nav .nav-center{display:none}
+  .nav-hamburger{display:flex}
+  .nav-donate-btn{font-size:11px;padding:.4rem .85rem}
+}
+@media(max-width:768px){
+  .nav-inner{padding:.875rem 1.25rem}
+  .hero{padding:5rem 1.5rem 3rem;min-height:90vh}
+  .hero-slogan{font-size:1rem}
+  .hero-mission{font-size:.95rem}
+  .hero-cta-group{flex-direction:column;align-items:center}
+  .btn-primary,.btn-outline{width:100%;max-width:280px;text-align:center}
+  .slogan-banner{padding:.875rem 1rem}
+  .slogan-banner-text{font-size:.85rem;letter-spacing:.08em;gap:.4rem 0}
+  .slogan-dot{display:none}
+  .slogan-phrase{width:100%;text-align:center}
+  .stats-strip{flex-direction:column;align-items:center;padding:1.5rem}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(58,143,168,.2);padding:1rem 2rem;width:100%;max-width:280px}
+  .stat-item:last-child{border-bottom:none}
+  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials{padding:4rem 1.5rem}
+  .two-col{grid-template-columns:1fr;gap:2.5rem}
+  .lake-illustration{box-shadow:4px 4px 0 var(--sky)}
+  .pillar-grid{grid-template-columns:1fr;gap:1rem}
+  .pillar-card:hover{transform:none}
+  .involved-grid{grid-template-columns:1fr;gap:1rem}
+  .highlights-grid{grid-template-columns:1fr}
+  .cleanup-grid{grid-template-columns:1fr;gap:1rem}
+  .cleanup-stats{grid-template-columns:1fr}
+  .events-header{flex-direction:column;align-items:flex-start}
+  .event-card{flex:0 0 100%}
+  .off-grid-top{grid-template-columns:1fr}
+  .off-grid-bottom{grid-template-columns:1fr;max-width:100%}
+  .donate-section{padding:5rem 1.5rem}
+  .donate-amounts{gap:.5rem}
+  .amt-btn{padding:.5rem 1rem;font-size:1rem}
+  footer{padding:2.5rem 1.5rem}
+}
+@media(max-width:480px){
+  .hero-title{font-size:2.2rem}
+  .section-title{font-size:1.7rem}
+  .stat-num{font-size:2rem}
+}
 </style>
 </head>
 <body>
@@ -516,14 +421,14 @@
     </button>
   </div>
   <div class="nav-drawer" id="nav-drawer">
-    <a href="#about" class="drawer-link">About</a>
-    <a href="#mission" class="drawer-link">Our Work</a>
-    <a href="#highlights" class="drawer-link">Recreation</a>
-    <a href="#events" class="drawer-link">Events</a>
-    <a href="#officers" class="drawer-link">Leadership</a>
-    <a href="#socials" class="drawer-link">Socials</a>
-    <a href="#" onclick="openSurveyModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');return false;" class="drawer-link">Survey</a>
-    <button onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');" class="drawer-donate" style="font-family:'Source Serif 4',serif;width:100%;text-align:center;cursor:pointer;">Donate</button>
+    <a href="#about">About</a>
+    <a href="#mission">Our Work</a>
+    <a href="#highlights">Recreation</a>
+    <a href="#events">Events</a>
+    <a href="#officers">Leadership</a>
+    <a href="#socials">Socials</a>
+    <a href="#" onclick="openSurveyModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');return false;">Survey</a>
+    <button class="drawer-donate" onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');">Donate</button>
   </div>
 </nav>
 
@@ -541,7 +446,7 @@
     <div class="hero-divider"></div>
     <p class="hero-mission">Dedicated to promoting the preservation, conservation, and responsible recreation of Lake Mattoon &mdash; a vital water source serving the communities of Central Illinois.</p>
     <div class="hero-cta-group">
-      <button onclick="openDonateModal()" class="btn-primary" style="border:none;cursor:pointer;">Support Our Mission</button>
+      <button onclick="openDonateModal()" class="btn-primary">Support Our Mission</button>
       <a href="#about" class="btn-outline">Learn More</a>
     </div>
   </div>
@@ -549,7 +454,9 @@
 
 <!-- SLOGAN BANNER -->
 <div class="slogan-banner">
-  <p class="slogan-banner-text"><span class="slogan-phrase">Clean Water</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Strong Economy</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Healthy Communities</span></p>
+  <p class="slogan-banner-text">
+    <span class="slogan-phrase">Clean Water</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Strong Economy</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Healthy Communities</span>
+  </p>
 </div>
 
 <!-- STATS -->
@@ -580,13 +487,13 @@
           <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
             <defs>
               <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#0d2e3f"/>
-                <stop offset="60%" style="stop-color:#1a5068"/>
-                <stop offset="100%" style="stop-color:#3a8fa8"/>
+                <stop offset="0%" stop-color="#0d2e3f"/>
+                <stop offset="60%" stop-color="#1a5068"/>
+                <stop offset="100%" stop-color="#3a8fa8"/>
               </linearGradient>
               <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" style="stop-color:#3a8fa8"/>
-                <stop offset="100%" style="stop-color:#1a5068"/>
+                <stop offset="0%" stop-color="#3a8fa8"/>
+                <stop offset="100%" stop-color="#1a5068"/>
               </linearGradient>
             </defs>
             <rect width="400" height="300" fill="url(#skyGrad)"/>
@@ -598,7 +505,7 @@
             <path d="M0,192 Q100,185 200,190 Q300,195 400,186" stroke="rgba(184,220,232,0.2)" stroke-width="1" fill="none"/>
             <path d="M0,155 Q40,110 70,145 Q90,120 110,148 Q140,105 165,142 Q180,112 200,148" fill="#2d5a27"/>
             <path d="M230,145 Q260,108 285,140 Q305,115 320,145 Q345,108 370,142 Q385,120 400,148 L400,300 L230,300Z" fill="#2d5a27" opacity="0.7"/>
-            <text x="20" y="285" fill="rgba(255,255,255,0.35)" font-family="Georgia, serif" font-style="italic" font-size="12">Lake Mattoon, Illinois</text>
+            <text x="20" y="285" fill="rgba(255,255,255,0.35)" font-family="Georgia,serif" font-style="italic" font-size="12">Lake Mattoon, Illinois</text>
           </svg>
         </div>
       </div>
@@ -639,75 +546,20 @@
     <h2 class="section-title">Get Involved</h2>
     <div class="involved-grid">
       <div class="involved-card">
-        <div class="involved-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3 L13.5 8.5 L20 9.3 L15.5 13.7 L16.7 20 L11 17 L5.3 20 L6.5 13.7 L2 9.3 L8.5 8.5 Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg>
-        </div>
-        <div>
-          <h4 class="involved-title">Become a Member</h4>
-          <p class="involved-text">Join a growing community of lake stewards. Your membership supports ongoing conservation work and gives you a voice in protecting Lake Mattoon.</p>
-        </div>
+        <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3 L13.5 8.5 L20 9.3 L15.5 13.7 L16.7 20 L11 17 L5.3 20 L6.5 13.7 L2 9.3 L8.5 8.5 Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg></div>
+        <div><h4 class="involved-title">Become a Member</h4><p class="involved-text">Join a growing community of lake stewards. Your membership supports ongoing conservation work and gives you a voice in protecting Lake Mattoon.</p></div>
       </div>
       <div class="involved-card">
-        <div class="involved-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#b8dce8" stroke-width="1.2"/><path d="M4 19 Q4 14 11 14 Q18 14 18 19" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg>
-        </div>
-        <div>
-          <h4 class="involved-title">Volunteer</h4>
-          <p class="involved-text">From shoreline cleanups to outreach events, there are many ways to roll up your sleeves and make a direct difference for the lake and your community.</p>
-        </div>
+        <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#b8dce8" stroke-width="1.2"/><path d="M4 19 Q4 14 11 14 Q18 14 18 19" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg></div>
+        <div><h4 class="involved-title">Volunteer</h4><p class="involved-text">From shoreline cleanups to outreach events, there are many ways to roll up your sleeves and make a direct difference for the lake and your community.</p></div>
       </div>
       <div class="involved-card">
-        <div class="involved-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="1" stroke="#b8dce8" stroke-width="1.2"/><path d="M3 9 L11 13 L19 9" stroke="#b8dce8" stroke-width="1.2"/></svg>
-        </div>
-        <div>
-          <h4 class="involved-title">Stay Informed</h4>
-          <p class="involved-text">Follow us on Facebook for updates on water quality reports, community events, conservation milestones, and ways to help protect Lake Mattoon.</p>
-        </div>
+        <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="1" stroke="#b8dce8" stroke-width="1.2"/><path d="M3 9 L11 13 L19 9" stroke="#b8dce8" stroke-width="1.2"/></svg></div>
+        <div><h4 class="involved-title">Stay Informed</h4><p class="involved-text">Follow us on Facebook for updates on water quality reports, community events, conservation milestones, and ways to help protect Lake Mattoon.</p></div>
       </div>
       <div class="involved-card">
-        <div class="involved-icon-wrap">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4 L11 18 M4 11 L18 11" stroke="#b8dce8" stroke-width="1.5"/></svg>
-        </div>
-        <div>
-          <h4 class="involved-title">Spread the Word</h4>
-          <p class="involved-text">Tell your neighbors, your fishing buddies, and your family about the work we're doing. Awareness is the first step toward a healthier lake.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CLEANUP -->
-<section class="cleanup" id="cleanup">
-  <div class="section-inner">
-    <p class="section-tag">Our Efforts</p>
-    <h2 class="section-title">Keeping Our <em>Shoreline Clean</em></h2>
-    <p class="body-text">From early spring through fall, Friends of Lake Mattoon organizes hands-on cleanup events along the lake's shoreline and surrounding areas. Our volunteers remove debris, invasive plants, and litter that threaten water quality and the health of local wildlife &mdash; keeping Lake Mattoon clean for everyone who depends on it.</p>
-
-    <div class="cleanup-grid">
-      <div class="cleanup-photo-wrap">
-        <img src="images/cleanup1.jpg" alt="Volunteers collecting trash along a lake shoreline" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-fallback')">
-        <div class="cleanup-photo-caption"><p>Angie Rawlings &amp; Neoga High School students keeping our shoreline clean</p></div>
-      </div>
-      <div class="cleanup-photo-wrap">
-        <img src="images/cleanup2.jpg" alt="Group of volunteers working together on a shoreline cleanup" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-fallback')">
-        <div class="cleanup-photo-caption"><p>Protecting local wildlife on Lake Mattoon</p></div>
-      </div>
-    </div>
-
-    <div class="cleanup-stats">
-      <div class="cleanup-stat">
-        <div class="cleanup-stat-num">4+</div>
-        <div class="cleanup-stat-label">Cleanup Events Per Year</div>
-      </div>
-      <div class="cleanup-stat">
-        <div class="cleanup-stat-num">500+</div>
-        <div class="cleanup-stat-label">Lbs of Debris Removed</div>
-      </div>
-      <div class="cleanup-stat">
-        <div class="cleanup-stat-num">56</div>
-        <div class="cleanup-stat-label">Miles of Shoreline Maintained</div>
+        <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4 L11 18 M4 11 L18 11" stroke="#b8dce8" stroke-width="1.5"/></svg></div>
+        <div><h4 class="involved-title">Spread the Word</h4><p class="involved-text">Tell your neighbors, your fishing buddies, and your family about the work we're doing. Awareness is the first step toward a healthier lake.</p></div>
       </div>
     </div>
   </div>
@@ -719,117 +571,61 @@
     <p class="section-tag">Life on the Lake</p>
     <h2 class="section-title">Recreation &amp; <em>Community</em></h2>
     <p class="body-text">Lake Mattoon is more than a water source — it's the heart of our community. From dazzling fireworks over the water to beloved annual traditions, the lake brings people together in ways that make life in Central Illinois truly special.</p>
-
     <div class="highlights-grid">
-
       <div class="highlight-card">
-        <img src="images/fireworks.jpg" alt="Fourth of July fireworks over Lake Mattoon"
-          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
-        <div class="highlight-placeholder">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 4 L18 14 M18 4 L14 10 M18 4 L22 10" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M4 18 L14 18 M4 18 L10 14 M4 18 L10 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M32 18 L22 18 M32 18 L26 14 M32 18 L26 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M18 32 L18 22 M18 32 L14 26 M18 32 L22 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <circle cx="18" cy="18" r="3" fill="#b8dce8" opacity="0.6"/>
-          </svg>
-          <p>Add fireworks.jpg to images folder</p>
-        </div>
-        <div class="highlight-overlay">
-          <span class="highlight-tag">Annual Tradition</span>
-          <p class="highlight-title">Annual Labor Day Weekend Fireworks</p>
-        </div>
+        <img src="images/fireworks.jpg" alt="Annual Labor Day Weekend Fireworks over Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 14 M18 4 L14 10 M18 4 L22 10" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M4 18 L14 18 M4 18 L10 14 M4 18 L10 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M32 18 L22 18 M32 18 L26 14 M32 18 L26 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M18 32 L18 22 M18 32 L14 26 M18 32 L22 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="18" r="3" fill="#b8dce8" opacity="0.6"/></svg><p>Add fireworks.jpg to images folder</p></div>
+        <div class="highlight-overlay"><span class="highlight-tag">Annual Tradition</span><p class="highlight-title">Annual Labor Day Weekend Fireworks</p></div>
       </div>
-
       <div class="highlight-card">
-        <img src="images/sailboat-races.jpg" alt="Sailboat races on Lake Mattoon"
-          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
-        <div class="highlight-placeholder">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6 L18 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M18 8 L8 22 L18 22 Z" fill="#b8dce8" opacity="0.5"/>
-            <path d="M18 10 L28 20 L18 20 Z" fill="#b8dce8" opacity="0.3"/>
-            <path d="M4 28 Q18 24 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
-          </svg>
-          <p>Add sailboat-races.jpg to images folder</p>
-        </div>
-        <div class="highlight-overlay">
-          <span class="highlight-tag">On the Water</span>
-          <p class="highlight-title">Sailboat Races</p>
-        </div>
+        <img src="images/sailboat-races.jpg" alt="Sailboat races on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M18 6 L18 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M18 8 L8 22 L18 22 Z" fill="#b8dce8" opacity="0.5"/><path d="M18 10 L28 20 L18 20 Z" fill="#b8dce8" opacity="0.3"/><path d="M4 28 Q18 24 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/></svg><p>Add sailboat-races.jpg to images folder</p></div>
+        <div class="highlight-overlay"><span class="highlight-tag">On the Water</span><p class="highlight-title">Sailboat Races</p></div>
       </div>
-
       <div class="highlight-card">
-        <img src="images/wreath-drop.jpg" alt="Holiday wreath drop ceremony on Lake Mattoon"
-          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
-        <div class="highlight-placeholder">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="18" cy="18" r="11" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
-            <circle cx="18" cy="18" r="6" stroke="#b8dce8" stroke-width="1" fill="none" opacity="0.5"/>
-            <path d="M18 7 L18 4 M18 32 L18 29 M7 18 L4 18 M32 18 L29 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          <p>Add wreath-drop.jpg to images folder</p>
-        </div>
-        <div class="highlight-overlay">
-          <span class="highlight-tag">Holiday Tradition</span>
-          <p class="highlight-title">Annual Wreath Drop</p>
-        </div>
+        <img src="images/wreath-drop.jpg" alt="Annual wreath drop ceremony on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="11" stroke="#b8dce8" stroke-width="1.5" fill="none"/><circle cx="18" cy="18" r="6" stroke="#b8dce8" stroke-width="1" fill="none" opacity="0.5"/><path d="M18 7 L18 4 M18 32 L18 29 M7 18 L4 18 M32 18 L29 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/></svg><p>Add wreath-drop.jpg to images folder</p></div>
+        <div class="highlight-overlay"><span class="highlight-tag">Holiday Tradition</span><p class="highlight-title">Annual Wreath Drop</p></div>
       </div>
-
       <div class="highlight-card">
-        <img src="images/community-gathering.jpg" alt="Community gathering at Lake Mattoon"
-          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
-        <div class="highlight-placeholder">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/>
-            <circle cx="24" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/>
-            <path d="M4 28 Q4 22 12 22 Q18 22 18 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
-            <path d="M18 28 Q18 22 24 22 Q32 22 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
-          </svg>
-          <p>Add community-gathering.jpg to images folder</p>
-        </div>
-        <div class="highlight-overlay">
-          <span class="highlight-tag">Community</span>
-          <p class="highlight-title">Community Gatherings</p>
-        </div>
+        <img src="images/community-gathering.jpg" alt="Community gathering at Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><circle cx="12" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/><circle cx="24" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/><path d="M4 28 Q4 22 12 22 Q18 22 18 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/><path d="M18 28 Q18 22 24 22 Q32 22 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/></svg><p>Add community-gathering.jpg to images folder</p></div>
+        <div class="highlight-overlay"><span class="highlight-tag">Community</span><p class="highlight-title">Community Gatherings</p></div>
       </div>
-
       <div class="highlight-card">
-        <img src="images/dock-dogs.jpg" alt="Dogs jumping from a dock at Lake Mattoon"
-          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
-        <div class="highlight-placeholder">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 24 L32 24" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M10 24 L10 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M26 24 L26 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M18 18 Q20 12 24 14 Q22 10 18 12 Q16 8 14 12 Q10 10 12 14 Q16 12 18 18Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
-            <path d="M16 28 Q18 32 20 28" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
-          </svg>
-          <p>Add dock-dogs.jpg to images folder</p>
-        </div>
-        <div class="highlight-overlay">
-          <span class="highlight-tag">Lake Life</span>
-          <p class="highlight-title">Dock Dogs</p>
-        </div>
+        <img src="images/dock-dogs.jpg" alt="Dogs jumping from a dock at Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M4 24 L32 24" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M10 24 L10 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M26 24 L26 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M18 18 Q20 12 24 14 Q22 10 18 12 Q16 8 14 12 Q10 10 12 14 Q16 12 18 18Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/><path d="M16 28 Q18 32 20 28" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg><p>Add dock-dogs.jpg to images folder</p></div>
+        <div class="highlight-overlay"><span class="highlight-tag">Lake Life</span><p class="highlight-title">Dock Dogs</p></div>
       </div>
-
       <div class="highlight-card">
-        <img src="images/dog-on-boat.jpg" alt="Dog enjoying a boat ride on Lake Mattoon"
-          onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
-        <div class="highlight-placeholder">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 26 Q18 22 32 26" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
-            <path d="M8 26 L6 30 L30 30 L28 26" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
-            <path d="M16 20 Q18 14 22 16 Q20 12 16 14 Q14 10 12 14 Q8 12 10 16 Q14 14 16 20Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/>
-          </svg>
-          <p>Add dog-on-boat.jpg to images folder</p>
-        </div>
-        <div class="highlight-overlay">
-          <span class="highlight-tag">Lake Life</span>
-          <p class="highlight-title">Our Four-Legged Boaters</p>
-        </div>
+        <img src="images/dog-on-boat.jpg" alt="Dog enjoying a boat ride on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M4 26 Q18 22 32 26" stroke="#b8dce8" stroke-width="1.5" fill="none"/><path d="M8 26 L6 30 L30 30 L28 26" stroke="#b8dce8" stroke-width="1.2" fill="none"/><path d="M16 20 Q18 14 22 16 Q20 12 16 14 Q14 10 12 14 Q8 12 10 16 Q14 14 16 20Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg><p>Add dog-on-boat.jpg to images folder</p></div>
+        <div class="highlight-overlay"><span class="highlight-tag">Lake Life</span><p class="highlight-title">Our Four-Legged Boaters</p></div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- CLEANUP -->
+<section class="cleanup" id="cleanup">
+  <div class="section-inner">
+    <p class="section-tag">Our Efforts</p>
+    <h2 class="section-title">Keeping Our <em>Shoreline Clean</em></h2>
+    <p class="body-text">From early spring through fall, Friends of Lake Mattoon organizes hands-on cleanup events along the lake's shoreline and surrounding areas. Our volunteers remove debris, invasive plants, and litter that threaten water quality and the health of local wildlife &mdash; keeping Lake Mattoon clean for everyone who depends on it.</p>
+    <div class="cleanup-grid">
+      <div class="cleanup-photo-wrap">
+        <img src="images/cleanup1.jpg" alt="Angie Rawlings and Neoga High School students cleaning the lake shoreline" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-fallback')">
+        <div class="cleanup-photo-caption"><p>Angie Rawlings &amp; Neoga High School students keeping our shoreline clean</p></div>
+      </div>
+      <div class="cleanup-photo-wrap">
+        <img src="images/cleanup2.jpg" alt="Protecting local wildlife on Lake Mattoon" loading="lazy" onerror="this.style.display='none';this.parentElement.classList.add('img-fallback')">
+        <div class="cleanup-photo-caption"><p>Protecting local wildlife on Lake Mattoon</p></div>
+      </div>
+    </div>
+    <div class="cleanup-stats">
+      <div class="cleanup-stat"><div class="cleanup-stat-num">4+</div><div class="cleanup-stat-label">Cleanup Events Per Year</div></div>
+      <div class="cleanup-stat"><div class="cleanup-stat-num">500+</div><div class="cleanup-stat-label">Lbs of Debris Removed</div></div>
+      <div class="cleanup-stat"><div class="cleanup-stat-num">56</div><div class="cleanup-stat-label">Miles of Shoreline Maintained</div></div>
     </div>
   </div>
 </section>
@@ -843,11 +639,7 @@
         <h2 class="section-title">Upcoming <em>Events</em></h2>
       </div>
     </div>
-
-    <div id="eventsContainer">
-      <div class="events-loading">Loading upcoming events&hellip;</div>
-    </div>
-
+    <div id="eventsContainer"><div class="events-loading">Loading upcoming events&hellip;</div></div>
   </div>
 </section>
 
@@ -856,72 +648,51 @@
   <div class="section-inner">
     <p class="section-tag">Leadership</p>
     <h2 class="section-title">Meet Our <em>Officers</em></h2>
-    <div style="width:48px;height:1px;background:var(--accent-gold);margin:1rem 0 1.25rem;opacity:0.8;"></div>
+    <div class="gold-rule"></div>
     <p class="body-text" style="max-width:520px;margin-bottom:3rem;">Dedicated community members committed to preserving Lake Mattoon for generations to come.</p>
-
     <div class="off-grid-top">
       <div class="off-card">
-        <div class="off-photo">
-          <img src="images/president.jpg" alt="Katie O'Dell" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KO</span>'">
-        </div>
-        <p class="off-role">President</p>
-        <p class="off-name">Katie O'Dell</p>
+        <div class="off-photo"><img src="images/president.jpg" alt="Katie O'Dell" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KO</span>'"></div>
+        <p class="off-role">President</p><p class="off-name">Katie O'Dell</p>
         <div class="off-accent"></div>
         <p class="off-bio">Lake-trained since childhood — literally driving boats before cars — Katie's connection to Lake Mattoon runs deep. Her dad was one of the organization's founding fathers, and today she leads with that same legacy in her heart, working to ensure future generations can make the same cherished memories on this lake.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo">
-          <img src="images/vicepresident.jpg" alt="Jessica Ingram" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JI</span>'">
-        </div>
-        <p class="off-role">Vice President</p>
-        <p class="off-name">Jessica Ingram</p>
+        <div class="off-photo"><img src="images/vicepresident.jpg" alt="Jessica Ingram" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JI</span>'"></div>
+        <p class="off-role">Vice President</p><p class="off-name">Jessica Ingram</p>
         <div class="off-accent"></div>
         <p class="off-bio">A St. Louis weekender since 2016, Jessica brought her then 3-month-old son to Lake Mattoon seeking water, nature, and a break from city screens. Here's the twist — she has an irrational fear of deep water, yet somehow spends every weekend at the sandbar. Her son has never known life without this lake, and she's determined to keep it that way.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo">
-          <img src="images/secretary.jpg" alt="Krystal Little" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KL</span>'">
-        </div>
-        <p class="off-role">Secretary</p>
-        <p class="off-name">Krystal Little</p>
+        <div class="off-photo"><img src="images/secretary.jpg" alt="Krystal Little" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KL</span>'"></div>
+        <p class="off-role">Secretary</p><p class="off-name">Krystal Little</p>
         <div class="off-accent"></div>
         <p class="off-bio">When Krystal and her husband found property on Lake Mattoon, they expected a weekend escape — they didn't expect to find their people. The lake quickly became home, and the community became family. She'll admit she has no quirky lake tricks up her sleeve, but what she does have is a deep passion for preserving this place and the friendships it creates for generations to come.</p>
       </div>
     </div>
-
     <div class="off-grid-bottom">
       <div class="off-card">
-        <div class="off-photo">
-          <img src="images/treasurer.jpg" alt="Roberta Gingerich" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>RG</span>'">
-        </div>
-        <p class="off-role">Treasurer</p>
-        <p class="off-name">Roberta Gingerich</p>
+        <div class="off-photo"><img src="images/treasurer.jpg" alt="Roberta Gingerich" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>RG</span>'"></div>
+        <p class="off-role">Treasurer</p><p class="off-name">Roberta Gingerich</p>
         <div class="off-accent"></div>
         <p class="off-bio">Roberta knows exactly where every penny goes — and she will absolutely find it if it tries to go somewhere else. Her spreadsheets are legendary, and her commitment to the lake is even more so.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo">
-          <img src="images/eventscoordinator.jpg" alt="Angie Rawlings" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>AR</span>'">
-        </div>
-        <p class="off-role">Events Coordinator</p>
-        <p class="off-name">Angie Rawlings</p>
+        <div class="off-photo"><img src="images/eventscoordinator.jpg" alt="Angie Rawlings" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>AR</span>'"></div>
+        <p class="off-role">Events Coordinator</p><p class="off-name">Angie Rawlings</p>
         <div class="off-accent"></div>
         <p class="off-bio">Angie once organized a full shoreline cleanup, a bake sale, and a canoe race on the same Saturday — before noon. If there's fun to be had on Lake Mattoon, Angie planned it, promoted it, and brought the snacks.</p>
       </div>
     </div>
-
     <div class="conservation-committee">
       <p class="conservation-tag">Conservation Committee</p>
       <h3 class="conservation-title">Meet Our <em>Conservation Team</em></h3>
       <div class="conservation-divider"></div>
       <p class="conservation-desc">Behind every clean shoreline and healthy water quality report is a dedicated team working behind the scenes. Our Conservation Committee leads the strategic efforts to protect and restore Lake Mattoon for future generations.</p>
-
-      <div style="max-width:320px;">
+      <div class="conservation-card-wrap">
         <div class="off-card conservation">
           <div class="conservation-badge">Conservation Committee</div>
-          <div class="off-photo">
-            <img src="images/conservationchair.jpg" alt="Jason Little" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JL</span>'">
-          </div>
+          <div class="off-photo"><img src="images/conservationchair.jpg" alt="Jason Little" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JL</span>'"></div>
           <p class="off-role">Conservation Chair &amp; Lead Strategist</p>
           <p class="off-name">Jason Little</p>
           <div class="off-accent"></div>
@@ -929,7 +700,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -939,25 +709,18 @@
     <p class="section-tag">Stay Connected</p>
     <h2 class="section-title">Follow <em>Our Journey</em></h2>
     <p class="body-text">Stay up to date on cleanup events, water quality reports, conservation news, and ways to get involved. Follow us on Facebook to join the conversation and help spread the word.</p>
-
     <div class="social-cards">
       <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" class="social-card">
         <div class="social-icon-wrap fb">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="white"/>
-          </svg>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="white"/></svg>
         </div>
-        <div>
-          <p class="social-name">Facebook</p>
-          <p class="social-handle">Friends of Lake Mattoon</p>
-        </div>
-        <span class="social-cta" style="display:inline-flex;align-items:center;gap:5px;">Follow us <svg width="11" height="11" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><p class="social-name">Facebook</p><p class="social-handle">Friends of Lake Mattoon</p></div>
+        <span class="social-cta">Follow us <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </a>
     </div>
-
     <div class="social-follow-strip">
       <p>Share our mission with your community &mdash;</p>
-      <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;">like, follow &amp; share on Facebook <svg width="11" height="11" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">like, follow &amp; share on Facebook <svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
@@ -976,8 +739,10 @@
       <button class="amt-btn" onclick="setAmt(this)">$250</button>
       <button class="amt-btn" onclick="setAmt(this)">Custom</button>
     </div>
-    <!-- REPLACE the href below with your Square donation link -->
-    <button onclick="openDonateModal()" class="btn-primary" style="font-size:15px;padding:1rem 2.5rem;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;">Donate via Square <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button onclick="openDonateModal()" class="btn-primary donate-btn-large icon-arrow">
+      Donate via Square
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
     <p class="donate-note">Secure donation processing via Square &middot; Friends of Lake Mattoon is a 501(c)(3) nonprofit</p>
   </div>
 </section>
@@ -985,41 +750,25 @@
 <!-- SURVEY MODAL -->
 <div class="survey-overlay" id="surveyModal" role="dialog" aria-modal="true" aria-labelledby="surveyTitle">
   <div class="survey-box">
-    <button class="survey-close" id="surveyClose" aria-label="Close">&times;</button>
+    <button class="modal-close-btn" id="surveyClose" aria-label="Close">&times;</button>
     <div class="survey-header">
       <p class="survey-tag">Your Voice Matters</p>
       <h2 class="survey-title" id="surveyTitle">Help Us <em>Protect</em> Lake Mattoon</h2>
       <div class="survey-divider"></div>
       <p class="survey-subtitle">We are gathering community insights to better understand how Lake Mattoon impacts the lives and livelihoods of people across Coles, Cumberland, and Shelby counties. Your answers help us tell the full story of this lake.</p>
       <div class="survey-tabs">
-        <button class="survey-tab active" id="tabResident" onclick="showSurveyTab('resident')">
-          Resident Survey
-        </button>
-        <button class="survey-tab" id="tabBusiness" onclick="showSurveyTab('business')">
-          Business Survey
-        </button>
+        <button class="survey-tab active" id="tabResident" onclick="showSurveyTab('resident')">Resident Survey</button>
+        <button class="survey-tab" id="tabBusiness" onclick="showSurveyTab('business')">Business Survey</button>
       </div>
     </div>
-    <div class="survey-body" id="surveyBody">
+    <div class="survey-body">
       <div id="surveyResident" class="survey-coming-soon">
-        <div class="survey-coming-icon">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/>
-            <path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/>
-            <circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/>
-          </svg>
-        </div>
+        <div class="survey-coming-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/><path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/></svg></div>
         <p class="survey-coming-title">Coming Soon</p>
         <p class="survey-coming-text">Our resident survey is currently being finalized. Check back shortly — your voice as a community member is just as important as ever in protecting Lake Mattoon for generations to come.</p>
       </div>
-      <div id="surveyBusiness" class="survey-coming-soon" style="display:none;">
-        <div class="survey-coming-icon">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-            <circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/>
-            <path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/>
-            <circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/>
-          </svg>
-        </div>
+      <div id="surveyBusiness" class="survey-coming-soon" style="display:none">
+        <div class="survey-coming-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/><path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/></svg></div>
         <p class="survey-coming-title">Coming Soon</p>
         <p class="survey-coming-text">Our business survey is currently being finalized. We look forward to hearing how Lake Mattoon impacts your business and the local economy. Please check back soon.</p>
       </div>
@@ -1031,13 +780,9 @@
 <!-- DONATE MODAL -->
 <div class="modal-overlay" id="donateModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal-box">
-    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <button class="modal-close-btn" id="modalClose" aria-label="Close">&times;</button>
     <div class="modal-icon">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 4C14 4 6 9 6 16C6 20.42 9.58 24 14 24C18.42 24 22 20.42 22 16C22 9 14 4 14 4Z" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
-        <path d="M10 16 Q14 12 18 16" stroke="#b8dce8" stroke-width="1.5" fill="none"/>
-        <circle cx="14" cy="19" r="1.5" fill="#b8dce8"/>
-      </svg>
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 4C14 4 6 9 6 16C6 20.42 9.58 24 14 24C18.42 24 22 20.42 22 16C22 9 14 4 14 4Z" stroke="#b8dce8" stroke-width="1.5" fill="none"/><path d="M10 16 Q14 12 18 16" stroke="#b8dce8" stroke-width="1.5" fill="none"/><circle cx="14" cy="19" r="1.5" fill="#b8dce8"/></svg>
     </div>
     <p class="modal-tag">Donation Portal</p>
     <h2 class="modal-title" id="modalTitle">Something <em>Good</em><br>Is Coming</h2>
@@ -1061,7 +806,7 @@
   <p class="footer-slogan">Clean Water, Strong Economy</p>
   <p class="footer-text">
     Neoga, Illinois &middot; Serving Coles, Cumberland &amp; Shelby Counties<br>
-    <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" style="color:rgba(184,220,232,0.5);text-decoration:none;">Follow us on Facebook</a>
+    <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Follow us on Facebook</a>
   </p>
   <nav class="footer-links" aria-label="Footer navigation">
     <a href="#about">About</a>
@@ -1070,234 +815,203 @@
     <a href="#donate">Donate</a>
     <a href="#" onclick="openSurveyModal();return false;">Take Our Survey</a>
   </nav>
-  <p style="margin-top:1.5rem;font-size:11px;color:rgba(184,220,232,0.25);">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
+  <p class="footer-copy">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
 </footer>
 
 <script>
-  // ─── CONFIGURATION ───────────────────────────────────────────────
-  // Paste your Google Calendar ID here once you have it
-  // e.g. 'abc123xyz@group.calendar.google.com'
-  var CALENDAR_ID = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
-  // ─────────────────────────────────────────────────────────────────
+'use strict';
 
-  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  var MONTH_FULL = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+/* ── CONFIG ──────────────────────────────────────────────── */
+var CAL_ID  = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
+var CAL_KEY = 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ';
+var MONTHS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  var surveyModal = document.getElementById('surveyModal');
+/* ── DOM ─────────────────────────────────────────────────── */
+var hamburger   = document.getElementById('hamburger');
+var drawer      = document.getElementById('nav-drawer');
+var donateModal = document.getElementById('donateModal');
+var surveyModal = document.getElementById('surveyModal');
 
-  function openSurveyModal() {
-    surveyModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    showSurveyTab('resident');
-    localStorage.setItem('surveyInteracted', 'true');
-  }
-
-  function closeSurveyModal() {
-    surveyModal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function showSurveyTab(tab) {
-    document.getElementById('surveyBusiness').style.display = tab === 'business' ? 'block' : 'none';
-    document.getElementById('surveyResident').style.display = tab === 'resident' ? 'block' : 'none';
-    document.getElementById('tabBusiness').classList.toggle('active', tab === 'business');
-    document.getElementById('tabResident').classList.toggle('active', tab === 'resident');
-    if (tab === 'business' || tab === 'resident') {
-      localStorage.setItem('surveyInteracted', 'true');
-    }
-  }
-
-  document.getElementById('surveyClose').addEventListener('click', closeSurveyModal);
-  surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeSurveyModal(); closeDonateModal(); } });
-
-  // Survey popup disabled until surveys are finalized
-  // if (!localStorage.getItem('surveyInteracted')) {
-  //   setTimeout(function() {
-  //     if (!surveyModal.classList.contains('open') && !document.getElementById('donateModal').classList.contains('open')) {
-  //       openSurveyModal();
-  //     }
-  //   }, 45000);
-  // }
-
-  function setAmt(el) {
-    document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
-    el.classList.add('active');
-  }
-
-  var hamburger = document.getElementById('hamburger');
-  var drawer = document.getElementById('nav-drawer');
-  hamburger.addEventListener('click', function() {
-    hamburger.classList.toggle('open');
-    drawer.classList.toggle('open');
+/* ── NAV ─────────────────────────────────────────────────── */
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('open');
+  drawer.classList.toggle('open');
+});
+drawer.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
   });
-  drawer.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      hamburger.classList.remove('open');
-      drawer.classList.remove('open');
-    });
-  });
+});
 
-  var modal = document.getElementById('donateModal');
-  function openDonateModal() {
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
+/* ── MODALS ──────────────────────────────────────────────── */
+function openModal(el)  { el.classList.add('open');    document.body.style.overflow = 'hidden'; }
+function closeModal(el) { el.classList.remove('open'); document.body.style.overflow = ''; }
+
+function openDonateModal()  { openModal(donateModal); }
+function closeDonateModal() { closeModal(donateModal); }
+function openSurveyModal()  { openModal(surveyModal); showSurveyTab('resident'); localStorage.setItem('surveyInteracted','true'); }
+function closeSurveyModal() { closeModal(surveyModal); }
+
+document.getElementById('modalClose').addEventListener('click', closeDonateModal);
+document.getElementById('modalClosBtn').addEventListener('click', closeDonateModal);
+document.getElementById('surveyClose').addEventListener('click', closeSurveyModal);
+donateModal.addEventListener('click', function(e) { if (e.target === donateModal) closeDonateModal(); });
+surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeDonateModal(); closeSurveyModal(); } });
+
+/* ── SURVEY TABS ─────────────────────────────────────────── */
+function showSurveyTab(tab) {
+  document.getElementById('surveyBusiness').style.display = tab === 'business' ? 'block' : 'none';
+  document.getElementById('surveyResident').style.display = tab === 'resident'  ? 'block' : 'none';
+  document.getElementById('tabBusiness').classList.toggle('active', tab === 'business');
+  document.getElementById('tabResident').classList.toggle('active', tab === 'resident');
+}
+
+/* ── SURVEY POPUP — disabled until surveys finalized ─────── */
+// if (!localStorage.getItem('surveyInteracted')) {
+//   setTimeout(function() {
+//     if (!surveyModal.classList.contains('open') && !donateModal.classList.contains('open')) {
+//       openSurveyModal();
+//     }
+//   }, 45000);
+// }
+
+/* ── DONATE AMOUNTS ──────────────────────────────────────── */
+function setAmt(el) {
+  document.querySelectorAll('.amt-btn').forEach(function(b) { b.classList.remove('active'); });
+  el.classList.add('active');
+}
+
+/* ── EVENTS CAROUSEL ─────────────────────────────────────── */
+var carouselIndex = 0;
+var carouselItems = [];
+var tagColors = {
+  Cleanup:   'rgba(58,143,168,0.1);color:#1a5068',
+  Meeting:   'rgba(196,154,42,0.15);color:#8a6a10',
+  Community: 'rgba(45,90,39,0.1);color:#2d5a27'
+};
+
+function cardsPerView() {
+  return window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
+}
+
+function buildCarousel(events) {
+  carouselItems = events;
+  var el = document.getElementById('eventsContainer');
+  if (!events.length) {
+    el.innerHTML =
+      '<div class="events-no-calendar">' +
+      '<div class="events-state-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="22" rx="2" stroke="#3a8fa8" stroke-width="1.5"/><path d="M4 12H28" stroke="#3a8fa8" stroke-width="1.5"/><path d="M10 4V8M22 4V8" stroke="#3a8fa8" stroke-width="1.5" stroke-linecap="round"/><path d="M10 18H16M10 22H14" stroke="#3a8fa8" stroke-width="1.2" stroke-linecap="round"/></svg></div>' +
+      '<p class="events-state-title">No Upcoming Events</p>' +
+      '<p class="events-state-text">We are currently planning our next event. Follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Facebook</a> to be the first to know.</p>' +
+      '</div>';
+    return;
   }
-  function closeDonateModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
+  var cards = events.map(function(ev) {
+    var d = new Date(ev.start);
+    var c = tagColors[ev.tag] || tagColors.Community;
+    return '<div class="event-card">' +
+      '<div class="event-date-badge"><span class="event-date-month">' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</span><span class="event-date-day">' + d.getDate() + '</span></div>' +
+      '<h3 class="event-title">' + ev.title + '</h3>' +
+      '<div class="event-meta">' +
+      '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5V7L8.5 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' + ev.time + '</span>' +
+      '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5C3 8.5 7 12.5 7 12.5S11 8.5 11 5.5C11 3.29 9.21 1.5 7 1.5Z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5.5" r="1.2" stroke="currentColor" stroke-width="1.2"/></svg>' + ev.location + '</span>' +
+      '</div>' +
+      '<span class="event-tag" style="background:' + c + '">' + ev.tag + '</span>' +
+      '</div>';
+  }).join('');
+
+  el.innerHTML =
+    '<div class="carousel-outer">' +
+    '<div class="carousel-track-wrap"><div class="carousel-track" id="carouselTrack">' + cards + '</div></div>' +
+    '<div class="carousel-controls">' +
+    '<button class="carousel-btn" id="prevBtn" aria-label="Previous" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="#0d2e3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+    '<div class="carousel-dots" id="carouselDots"></div>' +
+    '<button class="carousel-btn" id="nextBtn" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="#0d2e3f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
+    '</div></div>';
+
+  carouselIndex = 0;
+  updateCarousel();
+  document.getElementById('prevBtn').addEventListener('click', function() { moveCarousel(-1); });
+  document.getElementById('nextBtn').addEventListener('click', function() { moveCarousel(1); });
+  window.addEventListener('resize', function() { carouselIndex = 0; updateCarousel(); });
+}
+
+function showCalendarError() {
+  document.getElementById('eventsContainer').innerHTML =
+    '<div class="events-no-calendar events-error">' +
+    '<div class="events-state-icon"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#c49a2a" stroke-width="1.5"/><path d="M16 10V17" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="21.5" r="1.2" fill="#c49a2a"/></svg></div>' +
+    '<p class="events-state-title error">Unable to Load Events</p>' +
+    '<p class="events-state-text">We were unable to connect to our events calendar. Please check back shortly or follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Facebook</a> for event announcements.</p>' +
+    '</div>';
+}
+
+function updateCarousel() {
+  var cpv   = cardsPerView();
+  var track = document.getElementById('carouselTrack');
+  var dots  = document.getElementById('carouselDots');
+  var prev  = document.getElementById('prevBtn');
+  var next  = document.getElementById('nextBtn');
+  if (!track) return;
+
+  var total  = Math.ceil(carouselItems.length / cpv);
+  carouselIndex = Math.max(0, Math.min(carouselIndex, total - 1));
+
+  var w  = track.parentElement.offsetWidth;
+  var g  = 24;
+  var cw = (w - g * (cpv - 1)) / cpv;
+  track.style.transform = 'translateX(-' + (carouselIndex * (cw + g) * cpv) + 'px)';
+  track.querySelectorAll('.event-card').forEach(function(c) { c.style.flex = '0 0 ' + cw + 'px'; });
+
+  dots.innerHTML = '';
+  for (var i = 0; i < total; i++) {
+    var dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === carouselIndex ? ' active' : '');
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', (function(idx) { return function() { carouselIndex = idx; updateCarousel(); }; })(i));
+    dots.appendChild(dot);
   }
-  document.getElementById('modalClose').addEventListener('click', closeDonateModal);
-  document.getElementById('modalClosBtn').addEventListener('click', closeDonateModal);
-  modal.addEventListener('click', function(e) { if (e.target === modal) closeDonateModal(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeDonateModal(); });
+  prev.disabled = carouselIndex === 0;
+  next.disabled = carouselIndex >= total - 1;
+}
 
-  // ─── CAROUSEL ────────────────────────────────────────────────────
-  var carouselIndex = 0;
-  var carouselItems = [];
+function moveCarousel(dir) {
+  carouselIndex = Math.max(0, Math.min(carouselIndex + dir, Math.ceil(carouselItems.length / cardsPerView()) - 1));
+  updateCarousel();
+}
 
-  function cardsPerView() {
-    return window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
-  }
+/* ── GOOGLE CALENDAR ─────────────────────────────────────── */
+(function loadCalendar() {
+  var url = 'https://www.googleapis.com/calendar/v3/calendars/' +
+    encodeURIComponent(CAL_ID) +
+    '/events?key=' + CAL_KEY +
+    '&orderBy=startTime&singleEvents=true&timeMin=' +
+    new Date().toISOString() + '&maxResults=9';
 
-  function buildCarousel(events) {
-    carouselItems = events;
-    var container = document.getElementById('eventsContainer');
-
-    if (!events.length) {
-      container.innerHTML = '<div class="events-no-calendar">'
-        + '<div class="events-state-icon">'
-        + '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="22" rx="2" stroke="#3a8fa8" stroke-width="1.5"/><path d="M4 12H28" stroke="#3a8fa8" stroke-width="1.5"/><path d="M10 4V8M22 4V8" stroke="#3a8fa8" stroke-width="1.5" stroke-linecap="round"/><path d="M10 18H16M10 22H14" stroke="#3a8fa8" stroke-width="1.2" stroke-linecap="round"/></svg>'
-        + '</div>'
-        + '<p class="events-state-title">No Upcoming Events</p>'
-        + '<p class="events-state-text">We are currently planning our next event. Follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" style="color:var(--lake-light);text-decoration:none;border-bottom:1px solid rgba(58,143,168,0.4);">Facebook</a> to be the first to know when new events are scheduled.</p>'
-        + '</div>';
-      return;
-    }
-
-    var cards = events.map(function(ev) {
-      var d = new Date(ev.start);
-      var tagColor = ev.tag === 'Cleanup' ? 'rgba(58,143,168,0.1);color:var(--lake-mid)' : ev.tag === 'Meeting' ? 'rgba(196,154,42,0.15);color:#8a6a10' : 'rgba(45,90,39,0.1);color:var(--shore-green)';
-      return '<div class="event-card">'
-        + '<div class="event-date-badge"><span class="event-date-month">' + MONTHS[d.getMonth()] + ' ' + d.getFullYear() + '</span><span class="event-date-day">' + d.getDate() + '</span></div>'
-        + '<h3 class="event-title">' + ev.title + '</h3>'
-        + '<div class="event-meta">'
-        + '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.2"/><path d="M7 4.5V7L8.5 8.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>' + ev.time + '</span>'
-        + '<span><svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 1.5C4.79 1.5 3 3.29 3 5.5C3 8.5 7 12.5 7 12.5C7 12.5 11 8.5 11 5.5C11 3.29 9.21 1.5 7 1.5Z" stroke="currentColor" stroke-width="1.2"/><circle cx="7" cy="5.5" r="1.2" stroke="currentColor" stroke-width="1.2"/></svg>' + ev.location + '</span>'
-        + '</div>'
-        + '<span class="event-tag" style="background:' + tagColor + '">' + ev.tag + '</span>'
-        + '</div>';
-    }).join('');
-
-    container.innerHTML = '<div class="carousel-outer">'
-      + '<div class="carousel-track-wrap"><div class="carousel-track" id="carouselTrack">' + cards + '</div></div>'
-      + '<div class="carousel-controls">'
-      + '<button class="carousel-btn" id="prevBtn" aria-label="Previous" disabled><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="var(--lake-deep)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
-      + '<div class="carousel-dots" id="carouselDots"></div>'
-      + '<button class="carousel-btn" id="nextBtn" aria-label="Next"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4L10 8L6 12" stroke="var(--lake-deep)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'
-      + '</div></div>';
-
-    carouselIndex = 0;
-    updateCarousel();
-
-    document.getElementById('prevBtn').addEventListener('click', function() { moveCarousel(-1); });
-    document.getElementById('nextBtn').addEventListener('click', function() { moveCarousel(1); });
-    window.addEventListener('resize', function() { carouselIndex = 0; updateCarousel(); });
-  }
-
-  function showCalendarError() {
-    var container = document.getElementById('eventsContainer');
-    container.innerHTML = '<div class="events-no-calendar events-error">'
-      + '<div class="events-state-icon">'
-      + '<svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#c49a2a" stroke-width="1.5"/><path d="M16 10V17" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="21.5" r="1.2" fill="#c49a2a"/></svg>'
-      + '</div>'
-      + '<p class="events-state-title" style="color:var(--accent-gold);">Unable to Load Events</p>'
-      + '<p class="events-state-text">We were unable to connect to our events calendar at this time. Please check back shortly or follow us on <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" style="color:var(--lake-light);text-decoration:none;border-bottom:1px solid rgba(58,143,168,0.4);">Facebook</a> for the latest event announcements.</p>'
-      + '</div>';
-  }
-
-  function updateCarousel() {
-    var cpv = cardsPerView();
-    var track = document.getElementById('carouselTrack');
-    var dots = document.getElementById('carouselDots');
-    var prevBtn = document.getElementById('prevBtn');
-    var nextBtn = document.getElementById('nextBtn');
-    if (!track) return;
-
-    var totalSlides = Math.ceil(carouselItems.length / cpv);
-    if (carouselIndex >= totalSlides) carouselIndex = totalSlides - 1;
-    if (carouselIndex < 0) carouselIndex = 0;
-
-    var cardWidth = track.parentElement.offsetWidth;
-    var gap = 24;
-    var singleCard = (cardWidth - (gap * (cpv - 1))) / cpv;
-    var offset = carouselIndex * (singleCard + gap) * cpv;
-    track.style.transform = 'translateX(-' + offset + 'px)';
-
-    track.querySelectorAll('.event-card').forEach(function(c) {
-      c.style.flex = '0 0 ' + singleCard + 'px';
-    });
-
-    dots.innerHTML = '';
-    for (var i = 0; i < totalSlides; i++) {
-      var dot = document.createElement('button');
-      dot.className = 'carousel-dot' + (i === carouselIndex ? ' active' : '');
-      dot.setAttribute('aria-label', 'Slide ' + (i+1));
-      dot.addEventListener('click', (function(idx){ return function(){ carouselIndex = idx; updateCarousel(); }; })(i));
-      dots.appendChild(dot);
-    }
-
-    prevBtn.disabled = carouselIndex === 0;
-    nextBtn.disabled = carouselIndex >= totalSlides - 1;
-  }
-
-  function moveCarousel(dir) {
-    var cpv = cardsPerView();
-    var totalSlides = Math.ceil(carouselItems.length / cpv);
-    carouselIndex = Math.max(0, Math.min(carouselIndex + dir, totalSlides - 1));
-    updateCarousel();
-  }
-
-  function loadCalendarEvents() {
-    var calUrl = 'https://www.googleapis.com/calendar/v3/calendars/'
-      + encodeURIComponent(CALENDAR_ID)
-      + '/events?key=AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ&orderBy=startTime&singleEvents=true&timeMin='
-      + new Date().toISOString()
-      + '&maxResults=9';
-
-    fetch(calUrl)
-      .then(function(r) {
-        if (!r.ok) throw new Error('Calendar request failed');
-        return r.json();
-      })
-      .then(function(data) {
-        if (data.error) throw new Error(data.error.message);
-        if (!data.items || !data.items.length) { buildCarousel([]); return; }
-        var events = data.items
-          .filter(function(item) {
-            return item.visibility !== 'private' && item.summary;
-          })
-          .map(function(item) {
-          var start = item.start.dateTime || item.start.date;
-          var d = new Date(start);
-          var title = (item.summary || item.title || '').toString().trim() || 'Untitled Event';
-          var desc = (item.description || '').replace(/<[^>]+>/g,'').trim();
-          var loc = (item.location || 'Lake Mattoon, IL').trim();
-          var tag = title.toLowerCase().includes('clean') ? 'Cleanup' : title.toLowerCase().includes('meet') ? 'Meeting' : 'Community';
+  fetch(url)
+    .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(data) {
+      if (data.error) throw new Error();
+      if (!data.items || !data.items.length) { buildCarousel([]); return; }
+      var events = data.items
+        .filter(function(i) { return i.visibility !== 'private' && i.summary; })
+        .map(function(i) {
+          var s  = i.start.dateTime || i.start.date;
+          var d  = new Date(s);
+          var tl = (i.summary || '').toLowerCase();
           return {
-            title: title,
-            start: start,
-            time: item.start.dateTime ? d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) : 'All Day',
-            location: loc,
-            tag: tag
+            title:    i.summary.trim(),
+            start:    s,
+            time:     i.start.dateTime ? d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : 'All Day',
+            location: (i.location || 'Lake Mattoon, IL').trim(),
+            tag:      tl.includes('clean') ? 'Cleanup' : tl.includes('meet') ? 'Meeting' : 'Community'
           };
         });
-        buildCarousel(events);
-      })
-      .catch(function() { showCalendarError(); });
-  }
-
-  loadCalendarEvents();
+      buildCarousel(events);
+    })
+    .catch(showCalendarError);
+}());
 </script>
 </body>
 </html>
