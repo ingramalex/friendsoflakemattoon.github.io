@@ -1081,6 +1081,7 @@
     surveyModal.classList.add('open');
     document.body.style.overflow = 'hidden';
     showSurveyTab('resident');
+    localStorage.setItem('surveyInteracted', 'true');
   }
 
   function closeSurveyModal() {
@@ -1093,17 +1094,19 @@
     document.getElementById('surveyResident').style.display = tab === 'resident' ? 'block' : 'none';
     document.getElementById('tabBusiness').classList.toggle('active', tab === 'business');
     document.getElementById('tabResident').classList.toggle('active', tab === 'resident');
+    if (tab === 'business' || tab === 'resident') {
+      localStorage.setItem('surveyInteracted', 'true');
+    }
   }
 
   document.getElementById('surveyClose').addEventListener('click', closeSurveyModal);
   surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeSurveyModal(); closeDonateModal(); } });
 
-  if (!sessionStorage.getItem('surveyShown')) {
+  if (!localStorage.getItem('surveyInteracted')) {
     setTimeout(function() {
       if (!surveyModal.classList.contains('open') && !document.getElementById('donateModal').classList.contains('open')) {
         openSurveyModal();
-        sessionStorage.setItem('surveyShown', 'true');
       }
     }, 45000);
   }
