@@ -321,6 +321,8 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .contact-info-value{font-size:.95rem;color:var(--sky);font-weight:300}
 .contact-info-value a{color:var(--sky);text-decoration:none;transition:color var(--t)}
 .contact-info-value a:hover{color:#fff}
+.contact-info-link{color:var(--sky);text-decoration:none;transition:color var(--t)}
+.contact-info-link:hover{color:#fff}
 .contact-cta-box{background:rgba(26,80,104,.35);border:1px solid rgba(58,143,168,.2);border-radius:8px;padding:2.5rem 2rem;text-align:center}
 .contact-cta-icon{width:72px;height:72px;border-radius:50%;background:rgba(58,143,168,.15);border:1px solid rgba(58,143,168,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
 .contact-cta-heading{font-family:var(--serif);font-size:1.3rem;color:#fff;font-weight:400;margin-bottom:.75rem}
@@ -859,7 +861,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
             </div>
             <div>
               <p class="contact-info-label">Email Us</p>
-              <p class="contact-info-value"><a href="/cdn-cgi/l/email-protection#680e1a010d060c1b070e0409030d05091c1c070706280f05090104460b0705"><span class="__cf_email__" data-cfemail="b0d6c2d9d5ded4c3dfd6dcd1dbd5ddd1c4c4dfdfdef0d7ddd1d9dc9ed3dfdd">[email&#160;protected]</span></a></p>
+              <p class="contact-info-value"><a id="contactEmailDisplay" href="#contact" class="contact-info-link">friendsoflakemattoon [at] gmail.com</a></p>
             </div>
           </div>
           <div class="contact-info-item">
@@ -890,7 +892,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
           </div>
           <p class="contact-cta-title">Ready to Connect?</p>
           <p class="contact-cta-text">Click below to send us an email directly. We read every message and look forward to hearing from you. We aim to respond within 48 hours.</p>
-          <a href="/cdn-cgi/l/email-protection#ec8a9e858982889f838a808d8789818d9898838382ac8b818d8580c28f8381d39f998e86898f98d1aa9e858982889fcc838acca08d8789cca18d9898838382cca5829d99859e95" class="btn-primary icon-arrow contact-cta-btn">
+          <a id="contactEmailBtn" href="#contact" class="btn-primary icon-arrow contact-cta-btn">
             Send Us an Email
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -958,6 +960,19 @@ document.addEventListener('DOMContentLoaded', function() {
   var drawer      = document.getElementById('nav-drawer');
   var donateModal = document.getElementById('donateModal');
   var surveyModal = document.getElementById('surveyModal');
+
+  /* EMAIL LINKS — built at runtime to bypass Cloudflare encoding */
+  var u = 'friendsoflakemattoon';
+  var d = 'gmail.com';
+  var emailDisplay = document.getElementById('contactEmailDisplay');
+  var emailBtn     = document.getElementById('contactEmailBtn');
+  if (emailDisplay) {
+    emailDisplay.href        = 'mailto:' + u + '@' + d;
+    emailDisplay.textContent = u + '@' + d;
+  }
+  if (emailBtn) {
+    emailBtn.href = 'mailto:' + u + '@' + d + '?subject=Friends%20of%20Lake%20Mattoon%20Inquiry';
+  }
 
   /* NAV */
   hamburger.addEventListener('click', function() {
