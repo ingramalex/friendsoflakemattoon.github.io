@@ -1012,8 +1012,16 @@
         <p class="survey-coming-title">Coming Soon</p>
         <p class="survey-coming-text">Our resident survey is currently being finalized. Check back shortly — your voice as a community member is just as important as ever in protecting Lake Mattoon for generations to come.</p>
       </div>
-      <div id="surveyBusiness" class="survey-frame-wrap" style="display:none;">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZcJvrj5wL2_jbHEBPVgv-5O32xT9yRqlzatY_rZEm2sItdQ/viewform?embedded=true&hl=en&rm=minimal" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading&hellip;</iframe>
+      <div id="surveyBusiness" class="survey-coming-soon" style="display:none;">
+        <div class="survey-coming-icon">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/>
+            <path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/>
+          </svg>
+        </div>
+        <p class="survey-coming-title">Coming Soon</p>
+        <p class="survey-coming-text">Our business survey is currently being finalized. We look forward to hearing how Lake Mattoon impacts your business and the local economy. Please check back soon.</p>
       </div>
     </div>
     <div class="survey-footer-note">Takes 2 minutes &nbsp;&middot;&nbsp; Anonymous &nbsp;&middot;&nbsp; Results shared with local government</div>
@@ -1103,13 +1111,14 @@
   surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
   document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeSurveyModal(); closeDonateModal(); } });
 
-  if (!localStorage.getItem('surveyInteracted')) {
-    setTimeout(function() {
-      if (!surveyModal.classList.contains('open') && !document.getElementById('donateModal').classList.contains('open')) {
-        openSurveyModal();
-      }
-    }, 45000);
-  }
+  // Survey popup disabled until surveys are finalized
+  // if (!localStorage.getItem('surveyInteracted')) {
+  //   setTimeout(function() {
+  //     if (!surveyModal.classList.contains('open') && !document.getElementById('donateModal').classList.contains('open')) {
+  //       openSurveyModal();
+  //     }
+  //   }, 45000);
+  // }
 
   function setAmt(el) {
     document.querySelectorAll('.amt-btn').forEach(function(b){ b.classList.remove('active'); });
