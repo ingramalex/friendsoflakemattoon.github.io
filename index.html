@@ -1310,4 +1310,14 @@ document.addEventListener('DOMContentLoaded', function() {
             start:    s,
             time:     i.start.dateTime ? d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : 'All Day',
             location: (i.location || 'Lake Mattoon, IL').trim(),
-         
+                     tag: tl.includes('clean') ? 'Cleanup' : tl.includes('meet') ? 'Meeting' : 'Community'
+          };
+        });
+      buildCarousel(events);
+    })
+    .catch(showCalendarError);
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
