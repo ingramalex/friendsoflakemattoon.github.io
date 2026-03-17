@@ -349,6 +349,24 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .footer-links a:hover{color:var(--sky)}
 .footer-copy{margin-top:1.5rem;font-size:11px;color:rgba(184,220,232,.25)}
 
+/* ── MEMBERSHIP MODAL ────────────────────────────────── */
+.member-overlay{display:none;position:fixed;inset:0;z-index:997;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
+.member-overlay.open{display:flex;animation:fadeIn .25s ease}
+.member-box{background:var(--cream);border-radius:6px;max-width:660px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+.member-header{padding:1.75rem 2rem 1.25rem;text-align:center;border-bottom:1px solid rgba(26,80,104,.1);flex-shrink:0}
+.member-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.4rem}
+.member-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:.5rem}
+.member-title em{font-style:italic;color:var(--mid)}
+.member-divider{width:36px;height:1px;background:var(--gold);margin:.6rem auto .75rem}
+.member-tier{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.08);border:1px solid rgba(196,154,42,.25);border-radius:var(--r);padding:.6rem 1.25rem;margin-bottom:.75rem}
+.member-tier-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:300}
+.member-tier-price{font-family:var(--serif);font-size:1.4rem;color:var(--gold);font-weight:400;line-height:1}
+.member-tier-period{font-size:11px;color:var(--muted);font-weight:300}
+.member-subtitle{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto}
+.member-body{flex:1;overflow-y:auto}
+.member-body iframe{display:block;width:100%;border:none}
+.member-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(61,90,96,.5);border-top:1px solid rgba(26,80,104,.08);flex-shrink:0;font-weight:300;line-height:1.6}
+
 /* ── DONATE MODAL ───────────────────────────────────── */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
 .modal-overlay.open{display:flex;animation:fadeIn .25s ease}
@@ -365,6 +383,28 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .modal-btn-fb:hover{background:#1464d0}
 .modal-btn-close{background:transparent;color:var(--muted);font-family:var(--body);font-size:13px;font-weight:300;letter-spacing:.06em;text-transform:uppercase;padding:.7rem 1.25rem;border-radius:var(--r);border:1px solid rgba(26,80,104,.2);cursor:pointer;transition:all var(--t)}
 .modal-btn-close:hover{border-color:var(--teal);color:var(--navy)}
+
+/* ── MEMBERSHIP MODAL ───────────────────────────────── */
+.member-overlay{display:none;position:fixed;inset:0;z-index:998;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
+.member-overlay.open{display:flex;animation:fadeIn .25s ease}
+.member-box{background:var(--cream);border-radius:6px;max-width:640px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:90vh;overflow:hidden}
+.member-header{padding:1.75rem 2rem 1.25rem;text-align:center;border-bottom:1px solid rgba(26,80,104,.1);flex-shrink:0}
+.member-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.4rem}
+.member-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:.5rem}
+.member-title em{font-style:italic;color:var(--mid)}
+.member-divider{width:36px;height:1px;background:var(--gold);margin:.6rem auto .75rem}
+.member-tier{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.08);border:1px solid rgba(196,154,42,.25);border-radius:var(--r);padding:.6rem 1.25rem;margin-bottom:.75rem}
+.member-tier-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:300}
+.member-tier-price{font-family:var(--serif);font-size:1.4rem;color:var(--gold);font-weight:400}
+.member-tier-period{font-size:11px;color:var(--muted);font-weight:300}
+.member-subtitle{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto}
+.member-body{flex:1;overflow-y:auto}
+.member-frame-wrap iframe{display:block;width:100%;border:none}
+.member-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(61,90,96,.5);border-top:1px solid rgba(26,80,104,.08);flex-shrink:0;font-weight:300}
+
+/* Involved card CTA button */
+.involved-card-cta{display:inline-flex;align-items:center;gap:6px;margin-top:.75rem;font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid rgba(196,154,42,.35);border-radius:var(--r);padding:.35rem .75rem;cursor:pointer;transition:all var(--t)}
+.involved-card-cta:hover{background:rgba(196,154,42,.08);border-color:var(--gold)}
 
 /* ── SURVEY MODAL ───────────────────────────────────── */
 .survey-overlay{display:none;position:fixed;inset:0;z-index:998;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
@@ -601,7 +641,14 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <div class="involved-grid">
       <div class="involved-card">
         <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3 L13.5 8.5 L20 9.3 L15.5 13.7 L16.7 20 L11 17 L5.3 20 L6.5 13.7 L2 9.3 L8.5 8.5 Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg></div>
-        <div><h4 class="involved-title">Become a Member</h4><p class="involved-text">Join a growing community of lake stewards. Your membership supports ongoing conservation work and gives you a voice in protecting Lake Mattoon.</p></div>
+        <div style="flex:1">
+          <h4 class="involved-title">Become a Member</h4>
+          <p class="involved-text">Join a growing community of lake stewards. Individual membership is just $20/year and gives you a voice in protecting Lake Mattoon for generations to come.</p>
+          <button onclick="openMemberModal()" style="margin-top:.875rem;font-size:12px;padding:.5rem 1rem;display:inline-flex;align-items:center;gap:6px;" class="btn-primary">
+            Join Now
+            <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
       <div class="involved-card">
         <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="8" r="4" stroke="#b8dce8" stroke-width="1.2"/><path d="M4 19 Q4 14 11 14 Q18 14 18 19" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg></div>
@@ -735,7 +782,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
         <div class="off-photo"><img src="images/eventscoordinator.jpg" alt="Angie Rawlings" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>AR</span>'"></div>
         <p class="off-role">Events Coordinator</p><p class="off-name">Angie Rawlings</p>
         <div class="off-accent"></div>
-        <p class="off-bio">Angie once organized a full shoreline cleanup, a bake sale, and a canoe race on the same Saturday — before noon. If there's fun to be had on Lake Mattoon, Angie planned it, promoted it, and brought the snacks.</p>
+        <p class="off-bio">Five years ago Angie and her husband Mitch traded their old address for a home on Lake Mattoon — a move she jokes was the only way she'd ever convince him to leave his favorite fishing spot of 54 years. What started as Mitch's lifelong lake is now a place they both proudly call home. If you're out around the lake, there's a good chance you'll spot them cruising by on the golf cart, stopping to chat and hear the stories that make this community so special. As Events Coordinator, Angie channels that same warmth into creating moments that bring people together — and she's just getting started.</p>
       </div>
     </div>
     <div class="conservation-committee">
@@ -800,6 +847,32 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <p class="donate-note">Secure donation processing via Square &middot; Friends of Lake Mattoon is a 501(c)(3) nonprofit</p>
   </div>
 </section>
+
+<!-- MEMBERSHIP MODAL -->
+<div class="member-overlay" id="memberModal" role="dialog" aria-modal="true" aria-labelledby="memberTitle">
+  <div class="member-box">
+    <button class="modal-close-btn" id="memberClose" aria-label="Close">&times;</button>
+    <div class="member-header">
+      <p class="member-tag">Join the Community</p>
+      <h2 class="member-title" id="memberTitle">Become a <em>Member</em></h2>
+      <div class="member-divider"></div>
+      <div class="member-tier">
+        <div>
+          <p class="member-tier-label">Individual Membership</p>
+          <p class="member-tier-period">Adults 18 and over</p>
+        </div>
+        <p class="member-tier-price">$20<span class="member-tier-period">/year</span></p>
+      </div>
+      <p class="member-subtitle">Fill out the form below to apply for membership. Once we receive your application our team will review it and reach out with next steps including payment options via Square.</p>
+    </div>
+    <div class="member-body">
+      <div class="member-frame-wrap">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScg0P2fq6lBx6Jhc2meDSVu6ErARF2i4IOAnaRSe8fPoFWU8Q/viewform?embedded=true&rm=minimal" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading&hellip;</iframe>
+      </div>
+    </div>
+    <div class="member-footer-note">Your membership directly supports conservation efforts at Lake Mattoon &nbsp;&middot;&nbsp; Payment via Square — coming soon</div>
+  </div>
+</div>
 
 <!-- SURVEY MODAL -->
 <div class="survey-overlay" id="surveyModal" role="dialog" aria-modal="true" aria-labelledby="surveyTitle">
@@ -930,7 +1003,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   <p class="footer-copy">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── CONFIG ──────────────────────────────────────────────── */
 var CAL_ID  = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
 var CAL_KEY = 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ';
@@ -940,6 +1013,8 @@ var MONTHS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov'
 function openModal(el)  { el.classList.add('open');    document.body.style.overflow = 'hidden'; }
 function closeModal(el) { el.classList.remove('open'); document.body.style.overflow = ''; }
 
+function openMemberModal()  { openModal(document.getElementById('memberModal')); }
+function closeMemberModal() { closeModal(document.getElementById('memberModal')); }
 function openDonateModal()  { openModal(document.getElementById('donateModal')); }
 function closeDonateModal() { closeModal(document.getElementById('donateModal')); }
 
@@ -1046,12 +1121,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   /* MODAL CLOSE BUTTONS */
+  document.getElementById('memberClose').addEventListener('click', closeMemberModal);
+  document.getElementById('memberModal').addEventListener('click', function(e) { if (e.target === document.getElementById('memberModal')) closeMemberModal(); });
   document.getElementById('modalClose').addEventListener('click', closeDonateModal);
   document.getElementById('modalClosBtn').addEventListener('click', closeDonateModal);
   document.getElementById('surveyClose').addEventListener('click', closeSurveyModal);
   donateModal.addEventListener('click', function(e) { if (e.target === donateModal) closeDonateModal(); });
   surveyModal.addEventListener('click', function(e) { if (e.target === surveyModal) closeSurveyModal(); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeDonateModal(); closeSurveyModal(); } });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeDonateModal(); closeSurveyModal(); closeMemberModal(); } });
 
   /* CONTACT FORM */
   var contactForm = document.getElementById('contactForm');
@@ -1222,14 +1299,4 @@ document.addEventListener('DOMContentLoaded', function() {
             start:    s,
             time:     i.start.dateTime ? d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}) : 'All Day',
             location: (i.location || 'Lake Mattoon, IL').trim(),
-            tag:      tl.includes('clean') ? 'Cleanup' : tl.includes('meet') ? 'Meeting' : 'Community'
-          };
-        });
-      buildCarousel(events);
-    })
-    .catch(showCalendarError);
-
-}); // end DOMContentLoaded
-</script>
-</body>
-</html>
+         
