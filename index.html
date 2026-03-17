@@ -50,6 +50,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NP60T2YF3J"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NP60T2YF3J');</script>
 
+<!-- Disable Cloudflare email obfuscation -->
+<meta name="cf-2fa-verify" content="off">
+
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -753,19 +756,19 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <p class="body-text" style="max-width:520px;margin-bottom:3rem;">Dedicated community members committed to preserving Lake Mattoon for generations to come.</p>
     <div class="off-grid-top">
       <div class="off-card">
-        <div class="off-photo"><img src="images/president.jpg" alt="Katie O'Dell" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KO</span>'"></div>
+        <div class="off-photo"><img src="images/president.jpg" alt="Katie O'Dell" data-initials="KO" class="off-img"></div>
         <p class="off-role">President</p><p class="off-name">Katie O'Dell</p>
         <div class="off-accent"></div>
         <p class="off-bio">Lake-trained since childhood — literally driving boats before cars — Katie's connection to Lake Mattoon runs deep. Her dad was one of the organization's founding fathers, and today she leads with that same legacy in her heart, working to ensure future generations can make the same cherished memories on this lake.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo"><img src="images/vicepresident.jpg" alt="Jessica Ingram" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JI</span>'"></div>
+        <div class="off-photo"><img src="images/vicepresident.jpg" alt="Jessica Ingram" data-initials="JI" class="off-img"></div>
         <p class="off-role">Vice President</p><p class="off-name">Jessica Ingram</p>
         <div class="off-accent"></div>
         <p class="off-bio">A St. Louis weekender since 2016, Jessica brought her then 3-month-old son to Lake Mattoon seeking water, nature, and a break from city screens. Here's the twist — she has an irrational fear of deep water, yet somehow spends every weekend at the sandbar. Her son has never known life without this lake, and she's determined to keep it that way.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo"><img src="images/secretary.jpg" alt="Krystal Little" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>KL</span>'"></div>
+        <div class="off-photo"><img src="images/secretary.jpg" alt="Krystal Little" data-initials="KL" class="off-img"></div>
         <p class="off-role">Secretary</p><p class="off-name">Krystal Little</p>
         <div class="off-accent"></div>
         <p class="off-bio">When Krystal and her husband found property on Lake Mattoon, they expected a weekend escape — they didn't expect to find their people. The lake quickly became home, and the community became family. She'll admit she has no quirky lake tricks up her sleeve, but what she does have is a deep passion for preserving this place and the friendships it creates for generations to come.</p>
@@ -773,13 +776,13 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     </div>
     <div class="off-grid-bottom">
       <div class="off-card">
-        <div class="off-photo"><img src="images/treasurer.jpg" alt="Roberta Gingerich" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>RG</span>'"></div>
+        <div class="off-photo"><img src="images/treasurer.jpg" alt="Roberta Gingerich" data-initials="RG" class="off-img"></div>
         <p class="off-role">Treasurer</p><p class="off-name">Roberta Gingerich</p>
         <div class="off-accent"></div>
         <p class="off-bio">Roberta knows exactly where every penny goes — and she will absolutely find it if it tries to go somewhere else. Her spreadsheets are legendary, and her commitment to the lake is even more so.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo"><img src="images/eventscoordinator.jpg" alt="Angie Rawlings" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>AR</span>'"></div>
+        <div class="off-photo"><img src="images/eventscoordinator.jpg" alt="Angie Rawlings" data-initials="AR" class="off-img"></div>
         <p class="off-role">Events Coordinator</p><p class="off-name">Angie Rawlings</p>
         <div class="off-accent"></div>
         <p class="off-bio">Five years ago Angie and her husband Mitch traded their old address for a home on Lake Mattoon — a move she jokes was the only way she'd ever convince him to leave his favorite fishing spot of 54 years. What started as Mitch's lifelong lake is now a place they both proudly call home. If you're out around the lake, there's a good chance you'll spot them cruising by on the golf cart, stopping to chat and hear the stories that make this community so special. As Events Coordinator, Angie channels that same warmth into creating moments that bring people together — and she's just getting started.</p>
@@ -793,7 +796,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <div class="conservation-card-wrap">
         <div class="off-card conservation">
           <div class="conservation-badge">Conservation Committee</div>
-          <div class="off-photo"><img src="images/conservationchair.jpg" alt="Jason Little" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'off-initials\'>JL</span>'"></div>
+          <div class="off-photo"><img src="images/conservationchair.jpg" alt="Jason Little" data-initials="JL" class="off-img"></div>
           <p class="off-role">Conservation Chair &amp; Lead Strategist</p>
           <p class="off-name">Jason Little</p>
           <div class="off-accent"></div>
@@ -1003,7 +1006,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   <p class="footer-copy">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── CONFIG ──────────────────────────────────────────────── */
 var CAL_ID  = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
 var CAL_KEY = 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ';
@@ -1107,6 +1110,14 @@ document.addEventListener('DOMContentLoaded', function() {
   if (emailBtn) {
     emailBtn.href = 'mailto:' + u + '@' + d + '?subject=Friends%20of%20Lake%20Mattoon%20Inquiry';
   }
+
+  /* OFFICER PHOTO FALLBACKS */
+  document.querySelectorAll('img.off-img').forEach(function(img) {
+    img.addEventListener('error', function() {
+      var initials = img.getAttribute('data-initials') || '?';
+      img.parentElement.innerHTML = '<span class="off-initials">' + initials + '</span>';
+    });
+  });
 
   /* NAV */
   hamburger.addEventListener('click', function() {
