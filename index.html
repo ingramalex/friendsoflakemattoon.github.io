@@ -174,30 +174,61 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .pillar-card.economy .pillar-learn-btn:hover{background:rgba(196,154,42,.1);border-color:var(--gold)}
 
 /* ── PILLAR MODALS ───────────────────────────────────── */
-.pillar-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(7,20,28,.8);align-items:center;justify-content:center;padding:1.5rem}
+.pillar-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(7,20,28,.85);align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto}
 .pillar-overlay.open{display:flex;animation:fadeIn .25s ease}
-.pillar-box{background:var(--navy);border:1px solid rgba(58,143,168,.2);border-radius:6px;max-width:620px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:90vh;overflow:hidden}
-.pillar-modal-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid rgba(58,143,168,.15);flex-shrink:0}
+.pillar-box{background:var(--navy);border:1px solid rgba(58,143,168,.2);border-radius:6px;max-width:780px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+.pillar-modal-header{padding:1.75rem 2rem 1.25rem;border-bottom:1px solid rgba(58,143,168,.15);flex-shrink:0}
 .pillar-modal-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,220,232,.5);font-weight:600;margin-bottom:.4rem}
-.pillar-modal-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:#fff;line-height:1.2;margin-bottom:.75rem}
+.pillar-modal-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:#fff;line-height:1.2;margin-bottom:1rem}
 .pillar-modal-title em{font-style:italic;color:var(--sky)}
-.pillar-modal-stat{background:rgba(58,143,168,.12);border:1px solid rgba(58,143,168,.2);border-radius:var(--r);padding:1rem 1.25rem;display:flex;align-items:center;gap:1rem}
+.pillar-modal-stat{background:rgba(58,143,168,.12);border:1px solid rgba(58,143,168,.2);border-radius:var(--r);padding:.875rem 1.25rem;display:flex;align-items:center;gap:1rem}
 .pillar-modal-stat.gold{background:rgba(196,154,42,.1);border-color:rgba(196,154,42,.25)}
 .pillar-stat-num{font-family:var(--serif);font-size:2rem;color:var(--sky);line-height:1;flex-shrink:0}
 .pillar-stat-num.gold{color:var(--gold)}
-.pillar-stat-label{font-size:.85rem;color:rgba(184,220,232,.7);font-weight:300;line-height:1.5}
+.pillar-stat-label{font-size:.82rem;color:rgba(184,220,232,.7);font-weight:300;line-height:1.5}
+.pillar-modal-tabs{display:flex;gap:.5rem;padding:1rem 2rem 0;flex-shrink:0;border-bottom:1px solid rgba(58,143,168,.12)}
+.pillar-modal-tab{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.1rem .6rem;border-radius:var(--r) var(--r) 0 0;border:1px solid transparent;border-bottom:none;cursor:pointer;background:transparent;color:rgba(184,220,232,.5);transition:all var(--t);margin-bottom:-1px}
+.pillar-modal-tab.active{background:rgba(58,143,168,.12);color:var(--sky);border-color:rgba(58,143,168,.2);border-bottom-color:transparent}
+.pillar-modal-tab.gold.active{background:rgba(196,154,42,.1);color:var(--gold);border-color:rgba(196,154,42,.25);border-bottom-color:transparent}
 .pillar-modal-body{padding:1.5rem 2rem 2rem;overflow-y:auto;flex:1}
+.pillar-tab-panel{display:none}.pillar-tab-panel.active{display:block}
 .pillar-point{display:flex;gap:1rem;margin-bottom:1.25rem;align-items:flex-start}
 .pillar-point:last-of-type{margin-bottom:0}
 .pillar-point-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:.45rem}
 .pillar-point-dot.gold{background:var(--gold)}
-.pillar-point-text{font-size:.9rem;color:rgba(184,220,232,.8);font-weight:300;line-height:1.7}
+.pillar-point-text{font-size:.88rem;color:rgba(184,220,232,.8);font-weight:300;line-height:1.75}
 .pillar-point-text strong{color:#fff;font-weight:600}
 .pillar-citations{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid rgba(58,143,168,.12)}
 .pillar-citations-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,220,232,.4);font-weight:600;margin-bottom:.75rem}
 .pillar-citation{font-size:.78rem;color:rgba(184,220,232,.45);line-height:1.6;margin-bottom:.4rem;padding-left:.75rem;border-left:2px solid rgba(58,143,168,.2)}
 .pillar-citation a{color:var(--teal);text-decoration:none;transition:color var(--t)}
 .pillar-citation a:hover{color:var(--sky)}
+.p-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.p-stat-card{background:rgba(26,80,104,.4);border:1px solid rgba(58,143,168,.15);border-radius:var(--r);padding:.875rem 1rem}
+.p-stat-card.gold-card{background:rgba(196,154,42,.08);border-color:rgba(196,154,42,.2)}
+.p-stat-lbl{font-size:11px;color:rgba(184,220,232,.5);margin-bottom:.35rem;font-weight:300;line-height:1.4}
+.p-stat-val{font-family:var(--serif);font-size:1.5rem;color:var(--sky);line-height:1}
+.p-stat-val.warn{color:#d4a030}
+.p-stat-val.danger{color:#c0504a}
+.p-stat-val.gold{color:var(--gold)}
+.p-chart-wrap{position:relative;width:100%;margin:1rem 0 .5rem}
+.p-highlight{background:rgba(26,80,104,.4);border-left:3px solid rgba(196,154,42,.6);border-radius:0 var(--r) var(--r) 0;padding:.875rem 1.1rem;margin:1rem 0}
+.p-highlight p{font-size:.85rem;color:rgba(184,220,232,.75);line-height:1.7;font-weight:300}
+.p-highlight strong{color:#fff}
+.p-source{font-size:10px;color:rgba(184,220,232,.3);margin-top:.5rem;line-height:1.6}
+.p-slider-row{display:flex;align-items:center;gap:10px;margin-bottom:.875rem}
+.p-slider-label{font-size:12px;color:rgba(184,220,232,.6);min-width:130px;font-weight:300}
+.p-slider-row input[type=range]{flex:1;accent-color:var(--teal)}
+.p-slider-val{font-size:12px;font-weight:600;color:var(--sky);min-width:70px;text-align:right}
+.p-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1rem}
+.p-result-card{background:rgba(26,80,104,.4);border:1px solid rgba(58,143,168,.15);border-radius:var(--r);padding:.875rem 1rem}
+.p-result-card.gold-card{background:rgba(196,154,42,.08);border-color:rgba(196,154,42,.2)}
+.p-result-lbl{font-size:11px;color:rgba(184,220,232,.5);margin-bottom:.35rem;font-weight:300}
+.p-result-val{font-family:var(--serif);font-size:1.4rem;line-height:1}
+.p-result-val.danger{color:#c0504a}
+.p-result-val.warn{color:#d4a030}
+.p-result-val.good{color:#4ab890}
+.p-result-note{font-size:10px;color:rgba(184,220,232,.35);margin-top:.3rem;line-height:1.5}
 
 /* ── GET INVOLVED ───────────────────────────────────── */
 .involved{padding:6rem 2rem;background:var(--sand)}
@@ -971,28 +1002,67 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <h2 class="pillar-modal-title">The State of <em>Lake Mattoon</em></h2>
       <div class="pillar-modal-stat">
         <div class="pillar-stat-num">860M</div>
-        <div class="pillar-stat-label">Gallons of storage capacity lost since construction in 1958 — and counting at 39.7 ac-ft per year</div>
+        <div class="pillar-stat-label">Gallons of storage capacity lost since 1958 &mdash; at 39.7 ac-ft per year and accelerating without intervention</div>
       </div>
     </div>
+    <div class="pillar-modal-tabs">
+      <button class="pillar-modal-tab active" onclick="switchPillarTab('conservation','facts')">Talking points</button>
+      <button class="pillar-modal-tab" onclick="switchPillarTab('conservation','timeline')">Sedimentation timeline</button>
+    </div>
     <div class="pillar-modal-body">
-      <div class="pillar-point">
-        <div class="pillar-point-dot"></div>
-        <p class="pillar-point-text"><strong>Sedimentation is the primary long-term threat.</strong> Lake Mattoon has lost 1,705 ac-ft of its original 1958 capacity due to sediment accumulation — a rate of 39.7 ac-ft per year. At this pace, the lake volume will be half its original capacity by 2124 and completely filled by 2291.</p>
+
+      <div class="pillar-tab-panel active" id="conservation-facts">
+        <div class="pillar-point">
+          <div class="pillar-point-dot"></div>
+          <p class="pillar-point-text"><strong>Sedimentation is the primary long-term threat.</strong> Lake Mattoon has lost 1,705 ac-ft of its original 1958 capacity due to sediment accumulation &mdash; a rate of 39.7 ac-ft per year. At this pace, the lake volume will be half its original capacity by 2124 and completely filled by 2291.</p>
+        </div>
+        <div class="pillar-point">
+          <div class="pillar-point-dot"></div>
+          <p class="pillar-point-text"><strong>Sedimentation reduces the lake's useful life as a water supply.</strong> Sediment entering the reservoir gradually reduces storage capacity, shortens the operational life of the lake, and threatens the long-term water supply for over 20,000 people in Mattoon and surrounding communities.</p>
+        </div>
+        <div class="pillar-point">
+          <div class="pillar-point-dot"></div>
+          <p class="pillar-point-text"><strong>Nutrient loading is a documented water quality concern.</strong> Illinois EPA studies identified phosphorus loading in the Lake Mattoon watershed as a driver of eutrophication &mdash; excessive nutrients cause algal blooms, deplete dissolved oxygen, and degrade aquatic habitat critical to the lake ecosystem.</p>
+        </div>
+        <div class="pillar-citations">
+          <p class="pillar-citations-title">Sources</p>
+          <p class="pillar-citation"><a href="https://www.isws.illinois.edu/pubdoc/CR/ISWSCR2003-04.pdf" target="_blank" rel="noopener">Bogner, William C. &mdash; Sedimentation Survey of Lake Paradise and Lake Mattoon, ISWS CR 2003-04</a></p>
+          <p class="pillar-citation"><a href="https://epa.illinois.gov/content/dam/soi/en/web/epa/documents/water-quality/watershed-management/tmdls/reports/mattoon/mattoon-approved-tmdl.pdf" target="_blank" rel="noopener">Illinois EPA &mdash; Lake Mattoon Total Maximum Daily Load (TMDL) Report</a></p>
+          <p class="pillar-citation">US Army Corps of Engineers &mdash; Illinois State Water Survey</p>
+        </div>
       </div>
-      <div class="pillar-point">
-        <div class="pillar-point-dot"></div>
-        <p class="pillar-point-text"><strong>Sedimentation reduces the lake's useful life as a water supply.</strong> Sediment entering the reservoir gradually reduces storage capacity, shortens the operational life of the lake, and threatens the long-term water supply for over 20,000 people in Mattoon and surrounding communities.</p>
+
+      <div class="pillar-tab-panel" id="conservation-timeline">
+        <div class="p-stat-row">
+          <div class="p-stat-card">
+            <div class="p-stat-lbl">Water capacity</div>
+            <div class="p-stat-val" id="sedSCapacity">13,293 ac-ft</div>
+          </div>
+          <div class="p-stat-card">
+            <div class="p-stat-lbl">Capacity remaining</div>
+            <div class="p-stat-val" id="sedSPct">100%</div>
+          </div>
+          <div class="p-stat-card">
+            <div class="p-stat-lbl">Sediment accumulated</div>
+            <div class="p-stat-val danger" id="sedSSed">0 ac-ft</div>
+          </div>
+        </div>
+        <div style="margin:.75rem 0 .5rem;display:flex;align-items:center;gap:10px">
+          <span style="font-size:11px;color:rgba(184,220,232,.5);min-width:30px">Year</span>
+          <input type="range" min="1958" max="2291" value="1958" step="1" id="sedYearSlider" oninput="sedOnSlide()" style="flex:1;accent-color:#3a8fa8">
+          <span style="font-size:12px;font-weight:600;color:var(--sky);min-width:36px;text-align:right" id="sedYearOut">1958</span>
+        </div>
+        <canvas id="sedCanvas" height="200" style="display:block;width:100%;border-radius:4px"></canvas>
+        <div style="display:flex;gap:6px;margin-top:.75rem;flex-wrap:wrap">
+          <button class="pillar-learn-btn" id="sedPlayBtn" onclick="sedTogglePlay()" style="color:var(--sky);border-color:rgba(58,143,168,.35)">&#9654; Play</button>
+          <button class="pillar-learn-btn" onclick="sedSetYear(1958)">1958 — Original</button>
+          <button class="pillar-learn-btn" onclick="sedSetYear(2025)">Today</button>
+          <button class="pillar-learn-btn" onclick="sedSetYear(2124)" style="color:#d4a030;border-color:rgba(196,154,42,.3)">2124 — Half capacity</button>
+          <button class="pillar-learn-btn" onclick="sedSetYear(2291)" style="color:#c0504a;border-color:rgba(192,80,74,.3)">2291 — Fully silted</button>
+        </div>
+        <p class="p-source" style="margin-top:.75rem">Rate: 39.7 ac-ft/year &nbsp;&middot;&nbsp; Source: Bogner, W.C. &mdash; ISWS CR 2003-04 &nbsp;&middot;&nbsp; Projections assume constant rate</p>
       </div>
-      <div class="pillar-point">
-        <div class="pillar-point-dot"></div>
-        <p class="pillar-point-text"><strong>Nutrient loading is a documented water quality concern.</strong> Illinois EPA studies identified phosphorus loading in the Lake Mattoon watershed as a driver of eutrophication — excessive nutrients cause algal blooms, deplete dissolved oxygen, and degrade aquatic habitat critical to the lake ecosystem.</p>
-      </div>
-      <div class="pillar-citations">
-        <p class="pillar-citations-title">Sources</p>
-        <p class="pillar-citation"><a href="https://www.isws.illinois.edu/pubdoc/CR/ISWSCR2003-04.pdf" target="_blank" rel="noopener">Bogner, William C. — Sedimentation Survey of Lake Paradise and Lake Mattoon, Illinois State Water Survey (ISWS CR 2003-04)</a></p>
-        <p class="pillar-citation"><a href="https://epa.illinois.gov/content/dam/soi/en/web/epa/documents/water-quality/watershed-management/tmdls/reports/mattoon/mattoon-approved-tmdl.pdf" target="_blank" rel="noopener">Illinois EPA — Lake Mattoon Total Maximum Daily Load (TMDL) Report</a></p>
-        <p class="pillar-citation">US Army Corps of Engineers — Illinois State Water Survey</p>
-      </div>
+
     </div>
   </div>
 </div>
@@ -1040,30 +1110,82 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <p class="pillar-modal-tag">Economic Stewardship</p>
       <h2 class="pillar-modal-title">The <em>Return</em> on Clean Water</h2>
       <div class="pillar-modal-stat gold">
-        <div class="pillar-stat-num gold">$3–$4</div>
-        <div class="pillar-stat-label">In economic activity generated for every $1 invested in lake restoration — multiple federal and university studies confirm this return</div>
+        <div class="pillar-stat-num gold">$3&ndash;$4</div>
+        <div class="pillar-stat-label">In economic activity generated for every $1 invested in lake restoration &mdash; confirmed by multiple federal and university studies</div>
       </div>
     </div>
+    <div class="pillar-modal-tabs">
+      <button class="pillar-modal-tab gold active" onclick="switchPillarTab('economy','facts')">Talking points</button>
+      <button class="pillar-modal-tab" onclick="switchPillarTab('economy','calc')">Cost of inaction</button>
+    </div>
     <div class="pillar-modal-body">
-      <div class="pillar-point">
-        <div class="pillar-point-dot gold"></div>
-        <p class="pillar-point-text"><strong>Lake restoration delivers measurable economic returns.</strong> Studies across the Midwest consistently show that lake restoration projects generate $3–$4 in economic activity for every $1 invested. The Great Lakes Restoration Initiative, for example, produced $3.35 in regional economic activity for every federal dollar spent.</p>
+
+      <div class="pillar-tab-panel" id="economy-calc">
+        <div class="p-slider-row">
+          <span class="p-slider-label">Years of delay</span>
+          <input type="range" min="1" max="30" value="10" step="1" id="pSliderYears" oninput="pCalcUpdate()">
+          <span class="p-slider-val" id="pOutYears">10 years</span>
+        </div>
+        <div class="p-slider-row">
+          <span class="p-slider-label">Restoration cost today</span>
+          <input type="range" min="1" max="20" value="5" step="1" id="pSliderCost" oninput="pCalcUpdate()">
+          <span class="p-slider-val" id="pOutCost">$5M</span>
+        </div>
+        <div class="p-slider-row">
+          <span class="p-slider-label">Annual visitors</span>
+          <input type="range" min="10000" max="200000" value="50000" step="5000" id="pSliderVisitors" oninput="pCalcUpdate()">
+          <span class="p-slider-val" id="pOutVisitors">50,000</span>
+        </div>
+        <div class="p-result-grid">
+          <div class="p-result-card">
+            <div class="p-result-lbl">Additional capacity lost permanently</div>
+            <div class="p-result-val danger" id="pRCapacity">&mdash;</div>
+            <div class="p-result-note">ac-ft of water storage, gone forever</div>
+          </div>
+          <div class="p-result-card">
+            <div class="p-result-lbl">Cost increase from delayed action</div>
+            <div class="p-result-val danger" id="pRCost">&mdash;</div>
+            <div class="p-result-note">emergency repairs cost &sim;4&times; more</div>
+          </div>
+          <div class="p-result-card">
+            <div class="p-result-lbl">Economic activity lost from degraded lake</div>
+            <div class="p-result-val warn" id="pREcon">&mdash;</div>
+            <div class="p-result-note">$30/visitor/day, 10% annual visitor decline</div>
+          </div>
+          <div class="p-result-card gold-card">
+            <div class="p-result-lbl">Return if we invest now instead</div>
+            <div class="p-result-val good" id="pRReturn">&mdash;</div>
+            <div class="p-result-note">$3.5 return per $1 invested (EPA/GLRI study)</div>
+          </div>
+        </div>
+        <div class="p-highlight" style="margin-bottom:0">
+          <p id="pCalcText"></p>
+        </div>
+        <p class="p-source" style="margin-top:.75rem">Sources: ISWS sedimentation data &nbsp;&middot;&nbsp; EPA water infrastructure lifecycle studies &nbsp;&middot;&nbsp; USACE recreation economic impact &nbsp;&middot;&nbsp; Great Lakes Restoration Initiative ROI analysis</p>
       </div>
-      <div class="pillar-point">
-        <div class="pillar-point-dot gold"></div>
-        <p class="pillar-point-text"><strong>Lake recreation drives real local spending.</strong> Visitors to Illinois lakes like Rend Lake and Lake Shelbyville spend an average of $27–$34 per person per day in the local economy — generating tens of millions of dollars annually in surrounding communities through lodging, food, fuel, and recreation spending.</p>
+
+      <div class="pillar-tab-panel active" id="economy-facts">
+        <div class="pillar-point">
+          <div class="pillar-point-dot gold"></div>
+          <p class="pillar-point-text"><strong>Lake restoration delivers measurable economic returns.</strong> Studies across the Midwest consistently show that lake restoration projects generate $3&ndash;$4 in economic activity for every $1 invested. The Great Lakes Restoration Initiative produced $3.35 in regional economic activity for every federal dollar spent.</p>
+        </div>
+        <div class="pillar-point">
+          <div class="pillar-point-dot gold"></div>
+          <p class="pillar-point-text"><strong>Lake recreation drives real local spending.</strong> Visitors to Illinois lakes like Rend Lake and Lake Shelbyville spend an average of $27&ndash;$34 per person per day in the local economy &mdash; generating tens of millions of dollars annually through lodging, food, fuel, and recreation spending.</p>
+        </div>
+        <div class="pillar-point">
+          <div class="pillar-point-dot gold"></div>
+          <p class="pillar-point-text"><strong>Maintenance is the cheapest form of infrastructure investment.</strong> Every $1 spent maintaining water infrastructure avoids approximately $4 in emergency repair costs and can save $3&ndash;$7 in future water treatment expenses. Proactive investment in Lake Mattoon protects both the environment and the public budget.</p>
+        </div>
+        <div class="pillar-citations">
+          <p class="pillar-citations-title">Sources</p>
+          <p class="pillar-citation"><a href="https://www.epa.gov/sites/default/files/2019-12/documents/assessing_the_investment_the_economic_impact_of_the_great_lakes_restoration_initiative.pdf" target="_blank" rel="noopener">US EPA &mdash; Assessing the Economic Impacts of the Great Lakes Restoration Initiative</a></p>
+          <p class="pillar-citation"><a href="https://www.glc.org/news/GLRI-report-092518" target="_blank" rel="noopener">Great Lakes Commission &mdash; University of Michigan GLRI Economic Impact Study</a></p>
+          <p class="pillar-citation">US Army Corps of Engineers &mdash; National Recreation Economic Impact Summary (Rend Lake, Lake Shelbyville)</p>
+          <p class="pillar-citation">US EPA &amp; American Water Works Association &mdash; Water Infrastructure Lifecycle Studies</p>
+        </div>
       </div>
-      <div class="pillar-point">
-        <div class="pillar-point-dot gold"></div>
-        <p class="pillar-point-text"><strong>Maintenance is the cheapest form of infrastructure investment.</strong> Every $1 spent maintaining water infrastructure avoids approximately $4 in emergency repair costs and can save $3–$7 in future water treatment and infrastructure expenses. Proactive investment in Lake Mattoon protects both the environment and the public budget.</p>
-      </div>
-      <div class="pillar-citations">
-        <p class="pillar-citations-title">Sources</p>
-        <p class="pillar-citation"><a href="https://www.epa.gov/sites/default/files/2019-12/documents/assessing_the_investment_the_economic_impact_of_the_great_lakes_restoration_initiative.pdf" target="_blank" rel="noopener">US EPA — Assessing the Economic Impacts of the Great Lakes Restoration Initiative</a></p>
-        <p class="pillar-citation"><a href="https://www.glc.org/news/GLRI-report-092518" target="_blank" rel="noopener">Great Lakes Commission — University of Michigan GLRI Economic Impact Study</a></p>
-        <p class="pillar-citation">US Army Corps of Engineers — National Recreation Economic Impact Summary (Rend Lake, Lake Shelbyville)</p>
-        <p class="pillar-citation">US Environmental Protection Agency &amp; American Water Works Association — Water Infrastructure Lifecycle Studies</p>
-      </div>
+
     </div>
   </div>
 </div>
@@ -1164,13 +1286,218 @@ function openDonateModal()  { openModal(document.getElementById('donateModal'));
 function closeDonateModal() { closeModal(document.getElementById('donateModal')); }
 
 var pillarIds = { conservation: 'pillarConservation', education: 'pillarEducation', economy: 'pillarEconomy' };
-function openPillarModal(key) { openModal(document.getElementById(pillarIds[key])); }
+function openPillarModal(key) {
+  openModal(document.getElementById(pillarIds[key]));
+}
 function closePillarModal(key) { closeModal(document.getElementById(pillarIds[key])); }
 document.addEventListener('click', function(e) {
   if (e.target.classList.contains('pillar-overlay')) {
     Object.values(pillarIds).forEach(function(id) { closeModal(document.getElementById(id)); });
   }
 });
+
+function switchPillarTab(modal, tab) {
+  var box = document.getElementById(pillarIds[modal]);
+  box.querySelectorAll('.pillar-modal-tab').forEach(function(t, i) {
+    var tabs = { conservation: ['facts','timeline'], economy: ['facts','calc'], education: ['facts'] };
+    t.classList.toggle('active', tabs[modal][i] === tab);
+  });
+  box.querySelectorAll('.pillar-tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  var panel = document.getElementById(modal + '-' + tab);
+  if (panel) panel.classList.add('active');
+  if (modal === 'conservation' && tab === 'timeline') initSedChart();
+  if (modal === 'economy' && tab === 'calc') pCalcUpdate();
+}
+
+/* ── SEDIMENTATION ANIMATION ─────────────────────────── */
+var sedPlaying = false;
+var sedRaf = null;
+var sedCurrentYear = 1958;
+var sedCtx = null;
+var sedW = 0;
+var sedH = 200;
+var SED_CAP0 = 13293;
+var SED_RATE = 39.7;
+
+function sedNoise(x) { var s = Math.sin(x*127.1+311.7)*43758.5453; return s-Math.floor(s); }
+
+function sedFrac(y) { return Math.min(1, Math.max(0,(y-1958)*SED_RATE/SED_CAP0)); }
+
+function sedBuildShore(lx,ly,lw,lh) {
+  var pts=[]; var segs=50;
+  for(var i=0;i<=segs;i++){
+    var t=i/segs; var x=lx+t*lw;
+    var nv=sedNoise(t*3.7)*0.55+sedNoise(t*7.1)*0.3+sedNoise(t*13)*0.15;
+    var ind=t<0.08?(1-t/0.08)*0.2:t>0.92?((t-0.92)/0.08)*0.2:0;
+    pts.push({x:x,y:ly+(nv*0.16+ind*0.1)*lh});
+  }
+  pts.push({x:lx+lw,y:ly+lh}); pts.push({x:lx,y:ly+lh});
+  return pts;
+}
+
+function sedTracePath(pts) {
+  sedCtx.moveTo(pts[0].x,pts[0].y);
+  for(var i=1;i<pts.length-2;i++){
+    var mx=(pts[i].x+pts[i+1].x)/2, my=(pts[i].y+pts[i+1].y)/2;
+    sedCtx.quadraticCurveTo(pts[i].x,pts[i].y,mx,my);
+  }
+  sedCtx.lineTo(pts[pts.length-1].x,pts[pts.length-1].y);
+  sedCtx.lineTo(pts[pts.length-2].x,pts[pts.length-2].y);
+}
+
+function sedDraw(year) {
+  var canvas = document.getElementById('sedCanvas');
+  if (!canvas) return;
+  if (!sedCtx) { sedCtx = canvas.getContext('2d'); }
+  sedW = canvas.offsetWidth; canvas.width = sedW; canvas.height = sedH;
+  sedCtx.clearRect(0,0,sedW,sedH);
+  var sf=sedFrac(year);
+  var PAD=28, lx=PAD, ly=14, lw=sedW-PAD*2, lh=sedH-42;
+  var pts=sedBuildShore(lx,ly,lw,lh);
+  sedCtx.save();
+  sedCtx.beginPath(); sedTracePath(pts); sedCtx.closePath(); sedCtx.clip();
+  sedCtx.fillStyle='#0f1e2a'; sedCtx.fillRect(lx,ly,lw,lh);
+  var sedHeight=lh*sf, sedTop=ly+lh-sedHeight;
+  if(sedHeight>0){
+    sedCtx.fillStyle='#5c4a2a'; sedCtx.fillRect(lx,sedTop,lw,sedHeight);
+    sedCtx.globalAlpha=0.18;
+    for(var l=0;l<Math.floor(sf*5)+1;l++){
+      var ly2=sedTop+(sedHeight/(Math.floor(sf*5)+1))*l;
+      sedCtx.beginPath(); sedCtx.moveTo(lx,ly2);
+      for(var x=lx;x<lx+lw;x+=5){ sedCtx.lineTo(x,ly2+(sedNoise(x*0.05+l*31.7)-0.5)*2.5); }
+      sedCtx.strokeStyle='rgba(180,140,80,1)'; sedCtx.lineWidth=0.5; sedCtx.stroke();
+    }
+    sedCtx.globalAlpha=1;
+  }
+  var wh=lh-sedHeight;
+  if(wh>2){
+    sedCtx.fillStyle=sf>0.5?'#2a4a3a':sf>0.25?'#1f5060':'#1a5068';
+    sedCtx.fillRect(lx,ly,lw,wh);
+    if(wh>10){
+      sedCtx.globalAlpha=0.12;
+      for(var i=0;i<4;i++){
+        var sy2=ly+wh*(0.2+i*0.18);
+        sedCtx.beginPath(); sedCtx.moveTo(lx+lw*0.08,sy2);
+        for(var xw=lx+lw*0.08;xw<lx+lw*0.92;xw+=7){ sedCtx.lineTo(xw,sy2+Math.sin((xw-lx)*0.09+i)*2); }
+        sedCtx.strokeStyle='#b8dce8'; sedCtx.lineWidth=1; sedCtx.stroke();
+      }
+      sedCtx.globalAlpha=1;
+    }
+  }
+  sedCtx.restore();
+  sedCtx.beginPath(); sedTracePath(pts);
+  sedCtx.strokeStyle=sf>0.65?'#7a5c30':'#3a8fa8'; sedCtx.lineWidth=1.5; sedCtx.stroke();
+  var th=Math.max(0,(20-sf*14));
+  if(th>2){
+    sedCtx.globalAlpha=Math.max(0.15,1-sf*1.3);
+    for(var tx=lx+8;tx<lx+lw-8;tx+=16){
+      var th2=th*(0.7+sedNoise(tx*0.3)*0.6), bx=tx+(sedNoise(tx*0.7)-0.5)*5;
+      sedCtx.fillStyle='#2d5a27'; sedCtx.beginPath();
+      sedCtx.moveTo(bx,ly); sedCtx.lineTo(bx-th2*0.4,ly+th2); sedCtx.lineTo(bx+th2*0.4,ly+th2);
+      sedCtx.closePath(); sedCtx.fill();
+    }
+    sedCtx.globalAlpha=1;
+  }
+  var cx=lx+lw/2, cy=ly+lh*0.36;
+  sedCtx.font='bold 32px sans-serif'; sedCtx.textAlign='center'; sedCtx.textBaseline='middle';
+  sedCtx.fillStyle='rgba(255,255,255,'+(Math.max(0.12,0.6-sf*0.5))+')';
+  sedCtx.fillText(Math.round(year),cx,cy);
+  if(sf>0.08){
+    sedCtx.font='12px sans-serif'; sedCtx.fillStyle='rgba(255,200,100,0.7)';
+    sedCtx.fillText(Math.round((year-1958)*SED_RATE).toLocaleString()+' ac-ft lost',cx,cy+24);
+  }
+  var bx2=lx, by2=ly+lh+6, bpct=Math.max(0,1-sf);
+  sedCtx.fillStyle='rgba(184,220,232,0.1)';
+  sedCtx.beginPath(); sedCtx.roundRect(bx2,by2,lw,5,2); sedCtx.fill();
+  if(bpct>0){
+    sedCtx.fillStyle=bpct>0.5?'#3a8fa8':bpct>0.25?'#d4a030':'#c0504a';
+    sedCtx.beginPath(); sedCtx.roundRect(bx2,by2,lw*bpct,5,2); sedCtx.fill();
+  }
+  var cap=Math.max(0,SED_CAP0-(year-1958)*SED_RATE);
+  var pct=Math.max(0,cap/SED_CAP0);
+  var lost=Math.round(Math.min(SED_CAP0,(year-1958)*SED_RATE));
+  var capEl=document.getElementById('sedSCapacity');
+  var pctEl=document.getElementById('sedSPct');
+  var sedEl=document.getElementById('sedSSed');
+  if(capEl){
+    capEl.textContent=Math.max(0,Math.round(cap)).toLocaleString()+' ac-ft';
+    capEl.className='p-stat-val'+(pct<0.5?' warn':'')+(pct<0.25?' danger':'');
+    pctEl.textContent=Math.round(pct*100)+'%';
+    pctEl.className='p-stat-val'+(pct<0.5?' warn':'')+(pct<0.25?' danger':'');
+    sedEl.textContent=lost.toLocaleString()+' ac-ft';
+  }
+  var slider=document.getElementById('sedYearSlider');
+  var yout=document.getElementById('sedYearOut');
+  if(slider){ slider.value=Math.round(year); }
+  if(yout){ yout.textContent=Math.round(year); }
+}
+
+function sedOnSlide() {
+  sedStopPlay();
+  sedCurrentYear=parseInt(document.getElementById('sedYearSlider').value);
+  sedDraw(sedCurrentYear);
+}
+
+function sedSetYear(y) {
+  sedStopPlay(); sedCurrentYear=y; sedDraw(y);
+}
+
+function sedTogglePlay() {
+  if(sedPlaying){ sedStopPlay(); return; }
+  if(sedCurrentYear>=2291) sedCurrentYear=1958;
+  sedPlaying=true;
+  var btn=document.getElementById('sedPlayBtn');
+  if(btn) btn.innerHTML='&#9646;&#9646; Pause';
+  sedAnimate();
+}
+
+function sedStopPlay() {
+  sedPlaying=false;
+  if(sedRaf) cancelAnimationFrame(sedRaf);
+  var btn=document.getElementById('sedPlayBtn');
+  if(btn) btn.innerHTML='&#9654; Play';
+}
+
+function sedAnimate() {
+  if(!sedPlaying) return;
+  sedCurrentYear+=0.32;
+  if(sedCurrentYear>=2291){ sedCurrentYear=2291; sedStopPlay(); }
+  sedDraw(sedCurrentYear);
+  sedRaf=requestAnimationFrame(sedAnimate);
+}
+
+function initSedChart() {
+  var canvas=document.getElementById('sedCanvas');
+  if(!canvas) return;
+  sedCtx=null;
+  sedDraw(sedCurrentYear);
+}
+
+/* ── COST OF INACTION CALCULATOR ─────────────────────── */
+function pCalcUpdate() {
+  var yrs  = parseInt(document.getElementById('pSliderYears').value);
+  var cost = parseInt(document.getElementById('pSliderCost').value);
+  var vis  = parseInt(document.getElementById('pSliderVisitors').value);
+  var elY = document.getElementById('pOutYears');
+  var elC = document.getElementById('pOutCost');
+  var elV = document.getElementById('pOutVisitors');
+  if (!elY) return;
+  elY.textContent = yrs + ' year' + (yrs===1?'':'s');
+  elC.textContent = '$' + cost + 'M';
+  elV.textContent = vis.toLocaleString();
+  var capLost  = Math.round(yrs * 39.7);
+  var costMore = Math.round(cost * 3);
+  var econ = 0;
+  for (var i = 1; i <= yrs; i++) { econ += vis * Math.pow(0.9, i) * 30 * 0.3; }
+  econ = Math.round(econ / 1000000);
+  var roi = Math.round(cost * 3.5);
+  document.getElementById('pRCapacity').textContent = capLost.toLocaleString() + ' ac-ft';
+  document.getElementById('pRCost').textContent     = '+$' + costMore + 'M';
+  document.getElementById('pREcon').textContent     = '-$' + econ + 'M';
+  document.getElementById('pRReturn').textContent   = '$' + roi + 'M';
+  document.getElementById('pCalcText').innerHTML    =
+    'Waiting <strong>' + yrs + ' year' + (yrs===1?'':'s') + '</strong> means permanently losing <strong>' + capLost.toLocaleString() + ' ac-ft</strong> of water storage while the cost of action grows from <strong>$' + cost + 'M to an estimated $' + (cost+costMore) + 'M</strong>. Investing $' + cost + 'M today generates an estimated <strong>$' + roi + 'M in community economic returns</strong>.';
+}
 
 function showSurveyTab(tab) {
   document.getElementById('surveyBusiness').style.display = tab === 'business' ? 'block' : 'none';
