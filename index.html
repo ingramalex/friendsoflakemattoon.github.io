@@ -176,7 +176,7 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 /* ── PILLAR MODALS ───────────────────────────────────── */
 .pillar-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(7,20,28,.85);align-items:center;justify-content:center;padding:1.5rem;overflow-y:auto}
 .pillar-overlay.open{display:flex;animation:fadeIn .25s ease}
-.pillar-box{background:var(--navy);border:1px solid rgba(58,143,168,.2);border-radius:6px;max-width:780px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+.pillar-box{background:var(--navy);border:1px solid rgba(58,143,168,.2);border-radius:6px;max-width:780px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:92vh;overflow:hidden;min-width:0}
 .pillar-modal-header{padding:1.75rem 2rem 1.25rem;border-bottom:1px solid rgba(58,143,168,.15);flex-shrink:0}
 .pillar-modal-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(184,220,232,.5);font-weight:600;margin-bottom:.4rem}
 .pillar-modal-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:#fff;line-height:1.2;margin-bottom:1rem}
@@ -203,7 +203,7 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .pillar-citation{font-size:.78rem;color:rgba(184,220,232,.45);line-height:1.6;margin-bottom:.4rem;padding-left:.75rem;border-left:2px solid rgba(58,143,168,.2)}
 .pillar-citation a{color:var(--teal);text-decoration:none;transition:color var(--t)}
 .pillar-citation a:hover{color:var(--sky)}
-.p-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.p-stat-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:1.25rem}
 .p-stat-card{background:rgba(26,80,104,.4);border:1px solid rgba(58,143,168,.15);border-radius:var(--r);padding:.875rem 1rem}
 .p-stat-card.gold-card{background:rgba(196,154,42,.08);border-color:rgba(196,154,42,.2)}
 .p-stat-lbl{font-size:11px;color:rgba(184,220,232,.5);margin-bottom:.35rem;font-weight:300;line-height:1.4}
@@ -216,11 +216,11 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .p-highlight p{font-size:.85rem;color:rgba(184,220,232,.75);line-height:1.7;font-weight:300}
 .p-highlight strong{color:#fff}
 .p-source{font-size:10px;color:rgba(184,220,232,.3);margin-top:.5rem;line-height:1.6}
-.p-slider-row{display:flex;align-items:center;gap:10px;margin-bottom:.875rem}
-.p-slider-label{font-size:12px;color:rgba(184,220,232,.6);min-width:130px;font-weight:300}
-.p-slider-row input[type=range]{flex:1;accent-color:var(--teal)}
-.p-slider-val{font-size:12px;font-weight:600;color:var(--sky);min-width:70px;text-align:right}
-.p-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:1rem}
+.p-slider-row{display:flex;align-items:center;gap:8px;margin-bottom:.875rem;flex-wrap:wrap}
+.p-slider-label{font-size:12px;color:rgba(184,220,232,.6);min-width:100px;max-width:140px;flex-shrink:0;font-weight:300}
+.p-slider-row input[type=range]{flex:1;min-width:80px;accent-color:var(--teal)}
+.p-slider-val{font-size:12px;font-weight:600;color:var(--sky);min-width:54px;text-align:right;flex-shrink:0}
+.p-result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:1rem}
 .p-result-card{background:rgba(26,80,104,.4);border:1px solid rgba(58,143,168,.15);border-radius:var(--r);padding:.875rem 1rem}
 .p-result-card.gold-card{background:rgba(196,154,42,.08);border-color:rgba(196,154,42,.2)}
 .p-result-lbl{font-size:11px;color:rgba(184,220,232,.5);margin-bottom:.35rem;font-weight:300}
@@ -229,6 +229,14 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .p-result-val.warn{color:#d4a030}
 .p-result-val.good{color:#4ab890}
 .p-result-note{font-size:10px;color:rgba(184,220,232,.35);margin-top:.3rem;line-height:1.5}
+@media(max-width:520px){
+  .p-stat-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .p-result-grid{grid-template-columns:minmax(0,1fr)}
+  .p-slider-label{min-width:80px;font-size:11px}
+  .p-slider-val{min-width:46px;font-size:11px}
+  .p-stat-val{font-size:1.2rem}
+  .p-result-val{font-size:1.2rem}
+}
 
 /* ── GET INVOLVED ───────────────────────────────────── */
 .involved{padding:6rem 2rem;background:var(--sand)}
