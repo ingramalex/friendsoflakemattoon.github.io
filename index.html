@@ -523,6 +523,10 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .impact-catalyst{margin-top:1.25rem;padding:1rem 1.25rem;background:rgba(58,143,168,.1);border-left:3px solid var(--teal);border-radius:0 var(--r) var(--r) 0}
 .impact-catalyst p{font-size:.82rem;color:rgba(184,220,232,.7);font-weight:300;line-height:1.7}
 .impact-catalyst strong{color:var(--sky)}
+.impact-card-photo{position:relative;overflow:hidden;max-height:320px}
+.impact-card-photo img{width:100%;height:320px;object-fit:cover;object-position:center;display:block;transition:transform .5s ease}
+.impact-card-photo:hover img{transform:scale(1.02)}
+.impact-card-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.5rem .875rem;background:linear-gradient(0deg,rgba(13,46,63,.92) 0%,transparent 100%);font-family:var(--serif);font-style:italic;font-size:.85rem;color:rgba(255,255,255,.85)}
 .impact-year{font-size:11px;color:rgba(184,220,232,.35);margin-top:.75rem;letter-spacing:.1em;text-transform:uppercase}
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
@@ -846,7 +850,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
         <div class="off-photo"><img src="images/treasurer.jpg" alt="Roberta Gingerich" data-initials="RG" class="off-img"></div>
         <p class="off-role">Treasurer</p><p class="off-name">Roberta Gingerich</p>
         <div class="off-accent"></div>
-        <p class="off-bio">Roberta knows exactly where every penny goes — and she will absolutely find it if it tries to go somewhere else. Her spreadsheets are legendary, and her commitment to the lake is even more so.</p>
+        <p class="off-bio">Raised just a mile west of the dam, Roberta remembers the campground and beach the way they were — the train, the pavilion dances, the towns that thrived alongside a lake full of life. Times change, but her belief in this place never did. She'll also quietly mention that she nearly drowned here as a five-year-old — technically no lifesaving measures were required, but for a five-year-old, it absolutely counted. Today she keeps the books with the same care she has for the lake itself, and she's convinced the best days are still ahead — measured not in spreadsheets, but in more smiles than frowns.</p>
       </div>
       <div class="off-card">
         <div class="off-photo"><img src="images/eventscoordinator.jpg" alt="Angie Rawlings" data-initials="AR" class="off-img"></div>
@@ -886,6 +890,10 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
           <div class="impact-grant-num">$600K</div>
           <div class="impact-grant-label">Illinois Department of Natural Resources<br>Open Space Land Acquisition Grant</div>
         </div>
+      </div>
+      <div class="impact-card-photo">
+        <img src="images/marina-improvements.jpg" alt="Newly paved Lake Mattoon marina with riprap shoreline and boat slips" loading="lazy" onerror="this.closest('.impact-card-photo').style.display='none'">
+        <div class="impact-card-photo-caption">Newly paved marina parking lot, riprap erosion control, and boat slips &mdash; Lake Mattoon Marina &amp; Campground Revitalization, 2024</div>
       </div>
       <div class="impact-card-body">
         <div class="impact-story">
