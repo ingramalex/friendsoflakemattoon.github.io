@@ -499,6 +499,32 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .survey-coming-text{font-size:.88rem;line-height:1.8;color:var(--muted);font-weight:300;max-width:360px;margin:0 auto}
 .survey-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(61,90,96,.5);border-top:1px solid rgba(26,80,104,.08);flex-shrink:0;font-weight:300}
 
+/* ── COMMUNITY IMPACT ───────────────────────────────── */
+.impact{padding:6rem 2rem;background:var(--navy)}
+.impact .section-tag{color:rgba(184,220,232,.6)}
+.impact .section-title{color:var(--sky)}
+.impact-card{background:rgba(26,80,104,.35);border:1px solid rgba(58,143,168,.2);border-radius:8px;overflow:hidden;margin-top:2.5rem}
+.impact-card-header{background:rgba(196,154,42,.12);border-bottom:1px solid rgba(196,154,42,.2);padding:1.5rem 2rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.impact-badge{font-size:10px;letter-spacing:.15em;text-transform:uppercase;background:rgba(196,154,42,.2);color:var(--gold);padding:3px 10px;border-radius:2px;font-weight:600;flex-shrink:0}
+.impact-grant-num{font-family:var(--serif);font-size:2.8rem;color:var(--gold);line-height:1;flex-shrink:0}
+.impact-grant-label{font-size:.82rem;color:rgba(184,220,232,.6);font-weight:300;line-height:1.5}
+.impact-card-body{padding:1.75rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.impact-story p{font-size:.9rem;line-height:1.8;color:rgba(184,220,232,.8);font-weight:300;margin-bottom:.875rem}
+.impact-story p:last-child{margin-bottom:0}
+.impact-story strong{color:#fff}
+.impact-ratio{background:rgba(196,154,42,.08);border:1px solid rgba(196,154,42,.2);border-radius:var(--r);padding:1.25rem;text-align:center;margin-bottom:1rem}
+.impact-ratio-num{font-family:var(--serif);font-size:2.4rem;color:var(--gold);line-height:1;margin-bottom:.25rem}
+.impact-ratio-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(184,220,232,.5);font-weight:300}
+.impact-improvements{margin-top:0}
+.impact-improvements-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:rgba(184,220,232,.45);font-weight:600;margin-bottom:.875rem}
+.impact-improvement-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:.6rem}
+.impact-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:.45rem}
+.impact-improvement-item span{font-size:.85rem;color:rgba(184,220,232,.7);font-weight:300;line-height:1.6}
+.impact-catalyst{margin-top:1.25rem;padding:1rem 1.25rem;background:rgba(58,143,168,.1);border-left:3px solid var(--teal);border-radius:0 var(--r) var(--r) 0}
+.impact-catalyst p{font-size:.82rem;color:rgba(184,220,232,.7);font-weight:300;line-height:1.7}
+.impact-catalyst strong{color:var(--sky)}
+.impact-year{font-size:11px;color:rgba(184,220,232,.35);margin-top:.75rem;letter-spacing:.1em;text-transform:uppercase}
+
 /* ── RESPONSIVE ─────────────────────────────────────── */
 @media(max-width:860px){
   .site-nav .nav-center{display:none}
@@ -520,7 +546,8 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   .stats-strip{flex-direction:column;align-items:center;padding:1.5rem}
   .stat-item{border-right:none;border-bottom:1px solid rgba(58,143,168,.2);padding:1rem 2rem;width:100%;max-width:280px}
   .stat-item:last-child{border-bottom:none}
-  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials{padding:4rem 1.5rem}
+  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact{padding:4rem 1.5rem}
+  .impact-card-body{grid-template-columns:1fr;gap:1.5rem}
   .two-col{grid-template-columns:1fr;gap:2.5rem}
   .lake-illustration{box-shadow:4px 4px 0 var(--sky)}
   .pillar-grid{grid-template-columns:1fr;gap:1rem}
@@ -629,6 +656,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 <div class="stats-strip">
   <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Counties Served</div></div>
   <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Vital Water Source</div></div>
+  <div class="stat-item"><div class="stat-num">$600K</div><div class="stat-label">Grant Secured for Lake Mattoon</div></div>
   <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Community Driven</div></div>
   <div class="stat-item"><div class="stat-num">501(c)</div><div class="stat-label">Nonprofit Organization</div></div>
 </div>
@@ -846,9 +874,50 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   </div>
 </section>
 
-<!-- GET INVOLVED -->
-<section class="involved" id="involved">
+<!-- COMMUNITY IMPACT -->
+<section class="impact" id="impact">
   <div class="section-inner">
+    <p class="section-tag">Community Impact</p>
+    <h2 class="section-title">What We've <em>Accomplished Together</em></h2>
+    <div class="impact-card">
+      <div class="impact-card-header">
+        <span class="impact-badge">2024 Grant Win</span>
+        <div>
+          <div class="impact-grant-num">$600K</div>
+          <div class="impact-grant-label">Illinois Department of Natural Resources<br>Open Space Land Acquisition Grant</div>
+        </div>
+      </div>
+      <div class="impact-card-body">
+        <div class="impact-story">
+          <p>In 2024, the City of Mattoon was awarded an <strong>Open Space Land Acquisition Grant</strong> from the Illinois Department of Natural Resources for approximately $600,000 — designated for improvements to the Lake Mattoon Marina and Campgrounds as part of the Marina and Campground Revitalization Project.</p>
+          <p>This grant was made possible in part because <strong>Friends of Lake Mattoon donated $5,000</strong> to demonstrate community support for the City's application. That act of community investment was the catalyst that helped unlock $600,000 in state funding for Lake Mattoon.</p>
+          <div class="impact-catalyst">
+            <p><strong>$5,000 in community support</strong> helped secure <strong>$600,000 in state investment</strong> — a 120:1 return for Lake Mattoon and the surrounding communities who depend on it.</p>
+          </div>
+          <p class="impact-year">Marina &amp; Campground Revitalization Project &nbsp;&middot;&nbsp; 2024</p>
+        </div>
+        <div>
+          <div class="impact-ratio">
+            <div class="impact-ratio-num">120:1</div>
+            <div class="impact-ratio-label">Return on community investment</div>
+          </div>
+          <div class="impact-improvements">
+            <p class="impact-improvements-title">Grant-funded improvements</p>
+            <div class="impact-improvement-item"><div class="impact-dot"></div><span>Paving of the marina parking lot</span></div>
+            <div class="impact-improvement-item"><div class="impact-dot"></div><span>Installation of a new fishing pier</span></div>
+            <div class="impact-improvement-item"><div class="impact-dot"></div><span>Three new playgrounds installed</span></div>
+            <div class="impact-improvement-item"><div class="impact-dot"></div><span>New basketball facilities</span></div>
+            <div class="impact-improvement-item"><div class="impact-dot"></div><span>Multiple new benches throughout</span></div>
+            <div class="impact-improvement-item"><div class="impact-dot"></div><span>Erosion control measures (riprap)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET INVOLVED -->
+<section class="involved" id="involved">  <div class="section-inner">
     <p class="section-tag">Take Action</p>
     <h2 class="section-title">Get Involved</h2>
     <div class="involved-grid">
@@ -1009,8 +1078,8 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <p class="pillar-modal-tag">Conservation</p>
       <h2 class="pillar-modal-title">The State of <em>Lake Mattoon</em></h2>
       <div class="pillar-modal-stat">
-        <div class="pillar-stat-num">860M</div>
-        <div class="pillar-stat-label">Gallons of storage capacity lost since 1958 &mdash; at 39.7 ac-ft per year and accelerating without intervention</div>
+        <div class="pillar-stat-num">550M+</div>
+        <div class="pillar-stat-label">Gallons of storage capacity lost from 1958 to 2001 &mdash; losing an estimated 13 million gallons per year and accelerating without intervention</div>
       </div>
     </div>
     <div class="pillar-modal-tabs">
@@ -1022,7 +1091,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <div class="pillar-tab-panel active" id="conservation-facts">
         <div class="pillar-point">
           <div class="pillar-point-dot"></div>
-          <p class="pillar-point-text"><strong>Sedimentation is the primary long-term threat.</strong> Lake Mattoon has lost 1,705 ac-ft of its original 1958 capacity due to sediment accumulation &mdash; a rate of 39.7 ac-ft per year. At this pace, the lake volume will be half its original capacity by 2124 and completely filled by 2291.</p>
+          <p class="pillar-point-text"><strong>Sedimentation is the primary long-term threat.</strong> From 1958 to the last survey in 2001, Lake Mattoon has lost over 550 million gallons of capacity due to sediment accumulation. Losing an estimated 13 million gallons per year of potential capacity, the lake will be at half its capacity by 2124 and completely filled by 2291.</p>
         </div>
         <div class="pillar-point">
           <div class="pillar-point-dot"></div>
@@ -1043,16 +1112,16 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <div class="pillar-tab-panel" id="conservation-timeline">
         <div class="p-stat-row">
           <div class="p-stat-card">
-            <div class="p-stat-lbl">Water capacity</div>
-            <div class="p-stat-val" id="sedSCapacity">13,293 ac-ft</div>
+            <div class="p-stat-lbl">Water capacity remaining</div>
+            <div class="p-stat-val" id="sedSCapacity">4,331M gal</div>
           </div>
           <div class="p-stat-card">
             <div class="p-stat-lbl">Capacity remaining</div>
             <div class="p-stat-val" id="sedSPct">100%</div>
           </div>
           <div class="p-stat-card">
-            <div class="p-stat-lbl">Sediment accumulated</div>
-            <div class="p-stat-val danger" id="sedSSed">0 ac-ft</div>
+            <div class="p-stat-lbl">Capacity lost to sediment</div>
+            <div class="p-stat-val danger" id="sedSSed">0 gal</div>
           </div>
         </div>
         <div style="margin:.75rem 0 .5rem;display:flex;align-items:center;gap:10px">
@@ -1068,7 +1137,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
           <button class="pillar-learn-btn" onclick="sedSetYear(2124)" style="color:#d4a030;border-color:rgba(196,154,42,.3)">2124 — Half capacity</button>
           <button class="pillar-learn-btn" onclick="sedSetYear(2291)" style="color:#c0504a;border-color:rgba(192,80,74,.3)">2291 — Fully silted</button>
         </div>
-        <p class="p-source" style="margin-top:.75rem">Rate: 39.7 ac-ft/year &nbsp;&middot;&nbsp; Source: Bogner, W.C. &mdash; ISWS CR 2003-04 &nbsp;&middot;&nbsp; Projections assume constant rate</p>
+        <p class="p-source" style="margin-top:.75rem">Rate: 39.7 ac-ft (~13M gallons)/year &nbsp;&middot;&nbsp; 1 ac-ft = 325,851 gallons &nbsp;&middot;&nbsp; Source: Bogner, W.C. &mdash; ISWS CR 2003-04 &nbsp;&middot;&nbsp; Projections assume constant rate</p>
       </div>
 
     </div>
@@ -1412,7 +1481,8 @@ function sedDraw(year) {
   sedCtx.fillText(Math.round(year),cx,cy);
   if(sf>0.08){
     sedCtx.font='12px sans-serif'; sedCtx.fillStyle='rgba(255,200,100,0.7)';
-    sedCtx.fillText(Math.round((year-1958)*SED_RATE).toLocaleString()+' ac-ft lost',cx,cy+24);
+    var gallonsLost = Math.round((year-1958)*13);
+    sedCtx.fillText('~'+gallonsLost.toLocaleString()+'M gal lost',cx,cy+24);
   }
   var bx2=lx, by2=ly+lh+6, bpct=Math.max(0,1-sf);
   sedCtx.fillStyle='rgba(184,220,232,0.1)';
@@ -1428,11 +1498,13 @@ function sedDraw(year) {
   var pctEl=document.getElementById('sedSPct');
   var sedEl=document.getElementById('sedSSed');
   if(capEl){
-    capEl.textContent=Math.max(0,Math.round(cap)).toLocaleString()+' ac-ft';
+    var capGal  = Math.round(Math.max(0, (SED_CAP0 - (year-1958)*SED_RATE) * 325851 / 1000000));
+    var lostGal = Math.round(Math.min((year-1958)*13, Math.round(SED_CAP0*325851/1000000)));
+    capEl.textContent=Math.max(0,capGal).toLocaleString()+'M gal';
     capEl.className='p-stat-val'+(pct<0.5?' warn':'')+(pct<0.25?' danger':'');
     pctEl.textContent=Math.round(pct*100)+'%';
     pctEl.className='p-stat-val'+(pct<0.5?' warn':'')+(pct<0.25?' danger':'');
-    sedEl.textContent=lost.toLocaleString()+' ac-ft';
+    sedEl.textContent='~'+Math.min(lostGal, 4331).toLocaleString()+'M gal';
   }
   var slider=document.getElementById('sedYearSlider');
   var yout=document.getElementById('sedYearOut');
