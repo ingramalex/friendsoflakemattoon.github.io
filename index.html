@@ -1143,7 +1143,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
           <button class="pillar-learn-btn" onclick="sedSetYear(2124)" style="color:#d4a030;border-color:rgba(196,154,42,.3)">2124 — Half capacity</button>
           <button class="pillar-learn-btn" onclick="sedSetYear(2291)" style="color:#c0504a;border-color:rgba(192,80,74,.3)">2291 — Fully silted</button>
         </div>
-        <p class="p-source" style="margin-top:.75rem">Rate: 39.7 ac-ft (~13M gallons)/year &nbsp;&middot;&nbsp; 1 ac-ft = 325,851 gallons &nbsp;&middot;&nbsp; Source: Bogner, W.C. &mdash; ISWS CR 2003-04 &nbsp;&middot;&nbsp; Projections assume constant rate</p>
+        <p class="p-source" style="margin-top:.75rem">Rate: ~13M gallons/year &nbsp;&middot;&nbsp; Source: Bogner, W.C. &mdash; ISWS CR 2003-04 &nbsp;&middot;&nbsp; Projections assume constant rate</p>
       </div>
 
     </div>
@@ -1223,7 +1223,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
           <div class="p-result-card">
             <div class="p-result-lbl">Additional capacity lost permanently</div>
             <div class="p-result-val danger" id="pRCapacity">&mdash;</div>
-            <div class="p-result-note">ac-ft of water storage, gone forever</div>
+            <div class="p-result-note">million gallons of water storage, gone forever</div>
           </div>
           <div class="p-result-card">
             <div class="p-result-lbl">Cost increase from delayed action</div>
@@ -1572,17 +1572,18 @@ function pCalcUpdate() {
   elC.textContent = '$' + cost + 'M';
   elV.textContent = vis.toLocaleString();
   var capLost  = Math.round(yrs * 39.7);
+  var capLostGal = Math.round(capLost * 325851 / 1000000);
   var costMore = Math.round(cost * 3);
   var econ = 0;
   for (var i = 1; i <= yrs; i++) { econ += vis * Math.pow(0.9, i) * 30 * 0.3; }
   econ = Math.round(econ / 1000000);
   var roi = Math.round(cost * 3.5);
-  document.getElementById('pRCapacity').textContent = capLost.toLocaleString() + ' ac-ft';
+  document.getElementById('pRCapacity').textContent = '~' + capLostGal.toLocaleString() + 'M gal';
   document.getElementById('pRCost').textContent     = '+$' + costMore + 'M';
   document.getElementById('pREcon').textContent     = '-$' + econ + 'M';
   document.getElementById('pRReturn').textContent   = '$' + roi + 'M';
   document.getElementById('pCalcText').innerHTML    =
-    'Waiting <strong>' + yrs + ' year' + (yrs===1?'':'s') + '</strong> means permanently losing <strong>' + capLost.toLocaleString() + ' ac-ft</strong> of water storage while the cost of action grows from <strong>$' + cost + 'M to an estimated $' + (cost+costMore) + 'M</strong>. Investing $' + cost + 'M today generates an estimated <strong>$' + roi + 'M in community economic returns</strong>.';
+    'Waiting <strong>' + yrs + ' year' + (yrs===1?'':'s') + '</strong> means permanently losing an estimated <strong>~' + capLostGal.toLocaleString() + ' million gallons</strong> of water storage while the cost of action grows from <strong>$' + cost + 'M to an estimated $' + (cost+costMore) + 'M</strong>. Investing $' + cost + 'M today generates an estimated <strong>$' + roi + 'M in community economic returns</strong>.';
 }
 
 function showSurveyTab(tab) {
