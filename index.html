@@ -1190,55 +1190,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
         <div class="pillar-stat-label">In economic activity generated for every $1 invested in lake restoration &mdash; confirmed by multiple federal and university studies</div>
       </div>
     </div>
-    <div class="pillar-modal-tabs">
-      <button class="pillar-modal-tab gold active" onclick="switchPillarTab('economy','facts')">Talking points</button>
-      <button class="pillar-modal-tab" onclick="switchPillarTab('economy','calc')">Cost of inaction</button>
-    </div>
     <div class="pillar-modal-body">
-
-      <div class="pillar-tab-panel" id="economy-calc">
-        <div class="p-slider-row">
-          <span class="p-slider-label">Years of delay</span>
-          <input type="range" min="1" max="30" value="10" step="1" id="pSliderYears" oninput="pCalcUpdate()">
-          <span class="p-slider-val" id="pOutYears">10 years</span>
-        </div>
-        <div class="p-slider-row">
-          <span class="p-slider-label">Restoration cost today</span>
-          <input type="range" min="1" max="20" value="5" step="1" id="pSliderCost" oninput="pCalcUpdate()">
-          <span class="p-slider-val" id="pOutCost">$5M</span>
-        </div>
-        <div class="p-slider-row">
-          <span class="p-slider-label">Annual visitors</span>
-          <input type="range" min="10000" max="200000" value="50000" step="5000" id="pSliderVisitors" oninput="pCalcUpdate()">
-          <span class="p-slider-val" id="pOutVisitors">50,000</span>
-        </div>
-        <div class="p-result-grid">
-          <div class="p-result-card">
-            <div class="p-result-lbl">Additional capacity lost permanently</div>
-            <div class="p-result-val danger" id="pRCapacity">&mdash;</div>
-            <div class="p-result-note">million gallons of water storage, gone forever</div>
-          </div>
-          <div class="p-result-card">
-            <div class="p-result-lbl">Cost increase from delayed action</div>
-            <div class="p-result-val danger" id="pRCost">&mdash;</div>
-            <div class="p-result-note">emergency repairs cost &sim;4&times; more</div>
-          </div>
-          <div class="p-result-card">
-            <div class="p-result-lbl">Economic activity lost from degraded lake</div>
-            <div class="p-result-val warn" id="pREcon">&mdash;</div>
-            <div class="p-result-note">$30/visitor/day, 10% annual visitor decline</div>
-          </div>
-          <div class="p-result-card gold-card">
-            <div class="p-result-lbl">Return if we invest now instead</div>
-            <div class="p-result-val good" id="pRReturn">&mdash;</div>
-            <div class="p-result-note">$3.5 return per $1 invested (EPA/GLRI study)</div>
-          </div>
-        </div>
-        <div class="p-highlight" style="margin-bottom:0">
-          <p id="pCalcText"></p>
-        </div>
-        <p class="p-source" style="margin-top:.75rem">Sources: ISWS sedimentation data &nbsp;&middot;&nbsp; EPA water infrastructure lifecycle studies &nbsp;&middot;&nbsp; USACE recreation economic impact &nbsp;&middot;&nbsp; Great Lakes Restoration Initiative ROI analysis</p>
-      </div>
 
       <div class="pillar-tab-panel active" id="economy-facts">
         <div class="pillar-point">
@@ -1375,14 +1327,13 @@ document.addEventListener('click', function(e) {
 function switchPillarTab(modal, tab) {
   var box = document.getElementById(pillarIds[modal]);
   box.querySelectorAll('.pillar-modal-tab').forEach(function(t, i) {
-    var tabs = { conservation: ['facts','timeline'], economy: ['facts','calc'], education: ['facts'] };
+    var tabs = { conservation: ['facts','timeline'], economy: ['facts'], education: ['facts'] };
     t.classList.toggle('active', tabs[modal][i] === tab);
   });
   box.querySelectorAll('.pillar-tab-panel').forEach(function(p) { p.classList.remove('active'); });
   var panel = document.getElementById(modal + '-' + tab);
   if (panel) panel.classList.add('active');
   if (modal === 'conservation' && tab === 'timeline') initSedChart();
-  if (modal === 'economy' && tab === 'calc') pCalcUpdate();
 }
 
 /* ── SEDIMENTATION ANIMATION ─────────────────────────── */
