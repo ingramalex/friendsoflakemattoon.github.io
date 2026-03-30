@@ -91,6 +91,53 @@ body{font-family:var(--body);background:var(--cream);color:var(--dark);overflow-
 .modal-close-btn:hover{color:var(--navy)}
 
 /* ── NAV ────────────────────────────────────────────── */
+.hero-raffle-callout{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.35);border-radius:var(--r);padding:.65rem 1.1rem;margin-bottom:1.75rem;text-decoration:none;transition:all var(--t);cursor:pointer}
+.hero-raffle-callout:hover{background:rgba(196,154,42,.2);border-color:var(--gold)}
+.hero-raffle-pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.hero-raffle-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.hero-raffle-text{font-family:var(--serif);font-style:italic;font-size:.95rem;color:rgba(255,255,255,.9)}
+.hero-raffle-arrow{color:var(--gold);font-size:.8rem;flex-shrink:0}
+
+/* ── RAFFLE SECTION ──────────────────────────────────── */
+.raffle{padding:6rem 2rem;background:linear-gradient(160deg,#1a0a0a 0%,#2d0f0f 40%,#1a1a0a 100%);position:relative;overflow:hidden}
+.raffle::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(196,154,42,.03) 60px,rgba(196,154,42,.03) 61px)}
+.raffle-inner{position:relative;z-index:1;max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.raffle-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,154,42,.7);font-weight:600;margin-bottom:.5rem}
+.raffle-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:.75rem}
+.raffle-title em{font-style:italic;color:#f5d78e}
+.raffle-subtitle{font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(196,154,42,.65);margin-bottom:1.5rem}
+.raffle-divider{width:48px;height:1px;background:var(--gold);opacity:.6;margin-bottom:1.5rem}
+.raffle-date-box{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.3);border-radius:var(--r);padding:.6rem 1.1rem;margin-bottom:1.5rem}
+.raffle-date-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,154,42,.6);font-weight:600}
+.raffle-date-val{font-family:var(--serif);font-size:1.1rem;color:#f5d78e}
+.raffle-prizes-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.875rem}
+.raffle-prize-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem}
+.raffle-prize{display:flex;align-items:flex-start;gap:.75rem}
+.raffle-prize-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.45rem;opacity:.8}
+.raffle-prize-text{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;line-height:1.5}
+.raffle-prize-text strong{color:#f5d78e;font-weight:600}
+.raffle-ticket-box{background:rgba(196,154,42,.1);border:1px solid rgba(196,154,42,.25);border-radius:var(--r);padding:1.1rem 1.25rem;margin-bottom:1.5rem}
+.raffle-ticket-price{font-family:var(--serif);font-size:2rem;color:var(--gold);line-height:1;margin-bottom:.2rem}
+.raffle-ticket-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:300}
+.raffle-contact-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.6rem}
+.raffle-contact-links{display:flex;gap:.75rem;flex-wrap:wrap}
+.raffle-contact-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1rem;border-radius:var(--r);text-decoration:none;transition:all var(--t);border:1px solid}
+.raffle-contact-btn.email{color:#f5d78e;border-color:rgba(196,154,42,.4);background:rgba(196,154,42,.1)}
+.raffle-contact-btn.email:hover{background:rgba(196,154,42,.2);border-color:var(--gold)}
+.raffle-contact-btn.fb{color:#7ab3f5;border-color:rgba(24,119,242,.4);background:rgba(24,119,242,.1)}
+.raffle-contact-btn.fb:hover{background:rgba(24,119,242,.2);border-color:#1877f2}
+.raffle-locations{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
+.raffle-location{display:flex;align-items:flex-start;gap:.6rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:.6rem .875rem;color:rgba(184,220,232,.6)}
+.raffle-location svg{flex-shrink:0;margin-top:.2rem;color:var(--gold);opacity:.7}
+.raffle-location-name{display:block;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3}
+.raffle-location-addr{display:block;font-size:.78rem;color:rgba(184,220,232,.5);font-weight:300;margin-top:.1rem}
+.raffle-photo-wrap{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5),12px 12px 0 rgba(196,154,42,.15)}
+.raffle-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,6,6,.15) 0%,transparent 30%,transparent 55%,rgba(13,6,6,.65) 100%),linear-gradient(90deg,rgba(13,6,6,.25) 0%,transparent 20%,transparent 80%,rgba(13,6,6,.15) 100%);pointer-events:none}
+.raffle-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.raffle-photo-wrap:hover img{transform:scale(1.03)}
+.raffle-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem .875rem;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,transparent 100%);font-family:var(--serif);font-style:italic;font-size:.82rem;color:rgba(255,255,255,.8);z-index:1}
+
 nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,46,63,.97);border-bottom:1px solid rgba(58,143,168,.3)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.875rem 2rem;gap:1rem}
 .nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
@@ -529,6 +576,25 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .impact-card-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.5rem .875rem;background:linear-gradient(0deg,rgba(13,46,63,.92) 0%,transparent 100%);font-family:var(--serif);font-style:italic;font-size:.85rem;color:rgba(255,255,255,.85)}
 .impact-year{font-size:11px;color:rgba(184,220,232,.35);margin-top:.75rem;letter-spacing:.1em;text-transform:uppercase}
 
+/* ── LATEST NEWS ─────────────────────────────────────── */
+.news{padding:6rem 2rem;background:var(--sand)}
+.news .section-title{color:var(--navy)}
+.news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:2.5rem}
+.news-card{background:var(--cream);border:1px solid rgba(26,80,104,.12);border-radius:var(--r);padding:1.75rem;display:flex;flex-direction:column;gap:.75rem;transition:box-shadow .25s,transform .25s;text-decoration:none}
+.news-card:hover{box-shadow:0 6px 24px rgba(26,80,104,.12);transform:translateY(-3px)}
+.news-card-date{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.news-card-title{font-family:var(--serif);font-size:1.05rem;color:var(--navy);line-height:1.35;font-weight:400}
+.news-card-text{font-size:.88rem;line-height:1.75;color:var(--muted);font-weight:300;flex:1}
+.news-card-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-top:.25rem;transition:color var(--t)}
+.news-card:hover .news-card-link{color:var(--navy)}
+.news-loading{text-align:center;padding:3rem;color:var(--muted);font-size:.9rem;font-weight:300;letter-spacing:.05em;grid-column:1/-1}
+.news-error{text-align:center;padding:3rem;grid-column:1/-1}
+.news-error p{font-size:.9rem;color:var(--muted);font-weight:300}
+.news-error a{color:var(--teal);text-decoration:none}
+.news-cta{text-align:center;margin-top:2rem}
+.news-cta a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#1877f2;padding:.6rem 1.25rem;border-radius:var(--r);text-decoration:none;transition:background var(--t)}
+.news-cta a:hover{background:#1464d0}
+
 /* ── RESPONSIVE ─────────────────────────────────────── */
 @media(max-width:860px){
   .site-nav .nav-center{display:none}
@@ -550,7 +616,10 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   .stats-strip{flex-direction:column;align-items:center;padding:1.5rem}
   .stat-item{border-right:none;border-bottom:1px solid rgba(58,143,168,.2);padding:1rem 2rem;width:100%;max-width:280px}
   .stat-item:last-child{border-bottom:none}
-  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact{padding:4rem 1.5rem}
+  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact,.news,.raffle{padding:4rem 1.5rem}
+  .news-grid{grid-template-columns:1fr}
+  .raffle-inner{grid-template-columns:1fr;gap:2.5rem}
+  .raffle-photo-wrap{order:-1}
   .impact-card-body{grid-template-columns:1fr;gap:1.5rem}
   .two-col{grid-template-columns:1fr;gap:2.5rem}
   .lake-illustration{box-shadow:4px 4px 0 var(--sky)}
@@ -597,6 +666,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <li><a href="#about">About</a></li>
       <li><a href="#highlights">Recreation</a></li>
       <li><a href="#events">Events</a></li>
+      <li><a href="#news">News</a></li>
       <li><a href="#officers">Leadership</a></li>
       <li><a href="#involved">Take Action</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -620,6 +690,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <a href="#about">About</a>
     <a href="#highlights">Recreation</a>
     <a href="#events">Events</a>
+    <a href="#news">News</a>
     <a href="#officers">Leadership</a>
     <a href="#involved">Take Action</a>
     <a href="#socials">Socials</a>
@@ -642,6 +713,12 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <div class="hero-slogan">Clean Water, Strong Economy</div>
     <div class="hero-divider"></div>
     <p class="hero-mission">Dedicated to promoting the preservation, conservation, and responsible recreation of Lake Mattoon &mdash; a vital water source serving the communities of Central Illinois.</p>
+    <a href="#raffle" class="hero-raffle-callout">
+      <div class="hero-raffle-pulse"></div>
+      <span class="hero-raffle-label">Now Raffling</span>
+      <span class="hero-raffle-text">Red, White &amp; Bourbon &mdash; Enter to Win</span>
+      <span class="hero-raffle-arrow">&#8594;</span>
+    </a>
     <div class="hero-cta-group">
       <button onclick="openDonateModal()" class="btn-primary">Support Our Mission</button>
       <a href="#about" class="btn-outline">Learn More</a>
@@ -655,6 +732,68 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <span class="slogan-phrase">Clean Water</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Strong Economy</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Healthy Communities</span>
   </p>
 </div>
+
+<!-- RAFFLE -->
+<section class="raffle" id="raffle">
+  <div class="raffle-inner">
+    <div>
+      <p class="raffle-tag">Raffle &nbsp;&middot;&nbsp; Support the Lake</p>
+      <h2 class="raffle-title">Red, White<br>&amp; <em>Bourbon</em></h2>
+      <p class="raffle-subtitle">A patriotic raffle benefiting Friends of Lake Mattoon</p>
+      <div class="raffle-divider"></div>
+      <div class="raffle-date-box">
+        <div>
+          <p class="raffle-date-label">Drawing</p>
+          <p class="raffle-date-val">May 25th &nbsp;&middot;&nbsp; Lake Mattoon Marina</p>
+        </div>
+      </div>
+      <p class="raffle-prizes-title">Prize package includes</p>
+      <div class="raffle-prize-list">
+        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Hand-crafted wooden American flag</strong> made from reclaimed bourbon barrels</span></div>
+        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Buffalo Trace &amp; Basil Hayden bourbon</strong></span></div>
+        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>$50 Texas Roadhouse</strong> gift certificate</span></div>
+        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>$50 Nehemiah's Steakhouse</strong> gift certificate</span></div>
+        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>American flag throw blanket</strong></span></div>
+        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Wooden bourbon tumblers</strong></span></div>
+      </div>
+      <div class="raffle-ticket-box">
+        <div class="raffle-ticket-price">$5</div>
+        <div class="raffle-ticket-label">per ticket &nbsp;&middot;&nbsp; must be 21+ to enter</div>
+      </div>
+      <p class="raffle-contact-title">Purchase tickets from an officer or at these local businesses</p>
+      <div class="raffle-contact-links">
+        <a id="raffleEmailLink" href="#raffle" class="raffle-contact-btn email">
+          <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path d="M3 4H15C15.55 4 16 4.45 16 5V13C16 13.55 15.55 14 15 14H3C2.45 14 2 13.55 2 13V5C2 4.45 2.45 4 3 4Z" stroke="currentColor" stroke-width="1.2"/><path d="M2 5L9 9.5L16 5" stroke="currentColor" stroke-width="1.2"/></svg>
+          Email Us
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" class="raffle-contact-btn fb">
+          <svg width="13" height="13" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="currentColor"/></svg>
+          Message on Facebook
+        </a>
+      </div>
+      <div class="raffle-locations">
+        <div class="raffle-location">
+          <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7C4 11 9 16 9 16C9 16 14 11 14 7C14 4.24 11.76 2 9 2Z" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="7" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
+          <div>
+            <span class="raffle-location-name">Kelly's Bar &amp; Grill</span>
+            <span class="raffle-location-addr">588 Oak Avenue, Neoga, IL</span>
+          </div>
+        </div>
+        <div class="raffle-location">
+          <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7C4 11 9 16 9 16C9 16 14 11 14 7C14 4.24 11.76 2 9 2Z" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="7" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
+          <div>
+            <span class="raffle-location-name">Lakeside Timbers</span>
+            <span class="raffle-location-addr">49 County Rd 1250 N, Neoga, IL 62447</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="raffle-photo-wrap">
+      <img src="images/raffle-photo.jpg" alt="Red White and Bourbon raffle prize — hand-crafted bourbon barrel American flag with prize basket" loading="lazy">
+      <div class="raffle-photo-caption">Hand-crafted wooden American flag made from reclaimed bourbon barrels &nbsp;&middot;&nbsp; One of a kind</div>
+    </div>
+  </div>
+</section>
 
 <!-- STATS -->
 <div class="stats-strip">
@@ -947,6 +1086,24 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   </div>
 </section>
 
+<!-- LATEST NEWS -->
+<section class="news" id="news">
+  <div class="section-inner">
+    <p class="section-tag">Latest Updates</p>
+    <h2 class="section-title">News from <em>the Lake</em></h2>
+    <p class="body-text">The latest from Friends of Lake Mattoon — conservation updates, upcoming events, and community news. Follow us on Facebook for the full story.</p>
+    <div class="news-grid" id="newsGrid">
+      <div class="news-loading">Loading latest updates&hellip;</div>
+    </div>
+    <div class="news-cta">
+      <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="white"/></svg>
+        See all posts on Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- SOCIALS -->
 <section class="socials" id="socials">
   <div class="section-inner">
@@ -1060,6 +1217,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <a href="#about">About</a>
     <a href="#highlights">Recreation</a>
     <a href="#events">Events</a>
+    <a href="#news">News</a>
     <a href="#officers">Leadership</a>
     <a href="#involved">Take Action</a>
     <a href="#contact">Contact</a>
@@ -1300,6 +1458,65 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 
 <script>
 /* ── CONFIG ──────────────────────────────────────────────── */
+/* ── NEWS FEED CONFIG — update these two values ──────── */
+var NEWS_SHEET_ID  = '1Xiw7CM2yiGCbHNU-pfuVCCzBKG3invGSchn3ag6LUDo';
+var NEWS_API_KEY   = 'AIzaSyBAiIDtcp2LbmaxcaEpiz-RFLC5wrj1W7A';
+var NEWS_MAX_POSTS = 3;
+
+/* ── NEWS FEED LOADER ────────────────────────────────── */
+function loadNewsFeed() {
+  var grid = document.getElementById('newsGrid');
+  if (!grid) return;
+  if (NEWS_SHEET_ID === 'YOUR_SHEET_ID') {
+    grid.innerHTML = buildNewsPlaceholders();
+    return;
+  }
+  var url = 'https://sheets.googleapis.com/v4/spreadsheets/' + NEWS_SHEET_ID
+    + '/values/Sheet1!A2:D' + (NEWS_MAX_POSTS + 1)
+    + '?key=' + NEWS_API_KEY;
+  fetch(url)
+    .then(function(r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function(data) {
+      if (!data.values || !data.values.length) {
+        grid.innerHTML = '<div class="news-error"><p>No posts yet. <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Follow us on Facebook</a> for the latest updates.</p></div>';
+        return;
+      }
+      grid.innerHTML = data.values.map(function(row) {
+        var date    = row[0] || '';
+        var title   = row[1] || '';
+        var summary = row[2] || '';
+        var link    = row[3] || 'https://www.facebook.com/profile.php?id=61588298083140';
+        return '<a href="' + link + '" target="_blank" rel="noopener" class="news-card">'
+          + '<span class="news-card-date">' + date + '</span>'
+          + '<h3 class="news-card-title">' + title + '</h3>'
+          + '<p class="news-card-text">' + summary + '</p>'
+          + '<span class="news-card-link">Read on Facebook '
+          + '<svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+          + '</span></a>';
+      }).join('');
+    })
+    .catch(function() {
+      grid.innerHTML = '<div class="news-error"><p>Unable to load news right now. <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener">Visit us on Facebook</a> for the latest.</p></div>';
+    });
+}
+
+function buildNewsPlaceholders() {
+  var posts = [
+    { date: 'Coming Soon', title: 'News feed coming soon', text: 'Once the Google Sheet is connected, your latest Facebook posts will appear here automatically.' },
+    { date: 'Coming Soon', title: 'Updated by officers', text: 'Officers add a new row to a shared Google Sheet and the site updates instantly — no coding needed.' },
+    { date: 'Coming Soon', title: 'Links back to Facebook', text: 'Each card links directly to the full post on Facebook so visitors can like, comment, and share.' }
+  ];
+  return posts.map(function(p) {
+    return '<div class="news-card" style="cursor:default;opacity:.6">'
+      + '<span class="news-card-date">' + p.date + '</span>'
+      + '<h3 class="news-card-title">' + p.title + '</h3>'
+      + '<p class="news-card-text">' + p.text + '</p>'
+      + '</div>';
+  }).join('');
+}
+
+loadNewsFeed();
+
 var CAL_ID  = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
 var CAL_KEY = 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ';
 var MONTHS  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -1612,12 +1829,16 @@ document.addEventListener('DOMContentLoaded', function() {
   var d = 'gmail.com';
   var emailDisplay = document.getElementById('contactEmailDisplay');
   var emailBtn     = document.getElementById('contactEmailBtn');
+  var raffleEmail  = document.getElementById('raffleEmailLink');
   if (emailDisplay) {
     emailDisplay.href        = 'mailto:' + u + '@' + d;
     emailDisplay.textContent = u + '@' + d;
   }
   if (emailBtn) {
     emailBtn.href = 'mailto:' + u + '@' + d + '?subject=Friends%20of%20Lake%20Mattoon%20Inquiry';
+  }
+  if (raffleEmail) {
+    raffleEmail.href = 'mailto:' + u + '@' + d + '?subject=Red%20White%20%26%20Bourbon%20Raffle%20Ticket';
   }
 
   /* OFFICER PHOTO FALLBACKS */
