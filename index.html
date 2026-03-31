@@ -50,7 +50,8 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NP60T2YF3J"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-NP60T2YF3J');</script>
 
-<!-- Disable Cloudflare email obfuscation -->
+<!-- Tally survey embed -->
+<script async src="https://tally.so/widgets/embed.js"></script>
 <meta name="cf-2fa-verify" content="off">
 
 <!-- Fonts -->
@@ -87,8 +88,8 @@ body{font-family:var(--body);background:var(--cream);color:var(--dark);overflow-
 .icon-arrow svg{flex-shrink:0}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-.modal-close-btn{position:absolute;top:1rem;right:1.25rem;background:none;border:none;cursor:pointer;color:var(--muted);font-size:20px;line-height:1;padding:4px;transition:color var(--t)}
-.modal-close-btn:hover{color:var(--navy)}
+.modal-close-btn{position:absolute;top:1rem;right:1.25rem;background:none;border:none;cursor:pointer;color:rgba(184,220,232,.6);font-size:20px;line-height:1;padding:4px;transition:color var(--t)}
+.modal-close-btn:hover{color:#fff}
 
 /* ── NAV ────────────────────────────────────────────── */
 .hero-raffle-callout{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.35);border-radius:var(--r);padding:.65rem 1.1rem;margin-bottom:1.75rem;text-decoration:none;transition:all var(--t);cursor:pointer}
@@ -471,20 +472,20 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 /* ── MEMBERSHIP MODAL ────────────────────────────────── */
 .member-overlay{display:none;position:fixed;inset:0;z-index:997;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
 .member-overlay.open{display:flex;animation:fadeIn .25s ease}
-.member-box{background:var(--cream);border-radius:6px;max-width:660px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
-.member-header{padding:1.75rem 2rem 1.25rem;text-align:center;border-bottom:1px solid rgba(26,80,104,.1);flex-shrink:0}
-.member-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.4rem}
-.member-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:.5rem}
-.member-title em{font-style:italic;color:var(--mid)}
+.member-box{background:#1a3a52;border-radius:6px;max-width:660px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+.member-header{padding:1.25rem 2rem 1rem;text-align:center;border-bottom:1px solid rgba(58,143,168,.2);flex-shrink:0}
+.member-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.4rem}
+.member-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.member-title em{font-style:italic;color:var(--sky)}
 .member-divider{width:36px;height:1px;background:var(--gold);margin:.6rem auto .75rem}
-.member-tier{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.08);border:1px solid rgba(196,154,42,.25);border-radius:var(--r);padding:.6rem 1.25rem;margin-bottom:.75rem}
-.member-tier-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:300}
+.member-tier{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.3);border-radius:var(--r);padding:.6rem 1.25rem;margin-bottom:.75rem}
+.member-tier-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(184,220,232,.6);font-weight:300}
 .member-tier-price{font-family:var(--serif);font-size:1.4rem;color:var(--gold);font-weight:400;line-height:1}
-.member-tier-period{font-size:11px;color:var(--muted);font-weight:300}
-.member-subtitle{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto}
+.member-tier-period{font-size:11px;color:rgba(184,220,232,.5);font-weight:300}
+.member-subtitle{font-size:.85rem;color:rgba(184,220,232,.75);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto}
 .member-body{flex:1;overflow-y:auto}
 .member-body iframe{display:block;width:100%;border:none}
-.member-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(61,90,96,.5);border-top:1px solid rgba(26,80,104,.08);flex-shrink:0;font-weight:300;line-height:1.6}
+.member-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(184,220,232,.4);border-top:1px solid rgba(58,143,168,.15);flex-shrink:0;font-weight:300;line-height:1.6}
 
 /* ── DONATE MODAL ───────────────────────────────────── */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:999;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
@@ -506,20 +507,20 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 /* ── MEMBERSHIP MODAL ───────────────────────────────── */
 .member-overlay{display:none;position:fixed;inset:0;z-index:998;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
 .member-overlay.open{display:flex;animation:fadeIn .25s ease}
-.member-box{background:var(--cream);border-radius:6px;max-width:640px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:90vh;overflow:hidden}
-.member-header{padding:1.75rem 2rem 1.25rem;text-align:center;border-bottom:1px solid rgba(26,80,104,.1);flex-shrink:0}
-.member-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.4rem}
-.member-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:.5rem}
-.member-title em{font-style:italic;color:var(--mid)}
+.member-box{background:#1a3a52;border-radius:6px;max-width:640px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:90vh;overflow:hidden}
+.member-header{padding:1.25rem 2rem 1rem;text-align:center;border-bottom:1px solid rgba(58,143,168,.2);flex-shrink:0}
+.member-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.4rem}
+.member-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.member-title em{font-style:italic;color:var(--sky)}
 .member-divider{width:36px;height:1px;background:var(--gold);margin:.6rem auto .75rem}
-.member-tier{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.08);border:1px solid rgba(196,154,42,.25);border-radius:var(--r);padding:.6rem 1.25rem;margin-bottom:.75rem}
-.member-tier-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:300}
+.member-tier{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.3);border-radius:var(--r);padding:.6rem 1.25rem;margin-bottom:.75rem}
+.member-tier-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(184,220,232,.6);font-weight:300}
 .member-tier-price{font-family:var(--serif);font-size:1.4rem;color:var(--gold);font-weight:400}
-.member-tier-period{font-size:11px;color:var(--muted);font-weight:300}
-.member-subtitle{font-size:.82rem;color:var(--muted);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto}
+.member-tier-period{font-size:11px;color:rgba(184,220,232,.5);font-weight:300}
+.member-subtitle{font-size:.82rem;color:rgba(184,220,232,.75);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto}
 .member-body{flex:1;overflow-y:auto}
 .member-frame-wrap iframe{display:block;width:100%;border:none}
-.member-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(61,90,96,.5);border-top:1px solid rgba(26,80,104,.08);flex-shrink:0;font-weight:300}
+.member-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(184,220,232,.4);border-top:1px solid rgba(58,143,168,.15);flex-shrink:0;font-weight:300}
 
 /* Involved card CTA button */
 .involved-card-cta{display:inline-flex;align-items:center;gap:6px;margin-top:.75rem;font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid rgba(196,154,42,.35);border-radius:var(--r);padding:.35rem .75rem;cursor:pointer;transition:all var(--t)}
@@ -528,23 +529,25 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 /* ── SURVEY MODAL ───────────────────────────────────── */
 .survey-overlay{display:none;position:fixed;inset:0;z-index:998;background:rgba(7,20,28,.75);align-items:center;justify-content:center;padding:1.5rem}
 .survey-overlay.open{display:flex;animation:fadeIn .25s ease}
-.survey-box{background:var(--cream);border-radius:6px;max-width:620px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:90vh;overflow:hidden}
-.survey-header{padding:1.75rem 2rem 1.25rem;text-align:center;border-bottom:1px solid rgba(26,80,104,.1);flex-shrink:0}
-.survey-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.4rem}
-.survey-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:.5rem}
-.survey-title em{font-style:italic;color:var(--mid)}
+.survey-box{background:#1a3a52;border-radius:6px;max-width:720px;width:100%;position:relative;animation:slideUp .3s ease;display:flex;flex-direction:column;max-height:92vh;overflow:hidden}
+.survey-header{padding:1.25rem 2rem 1rem;text-align:center;border-bottom:1px solid rgba(58,143,168,.2);flex-shrink:0}
+.survey-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);font-weight:600;margin-bottom:.4rem}
+.survey-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.survey-title em{font-style:italic;color:var(--sky)}
 .survey-divider{width:36px;height:1px;background:var(--gold);margin:.6rem auto .75rem}
-.survey-subtitle{font-size:.85rem;color:var(--muted);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto 1rem}
+.survey-subtitle{font-size:.85rem;color:rgba(184,220,232,.75);font-weight:300;line-height:1.7;max-width:460px;margin:0 auto 1rem}
 .survey-tabs{display:flex;gap:.5rem;justify-content:center}
-.survey-tab{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.25rem;border-radius:var(--r);border:1px solid rgba(26,80,104,.2);cursor:pointer;background:transparent;color:var(--muted);transition:all var(--t)}
-.survey-tab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.survey-tab{font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.5rem 1.25rem;border-radius:var(--r);border:1px solid rgba(58,143,168,.3);cursor:pointer;background:transparent;color:rgba(184,220,232,.6);transition:all var(--t)}
+.survey-tab.active{background:var(--teal);color:#fff;border-color:var(--teal)}
 .survey-body{flex:1;overflow-y:auto}
 .survey-frame-wrap iframe{display:block;width:100%;border:none}
 .survey-coming-soon{padding:3rem 2rem;text-align:center}
 .survey-coming-icon{width:56px;height:56px;border-radius:50%;background:rgba(196,154,42,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem}
 .survey-coming-title{font-family:var(--serif);font-size:1.3rem;color:var(--gold);margin-bottom:.75rem}
-.survey-coming-text{font-size:.88rem;line-height:1.8;color:var(--muted);font-weight:300;max-width:360px;margin:0 auto}
-.survey-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(61,90,96,.5);border-top:1px solid rgba(26,80,104,.08);flex-shrink:0;font-weight:300}
+.survey-coming-text{font-size:.88rem;line-height:1.8;color:rgba(184,220,232,.7);font-weight:300;max-width:360px;margin:0 auto}
+.survey-iframe-wrap{width:100%;height:520px;flex:1}
+.survey-iframe-wrap iframe{width:100%;height:100%;border:none;display:block}
+.survey-footer-note{padding:.75rem 2rem;text-align:center;font-size:11px;color:rgba(184,220,232,.4);border-top:1px solid rgba(58,143,168,.15);flex-shrink:0;font-weight:300}
 
 /* ── COMMUNITY IMPACT ───────────────────────────────── */
 .impact{padding:6rem 2rem;background:var(--navy)}
@@ -576,7 +579,14 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .impact-card-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.5rem .875rem;background:linear-gradient(0deg,rgba(13,46,63,.92) 0%,transparent 100%);font-family:var(--serif);font-style:italic;font-size:.85rem;color:rgba(255,255,255,.85)}
 .impact-year{font-size:11px;color:rgba(184,220,232,.35);margin-top:.75rem;letter-spacing:.1em;text-transform:uppercase}
 
-/* ── LATEST NEWS ─────────────────────────────────────── */
+/* ── SURVEY NEW CALLOUTS ─────────────────────────────── */
+.survey-new-badge{font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--gold);color:#fff;padding:2px 6px;border-radius:20px;line-height:1;position:relative;display:inline-block;vertical-align:middle;margin-left:4px}
+.survey-new-badge::before{content:'';position:absolute;inset:-3px;border-radius:20px;background:var(--gold);opacity:.45;animation:newBadgePulse 1.8s ease-in-out infinite}
+@keyframes newBadgePulse{0%,100%{transform:scale(1);opacity:.45}50%{transform:scale(1.6);opacity:0}}
+.starburst-wrap{position:absolute;top:-24px;right:-28px;width:54px;height:54px;pointer-events:none;animation:starSpin 9s linear infinite}
+@keyframes starSpin{to{transform:rotate(360deg)}}
+.starburst-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:9.5px;font-weight:800;color:var(--navy);text-transform:uppercase;letter-spacing:.04em;text-align:center;line-height:1.15;z-index:2;animation:starSpinRev 9s linear infinite}
+@keyframes starSpinRev{to{transform:translate(-50%,-50%) rotate(-360deg)}}
 .news{padding:6rem 2rem;background:var(--sand)}
 .news .section-title{color:var(--navy)}
 .news-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:2.5rem}
@@ -674,7 +684,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <div class="nav-utility">
       <button onclick="openSurveyModal()" class="nav-icon-btn" aria-label="Take our survey">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="1.5" stroke="#b8dce8" stroke-width="1.2"/><path d="M5 5.5H11M5 8H11M5 10.5H8.5" stroke="#b8dce8" stroke-width="1.2" stroke-linecap="round"/></svg>
-        <span class="nav-tooltip">Take Survey</span>
+        <span class="nav-tooltip">Take Survey <span class="survey-new-badge" style="font-size:8px;padding:1px 5px">New</span></span>
       </button>
       <a href="#contact" class="nav-icon-btn" aria-label="Contact us">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3.5h12a.5.5 0 01.5.5v8a.5.5 0 01-.5.5H2a.5.5 0 01-.5-.5V4a.5.5 0 01.5-.5z" stroke="#b8dce8" stroke-width="1.2"/><path d="M1.5 4.5L8 9l6.5-4.5" stroke="#b8dce8" stroke-width="1.2"/></svg>
@@ -694,7 +704,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <a href="#involved">Take Action</a>
     <a href="#news">News &amp; Socials</a>
     <a href="#contact">Contact</a>
-    <a href="#" onclick="openSurveyModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');return false;">Survey</a>
+    <a href="#" onclick="openSurveyModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');return false;">Survey <span class="survey-new-badge">New</span></a>
     <button class="drawer-donate" onclick="openDonateModal();this.closest('.nav-drawer').classList.remove('open');document.getElementById('hamburger').classList.remove('open');">Donate</button>
   </div>
 </nav>
@@ -1078,6 +1088,23 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
         <div><h4 class="involved-title">Stay Informed</h4><p class="involved-text">Follow us on Facebook for updates on water quality reports, community events, conservation milestones, and ways to help protect Lake Mattoon.</p></div>
       </div>
       <div class="involved-card">
+        <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="1.5" stroke="#b8dce8" stroke-width="1.2"/><path d="M6 7H16M6 11H16M6 15H11" stroke="#b8dce8" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div style="flex:1">
+          <h4 class="involved-title">Take Our Survey</h4>
+          <p class="involved-text">Share how Lake Mattoon impacts your life or business. Your responses help us build a stronger case for conservation, restoration funding, and community investment.</p>
+          <div style="position:relative;display:inline-block;margin-top:.875rem">
+            <button onclick="openSurveyModal()" style="font-size:12px;padding:.5rem 1rem;display:inline-flex;align-items:center;gap:6px;" class="btn-primary">
+              Take the Survey
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="starburst-wrap">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none"><path d="M27 2 L29.8 11 L37 5.5 L36 15 L45 12 L41 20.5 L50 22 L43.5 28 L50 34 L41 35.5 L45 44 L36 41 L37 50.5 L29.8 45 L27 54 L24.2 45 L17 50.5 L18 41 L9 44 L13 35.5 L4 34 L10.5 28 L4 22 L13 20.5 L9 12 L18 15 L17 5.5 L24.2 11 Z" fill="#c49a2a"/></svg>
+              <span class="starburst-text">Now<br>Live!</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="involved-card">
         <div class="involved-icon-wrap"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4 L11 18 M4 11 L18 11" stroke="#b8dce8" stroke-width="1.5"/></svg></div>
         <div><h4 class="involved-title">Spread the Word</h4><p class="involved-text">Tell your neighbors, your fishing buddies, and your family about the work we're doing. Awareness is the first step toward a healthier lake.</p></div>
       </div>
@@ -1221,7 +1248,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <a href="#news">News &amp; Socials</a>
     <a href="#donate">Donate</a>
     <a href="#contact">Contact</a>
-    <a href="#" onclick="openSurveyModal();return false;">Take Our Survey</a>
+    <a href="#" onclick="openSurveyModal();return false;">Take Our Survey <span class="survey-new-badge" style="font-size:8px;padding:1px 5px">New</span></a>
   </nav>
   <p class="footer-copy">&copy; 2025 Friends of Lake Mattoon. All rights reserved.</p>
 </footer>
@@ -1394,7 +1421,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     </div>
     <div class="member-body">
       <div class="member-frame-wrap">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScg0P2fq6lBx6Jhc2meDSVu6ErARF2i4IOAnaRSe8fPoFWU8Q/viewform?embedded=true&rm=minimal" width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">Loading&hellip;</iframe>
+        <iframe src="https://tally.so/embed/obdbbM?alignLeft=1&dynamicHeight=1" loading="lazy" width="100%" height="520" frameborder="0" title="Friends of Lake Mattoon Membership Application"></iframe>
       </div>
     </div>
     <div class="member-footer-note">Your membership directly supports conservation efforts at Lake Mattoon &nbsp;&middot;&nbsp; Payment via Square — coming soon</div>
@@ -1416,15 +1443,11 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       </div>
     </div>
     <div class="survey-body">
-      <div id="surveyResident" class="survey-coming-soon">
-        <div class="survey-coming-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/><path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/></svg></div>
-        <p class="survey-coming-title">Coming Soon</p>
-        <p class="survey-coming-text">Our resident survey is currently being finalized. Check back shortly — your voice as a community member is just as important as ever in protecting Lake Mattoon for generations to come.</p>
+      <div id="surveyResident" class="survey-iframe-wrap">
+        <iframe src="https://tally.so/embed/xXyxL5?alignLeft=1&dynamicHeight=1" loading="lazy" title="Lake Mattoon Resident Survey"></iframe>
       </div>
-      <div id="surveyBusiness" class="survey-coming-soon" style="display:none">
-        <div class="survey-coming-icon"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="#c49a2a" stroke-width="1.5"/><path d="M13 8V14" stroke="#c49a2a" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="17.5" r="1.2" fill="#c49a2a"/></svg></div>
-        <p class="survey-coming-title">Coming Soon</p>
-        <p class="survey-coming-text">Our business survey is currently being finalized. We look forward to hearing how Lake Mattoon impacts your business and the local economy. Please check back soon.</p>
+      <div id="surveyBusiness" class="survey-iframe-wrap" style="display:none">
+        <iframe src="https://tally.so/embed/b5rVPe?alignLeft=1&dynamicHeight=1" loading="lazy" title="Lake Mattoon Business Survey"></iframe>
       </div>
     </div>
     <div class="survey-footer-note">Takes 2 minutes &nbsp;&middot;&nbsp; Anonymous &nbsp;&middot;&nbsp; Results shared with local government</div>
