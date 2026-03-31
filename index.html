@@ -1790,9 +1790,15 @@ function showSurveyTab(tab) {
 function openSurveyModal() {
   openModal(document.getElementById('surveyModal'));
   showSurveyTab('resident');
-  localStorage.setItem('surveyInteracted', 'true');
 }
 function closeSurveyModal() { closeModal(document.getElementById('surveyModal')); }
+
+/* Mark survey as permanently submitted via Tally callback */
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.type === 'tally-form-submitted') {
+    localStorage.setItem('surveySubmitted', 'true');
+  }
+});
 
 function setAmt(el) {
   document.querySelectorAll('.amt-btn').forEach(function(b) { b.classList.remove('active'); });
@@ -1937,14 +1943,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  /* SURVEY POPUP — disabled until surveys finalized */
-  // if (!localStorage.getItem('surveyInteracted')) {
-  //   setTimeout(function() {
-  //     if (!surveyModal.classList.contains('open') && !donateModal.classList.contains('open')) {
-  //       openSurveyModal();
-  //     }
-  //   }, 45000);
-  // }
+  /* SURVEY AUTO-POPUP ─────────────────────────────────
+     Shows after 30s if:
+       - User hasn't seen it this browser session
+       - User hasn't submitted a survey (localStorage flag)
+       - No other modal is already open
+  ─────────────────────────────────────────────────── */
+  var surveyModal = document.getElementById('surveyModal');
+  var donateModal = document.getElementById('donateModal');
+  var memberModal = document.getElementById('memberModal');
+  var surveySubmitted = localStorage.getItem('surveySubmitted');
+  var surveySeenThisSession = localStorage.getItem('surveyPopupSeen');
+
+  if (!surveySubmitted && !surveySeenThisSession) {
+    setTimeout(function() {
+      var anyOpen = (surveyModal && surveyModal.classList.contains('open')) ||
+                    (donateModal && donateModal.classList.contains('open')) ||
+                    (memberModal && memberModal.classList.contains('open'));
+      if (!anyOpen) {
+        openSurveyModal();
+        localStorage.setItem('surveyPopupSeen', 'true');
+      }
+    }, 30000);
+  }
 
   /* EVENTS CAROUSEL */
   var carouselIndex = 0;
