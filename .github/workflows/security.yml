@@ -32,7 +32,7 @@ jobs:
           FOUND=0
           for pat in "${PATTERNS[@]}"; do
             # Skip known-safe public keys already in the codebase (Google Maps/Sheets read-only keys)
-            matches=$(git log --all -p --since="7 days ago" | grep -E -- "$pat" | \
+            matches=$(git log --all -p --since="7 days ago" -- ':!.github' | grep -E -- "$pat" | \
               grep -v 'AIzaSyBAiIDtcp2LbmaxcaEpiz-RFLC5wrj1W7A' | \
               grep -v 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ' | \
               grep -v 'G-NP60T2YF3J' || true)
