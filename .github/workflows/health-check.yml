@@ -1,0 +1,50 @@
+name: Daily Health Check
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 8:00 AM CT (UTC-5/6 — runs at 13:00 UTC)
+  workflow_dispatch:        # allow manual trigger from GitHub UI
+
+jobs:
+  health:
+    name: Site & API health
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check friendsoflakemattoon.com
+        run: |
+          echo "## 🏕️ Friends of Lake Mattoon — Health Check $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          check() {
+            local label="$1"
+            local url="$2"
+            local threshold="${3:-5}"
+            local start=$(date +%s%N)
+            local status=$(curl -o /dev/null -s -w "%{http_code}" --max-time 10 "$url")
+            local elapsed=$(( ($(date +%s%N) - start) / 1000000 ))
+            if [ "$status" = "200" ] && [ "$elapsed" -lt $(( threshold * 1000 )) ]; then
+              echo "| ✅ PASS | $label | $status | ${elapsed}ms |" >> $GITHUB_STEP_SUMMARY
+            elif [ "$status" = "200" ]; then
+              echo "| ⚠️ SLOW | $label | $status | ${elapsed}ms (>${threshold}s) |" >> $GITHUB_STEP_SUMMARY
+              echo "DEGRADED: $label responded in ${elapsed}ms"
+            else
+              echo "| ❌ FAIL | $label | $status | ${elapsed}ms |" >> $GITHUB_STEP_SUMMARY
+              echo "FAILED: $label returned HTTP $status"
+            fi
+          }
+
+          echo "| Status | Service | HTTP | Latency |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|---------|------|---------|" >> $GITHUB_STEP_SUMMARY
+
+          check "Main site" "https://friendsoflakemattoon.com" 5
+          check "Google Calendar API" "https://www.googleapis.com/calendar/v3/calendars/8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31%40group.calendar.google.com/events?key=AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ&maxResults=1&singleEvents=true&orderBy=startTime&timeMin=$(date -u +%Y-%m-%dT%H:%M:%SZ)" 5
+          check "Google Sheets API (news feed)" "https://sheets.googleapis.com/v4/spreadsheets/1Xiw7CM2yiGCbHNU-pfuVCCzBKG3invGSchn3ag6LUDo/values/Sheet1!A2:D4?key=AIzaSyBAiIDtcp2LbmaxcaEpiz-RFLC5wrj1W7A" 5
+
+      - name: Fail job if any check failed
+        run: |
+          if grep -q "FAILED:" $GITHUB_STEP_SUMMARY 2>/dev/null || \
+             curl -o /dev/null -s -w "%{http_code}" --max-time 10 "https://friendsoflakemattoon.com" | grep -qv "200"; then
+            echo "One or more health checks failed. See summary above."
+            exit 1
+          fi
+          echo "All checks passed."

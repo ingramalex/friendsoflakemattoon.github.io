@@ -1,0 +1,56 @@
+name: Weekly Dependency Check
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'   # 9:00 AM CT every Monday
+  workflow_dispatch:
+
+jobs:
+  outdated:
+    name: Check for outdated packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Report outdated packages
+        run: |
+          echo "## 📦 Weekly Dependency Report — $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          npm outdated --json > outdated.json || true
+
+          node - <<'EOF'
+          const fs = require('fs');
+          const raw = fs.readFileSync('outdated.json', 'utf8').trim();
+          const data = raw ? JSON.parse(raw) : {};
+          const pkgs = Object.entries(data);
+          const summary = process.env.GITHUB_STEP_SUMMARY;
+          const lines = [];
+
+          if (!pkgs.length) {
+            lines.push('✅ All dependencies are up to date.');
+          } else {
+            lines.push('| Package | Current | Wanted | Latest | Type |');
+            lines.push('|---------|---------|--------|--------|------|');
+            let hasMajor = false;
+            pkgs.forEach(([name, info]) => {
+              const cur = info.current || '—';
+              const wanted = info.wanted || '—';
+              const latest = info.latest || '—';
+              const curMaj = parseInt((cur || '0').split('.')[0]);
+              const latMaj = parseInt((latest || '0').split('.')[0]);
+              const type = curMaj < latMaj ? '🔴 Major' : cur !== wanted ? '🟡 Minor/Patch' : '🟢 Patch';
+              if (curMaj < latMaj) hasMajor = true;
+              lines.push(`| \`${name}\` | ${cur} | ${wanted} | ${latest} | ${type} |`);
+            });
+            if (hasMajor) lines.push('\n⚠️ Major version updates available — review changelogs before upgrading.');
+            else lines.push('\n✅ Only minor/patch updates available — safe to upgrade with `npm update`.');
+          }
+
+          fs.appendFileSync(summary, lines.join('\n') + '\n');
+          EOF

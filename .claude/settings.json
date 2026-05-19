@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "input=$(cat); cmd=$(echo \"$input\" | jq -r '.tool_input.command // \"\"'); if echo \"$cmd\" | grep -qE '^git push'; then echo '🧪 Running tests before push...' >&2 && npm test 2>&1 || printf '{\"hookSpecificOutput\":{\"hookEventName\":\"PreToolUse\",\"permissionDecision\":\"deny\",\"permissionDecisionReason\":\"Tests failed — fix failures before pushing.\"}}'; fi",
+            "timeout": 120,
+            "statusMessage": "Running test suite before git push..."
+          }
+        ]
+      }
+    ]
+  }
+}

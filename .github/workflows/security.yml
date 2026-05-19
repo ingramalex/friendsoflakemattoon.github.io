@@ -1,0 +1,93 @@
+name: Daily Security Scan
+
+on:
+  schedule:
+    - cron: '5 13 * * *'   # 8:05 AM CT daily
+  workflow_dispatch:
+
+jobs:
+  npm-audit:
+    name: Dependency vulnerability scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Run npm audit
+        run: |
+          echo "## 🔒 Security Scan — $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### npm audit" >> $GITHUB_STEP_SUMMARY
+          npm audit --json > audit.json || true
+          CRITICAL=$(node -e "const a=require('./audit.json'); console.log(a.metadata?.vulnerabilities?.critical || 0)")
+          HIGH=$(node -e "const a=require('./audit.json'); console.log(a.metadata?.vulnerabilities?.high || 0)")
+          MODERATE=$(node -e "const a=require('./audit.json'); console.log(a.metadata?.vulnerabilities?.moderate || 0)")
+          echo "| Severity | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 🔴 Critical | $CRITICAL |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🟠 High     | $HIGH |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🟡 Moderate | $MODERATE |" >> $GITHUB_STEP_SUMMARY
+          if [ "$CRITICAL" -gt 0 ] || [ "$HIGH" -gt 0 ]; then
+            echo "❌ Critical or high vulnerabilities found — review immediately." >> $GITHUB_STEP_SUMMARY
+            npm audit
+            exit 1
+          fi
+          echo "✅ No critical or high vulnerabilities." >> $GITHUB_STEP_SUMMARY
+
+  secret-scan:
+    name: Scan for accidentally committed secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history for git log scanning
+
+      - name: Check for secrets in recent commits
+        run: |
+          echo "### Secret scan" >> $GITHUB_STEP_SUMMARY
+          # Patterns that should never be committed
+          PATTERNS=(
+            'AIzaSy[A-Za-z0-9_-]{33}'          # Google API key
+            'AKIA[0-9A-Z]{16}'                  # AWS access key
+            'sk-[A-Za-z0-9]{32,}'               # Generic secret key
+            'password\s*=\s*["\x27][^"\x27]{6}' # Hardcoded password
+            'secret\s*=\s*["\x27][^"\x27]{6}'   # Hardcoded secret
+            'Bearer [A-Za-z0-9\-._~+\/]+=*'     # Bearer token
+            '-----BEGIN.*PRIVATE KEY-----'       # Private key
+          )
+          FOUND=0
+          for pat in "${PATTERNS[@]}"; do
+            # Skip known-safe public keys already in the codebase (Google Maps/Sheets read-only keys)
+            matches=$(git log --all -p --since="7 days ago" | grep -E "$pat" | \
+              grep -v 'AIzaSyBAiIDtcp2LbmaxcaEpiz-RFLC5wrj1W7A' | \
+              grep -v 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ' | \
+              grep -v 'G-NP60T2YF3J' || true)
+            if [ -n "$matches" ]; then
+              echo "⚠️ Potential secret pattern found matching: \`$pat\`" >> $GITHUB_STEP_SUMMARY
+              FOUND=1
+            fi
+          done
+          if [ "$FOUND" -eq 0 ]; then
+            echo "✅ No unexpected secrets detected in recent commits." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ Review flagged patterns above immediately." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
+      - name: Check .gitignore covers sensitive files
+        run: |
+          echo "### .gitignore coverage" >> $GITHUB_STEP_SUMMARY
+          MISSING=0
+          for f in ".env" ".env.local" "*.pem" "*.key" "credentials.json" "service-account.json"; do
+            if ! grep -qF "$f" .gitignore 2>/dev/null; then
+              echo "⚠️ \`$f\` not in .gitignore" >> $GITHUB_STEP_SUMMARY
+              MISSING=1
+            fi
+          done
+          if [ "$MISSING" -eq 0 ]; then
+            echo "✅ .gitignore covers common sensitive file types." >> $GITHUB_STEP_SUMMARY
+          fi
