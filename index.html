@@ -171,7 +171,7 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .hero{min-height:100vh;background:linear-gradient(175deg,#0d2e3f 0%,#1a5068 40%,#2d7a90 70%,#3a8fa8 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 4rem}
 .hero-bg{position:absolute;bottom:0;left:0;right:0;height:55%;opacity:.18;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(184,220,232,.4) 28px,rgba(184,220,232,.4) 30px);animation:ripple 8s ease-in-out infinite alternate}
 @keyframes ripple{0%{transform:scaleX(1) translateY(0)}100%{transform:scaleX(1.02) translateY(-6px)}}
-.hero-trees{position:absolute;bottom:0;left:0;right:0;height:clamp(160px,18vh,320px);opacity:.5}
+.hero-trees-wrap{position:absolute;bottom:0;left:0;right:0;width:100%;height:clamp(160px,18vh,320px);opacity:.5}.hero-trees{display:block;width:100%;height:100%}
 .hero-content{position:relative;z-index:2;text-align:center;max-width:760px}
 .hero-eyebrow{font-size:12px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:1.25rem;opacity:.85}
 .hero-title{font-family:var(--serif);font-size:clamp(2.4rem,6vw,5rem);font-weight:400;line-height:1.1;color:#fff;margin-bottom:.5rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
@@ -723,10 +723,10 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <svg class="hero-trees" viewBox="0 0 1400 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="hero-trees-wrap"><svg class="hero-trees" viewBox="0 0 1400 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,160 L0,100 Q50,60 80,90 Q100,60 130,80 Q160,40 190,70 Q210,50 240,75 Q260,45 290,72 Q320,30 350,68 Q380,50 410,78 Q440,25 470,65 Q500,45 530,70 Q560,30 590,68 Q620,50 650,80 Q680,35 710,70 Q740,50 770,75 Q800,30 830,65 Q860,50 890,78 Q920,25 950,65 Q980,48 1010,72 Q1040,35 1070,68 Q1100,50 1130,78 Q1160,28 1190,65 Q1220,48 1250,72 Q1280,42 1310,70 Q1340,55 1370,80 L1400,90 L1400,160 Z" fill="#2d5a27" opacity="0.8"/>
     <path d="M0,160 L0,120 Q40,95 70,115 Q100,85 120,105 Q150,70 180,100 Q210,90 240,115 Q280,75 310,100 Q340,85 370,108 Q400,70 430,98 Q460,82 490,110 Q520,72 550,98 Q580,85 610,112 Q640,75 670,100 Q700,90 730,115 Q760,75 790,102 Q820,85 850,110 Q880,72 910,100 Q940,88 970,115 Q1000,78 1030,105 Q1060,85 1090,110 Q1120,72 1150,98 Q1180,85 1210,112 Q1240,78 1270,105 Q1300,88 1330,115 Q1360,90 1400,110 L1400,160 Z" fill="#4a8c3f" opacity="0.6"/>
-  </svg>
+  </svg></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Neoga, Illinois &middot; Coles, Cumberland &amp; Shelby Counties</p>
     <h1 class="hero-title">Protecting <em>Lake Mattoon</em><br>For Generations to Come</h1>
