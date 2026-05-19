@@ -171,7 +171,7 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .hero{min-height:100vh;background:linear-gradient(175deg,#0d2e3f 0%,#1a5068 40%,#2d7a90 70%,#3a8fa8 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 4rem}
 .hero-bg{position:absolute;bottom:0;left:0;right:0;height:55%;opacity:.18;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(184,220,232,.4) 28px,rgba(184,220,232,.4) 30px);animation:ripple 8s ease-in-out infinite alternate}
 @keyframes ripple{0%{transform:scaleX(1) translateY(0)}100%{transform:scaleX(1.02) translateY(-6px)}}
-.hero-trees{position:absolute;bottom:0;left:0;right:0;height:160px;opacity:.5}
+.hero-trees{position:absolute;bottom:0;left:0;right:0;height:clamp(160px,18vh,320px);opacity:.5}
 .hero-content{position:relative;z-index:2;text-align:center;max-width:760px}
 .hero-eyebrow{font-size:12px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--sky);margin-bottom:1.25rem;opacity:.85}
 .hero-title{font-family:var(--serif);font-size:clamp(2.4rem,6vw,5rem);font-weight:400;line-height:1.1;color:#fff;margin-bottom:.5rem;text-shadow:0 2px 20px rgba(0,0,0,.3)}
