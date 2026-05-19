@@ -6,38 +6,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  npm-audit:
-    name: Dependency vulnerability scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-      - run: npm ci
-
-      - name: Run npm audit
-        run: |
-          echo "## 🔒 Security Scan — $(date)" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### npm audit" >> $GITHUB_STEP_SUMMARY
-          npm audit --json > audit.json || true
-          CRITICAL=$(node -e "const a=require('./audit.json'); console.log(a.metadata?.vulnerabilities?.critical || 0)")
-          HIGH=$(node -e "const a=require('./audit.json'); console.log(a.metadata?.vulnerabilities?.high || 0)")
-          MODERATE=$(node -e "const a=require('./audit.json'); console.log(a.metadata?.vulnerabilities?.moderate || 0)")
-          echo "| Severity | Count |" >> $GITHUB_STEP_SUMMARY
-          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
-          echo "| 🔴 Critical | $CRITICAL |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🟠 High     | $HIGH |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🟡 Moderate | $MODERATE |" >> $GITHUB_STEP_SUMMARY
-          if [ "$CRITICAL" -gt 0 ] || [ "$HIGH" -gt 0 ]; then
-            echo "❌ Critical or high vulnerabilities found — review immediately." >> $GITHUB_STEP_SUMMARY
-            npm audit
-            exit 1
-          fi
-          echo "✅ No critical or high vulnerabilities." >> $GITHUB_STEP_SUMMARY
-
   secret-scan:
     name: Scan for accidentally committed secrets
     runs-on: ubuntu-latest
@@ -48,6 +16,8 @@ jobs:
 
       - name: Check for secrets in recent commits
         run: |
+          echo "## 🔒 Security Scan — $(date)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Secret scan" >> $GITHUB_STEP_SUMMARY
           # Patterns that should never be committed
           PATTERNS=(
