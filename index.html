@@ -100,7 +100,7 @@ body{font-family:var(--body);background:var(--cream);color:var(--dark);overflow-
 .hero-raffle-text{font-family:var(--serif);font-style:italic;font-size:.95rem;color:rgba(255,255,255,.9)}
 .hero-raffle-arrow{color:var(--gold);font-size:.8rem;flex-shrink:0}
 
-/* ── RAFFLE SECTION ──────────────────────────────────── */
+/* ── MEMORIAL DAY RECAP SECTION ─────────────────────── */
 .raffle{padding:6rem 2rem;background:linear-gradient(160deg,#1a0a0a 0%,#2d0f0f 40%,#1a1a0a 100%);position:relative;overflow:hidden}
 .raffle::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(196,154,42,.03) 60px,rgba(196,154,42,.03) 61px)}
 .raffle-inner{position:relative;z-index:1;max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
@@ -109,35 +109,52 @@ body{font-family:var(--body);background:var(--cream);color:var(--dark);overflow-
 .raffle-title em{font-style:italic;color:#f5d78e}
 .raffle-subtitle{font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(196,154,42,.65);margin-bottom:1.5rem}
 .raffle-divider{width:48px;height:1px;background:var(--gold);opacity:.6;margin-bottom:1.5rem}
-.raffle-date-box{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.3);border-radius:var(--r);padding:.6rem 1.1rem;margin-bottom:1.5rem}
-.raffle-date-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,154,42,.6);font-weight:600}
-.raffle-date-val{font-family:var(--serif);font-size:1.1rem;color:#f5d78e}
-.raffle-prizes-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.875rem}
-.raffle-prize-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem}
-.raffle-prize{display:flex;align-items:flex-start;gap:.75rem}
-.raffle-prize-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.45rem;opacity:.8}
-.raffle-prize-text{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;line-height:1.5}
-.raffle-prize-text strong{color:#f5d78e;font-weight:600}
-.raffle-ticket-box{background:rgba(196,154,42,.1);border:1px solid rgba(196,154,42,.25);border-radius:var(--r);padding:1.1rem 1.25rem;margin-bottom:1.5rem}
-.raffle-ticket-price{font-family:var(--serif);font-size:2rem;color:var(--gold);line-height:1;margin-bottom:.2rem}
-.raffle-ticket-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:300}
-.raffle-contact-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.6rem}
-.raffle-contact-links{display:flex;gap:.75rem;flex-wrap:wrap}
-.raffle-contact-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1rem;border-radius:var(--r);text-decoration:none;transition:all var(--t);border:1px solid}
-.raffle-contact-btn.email{color:#f5d78e;border-color:rgba(196,154,42,.4);background:rgba(196,154,42,.1)}
-.raffle-contact-btn.email:hover{background:rgba(196,154,42,.2);border-color:var(--gold)}
-.raffle-contact-btn.fb{color:#7ab3f5;border-color:rgba(24,119,242,.4);background:rgba(24,119,242,.1)}
-.raffle-contact-btn.fb:hover{background:rgba(24,119,242,.2);border-color:#1877f2}
-.raffle-locations{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
-.raffle-location{display:flex;align-items:flex-start;gap:.6rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:.6rem .875rem;color:rgba(184,220,232,.6)}
-.raffle-location svg{flex-shrink:0;margin-top:.2rem;color:var(--gold);opacity:.7}
-.raffle-location-name{display:block;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.85);line-height:1.3}
-.raffle-location-addr{display:block;font-size:.78rem;color:rgba(184,220,232,.5);font-weight:300;margin-top:.1rem}
+.raffle-winner-box{display:flex;align-items:center;gap:1rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.4);border-radius:var(--r);padding:.9rem 1.25rem;margin-bottom:1.5rem}
+.raffle-winner-icon{font-size:1.5rem;flex-shrink:0}
+.raffle-winner-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,154,42,.6);font-weight:600;margin-bottom:.15rem}
+.raffle-winner-name{font-family:var(--serif);font-size:1.2rem;color:#f5d78e;font-weight:400}
+.raffle-highlights-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.875rem}
+.raffle-highlight-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.75rem}
+.raffle-highlight{display:flex;align-items:flex-start;gap:.75rem}
+.raffle-highlight-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.45rem;opacity:.8}
+.raffle-highlight-text{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;line-height:1.5}
+.raffle-highlight-text strong{color:#f5d78e;font-weight:600}
+.raffle-fb-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.55rem 1.1rem;border-radius:var(--r);text-decoration:none;transition:all var(--t);border:1px solid;color:#7ab3f5;border-color:rgba(24,119,242,.4);background:rgba(24,119,242,.1)}
+.raffle-fb-btn:hover{background:rgba(24,119,242,.2);border-color:#1877f2}
 .raffle-photo-wrap{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5),12px 12px 0 rgba(196,154,42,.15)}
 .raffle-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,6,6,.15) 0%,transparent 30%,transparent 55%,rgba(13,6,6,.65) 100%),linear-gradient(90deg,rgba(13,6,6,.25) 0%,transparent 20%,transparent 80%,rgba(13,6,6,.15) 100%);pointer-events:none}
 .raffle-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
 .raffle-photo-wrap:hover img{transform:scale(1.03)}
 .raffle-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem .875rem;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,transparent 100%);font-family:var(--serif);font-style:italic;font-size:.82rem;color:rgba(255,255,255,.8);z-index:1}
+
+/* ── BINGO SECTION ───────────────────────────────────── */
+.bingo{padding:6rem 2rem;background:linear-gradient(160deg,#04202e 0%,#072d3d 50%,#041e2a 100%);position:relative;overflow:hidden}
+.bingo::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 60px,rgba(58,143,168,.025) 60px,rgba(58,143,168,.025) 61px)}
+.bingo-inner{position:relative;z-index:1;max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.bingo-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(58,143,168,.8);font-weight:600;margin-bottom:.5rem}
+.bingo-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:.75rem}
+.bingo-title em{font-style:italic;color:var(--sky)}
+.bingo-subtitle{font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(184,220,232,.55);margin-bottom:1.5rem}
+.bingo-divider{width:48px;height:1px;background:var(--sky);opacity:.5;margin-bottom:1.5rem}
+.bingo-date-box{display:inline-flex;align-items:center;gap:.75rem;background:rgba(58,143,168,.1);border:1px solid rgba(58,143,168,.3);border-radius:var(--r);padding:.6rem 1.1rem;margin-bottom:1.5rem}
+.bingo-date-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(58,143,168,.7);font-weight:600}
+.bingo-date-val{font-family:var(--serif);font-size:1.1rem;color:var(--sky)}
+.bingo-details-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.875rem}
+.bingo-detail-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem}
+.bingo-detail{display:flex;align-items:flex-start;gap:.75rem}
+.bingo-detail-dot{width:6px;height:6px;border-radius:50%;background:var(--sky);flex-shrink:0;margin-top:.45rem;opacity:.8}
+.bingo-detail-text{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;line-height:1.5}
+.bingo-detail-text strong{color:var(--sky);font-weight:600}
+.bingo-buyin-box{background:rgba(58,143,168,.1);border:1px solid rgba(58,143,168,.25);border-radius:var(--r);padding:1.1rem 1.25rem;margin-bottom:1.5rem}
+.bingo-buyin-price{font-family:var(--serif);font-size:2rem;color:var(--sky);line-height:1;margin-bottom:.2rem}
+.bingo-buyin-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:300}
+.bingo-cash-note{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,200,50,.08);border:1px solid rgba(255,200,50,.2);border-radius:var(--r);padding:.45rem .9rem;font-size:.8rem;color:rgba(255,220,100,.85);margin-bottom:1.25rem}
+.bingo-fb-btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.55rem 1.1rem;border-radius:var(--r);text-decoration:none;transition:all var(--t);border:1px solid;color:#7ab3f5;border-color:rgba(24,119,242,.4);background:rgba(24,119,242,.1)}
+.bingo-fb-btn:hover{background:rgba(24,119,242,.2);border-color:#1877f2}
+.bingo-photo-wrap{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5),12px 12px 0 rgba(58,143,168,.15)}
+.bingo-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,32,46,.15) 0%,transparent 30%,transparent 55%,rgba(4,32,46,.65) 100%);pointer-events:none}
+.bingo-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.bingo-photo-wrap:hover img{transform:scale(1.03)}
 
 nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,46,63,.97);border-bottom:1px solid rgba(58,143,168,.3)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:.875rem 2rem;gap:1rem}
@@ -626,10 +643,12 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   .stats-strip{flex-direction:column;align-items:center;padding:1.5rem}
   .stat-item{border-right:none;border-bottom:1px solid rgba(58,143,168,.2);padding:1rem 2rem;width:100%;max-width:280px}
   .stat-item:last-child{border-bottom:none}
-  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact,.news,.raffle{padding:4rem 1.5rem}
+  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact,.news,.raffle,.bingo{padding:4rem 1.5rem}
   .news-grid{grid-template-columns:1fr}
   .raffle-inner{grid-template-columns:1fr;gap:2.5rem}
   .raffle-photo-wrap{order:-1}
+  .bingo-inner{grid-template-columns:1fr;gap:2.5rem}
+  .bingo-photo-wrap{order:-1}
   .impact-card-body{grid-template-columns:1fr;gap:1.5rem}
   .two-col{grid-template-columns:1fr;gap:2.5rem}
   .lake-illustration{box-shadow:4px 4px 0 var(--sky)}
@@ -733,10 +752,10 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <div class="hero-slogan">Clean Water, Strong Economy</div>
     <div class="hero-divider"></div>
     <p class="hero-mission">Dedicated to promoting the preservation, conservation, and responsible recreation of Lake Mattoon &mdash; a vital water source serving the communities of Central Illinois.</p>
-    <a href="#raffle" class="hero-raffle-callout">
+    <a href="#bingo" class="hero-raffle-callout">
       <div class="hero-raffle-pulse"></div>
-      <span class="hero-raffle-label">Now Raffling</span>
-      <span class="hero-raffle-text">Red, White &amp; Bourbon &mdash; Enter to Win</span>
+      <span class="hero-raffle-label">Upcoming Event</span>
+      <span class="hero-raffle-text">Music Bingo Night &mdash; June 13 at Lakeside Timbers</span>
       <span class="hero-raffle-arrow">&#8594;</span>
     </a>
     <div class="hero-cta-group">
@@ -753,64 +772,76 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   </p>
 </div>
 
-<!-- RAFFLE -->
-<section class="raffle" id="raffle">
+<!-- MEMORIAL DAY RECAP -->
+<section class="raffle" id="memorial-day">
   <div class="raffle-inner">
     <div>
-      <p class="raffle-tag">Raffle &nbsp;&middot;&nbsp; Support the Lake</p>
-      <h2 class="raffle-title">Red, White<br>&amp; <em>Bourbon</em></h2>
-      <p class="raffle-subtitle">A patriotic raffle benefiting Friends of Lake Mattoon</p>
+      <p class="raffle-tag">Memorial Day 2025 &nbsp;&middot;&nbsp; Event Recap</p>
+      <h2 class="raffle-title">A Beautiful<br>Day at the <em>Lake</em></h2>
+      <p class="raffle-subtitle">Annual Memorial Day celebration at Lake Mattoon Beach</p>
       <div class="raffle-divider"></div>
-      <div class="raffle-date-box">
+      <div class="raffle-winner-box">
+        <div class="raffle-winner-icon">🏆</div>
         <div>
-          <p class="raffle-date-label">Drawing</p>
-          <p class="raffle-date-val">May 25th &nbsp;&middot;&nbsp; Lake Mattoon Marina</p>
+          <p class="raffle-winner-label">Red, White &amp; Bourbon Raffle Winner</p>
+          <p class="raffle-winner-name">Congratulations, Mitch Growe!</p>
         </div>
       </div>
-      <p class="raffle-prizes-title">Prize package includes</p>
-      <div class="raffle-prize-list">
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Hand-crafted wooden American flag</strong> made from reclaimed bourbon barrels</span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Buffalo Trace &amp; Basil Hayden bourbon</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>$50 Texas Roadhouse</strong> gift certificate</span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>$50 Nehemiah's Steakhouse</strong> gift certificate</span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>American flag throw blanket</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Wooden bourbon tumblers</strong></span></div>
+      <p class="raffle-highlights-title">Highlights from the day</p>
+      <div class="raffle-highlight-list">
+        <div class="raffle-highlight"><div class="raffle-highlight-dot"></div><span class="raffle-highlight-text"><strong>Mattoon VFW Post #4325</strong> presented a meaningful ceremony honoring those who made the ultimate sacrifice</span></div>
+        <div class="raffle-highlight"><div class="raffle-highlight-dot"></div><span class="raffle-highlight-text"><strong>WWII veteran Earl Estes</strong> performed a wreath drop — a truly special moment for all in attendance</span></div>
+        <div class="raffle-highlight"><div class="raffle-highlight-dot"></div><span class="raffle-highlight-text">Friends of Lake Mattoon <strong>sold out of all food items</strong>, and the marina's famous lemon shakeups sold out as well!</span></div>
+        <div class="raffle-highlight"><div class="raffle-highlight-dot"></div><span class="raffle-highlight-text">Thank you to everyone who came out — the <strong>support was overwhelming</strong></span></div>
       </div>
-      <div class="raffle-ticket-box">
-        <div class="raffle-ticket-price">$5</div>
-        <div class="raffle-ticket-label">per ticket &nbsp;&middot;&nbsp; must be 21+ to enter</div>
-      </div>
-      <p class="raffle-contact-title">Purchase tickets from an officer or at these local businesses</p>
-      <div class="raffle-contact-links">
-        <a id="raffleEmailLink" href="#raffle" class="raffle-contact-btn email">
-          <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path d="M3 4H15C15.55 4 16 4.45 16 5V13C16 13.55 15.55 14 15 14H3C2.45 14 2 13.55 2 13V5C2 4.45 2.45 4 3 4Z" stroke="currentColor" stroke-width="1.2"/><path d="M2 5L9 9.5L16 5" stroke="currentColor" stroke-width="1.2"/></svg>
-          Email Us
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" class="raffle-contact-btn fb">
-          <svg width="13" height="13" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="currentColor"/></svg>
-          Message on Facebook
-        </a>
-      </div>
-      <div class="raffle-locations">
-        <div class="raffle-location">
-          <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7C4 11 9 16 9 16C9 16 14 11 14 7C14 4.24 11.76 2 9 2Z" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="7" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
-          <div>
-            <span class="raffle-location-name">Kelly's Bar &amp; Grill</span>
-            <span class="raffle-location-addr">588 Oak Avenue, Neoga, IL</span>
-          </div>
-        </div>
-        <div class="raffle-location">
-          <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7C4 11 9 16 9 16C9 16 14 11 14 7C14 4.24 11.76 2 9 2Z" stroke="currentColor" stroke-width="1.2"/><circle cx="9" cy="7" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
-          <div>
-            <span class="raffle-location-name">Lakeside Timbers</span>
-            <span class="raffle-location-addr">49 County Rd 1250 N, Neoga, IL 62447</span>
-          </div>
-        </div>
-      </div>
+      <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" class="raffle-fb-btn">
+        <svg width="13" height="13" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="currentColor"/></svg>
+        View Photos on Facebook
+      </a>
     </div>
     <div class="raffle-photo-wrap">
-      <img src="images/raffle-photo.jpg" alt="Red White and Bourbon raffle prize — hand-crafted bourbon barrel American flag with prize basket" loading="lazy">
-      <div class="raffle-photo-caption">Hand-crafted wooden American flag made from reclaimed bourbon barrels &nbsp;&middot;&nbsp; One of a kind</div>
+      <img src="images/raffle-photo.jpg" alt="Memorial Day celebration at Lake Mattoon Beach" loading="lazy">
+      <div class="raffle-photo-caption">Memorial Day 2025 &nbsp;&middot;&nbsp; Lake Mattoon Marina</div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC BINGO -->
+<section class="bingo" id="bingo">
+  <div class="bingo-inner">
+    <div>
+      <p class="bingo-tag">Upcoming Event &nbsp;&middot;&nbsp; June 13</p>
+      <h2 class="bingo-title">Music Bingo<br>at the <em>Lake</em></h2>
+      <p class="bingo-subtitle">Hosted by Friends of Lake Mattoon &mdash; family &amp; kid friendly!</p>
+      <div class="bingo-divider"></div>
+      <div class="bingo-date-box">
+        <div>
+          <p class="bingo-date-label">When &amp; Where</p>
+          <p class="bingo-date-val">Saturday, June 13 &nbsp;&middot;&nbsp; Lakeside Timbers RV Campground</p>
+        </div>
+      </div>
+      <p class="bingo-details-title">Schedule &amp; Details</p>
+      <div class="bingo-detail-list">
+        <div class="bingo-detail"><div class="bingo-detail-dot"></div><span class="bingo-detail-text"><strong>5:00 PM</strong> &mdash; Bar &amp; Pizza open (doors open)</span></div>
+        <div class="bingo-detail"><div class="bingo-detail-dot"></div><span class="bingo-detail-text"><strong>6:00 PM</strong> &mdash; First game begins &mdash; entertainment by <strong>Code 3 Music</strong></span></div>
+        <div class="bingo-detail"><div class="bingo-detail-dot"></div><span class="bingo-detail-text"><strong>3 main rounds</strong> &mdash; lucky winners each take home <strong>$50 in prizes</strong></span></div>
+        <div class="bingo-detail"><div class="bingo-detail-dot"></div><span class="bingo-detail-text"><strong>Grand Finale Cover All Jackpot</strong> &mdash; winner takes 50%, 50% benefits Friends of Lake Mattoon</span></div>
+        <div class="bingo-detail"><div class="bingo-detail-dot"></div><span class="bingo-detail-text">All profits benefit <strong>Friends of Lake Mattoon</strong></span></div>
+      </div>
+      <div class="bingo-buyin-box">
+        <div class="bingo-buyin-price">$20</div>
+        <div class="bingo-buyin-label">buy-in &nbsp;&middot;&nbsp; 4 full games</div>
+      </div>
+      <div class="bingo-cash-note">
+        💵 Cash only at the door &nbsp;&middot;&nbsp; ATM at Lakeside Timbers
+      </div>
+      <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" class="bingo-fb-btn">
+        <svg width="13" height="13" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="currentColor"/></svg>
+        See Event on Facebook
+      </a>
+    </div>
+    <div class="bingo-photo-wrap">
+      <img src="images/bingo-flyer.jpg" alt="Music Bingo Night at Lakeside Timbers — June 13" loading="lazy">
     </div>
   </div>
 </section>
