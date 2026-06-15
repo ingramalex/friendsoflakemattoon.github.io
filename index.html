@@ -1864,8 +1864,42 @@ document.addEventListener('DOMContentLoaded', function() {
     return window.innerWidth < 640 ? 1 : window.innerWidth < 900 ? 2 : 3;
   }
 
+  function injectEventSchema(events) {
+    var existing = document.getElementById('eventSchema');
+    if (existing) existing.remove();
+    if (!events.length) return;
+    var schema = {
+      '@context': 'https://schema.org',
+      '@graph': events.map(function(ev) {
+        return {
+          '@type': 'Event',
+          name: ev.title,
+          startDate: ev.start,
+          eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+          eventStatus: 'https://schema.org/EventScheduled',
+          location: {
+            '@type': 'Place',
+            name: ev.location,
+            address: 'Lake Mattoon, IL'
+          },
+          organizer: {
+            '@type': 'Organization',
+            name: 'Friends of Lake Mattoon',
+            url: 'https://friendsoflakemattoon.org'
+          }
+        };
+      })
+    };
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'eventSchema';
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }
+
   function buildCarousel(events) {
     carouselItems = events;
+    injectEventSchema(events);
     var el = document.getElementById('eventsContainer');
     if (!events.length) {
       el.innerHTML =
