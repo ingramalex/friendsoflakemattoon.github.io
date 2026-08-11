@@ -75,6 +75,10 @@ jobs:
           BRANCH=lake-watch/brief
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # checkout fetches only the default branch, so without this there is no
+          # remote-tracking ref for BRANCH and --force-with-lease has no lease to
+          # check against -- it refuses rather than pushing.
+          git fetch origin "$BRANCH" 2>/dev/null || true
           git checkout -B "$BRANCH"
           git commit -q -m "Lake Watch brief for $(date +%Y-%m-%d)"
           git push --force-with-lease origin "$BRANCH"
