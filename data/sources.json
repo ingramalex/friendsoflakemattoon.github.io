@@ -58,6 +58,33 @@
       "notes": "Minutes are posted only after board approval, typically the month following the meeting."
     },
     {
+      "id": "shelby-county-board",
+      "name": "Shelby County Board — agendas and minutes",
+      "url": "https://shelbycounty-il.gov/cominutes.aspx",
+      "access": "html+pdf",
+      "priority": 2,
+      "cadence": "weekly",
+      "notes": "Most of Lake Mattoon's shoreline is in Shelby County. Found by the discovery job 2026-08-11 and verified: 200, robots allows. Gotchas: ~1000 links, relative hrefs, uppercase .PDF, and ordered oldest-first, so links must be resolved and ranked by year rather than taken in document order."
+    },
+    {
+      "id": "cumberland-county-board",
+      "name": "Cumberland County Board — agendas and minutes",
+      "url": "https://cumberlandcoil.gov/county-board-agendas-minutes/",
+      "access": "html+pdf",
+      "priority": 2,
+      "cadence": "weekly",
+      "notes": "Cumberland County holds part of the lake and its watershed. Found by the discovery job 2026-08-11 and verified: 200, robots allows (only wp-admin paths disallowed)."
+    },
+    {
+      "id": "iepa-hab-program",
+      "name": "Illinois EPA — Harmful Algal Bloom program",
+      "url": "https://epa.illinois.gov/topics/water-quality/monitoring/algal-bloom/2026-harmful-algal-bloom-program.html",
+      "access": "html",
+      "priority": 2,
+      "cadence": "weekly",
+      "notes": "Where a Lake Mattoon or Lake Paradise bloom would be officially recorded for the season. IEPA is the agency behind the microcystin numbers the City publishes."
+    },
+    {
       "id": "mattoon-city-news",
       "name": "City of Mattoon — news feed",
       "url": "https://mattoon.illinois.gov/news/",

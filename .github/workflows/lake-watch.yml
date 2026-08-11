@@ -1,12 +1,16 @@
 name: Lake Watch
 
-# Two jobs, deliberately separate:
-#   watch    — deterministic scrape of known sources. No API key, no AI, no
-#              judgment calls. Commits data/water-quality.json when it changes.
-#   discover — asks Claude to search for sources we don't know about yet, and
-#              opens an issue with the candidates. Never edits the registry or
-#              the site: an AI-proposed source has to be reviewed by a human
-#              before it can appear on a site whose whole point is credibility.
+# Weekly brief on Lake Mattoon. Two jobs, deliberately separate:
+#
+#   brief    — gathers what actually changed (water quality, watershed
+#              planning, upcoming meeting agendas across all four governments
+#              with authority over the lake), has Claude write it up, and opens
+#              a PR with the draft. Evidence gathering is deterministic; Claude
+#              only writes, and only from that evidence.
+#   discover — looks for sources we don't track yet and files them as an issue.
+#
+# Nothing publishes itself. This repo IS the live site, so every automated
+# change is reviewed before it is served.
 
 on:
   schedule:
@@ -19,83 +23,106 @@ permissions:
   pull-requests: write
 
 jobs:
-  watch:
-    name: Refresh water quality data
+  brief:
+    name: Write the weekly brief
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install --quiet certifi
+        run: pip install --quiet anthropic certifi pypdf
 
-      - name: Parse water quality log
-        id: parse
+      - name: Refresh water quality readings
         run: |
-          python3 scripts/lakewatch/watch.py | tee "$RUNNER_TEMP/summary.txt"
-          echo "## Water quality" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          cat "$RUNNER_TEMP/summary.txt" >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          python3 scripts/lakewatch/watch.py | tee "$RUNNER_TEMP/water.txt"
+          {
+            echo "## Water quality"
+            echo '```'
+            cat "$RUNNER_TEMP/water.txt"
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
 
-      # Opens a PR rather than pushing to main. This repo IS the live site, so
-      # every automated change is reviewed before it is served -- the same rule
-      # the security auto-fix workflows follow. A single long-lived branch means
-      # repeat runs update one PR instead of opening a new one each week.
-      - name: Open or update the data PR
+      - name: Write the brief
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::ANTHROPIC_API_KEY is not set — cannot write the brief."
+            exit 1
+          fi
+          python3 scripts/lakewatch/brief.py | tee "$RUNNER_TEMP/brief.txt"
+          {
+            echo "## Brief"
+            echo '```'
+            cat "$RUNNER_TEMP/brief.txt"
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: Open or update the review PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet -- data/water-quality.json; then
-            echo "No new readings." >> $GITHUB_STEP_SUMMARY
+          git add -A data content
+          if git diff --cached --quiet; then
+            echo "Nothing changed this week." >> $GITHUB_STEP_SUMMARY
             exit 0
           fi
 
-          BRANCH=lake-watch/data
+          BRANCH=lake-watch/brief
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$BRANCH"
-          git add data/water-quality.json
-          git commit -m "Update Lake Mattoon water quality readings"
+          git commit -q -m "Lake Watch brief for $(date +%Y-%m-%d)"
           git push --force-with-lease origin "$BRANCH"
 
-          SUMMARY=$(cat "$RUNNER_TEMP/summary.txt")
+          BODY=$(printf 'Automated weekly brief.\n\n```\n%s\n%s\n```\n\nReview the draft in `content/news/`, then merge to publish.' \
+            "$(cat "$RUNNER_TEMP/water.txt")" "$(cat "$RUNNER_TEMP/brief.txt")")
+
           if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
-            gh pr comment "$BRANCH" --body "Refreshed $(date +%Y-%m-%d): $SUMMARY"
-            echo "Updated the existing data PR." >> $GITHUB_STEP_SUMMARY
+            gh pr comment "$BRANCH" --body "$BODY"
+            echo "Updated the existing brief PR." >> $GITHUB_STEP_SUMMARY
+          elif gh pr create --base main --head "$BRANCH" \
+                 --title "Lake Watch brief — $(date +%B %-d, %Y)" --body "$BODY"; then
+            echo "Opened the brief PR." >> $GITHUB_STEP_SUMMARY
           else
-            gh pr create --base main --head "$BRANCH" \
-              --title "Lake Watch: new water quality readings" \
-              --body "$(printf '%s\n\n%s\n' \
-                "Automated refresh of \`data/water-quality.json\` from the City of Mattoon's cumulative water quality notice." \
-                "$SUMMARY")"
-            echo "Opened a data PR." >> $GITHUB_STEP_SUMMARY
+            # Actions cannot open PRs unless "Allow GitHub Actions to create and
+            # approve pull requests" is enabled (Settings > Actions > General).
+            # The branch is pushed either way, so the work is never lost.
+            COMPARE="https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}?expand=1"
+            echo "::warning::Could not open a PR automatically. Branch \`$BRANCH\` is pushed — open it here: $COMPARE"
+            {
+              echo "### Branch pushed, PR not opened"
+              echo "GitHub Actions is not permitted to create pull requests in this repo."
+              echo "Enable it under **Settings → Actions → General → Workflow permissions**, or open the PR manually:"
+              echo ""
+              echo "$COMPARE"
+            } >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Flag any advisory exceedance
         run: |
-          EXCEEDANCES=$(python3 -c "import json;print(json.load(open('data/water-quality.json'))['exceedances'])")
-          if [ "$EXCEEDANCES" -gt 0 ]; then
-            echo "::warning::$EXCEEDANCES reading(s) above the 0.30 ppb advisory — review before publishing."
+          EX=$(python3 -c "import json;print(json.load(open('data/water-quality.json'))['exceedances'])")
+          if [ "$EX" -gt 0 ]; then
+            echo "::warning::$EX reading(s) above the 0.30 ppb advisory — review before publishing."
           fi
 
   discover:
     name: Search for new sources
     runs-on: ubuntu-latest
-    # Runs even if `watch` fails — a broken parser shouldn't stop discovery.
     if: always()
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install --quiet anthropic
+        run: pip install --quiet anthropic certifi
 
       - name: Ask Claude for candidate sources
         id: discover
