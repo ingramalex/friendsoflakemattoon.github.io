@@ -301,7 +301,12 @@ def gather_watershed_committee(ev: Evidence) -> None:
         return
 
     text = visible(raw)
-    body = re.search(r"Lake Mattoon/Paradise Watershed Committee(.{0,1200})", text)
+    # Anchor on a sentence from the body. The committee's name also appears in
+    # the page title and the nav, and matching those captures the site menu
+    # instead of the content -- which then hides the meeting date.
+    body = re.search(r"(We are partnering.{0,1100})", text) or \
+        re.search(r"(The purpose of this group.{0,1100})", text)
+    meeting_line = re.search(r"[^.]*next meeting[^.]*\.", text, re.I)
     agenda_url = re.search(r'href="([^"]+\.(?:docx?|pdf))"', raw)
 
     agenda = ""
@@ -318,6 +323,7 @@ def gather_watershed_committee(ev: Evidence) -> None:
         kind="watershed_committee",
         body="Lake Mattoon and Lake Paradise Watershed Committee",
         summary=(body.group(1).strip()[:900] if body else ""),
+        posted_next_meeting=(meeting_line.group(0).strip() if meeting_line else None),
         agenda_url=agenda_url.group(1) if agenda_url else None,
         agenda_text=agenda[:1800],
         page=page,
@@ -396,6 +402,93 @@ def gather_counties(ev: Evidence) -> None:
             documents_checked=checked,
             lake_items=hits,
         )
+
+
+# ── structured events ─────────────────────────────────────────────────────────
+
+MONTHS = {m: i for i, m in enumerate(
+    ["january", "february", "march", "april", "may", "june", "july",
+     "august", "september", "october", "november", "december"], start=1)}
+
+
+def parse_loose_date(text: str, default_year: int) -> str | None:
+    """Pull a date out of prose like 'next meeting is on July 8th at 6 pm'."""
+    m = re.search(r"([A-Z][a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?(?:,?\s*(\d{4}))?", text)
+    if not m:
+        return None
+    month = MONTHS.get(m.group(1).lower())
+    if not month:
+        return None
+    try:
+        return dt.date(int(m.group(3) or default_year), month, int(m.group(2))).isoformat()
+    except ValueError:
+        return None
+
+
+def build_events(ev: Evidence) -> list[dict]:
+    """Meetings a resident could actually attend.
+
+    Every date here is scraped, never inferred by the model -- sending someone
+    to a meeting that does not exist is the one failure that would cost this
+    project its credibility with the people it is for.
+
+    Importance is rule-based:
+      high   - a lake item was found in the body's documents, or the body
+               exists solely to deal with these lakes
+      normal - a regular meeting where the lake may or may not come up
+    """
+    today = dt.date.today()
+    events: list[dict] = []
+
+    for item in ev.by_beat("planning"):
+        if item.get("kind") != "watershed_committee":
+            continue
+        posted = item.get("posted_next_meeting") or ""
+        when = parse_loose_date(posted, today.year)
+        stale = bool(when and when < today.isoformat())
+        why = "This committee exists specifically to deal with Lake Mattoon and Lake Paradise."
+        if stale:
+            why += (" The committee's page still advertises a meeting that has already "
+                    "passed, so the next date has not been posted yet.")
+        events.append({
+            "date": when,
+            "body": item["body"],
+            "importance": "high",
+            "why": why,
+            "posted_text": posted or None,
+            "url": item.get("page"),
+            "documents": [item["agenda_url"]] if item.get("agenda_url") else [],
+            "confirmed": bool(when) and not stale,
+        })
+
+    for item in ev.by_beat("upcoming"):
+        if item.get("kind") == "council":
+            for meet in item.get("upcoming", []):
+                events.append({
+                    "date": meet["date"],
+                    "body": item["body"],
+                    "importance": "normal",
+                    "why": item.get("caveat", ""),
+                    "url": meet["url"],
+                    "documents": meet.get("documents", []),
+                    "confirmed": True,
+                })
+        elif item.get("kind") == "county" and item.get("lake_items"):
+            events.append({
+                "date": None,
+                "body": item["body"],
+                "importance": "high",
+                "why": (f"{len(item['lake_items'])} document(s) on this board's agenda page "
+                        "mention the lake or its watershed."),
+                "url": item.get("index"),
+                "documents": [h["url"] for h in item["lake_items"]],
+                "confirmed": False,
+            })
+
+    dated = sorted((e for e in events if e["date"]), key=lambda e: e["date"])
+    return [e for e in dated if e["date"] >= today.isoformat()] + \
+           [e for e in dated if e["date"] < today.isoformat()] + \
+           [e for e in events if not e["date"]]
 
 
 # ── the article ───────────────────────────────────────────────────────────────
@@ -491,8 +584,8 @@ def main() -> int:
     gather_counties(ev)
 
     if args.dry_run:
-        print(json.dumps({"items": ev.items, "unavailable": ev.unavailable},
-                         indent=2, default=str))
+        print(json.dumps({"items": ev.items, "events": build_events(ev),
+                          "unavailable": ev.unavailable}, indent=2, default=str))
         print(f"\n{len(ev.items)} evidence items, "
               f"{len(ev.unavailable)} unreachable source(s).", file=sys.stderr)
         return 0
@@ -518,6 +611,7 @@ def main() -> int:
         "date": today,
         "title": title,
         "markdown": article,
+        "events": build_events(ev),
         "evidence_count": len(ev.items),
         "unavailable": ev.unavailable,
     }, indent=2) + "\n")

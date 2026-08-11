@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Unlisted preview for group feedback: reachable by direct URL only, kept out
+     of search results, the sitemap, and the site navigation. -->
+<meta name="robots" content="noindex,nofollow">
+<title>Lake Watch — News &amp; Meetings (preview)</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2e3f;--mid:#1a5068;--teal:#3a8fa8;--sky:#b8dce8;
+  --sand:#f5f0e8;--cream:#faf7f2;--dark:#1a2628;--muted:#3d5a60;
+  --gold:#c49a2a;--rule:#dfd8cc;--flag:#a8452a;--green:#2d5a27;
+  --serif:'Playfair Display',Georgia,serif;
+  --body:'Source Serif 4',Georgia,serif;
+  --r:4px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--cream);color:var(--dark);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1.5rem}
+
+.preview-flag{background:var(--navy);color:var(--sky);font-size:12px;letter-spacing:.09em;text-transform:uppercase;text-align:center;padding:.65rem 1.5rem}
+.preview-flag strong{color:var(--gold);font-weight:600}
+
+header.masthead{background:var(--navy);color:#fff;padding:3.25rem 0 2.75rem}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.75rem}
+h1.page{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3rem);font-weight:400;line-height:1.15;margin-bottom:1rem}
+h1.page em{font-style:italic;color:var(--sky)}
+.masthead p{font-weight:300;color:rgba(184,220,232,.85);max-width:62ch}
+.gold-rule{width:48px;height:1px;background:var(--gold);margin:1.5rem 0}
+
+section{padding:3rem 0;border-bottom:1px solid var(--rule)}
+h2.sec{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:400;color:var(--navy);margin-bottom:.4rem}
+.lede{color:var(--muted);font-weight:300;max-width:66ch;margin-bottom:1.75rem}
+
+/* ── Events ─────────────────────────────────────────── */
+.events{display:grid;gap:1rem}
+.event{background:#fff;border:1px solid var(--rule);border-left:3px solid var(--rule);border-radius:0 var(--r) var(--r) 0;padding:1.15rem 1.35rem;display:grid;grid-template-columns:88px 1fr;gap:1.25rem;align-items:start}
+.event.high{border-left-color:var(--gold);background:linear-gradient(90deg,#fdfaf3 0%,#fff 40%)}
+.event-when{text-align:center;border-right:1px solid var(--rule);padding-right:1rem}
+.event-mon{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--flag);font-weight:600}
+.event-day{font-family:var(--serif);font-size:1.9rem;line-height:1.05;color:var(--navy)}
+.event-yr{font-size:.75rem;color:var(--muted)}
+.event-tbd{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;line-height:1.3}
+.event-body{font-family:var(--serif);font-size:1.12rem;color:var(--navy);margin-bottom:.3rem}
+.event-body a{color:var(--navy);text-decoration:none;border-bottom:1px solid rgba(58,143,168,.45)}
+.event-body a:hover{border-bottom-color:var(--gold)}
+.event-why{font-size:.9rem;color:var(--muted);font-weight:300}
+.event-meta{margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.18rem .5rem;border-radius:2px}
+.tag.watch{background:#f7edd6;color:#8a6a12}
+.tag.routine{background:#e8eef0;color:var(--mid)}
+.tag.unconfirmed{background:#f6e5e0;color:var(--flag)}
+.event a.doc{font-size:.82rem;color:var(--mid);text-decoration:none;border-bottom:1px solid rgba(26,80,104,.25)}
+.event a.doc:hover{border-bottom-color:var(--mid)}
+.event-quoted{margin-top:.5rem;font-size:.85rem;color:var(--muted);font-style:italic}
+
+/* ── Article ────────────────────────────────────────── */
+/* Long unbreakable tokens -- the committee's email address, document
+   filenames, bare URLs -- otherwise push the page wider than the viewport. */
+.article,.event{overflow-wrap:anywhere}
+.article{background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:2rem 2.25rem;max-width:74ch}
+.article-date{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.6rem}
+.article h1{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:400;line-height:1.2;color:var(--navy);margin-bottom:1.25rem}
+.article h2{font-family:var(--serif);font-size:1.25rem;font-weight:400;color:var(--navy);margin:1.9rem 0 .6rem}
+.article p{margin-bottom:1rem;color:#2b3a3d}
+.article a{color:var(--mid)}
+.article strong{font-weight:600;color:var(--navy)}
+.article em{font-style:italic}
+.article ul{margin:0 0 1rem 1.2rem}
+.article li{margin-bottom:.35rem}
+.article hr{border:none;border-top:1px solid var(--rule);margin:1.5rem 0}
+.article > p:last-child em{color:var(--muted);font-size:.92rem}
+
+.callout{background:var(--sand);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0;padding:1.15rem 1.35rem;margin-top:2rem}
+.callout h3{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--navy);margin-bottom:.35rem}
+.callout p{font-size:.92rem;color:var(--muted);font-weight:300}
+.callout p+p{margin-top:.6rem}
+
+.loading,.empty{color:var(--muted);font-weight:300;padding:1.25rem 0}
+footer{padding:2.5rem 0 3.5rem;font-size:.85rem;color:var(--muted);font-weight:300}
+footer a{color:var(--mid)}
+@media(max-width:620px){
+  .event{grid-template-columns:64px 1fr;gap:.9rem;padding:1rem}
+  .event-day{font-size:1.5rem}
+  .article{padding:1.4rem 1.25rem}
+  section{padding:2.25rem 0}
+}
+</style>
+
+<div class="preview-flag">
+  <strong>Preview</strong> &nbsp;·&nbsp; not linked from the site &nbsp;·&nbsp; for group feedback
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Lake Watch</p>
+    <h1 class="page">News &amp; <em>meetings</em></h1>
+    <div class="gold-rule"></div>
+    <p>A weekly summary of what's happening around Lake Mattoon — water quality, watershed planning, and the meetings where decisions actually get made.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec">Coming up around the lake</h2>
+    <p class="lede">Meetings you can attend. Highlighted items are ones where the lake is specifically on the table &mdash; either the body exists for it, or its posted documents mention it.</p>
+    <div class="events" id="events"><p class="loading">Loading meetings&hellip;</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec">This week's brief</h2>
+    <p class="lede">Written automatically each Monday from what the City, the Watershed Committee, and the three county boards actually published. Reviewed before it goes out.</p>
+    <div id="article"><p class="loading">Loading the brief&hellip;</p></div>
+
+    <div class="callout">
+      <h3>How this is put together &mdash; and where it stops</h3>
+      <p>Meeting dates, document titles, and every number are scraped directly from government sources. The write-up is drafted by AI <em>from that evidence only</em>, then reviewed by a person before it is published. Nothing posts itself.</p>
+      <p>Two limits worth knowing. Mattoon City Council agenda and packet PDFs are behind a CAPTCHA, so we can see that a meeting exists and what documents were filed, but not what is on the agenda. And where a source can't be reached, the brief says so rather than implying nothing happened.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Sources: City of Mattoon public notices and council meeting listings; Coles County Soil &amp; Water Conservation District; Coles, Shelby, and Cumberland county boards; Illinois EPA.</p>
+    <p style="margin-top:.6rem">Friends of Lake Mattoon &middot; <a href="/">friendsoflakemattoon.org</a> &middot; <a href="lake-watch.html">water quality data</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  // Everything rendered here is escaped before any markup is applied, so a
+  // stray angle bracket in a government document or a model-written sentence
+  // is displayed as text and can never become an element.
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function safeUrl(u) {
+    return /^https?:\/\//i.test(u || '') ? u : '';
+  }
+
+  /* Minimal markdown: headings, bold, italic, links, lists, rules.
+     Runs strictly after escaping, so raw HTML in the source stays inert. */
+  function md(src) {
+    var lines = esc(src).split('\n'), out = [], list = false;
+    function closeList() { if (list) { out.push('</ul>'); list = false; } }
+
+    lines.forEach(function (raw) {
+      var line = raw.trim();
+      if (!line) { closeList(); return; }
+      if (/^---+$/.test(line)) { closeList(); out.push('<hr>'); return; }
+
+      var m;
+      if ((m = line.match(/^(#{1,3})\s+(.*)$/))) {
+        closeList();
+        var lvl = Math.min(m[1].length, 3);
+        out.push('<h' + lvl + '>' + inline(m[2]) + '</h' + lvl + '>');
+        return;
+      }
+      if ((m = line.match(/^[-*]\s+(.*)$/))) {
+        if (!list) { out.push('<ul>'); list = true; }
+        out.push('<li>' + inline(m[1]) + '</li>');
+        return;
+      }
+      closeList();
+      out.push('<p>' + inline(line) + '</p>');
+    });
+    closeList();
+    return out.join('');
+  }
+
+  function inline(t) {
+    return t
+      .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (_, label, href) {
+        var u = safeUrl(href);
+        return u ? '<a href="' + u + '" target="_blank" rel="noopener">' + label + '</a>' : label;
+      })
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[^*])\*([^*]+)\*/g, '$1<em>$2</em>');
+  }
+
+  function renderEvents(events) {
+    var host = document.getElementById('events');
+    if (!events || !events.length) {
+      host.innerHTML = '<p class="empty">No meetings found in this week’s sources. ' +
+        'That is not the same as no meetings being scheduled — several bodies post ' +
+        'their dates late.</p>';
+      return;
+    }
+
+    var today = new Date().toISOString().slice(0, 10);
+
+    host.innerHTML = events.map(function (e) {
+      // A date that has already passed is not a date you can show up on.
+      // Rendering "JUL 8" in the date block under a "Coming up" heading reads
+      // as an upcoming meeting even with a caveat beside it, so a stale date
+      // falls back to "not posted" and survives only as the quoted source line.
+      var upcoming = e.date && e.date >= today;
+      var when;
+      if (upcoming) {
+        var p = e.date.split('-');
+        when = '<p class="event-mon">' + MONTHS[+p[1] - 1] + '</p>' +
+               '<p class="event-day">' + (+p[2]) + '</p>' +
+               '<p class="event-yr">' + p[0] + '</p>';
+      } else {
+        when = '<p class="event-tbd">Date<br>not<br>posted</p>';
+      }
+
+      var tags = e.importance === 'high'
+        ? '<span class="tag watch">Lake on the agenda</span>'
+        : '<span class="tag routine">Regular meeting</span>';
+      if (!upcoming) tags += '<span class="tag unconfirmed">No date posted</span>';
+      else if (!e.confirmed) tags += '<span class="tag unconfirmed">Unconfirmed</span>';
+
+      var docs = (e.documents || []).map(function (d, i) {
+        var u = safeUrl(d);
+        if (!u) return '';
+        var name = decodeURIComponent(u.split('/').pop()) || ('Document ' + (i + 1));
+        return '<a class="doc" href="' + u + '" target="_blank" rel="noopener">' +
+               esc(name.length > 46 ? name.slice(0, 44) + '…' : name) + '</a>';
+      }).filter(Boolean).join(' &middot; ');
+
+      var quoted = e.posted_text
+        ? '<p class="event-quoted">Posted: “' + esc(e.posted_text) + '”</p>' : '';
+
+      var link = safeUrl(e.url);
+      var title = link
+        ? '<a href="' + link + '" target="_blank" rel="noopener">' + esc(e.body) + '</a>'
+        : esc(e.body);
+
+      return '<article class="event ' + (e.importance === 'high' ? 'high' : '') + '">' +
+               '<div class="event-when">' + when + '</div>' +
+               '<div>' +
+                 '<p class="event-body">' + title + '</p>' +
+                 '<p class="event-why">' + esc(e.why) + '</p>' +
+                 quoted +
+                 '<div class="event-meta">' + tags + (docs ? ' ' + docs : '') + '</div>' +
+               '</div>' +
+             '</article>';
+    }).join('');
+  }
+
+  function renderArticle(brief) {
+    var host = document.getElementById('article');
+    if (!brief || !brief.markdown) {
+      host.innerHTML = '<p class="empty">No brief has been generated yet.</p>';
+      return;
+    }
+    var d = brief.date ? brief.date.split('-') : null;
+    var stamp = d ? MONTHS[+d[1] - 1] + ' ' + (+d[2]) + ', ' + d[0] : '';
+    host.innerHTML = '<div class="article">' +
+      (stamp ? '<p class="article-date">' + stamp + '</p>' : '') +
+      md(brief.markdown) + '</div>';
+  }
+
+  fetch('data/latest-brief.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (brief) { renderEvents(brief.events); renderArticle(brief); })
+    .catch(function () {
+      document.getElementById('events').innerHTML =
+        '<p class="empty">Could not load meetings.</p>';
+      document.getElementById('article').innerHTML =
+        '<p class="empty">Could not load the brief. It may not have been generated yet.</p>';
+    });
+})();
+</script>

@@ -1,0 +1,34 @@
+{
+  "generated": "2026-08-11T13:39:22+00:00",
+  "date": "2026-08-11",
+  "title": "Aug. 11: Council's Next Date Isn't Posted Yet, and the Watershed Committee Hasn't Confirmed One Either",
+  "markdown": "# Aug. 11: Council's Next Date Isn't Posted Yet, and the Watershed Committee Hasn't Confirmed One Either\n\n## Coming up\n\nThe **Mattoon City Council** meets on the first and third Tuesdays, but no upcoming meeting is currently listed on the [city's upcoming meetings page](https://mattoon.illinois.gov/government/citycouncil/upcomingmeetings/). The most recent posted meeting was [Aug. 4](https://mattoon.illinois.gov/download/city-council-meeting-2026-08-04/). Going by the stated cadence, the next one would fall on Aug. 18, but we cannot confirm that from the city's own postings, and we could not read the agendas at all \u2014 the agenda and packet PDFs sit behind a CAPTCHA. We can see the document titles and dates and nothing more, so we do not know whether the lake appears on any agenda.\n\nThis matters more here than it might elsewhere: the council that governs Lake Mattoon is elected by voters inside Mattoon city limits, and most people who live on this lake are not among them. The meetings are still the place decisions get made, and they are open.\n\nThe **Lake Mattoon and Lake Paradise Watershed Committee** met July 8. Its [agenda](http://www.colescountyswcd.org/wp-content/uploads/2026/07/2026.7.8-MP-Watershed-Meeting-Agenda.docx) listed setting the next meeting date as an action item, along with a proposal to meet the first Wednesday of every odd month. We have not seen minutes, so we do not know whether that schedule was adopted or what date was chosen. If it was, the next meeting would be Sept. 2. The committee is open to anyone; contact mattoonandparadisewatershed@gmail.com.\n\nAlso on that agenda: **Master Naturalist Training** at the Douglas-Hart Nature Center, Tuesdays Aug. 11 through Oct. 13, 5:30\u20138:30 p.m., $250.\n\n## Water quality\n\nNo new readings have been posted since our last brief. The most recent result on the [city's July 30 water quality update](https://mattoon.illinois.gov/public-notices/water-quality-update-july-30-2026/) is from **July 26: 0.071 ppb**.\n\nBecause this is the first brief where we've laid out the series, here is the fuller picture. Across 75 readings, the highest single result is 0.14 ppb. The advisory threshold for sensitive groups is 0.3 ppb; the general-population threshold is 1.6 ppb. There have been no exceedances of either. Recent results: 0.039 (June 15), 0.030 (June 30), 0.069 (July 11), 0.098 (July 12), 0.104 (July 13), 0.071 (July 26).\n\nTwo things to keep straight. These readings are of **finished treated tap water**, not lake water. And the water they describe comes from a system in which **Lake Paradise is the city's primary drinking water source; Lake Mattoon is a contingency source.**\n\n## Watershed planning\n\nNothing new this week on TMDL work, funding, or erosion projects \u2014 the only watershed document in this week's evidence is the July 8 committee agenda described above, which covered orientation and goal-setting rather than specific projects.\n\n## County boards\n\nWe checked six documents each from the **Coles**, **Shelby**, and **Cumberland** county boards. Shelby and Cumberland had no lake items. Coles County's only mentions were incidental references in long-range plans: the [2025 Hazard Mitigation Plan](https://www.colesco.illinois.gov/static/plans/Coles%20County%20HMP%207.8.2025.pdf) notes the river \"is dammed to form Lake Mattoon,\" and the [2026 Comprehensive Plan](https://www.colesco.illinois.gov/static/plans/Coles%20County%202026%20Comprehensive%20Plan.pdf) lists Lake Mattoon in an inventory. No action items.\n\n*Could not check: the contents of any Mattoon City Council agenda or packet (CAPTCHA-protected), and whether the Watershed Committee set its next meeting date.*",
+  "evidence_count": 6,
+  "unavailable": [],
+  "events": [
+    {
+      "date": "2026-07-08",
+      "body": "Lake Mattoon and Lake Paradise Watershed Committee",
+      "importance": "high",
+      "why": "This committee exists specifically to deal with Lake Mattoon and Lake Paradise. The committee's page still advertises a meeting that has already passed, so the next date has not been posted yet.",
+      "posted_text": "Our next meeting is on July 8th at 6 pm at the Mattoon Water Treatment Plant.",
+      "url": "http://www.colescountyswcd.org/resources/watersheds/lake-mattoon-lake-paradise-watershed-committee/",
+      "documents": [
+        "http://www.colescountyswcd.org/wp-content/uploads/2026/07/2026.7.8-MP-Watershed-Meeting-Agenda.docx"
+      ],
+      "confirmed": false
+    },
+    {
+      "date": null,
+      "body": "Coles County Board",
+      "importance": "high",
+      "why": "2 document(s) on this board's agenda page mention the lake or its watershed.",
+      "url": "https://www.colesco.illinois.gov/board/agendas/",
+      "documents": [
+        "https://www.colesco.illinois.gov/static/plans/Coles%20County%20HMP%207.8.2025.pdf",
+        "https://www.colesco.illinois.gov/static/plans/Coles%20County%202026%20Comprehensive%20Plan.pdf"
+      ],
+      "confirmed": false
+    }
+  ]
+}
