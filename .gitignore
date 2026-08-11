@@ -1,0 +1,15 @@
+.DS_Store
+.claude/worktrees/
+node_modules/
+test-results/
+__pycache__/
+*.pyc
+.venv/
+
+# Secrets — never commit
+.env
+.env.local
+*.pem
+*.key
+credentials.json
+service-account.json
