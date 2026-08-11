@@ -10,7 +10,7 @@ jobs:
     name: Scan for accidentally committed secrets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0   # full history for git log scanning
 
@@ -60,4 +60,24 @@ jobs:
           done
           if [ "$MISSING" -eq 0 ]; then
             echo "✅ .gitignore covers common sensitive file types." >> $GITHUB_STEP_SUMMARY
+          else
+            # Previously this warned and still reported green — and the repo had
+            # no .gitignore at all, so it warned into the void every day.
+            exit 1
           fi
+
+      - name: Check no OS/editor cruft is being published
+        run: |
+          echo "### Published-file hygiene" >> $GITHUB_STEP_SUMMARY
+          # This repo IS the public site — every tracked file is served at
+          # friendsoflakemattoon.org, so junk files are information disclosure.
+          CRUFT=$(git ls-files | grep -E '(^|/)(\.DS_Store|Thumbs\.db|\.env.*|.*\.swp|.*~)$' || true)
+          if [ -n "$CRUFT" ]; then
+            echo "⚠️ These files are tracked and therefore publicly served:" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "$CRUFT" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "Remove with \`git rm --cached <file>\`." >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+          echo "✅ No OS or editor cruft is being published." >> $GITHUB_STEP_SUMMARY
