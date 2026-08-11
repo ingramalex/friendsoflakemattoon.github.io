@@ -1,0 +1,111 @@
+{
+  "_comment": "Verified source registry for Lake Mattoon watershed monitoring. Every entry here was tested by fetching it. 'access' records HOW it can be retrieved; 'blocked' entries are documented so we don't re-attempt them. New sources are proposed by scripts/lakewatch/discover.py and added here only after human review.",
+  "updated": "2026-08-11",
+  "sources": [
+    {
+      "id": "mattoon-water-quality-log",
+      "name": "City of Mattoon — Water Quality Update (cumulative log)",
+      "url": "https://mattoon.illinois.gov/public-notices/",
+      "access": "html",
+      "priority": 1,
+      "cadence": "biweekly",
+      "notes": "The most recent 'Water Quality Update' post is a cumulative archive of EVERY microcystin reading, not just the latest. One fetch gets the full time series (75 readings as of 2026-08-11). Find the newest post by matching the title text 'Water Quality Update' — date slugs are inconsistent (july21, august-25-2025, july-30-2026)."
+    },
+    {
+      "id": "mattoon-public-notices",
+      "name": "City of Mattoon — Public Notices index",
+      "url": "https://mattoon.illinois.gov/public-notices/",
+      "access": "html",
+      "priority": 1,
+      "cadence": "weekly",
+      "notes": "Also carries Wake Boat Committee notices, waterfowl hunting drawings, and one-off water reports. Plain HTML, no CAPTCHA."
+    },
+    {
+      "id": "mattoon-council-meetings",
+      "name": "City of Mattoon — City Council meeting index",
+      "url": "https://mattoon.illinois.gov/government/citycouncil/upcomingmeetings/",
+      "access": "html-metadata-only",
+      "priority": 1,
+      "cadence": "weekly",
+      "notes": "Meeting DATES and document TITLES are scrapable from /download/city-council-meeting-YYYY-MM-DD/ pages. The PDFs themselves are NOT — see 'blocked' below. Regular meetings are 1st and 3rd Tuesdays."
+    },
+    {
+      "id": "swcd-watershed-committee",
+      "name": "Coles County SWCD — Lake Mattoon/Paradise Watershed Committee",
+      "url": "http://www.colescountyswcd.org/resources/watersheds/lake-mattoon-lake-paradise-watershed-committee/",
+      "access": "html+wp-json",
+      "priority": 1,
+      "cadence": "weekly",
+      "notes": "Best-access source found. robots.txt allows /wp-json/ (only /wp-admin/ is disallowed), so the WP REST API is usable. Agendas are plain .docx under /wp-content/uploads/YYYY/MM/, no CAPTCHA. Committee is open to anyone; mailing list at mattoonandparadisewatershed@gmail.com. WARNING: site is HTTP-only, no HTTPS — do not submit any form here.",
+      "api": "http://www.colescountyswcd.org/wp-json/wp/v2/posts"
+    },
+    {
+      "id": "coles-county-agendas",
+      "name": "Coles County Board — agenda archive",
+      "url": "https://www.colesco.illinois.gov/board/agendas/",
+      "access": "html+pdf",
+      "priority": 2,
+      "cadence": "weekly",
+      "notes": "PDFs are unlocked and directly fetchable. Filenames carry random suffixes (ARPA_Agenda_zolEFLm.pdf) so URLs must be scraped, not constructed. TLS chain is incomplete — some clients fail cert verification where curl succeeds."
+    },
+    {
+      "id": "coles-county-minutes",
+      "name": "Coles County Board — minutes archive",
+      "url": "https://www.colesco.illinois.gov/board/minutes/",
+      "access": "html+pdf",
+      "priority": 2,
+      "cadence": "weekly",
+      "notes": "Minutes are posted only after board approval, typically the month following the meeting."
+    },
+    {
+      "id": "mattoon-city-news",
+      "name": "City of Mattoon — news feed",
+      "url": "https://mattoon.illinois.gov/news/",
+      "access": "html",
+      "priority": 2,
+      "cadence": "weekly",
+      "notes": "Where the Wake Boat Committee announcements landed."
+    },
+    {
+      "id": "recovery-report",
+      "name": "Water Quality Response and Recovery Report (Aug 2025)",
+      "url": "https://mattoon.illinois.gov/wp-content/uploads/Water-Quality-Response-and-Recovery-Report.pdf",
+      "access": "pdf",
+      "priority": 3,
+      "cadence": "on-change",
+      "notes": "37-page reference doc. Establishes that Lake Paradise is the PRIMARY water source and Lake Mattoon is a CONTINGENCY source. 'Lessons Learned' and 'Next Steps' sections were published blank pending a debrief — watch for a revised version."
+    },
+    {
+      "id": "iepa-tmdl",
+      "name": "Illinois EPA — Lake Mattoon & Lake Paradise TMDL report",
+      "url": "https://epa.illinois.gov/content/dam/soi/en/web/epa/documents/water-quality/watershed-management/tmdls/reports/mattoon/mattoon-approved-tmdl.pdf",
+      "access": "pdf",
+      "priority": 3,
+      "cadence": "on-change",
+      "notes": "Standing regulatory reference (simazine TMDL). Not a recurring feed."
+    }
+  ],
+  "blocked": [
+    {
+      "id": "mattoon-council-pdfs",
+      "name": "City of Mattoon — council agendas, packets, minutes (PDFs)",
+      "reason": "captcha",
+      "detail": "WP Download Manager 7.5.3 marks these 'wpdm-download-locked'. Direct fetch returns 'You are not allowed to download.' The unlock flow (/?__wpdmlo=<pkg>&__wpdmfl=<file>) serves a page reading 'Verify CAPTCHA to Download'. Verified blocked via plain curl, curl with cookie jar + referer + browser UA, and same-origin fetch() from a real browser session. DO NOT attempt to bypass — this is the city's explicit signal against automated retrieval. Lawful alternative: FOIA request for agendas/minutes by email (Illinois OMA requires agendas be posted 48h before meetings).",
+      "verified": "2026-08-11"
+    },
+    {
+      "id": "mattoon-wp-json",
+      "name": "City of Mattoon — WordPress REST API",
+      "reason": "robots-disallow",
+      "detail": "The API is live and would be the ideal ingestion path, but mattoon.illinois.gov/robots.txt contains 'Disallow: /wp-json/'. Off-limits. Use the sanctioned HTML pages instead. Note the sitemap index only covers posts and pages (46 posts) — downloads are not listed.",
+      "verified": "2026-08-11"
+    },
+    {
+      "id": "facebook-mattoonil",
+      "name": "facebook.com/mattoonIL",
+      "reason": "robots-disallow",
+      "detail": "Facebook's robots.txt blocks automated fetching. Treat as a human-checks-periodically source, or use the Meta Graph API with a proper app. Note: mattoon.illinois.gov embeds a Facebook feed plugin, so some FB content may render server-side on the city site.",
+      "verified": "2026-08-11"
+    }
+  ]
+}

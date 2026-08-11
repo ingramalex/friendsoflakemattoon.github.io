@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Unlisted preview: reachable by direct URL, kept out of search results and
+     the sitemap until the content has been reviewed. -->
+<meta name="robots" content="noindex,nofollow">
+<title>Lake Watch (preview) — Friends of Lake Mattoon</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2e3f;--mid:#1a5068;--teal:#3a8fa8;--sky:#b8dce8;
+  --sand:#f5f0e8;--cream:#faf7f2;--dark:#1a2628;--muted:#3d5a60;
+  --gold:#c49a2a;--rule:#dfd8cc;
+  /* Chart marks. Both validated against the cream surface for OKLCH lightness
+     band, chroma floor, WCAG contrast, and protan/deutan separation. */
+  --series:#2b8fb0;      /* readings */
+  --threshold:#a8452a;   /* EPA advisory limit */
+  --serif:'Playfair Display',Georgia,serif;
+  --body:'Source Serif 4',Georgia,serif;
+  --r:4px;
+}
+html{scroll-behavior:smooth}
+/* overflow-x:hidden matches index.html and backstops the absolutely-positioned
+   tooltip, which can otherwise widen the page near the right edge of the chart. */
+body{font-family:var(--body);background:var(--cream);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:1060px;margin:0 auto;padding:0 1.5rem}
+
+.preview-flag{background:var(--navy);color:var(--sky);font-size:12px;letter-spacing:.09em;text-transform:uppercase;text-align:center;padding:.65rem 1.5rem}
+.preview-flag strong{color:var(--gold);font-weight:600}
+
+header.masthead{background:var(--navy);color:#fff;padding:3.5rem 0 3rem}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:.75rem}
+h1{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3rem);font-weight:400;line-height:1.15;margin-bottom:1rem}
+h1 em{font-style:italic;color:var(--sky)}
+.masthead p{font-weight:300;color:rgba(184,220,232,.85);max-width:60ch}
+.gold-rule{width:48px;height:1px;background:var(--gold);margin:1.5rem 0}
+
+section{padding:3rem 0;border-bottom:1px solid var(--rule)}
+h2{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:400;color:var(--navy);margin-bottom:.5rem}
+h3{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--navy);margin-bottom:.4rem}
+.lede{color:var(--muted);font-weight:300;max-width:68ch;margin-bottom:1.75rem}
+p+p{margin-top:.9rem}
+a{color:var(--mid)}
+
+/* Status tile — the headline number gets its own treatment, not a chart. */
+.status{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:var(--r);overflow:hidden;margin-bottom:2.5rem}
+.stat{background:var(--cream);padding:1.4rem 1.5rem}
+.stat-label{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.5rem}
+.stat-value{font-family:var(--serif);font-size:2rem;line-height:1.1;color:var(--navy)}
+.stat-value .unit{font-family:var(--body);font-size:.85rem;color:var(--muted);font-weight:300;margin-left:.2rem}
+.stat-note{font-size:.82rem;color:var(--muted);font-weight:300;margin-top:.35rem}
+.verdict{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;font-weight:600;letter-spacing:.03em;margin-top:.4rem}
+.verdict .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.verdict.ok{color:#2d5a27}.verdict.ok .dot{background:#2d5a27}
+.verdict.alert{color:var(--threshold)}.verdict.alert .dot{background:var(--threshold)}
+
+.chart-card{background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:1.5rem}
+.chart-head{margin-bottom:.25rem}
+.chart-title{font-family:var(--serif);font-size:1.1rem;color:var(--navy)}
+.chart-sub{font-size:.84rem;color:var(--muted);font-weight:300}
+.chart-scroll{overflow-x:auto;margin-top:1rem}
+svg.chart{display:block;width:100%;min-width:520px;height:auto;overflow:visible}
+.axis-line{stroke:var(--rule);stroke-width:1}
+.grid-line{stroke:var(--rule);stroke-width:1;stroke-dasharray:2 4}
+.tick-text{font-family:var(--body);font-size:11px;fill:var(--muted);font-weight:300}
+.series-line{fill:none;stroke:var(--series);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.series-area{fill:var(--series);opacity:.09}
+.threshold-line{stroke:var(--threshold);stroke-width:2;stroke-dasharray:6 4}
+.threshold-label{font-family:var(--body);font-size:11px;font-weight:600;fill:var(--threshold)}
+.axis-label{font-family:var(--body);font-size:11px;fill:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.hover-dot{fill:var(--series);stroke:#fff;stroke-width:2}
+/* No opacity here: a CSS rule outranks the SVG presentation attribute, so
+   setting it in CSS would pin the crosshair visible and JS could not hide it. */
+.crosshair{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.hit{fill:transparent;cursor:crosshair}
+
+.tooltip{position:absolute;pointer-events:none;background:var(--navy);color:#fff;border-radius:var(--r);padding:.55rem .75rem;font-size:.82rem;line-height:1.45;white-space:nowrap;opacity:0;transition:opacity .12s;z-index:5;box-shadow:0 3px 12px rgba(13,46,63,.22)}
+.tooltip .tt-date{color:var(--sky);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase}
+.tooltip .tt-val{font-family:var(--serif);font-size:1.05rem}
+.chart-wrap{position:relative}
+
+details.table-view{margin-top:1.25rem;border-top:1px solid var(--rule);padding-top:1rem}
+details.table-view summary{cursor:pointer;font-size:.86rem;color:var(--mid);font-weight:600}
+table{width:100%;border-collapse:collapse;margin-top:.9rem;font-size:.86rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px solid var(--rule)}
+th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+
+.callout{background:var(--sand);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0;padding:1.15rem 1.35rem;margin:1.5rem 0}
+.callout h3{margin-bottom:.35rem}
+.callout p{font-size:.92rem;color:var(--muted);font-weight:300}
+
+.src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem}
+.src{background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:1.1rem 1.2rem}
+.src-name{font-weight:600;font-size:.94rem;color:var(--navy);margin-bottom:.3rem}
+.src-note{font-size:.83rem;color:var(--muted);font-weight:300}
+.badge{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;padding:.16rem .5rem;border-radius:2px;margin-bottom:.5rem}
+.badge.live{background:#e4f0e3;color:#2d5a27}
+.badge.blocked{background:#f6e5e0;color:var(--threshold)}
+.loading,.error{color:var(--muted);font-weight:300;padding:1.5rem 0}
+.error{color:var(--threshold)}
+
+footer{padding:2.5rem 0 3.5rem;font-size:.85rem;color:var(--muted);font-weight:300}
+footer a{color:var(--mid)}
+@media(max-width:600px){.stat-value{font-size:1.6rem}section{padding:2.25rem 0}}
+</style>
+</head>
+<body>
+
+<div class="preview-flag">
+  <strong>Preview</strong> &nbsp;·&nbsp; unlisted page, not linked from the site &nbsp;·&nbsp; content under review
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Lake Watch</p>
+    <h1>Lake Mattoon <em>water quality</em></h1>
+    <div class="gold-rule"></div>
+    <p>Every microcystin reading the City of Mattoon has published since the July 2025 algal bloom, collected automatically and shown in one place.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="status" id="status">
+      <div class="stat"><p class="loading">Loading readings&hellip;</p></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-head">
+        <p class="chart-title">Microcystin in treated drinking water</p>
+        <p class="chart-sub">Parts per billion, against the EPA 10-day health advisory for sensitive groups (0.30&nbsp;ppb)</p>
+      </div>
+      <div class="chart-wrap">
+        <div class="chart-scroll" id="chartScroll"></div>
+        <div class="tooltip" id="tooltip"></div>
+      </div>
+      <details class="table-view">
+        <summary>View all readings as a table</summary>
+        <div id="tableView"></div>
+      </details>
+    </div>
+
+    <div class="callout">
+      <h3>What this measures — and what it doesn't</h3>
+      <p><strong>Lake Paradise is Mattoon's primary drinking water source. Lake Mattoon is a contingency source.</strong> The July 2025 &ldquo;Do Not Drink&rdquo; order followed a bloom in Lake Paradise; per the City's own recovery report, no drinking water was drawn from Lake Mattoon during those events. These readings are of finished, treated tap water leaving the plant — not of the lake itself.</p>
+      <p>Microcystin is a cyanotoxin produced by blue-green algae and is primarily a <em>liver</em> toxin. The City's notices describe it as a &ldquo;neurological toxin,&rdquo; which is imprecise. The 0.30&nbsp;ppb line is the EPA advisory for sensitive groups — children under 6, pregnant and nursing women, people with liver conditions, dialysis patients, the elderly, and immunocompromised people. For healthy adults the advisory is 1.60&nbsp;ppb.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Where this comes from</h2>
+    <p class="lede">Sources are checked weekly. Everything below was verified by actually fetching it — including the ones that turned out to be unreachable, which are recorded so we don't keep retrying them.</p>
+    <div class="src-grid" id="sources"><p class="loading">Loading sources&hellip;</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lede">A scheduled job runs every Monday morning. It has two halves, kept deliberately separate.</p>
+    <div class="src-grid">
+      <div class="src">
+        <span class="badge live">Automatic</span>
+        <p class="src-name">Collecting readings</p>
+        <p class="src-note">A plain script re-reads the City's cumulative water quality notice and rebuilds the full series from scratch. No AI is involved, so a correction on the City's side flows straight through and there is nothing to second-guess.</p>
+      </div>
+      <div class="src">
+        <span class="badge live">Reviewed</span>
+        <p class="src-name">Finding new sources</p>
+        <p class="src-note">Claude searches for government and institutional sources we don't already track, then files them for review. Nothing an AI proposes is published automatically — a bad source on this page would undermine the exact credibility it exists to build.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Readings published by the <a href="https://mattoon.illinois.gov/public-notices/" target="_blank" rel="noopener">City of Mattoon</a>. Context from the City's Water Quality Response and Recovery Report (August 2025) and the U.S. EPA drinking water health advisories.</p>
+    <p style="margin-top:.6rem">Friends of Lake Mattoon &middot; <a href="/">friendsoflakemattoon.org</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var ADVISORY = 0.30;
+
+  function fmtDate(iso, style) {
+    var p = iso.split('-');
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var m = months[parseInt(p[1], 10) - 1];
+    if (style === 'short') return m + " '" + p[0].slice(2);
+    return m + ' ' + parseInt(p[2], 10) + ', ' + p[0];
+  }
+
+  function el(tag, attrs, text) {
+    var n = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  function renderStatus(d) {
+    var latest = d.latest;
+    var clear = d.exceedances === 0;
+    var pct = Math.round((latest.ppb / ADVISORY) * 100);
+    document.getElementById('status').innerHTML =
+      '<div class="stat">' +
+        '<p class="stat-label">Most recent reading</p>' +
+        '<p class="stat-value">' + latest.ppb.toFixed(3) + '<span class="unit">ppb</span></p>' +
+        '<p class="stat-note">Sampled ' + fmtDate(latest.date) + '</p>' +
+      '</div>' +
+      '<div class="stat">' +
+        '<p class="stat-label">Against the advisory</p>' +
+        '<p class="stat-value">' + pct + '<span class="unit">% of limit</span></p>' +
+        '<p class="verdict ' + (latest.ppb > ADVISORY ? 'alert' : 'ok') + '">' +
+          '<span class="dot"></span>' +
+          (latest.ppb > ADVISORY ? 'Above the 0.30 ppb advisory' : 'Below the 0.30 ppb advisory') +
+        '</p>' +
+      '</div>' +
+      '<div class="stat">' +
+        '<p class="stat-label">Readings published</p>' +
+        '<p class="stat-value">' + d.count + '</p>' +
+        '<p class="stat-note">' + fmtDate(d.readings[0].date) + ' to ' + fmtDate(latest.date) + '</p>' +
+      '</div>' +
+      '<div class="stat">' +
+        '<p class="stat-label">Times over the advisory</p>' +
+        '<p class="stat-value">' + d.exceedances + '</p>' +
+        '<p class="verdict ' + (clear ? 'ok' : 'alert') + '"><span class="dot"></span>' +
+          (clear ? 'None on record' : 'Review required') + '</p>' +
+      '</div>';
+  }
+
+  function renderChart(d) {
+    var W = 900, H = 380, m = { t: 24, r: 24, b: 46, l: 54 };
+    var iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var pts = d.readings.map(function (r) {
+      return { t: Date.parse(r.date + 'T00:00:00Z'), v: r.ppb, date: r.date };
+    });
+    var t0 = pts[0].t, t1 = pts[pts.length - 1].t;
+    // Y scale must include the advisory line — the story is the distance to it.
+    var yMax = Math.max(ADVISORY, d.max_ppb) * 1.18;
+    var X = function (t) { return m.l + ((t - t0) / (t1 - t0)) * iw; };
+    var Y = function (v) { return m.t + ih - (v / yMax) * ih; };
+
+    var svg = el('svg', {
+      'class': 'chart', viewBox: '0 0 ' + W + ' ' + H,
+      role: 'img',
+      'aria-label': d.count + ' microcystin readings from ' + fmtDate(pts[0].date) +
+                    ' to ' + fmtDate(pts[pts.length - 1].date) +
+                    '. All below the 0.30 parts per billion EPA advisory. Highest reading ' +
+                    d.max_ppb + '.'
+    });
+
+    // Recessive grid + y ticks
+    var step = 0.05, ticks = [];
+    for (var v = 0; v <= yMax; v += step) ticks.push(+v.toFixed(2));
+    ticks.forEach(function (v) {
+      svg.appendChild(el('line', { 'class': 'grid-line', x1: m.l, x2: m.l + iw, y1: Y(v), y2: Y(v) }));
+      svg.appendChild(el('text', { 'class': 'tick-text', x: m.l - 9, y: Y(v) + 4, 'text-anchor': 'end' }, v.toFixed(2)));
+    });
+
+    // X ticks — first of each quarter that falls in range
+    var seenQ = {};
+    pts.forEach(function (p) {
+      var dt = new Date(p.t), q = dt.getUTCFullYear() + '-' + Math.floor(dt.getUTCMonth() / 3);
+      if (seenQ[q]) return;
+      seenQ[q] = true;
+      svg.appendChild(el('text', {
+        'class': 'tick-text', x: X(p.t), y: m.t + ih + 20, 'text-anchor': 'middle'
+      }, fmtDate(p.date, 'short')));
+    });
+
+    svg.appendChild(el('line', { 'class': 'axis-line', x1: m.l, x2: m.l + iw, y1: m.t + ih, y2: m.t + ih }));
+    svg.appendChild(el('text', {
+      'class': 'axis-label', x: m.l, y: m.t - 8
+    }, 'ppb'));
+
+    // Area + line
+    var line = pts.map(function (p, i) { return (i ? 'L' : 'M') + X(p.t) + ',' + Y(p.v); }).join(' ');
+    svg.appendChild(el('path', {
+      'class': 'series-area',
+      d: line + ' L' + X(t1) + ',' + Y(0) + ' L' + X(t0) + ',' + Y(0) + ' Z'
+    }));
+    svg.appendChild(el('path', { 'class': 'series-line', d: line }));
+
+    // Threshold reference line — directly labeled, so no legend box is needed
+    svg.appendChild(el('line', {
+      'class': 'threshold-line', x1: m.l, x2: m.l + iw, y1: Y(ADVISORY), y2: Y(ADVISORY)
+    }));
+    svg.appendChild(el('text', {
+      'class': 'threshold-label', x: m.l + 6, y: Y(ADVISORY) - 8
+    }, 'EPA advisory for sensitive groups — 0.30 ppb'));
+
+    // Hover layer
+    var cross = el('line', { 'class': 'crosshair', y1: m.t, y2: m.t + ih, opacity: 0 });
+    var dot = el('circle', { 'class': 'hover-dot', r: 5, opacity: 0 });
+    svg.appendChild(cross); svg.appendChild(dot);
+    var hit = el('rect', { 'class': 'hit', x: m.l, y: m.t, width: iw, height: ih });
+    svg.appendChild(hit);
+
+    var tip = document.getElementById('tooltip');
+    var wrap = document.getElementById('chartScroll');
+
+    function nearest(clientX) {
+      var box = svg.getBoundingClientRect();
+      var px = ((clientX - box.left) / box.width) * W;
+      var best = pts[0], bd = Infinity;
+      pts.forEach(function (p) {
+        var dd = Math.abs(X(p.t) - px);
+        if (dd < bd) { bd = dd; best = p; }
+      });
+      return best;
+    }
+
+    function move(e) {
+      var cx = e.touches ? e.touches[0].clientX : e.clientX;
+      var p = nearest(cx);
+      cross.setAttribute('x1', X(p.t)); cross.setAttribute('x2', X(p.t));
+      cross.setAttribute('opacity', 0.5);
+      dot.setAttribute('cx', X(p.t)); dot.setAttribute('cy', Y(p.v));
+      dot.setAttribute('opacity', 1);
+      var box = svg.getBoundingClientRect();
+      var wbox = wrap.getBoundingClientRect();
+      var sx = box.width / W, sy = box.height / H;
+      tip.innerHTML = '<div class="tt-date">' + fmtDate(p.date) + '</div>' +
+                      '<div class="tt-val">' + p.v.toFixed(3) + ' ppb</div>' +
+                      '<div style="font-size:.74rem;opacity:.75">' +
+                      Math.round((p.v / ADVISORY) * 100) + '% of advisory</div>';
+      tip.style.opacity = 1;
+      // Prefer the right of the cursor, flip left when it would run off, then
+      // hard-clamp to the visible window. The clamp is what actually keeps the
+      // tooltip on screen: when the chart is scrolled horizontally the point
+      // itself can sit outside the container, so flipping alone is not enough.
+      var tx = (box.left - wbox.left) + X(p.t) * sx + 14;
+      if (tx + tip.offsetWidth > wbox.width) tx -= tip.offsetWidth + 28;
+      tip.style.left = Math.max(0, Math.min(tx, wbox.width - tip.offsetWidth)) + 'px';
+      tip.style.top = ((box.top - wbox.top) + Y(p.v) * sy - 12) + 'px';
+    }
+    function leave() {
+      cross.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); tip.style.opacity = 0;
+    }
+    hit.addEventListener('mousemove', move);
+    hit.addEventListener('mouseleave', leave);
+    hit.addEventListener('touchmove', move, { passive: true });
+    hit.addEventListener('touchend', leave);
+    // A tooltip left over from a wider viewport would sit outside the new one.
+    window.addEventListener('resize', leave);
+
+    wrap.appendChild(svg);
+  }
+
+  function renderTable(d) {
+    var rows = d.readings.slice().reverse().map(function (r) {
+      return '<tr><td>' + fmtDate(r.date) + '</td><td class="num">' + r.ppb.toFixed(3) +
+             '</td><td class="num">' + Math.round((r.ppb / ADVISORY) * 100) + '%</td></tr>';
+    }).join('');
+    document.getElementById('tableView').innerHTML =
+      '<table><caption class="sr-only">All published microcystin readings</caption>' +
+      '<thead><tr><th scope="col">Sample date</th><th scope="col" style="text-align:right">ppb</th>' +
+      '<th scope="col" style="text-align:right">Of advisory</th></tr></thead><tbody>' +
+      rows + '</tbody></table>';
+  }
+
+  function renderSources(reg) {
+    var html = reg.sources.filter(function (s) { return s.priority <= 2; }).map(function (s) {
+      return '<div class="src"><span class="badge live">Monitored</span>' +
+             '<p class="src-name">' + s.name + '</p>' +
+             '<p class="src-note">' + (s.notes || '').split('.')[0] + '.</p></div>';
+    }).join('');
+    html += reg.blocked.map(function (s) {
+      var why = s.reason === 'captcha'
+        ? 'Behind a CAPTCHA. We do not attempt to bypass it — that is the publisher’s explicit signal against automated access. A FOIA request is the lawful route.'
+        : 'Excluded by the site’s robots.txt, so we leave it alone.';
+      return '<div class="src"><span class="badge blocked">Not retrievable</span>' +
+             '<p class="src-name">' + s.name + '</p>' +
+             '<p class="src-note">' + why + '</p></div>';
+    }).join('');
+    document.getElementById('sources').innerHTML = html;
+  }
+
+  function fail(id, msg) {
+    document.getElementById(id).innerHTML = '<p class="error">' + msg + '</p>';
+  }
+
+  fetch('data/water-quality.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (d) { renderStatus(d); renderChart(d); renderTable(d); })
+    .catch(function () {
+      fail('status', 'Could not load the readings. The data file may not have been generated yet.');
+    });
+
+  fetch('data/sources.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(renderSources)
+    .catch(function () { fail('sources', 'Could not load the source registry.'); });
+})();
+</script>
+</body>
+</html>

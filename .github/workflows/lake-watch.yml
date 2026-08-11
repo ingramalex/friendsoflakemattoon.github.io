@@ -1,0 +1,126 @@
+name: Lake Watch
+
+# Two jobs, deliberately separate:
+#   watch    — deterministic scrape of known sources. No API key, no AI, no
+#              judgment calls. Commits data/water-quality.json when it changes.
+#   discover — asks Claude to search for sources we don't know about yet, and
+#              opens an issue with the candidates. Never edits the registry or
+#              the site: an AI-proposed source has to be reviewed by a human
+#              before it can appear on a site whose whole point is credibility.
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'   # Mondays, 9:00 AM CT
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  watch:
+    name: Refresh water quality data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install --quiet certifi
+
+      - name: Parse water quality log
+        id: parse
+        run: |
+          python3 scripts/lakewatch/watch.py | tee "$RUNNER_TEMP/summary.txt"
+          echo "## Water quality" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          cat "$RUNNER_TEMP/summary.txt" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      # Opens a PR rather than pushing to main. This repo IS the live site, so
+      # every automated change is reviewed before it is served -- the same rule
+      # the security auto-fix workflows follow. A single long-lived branch means
+      # repeat runs update one PR instead of opening a new one each week.
+      - name: Open or update the data PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if git diff --quiet -- data/water-quality.json; then
+            echo "No new readings." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          BRANCH=lake-watch/data
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add data/water-quality.json
+          git commit -m "Update Lake Mattoon water quality readings"
+          git push --force-with-lease origin "$BRANCH"
+
+          SUMMARY=$(cat "$RUNNER_TEMP/summary.txt")
+          if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
+            gh pr comment "$BRANCH" --body "Refreshed $(date +%Y-%m-%d): $SUMMARY"
+            echo "Updated the existing data PR." >> $GITHUB_STEP_SUMMARY
+          else
+            gh pr create --base main --head "$BRANCH" \
+              --title "Lake Watch: new water quality readings" \
+              --body "$(printf '%s\n\n%s\n' \
+                "Automated refresh of \`data/water-quality.json\` from the City of Mattoon's cumulative water quality notice." \
+                "$SUMMARY")"
+            echo "Opened a data PR." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Flag any advisory exceedance
+        run: |
+          EXCEEDANCES=$(python3 -c "import json;print(json.load(open('data/water-quality.json'))['exceedances'])")
+          if [ "$EXCEEDANCES" -gt 0 ]; then
+            echo "::warning::$EXCEEDANCES reading(s) above the 0.30 ppb advisory — review before publishing."
+          fi
+
+  discover:
+    name: Search for new sources
+    runs-on: ubuntu-latest
+    # Runs even if `watch` fails — a broken parser shouldn't stop discovery.
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install --quiet anthropic
+
+      - name: Ask Claude for candidate sources
+        id: discover
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY not set — skipping source discovery."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          python3 scripts/lakewatch/discover.py > "$RUNNER_TEMP/candidates.md"
+          if grep -q '^NO_CANDIDATES$' "$RUNNER_TEMP/candidates.md"; then
+            echo "No new sources found this week." >> $GITHUB_STEP_SUMMARY
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open review issue
+        if: steps.discover.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Candidate watershed sources — week of $(date +%Y-%m-%d)" \
+            --body-file "$RUNNER_TEMP/candidates.md"
+          echo "Opened a review issue." >> $GITHUB_STEP_SUMMARY
