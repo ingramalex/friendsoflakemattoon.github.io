@@ -291,14 +291,33 @@ def gather_council_meetings(ev: Evidence) -> None:
         )
 
 
+PAGE = ("http://www.colescountyswcd.org/resources/watersheds/"
+        "lake-mattoon-lake-paradise-watershed-committee/")
+# The SWCD's robots.txt permits /wp-json/ (only /wp-admin/ is disallowed), and
+# the API is strictly better than scraping: it returns the page body without the
+# surrounding navigation, and carries a `modified` timestamp that tells us
+# whether the committee has touched the page at all. HTTPS on this host is
+# self-signed, so HTTP is the only usable scheme.
+API = "http://www.colescountyswcd.org/wp-json/wp/v2/pages/7649"
+
+
 def gather_watershed_committee(ev: Evidence) -> None:
-    page = ("http://www.colescountyswcd.org/resources/watersheds/"
-            "lake-mattoon-lake-paradise-watershed-committee/")
+    page, raw, modified = PAGE, "", None
+
     try:
-        raw = fetch_text(page)
-    except Exception as exc:
-        ev.miss("Lake Mattoon/Paradise Watershed Committee", f"unreachable ({type(exc).__name__})")
-        return
+        doc = json.loads(fetch_text(API))
+        raw = doc.get("content", {}).get("rendered", "")
+        modified = doc.get("modified")
+    except Exception:
+        raw = ""
+
+    if not raw:
+        try:
+            raw = fetch_text(PAGE)
+        except Exception as exc:
+            ev.miss("Lake Mattoon/Paradise Watershed Committee",
+                    f"unreachable ({type(exc).__name__})")
+            return
 
     text = visible(raw)
     # Anchor on a sentence from the body. The committee's name also appears in
@@ -308,6 +327,18 @@ def gather_watershed_committee(ev: Evidence) -> None:
         re.search(r"(The purpose of this group.{0,1100})", text)
     meeting_line = re.search(r"[^.]*next meeting[^.]*\.", text, re.I)
     agenda_url = re.search(r'href="([^"]+\.(?:docx?|pdf))"', raw)
+
+    # A successful fetch that yields none of the expected landmarks means we got
+    # something other than the page -- a bot wall, a cache, an error body. That
+    # is an unchecked source, not a quiet one. Reporting it as "no meeting
+    # posted" already put a false statement in one published draft.
+    if not body and not meeting_line:
+        ev.miss(
+            "Lake Mattoon/Paradise Watershed Committee",
+            f"page fetched ({len(raw)} bytes) but none of the expected content "
+            "was found, so it could not be read this run",
+        )
+        return
 
     agenda = ""
     if agenda_url:
@@ -322,7 +353,8 @@ def gather_watershed_committee(ev: Evidence) -> None:
         "planning",
         kind="watershed_committee",
         body="Lake Mattoon and Lake Paradise Watershed Committee",
-        summary=(body.group(1).strip()[:900] if body else ""),
+        summary=(body.group(1).strip()[:900] if body else text[:900]),
+        page_last_modified=modified,
         posted_next_meeting=(meeting_line.group(0).strip() if meeting_line else None),
         agenda_url=agenda_url.group(1) if agenda_url else None,
         agenda_text=agenda[:1800],
