@@ -117,7 +117,12 @@
       "id": "mattoon-council-pdfs",
       "name": "City of Mattoon — council agendas, packets, minutes (PDFs)",
       "reason": "captcha",
-      "detail": "WP Download Manager 7.5.3 marks these 'wpdm-download-locked'. Direct fetch returns 'You are not allowed to download.' The unlock flow (/?__wpdmlo=<pkg>&__wpdmfl=<file>) serves a page reading 'Verify CAPTCHA to Download'. Verified blocked via plain curl, curl with cookie jar + referer + browser UA, and same-origin fetch() from a real browser session. DO NOT attempt to bypass — this is the city's explicit signal against automated retrieval. Lawful alternative: FOIA request for agendas/minutes by email (Illinois OMA requires agendas be posted 48h before meetings).",
+      "detail": "WP Download Manager 7.5.3 marks these 'wpdm-download-locked'. Direct fetch returns 'You are not allowed to download.' The unlock flow (/?__wpdmlo=<pkg>&__wpdmfl=<file>) serves a page reading 'Verify CAPTCHA to Download'. Verified blocked via plain curl, curl with cookie jar + referer + browser UA, and same-origin fetch() from a real browser session. DO NOT attempt to bypass — this is the city's explicit signal against automated retrieval, and defeating bot detection is off-limits for this project regardless of how public the records are.",
+      "workarounds": [
+        "Manual drop: a person downloads the PDF and saves it to data/minutes/ named with the meeting date. brief.py reads it from there. This is the only path by which agenda CONTENTS reach the brief. See data/minutes/README.md.",
+        "Records request to the City Clerk (Susan J. O'Brien, 217-235-5655, City Hall 2nd floor, 208 N 19th St). Verified 2026-08-11: the Clerk's office issues certified copies of Council minutes, ordinances, and resolutions. Illinois FOIA does not require using an agency's own form — a plain written request suffices, which matters here because the City's own FOIA request form sits behind the same CAPTCHA as the records.",
+        "Illinois OMA 5 ILCS 120/2.06 requires approved minutes to be posted to the website within 10 days of approval and to stay up at least 60 days. Asking to be added to a distribution list is a reasonable request to make of the Clerk."
+      ],
       "verified": "2026-08-11"
     },
     {

@@ -363,6 +363,52 @@ def gather_watershed_committee(ev: Evidence) -> None:
     )
 
 
+MINUTES_DIR = DATA / "minutes"
+
+
+def gather_dropped_minutes(ev: Evidence) -> None:
+    """Read council minutes and packets a person downloaded by hand.
+
+    The City's agenda, packet, and minutes PDFs sit behind a CAPTCHA, which is
+    a deliberate signal against automated retrieval and is not something this
+    project works around. A CAPTCHA distinguishes people from bots, and a
+    person clicking through it is exactly its intended use -- so the manual step
+    stays manual, and everything after it is automated.
+
+    Drop a PDF into data/minutes/ named with its meeting date, e.g.
+    2026-08-04-council-minutes.pdf, and it becomes evidence for the brief.
+    This is the only path by which actual agenda contents enter the pipeline.
+    """
+    if not MINUTES_DIR.exists():
+        return
+
+    for path in sorted(MINUTES_DIR.glob("*.pdf")):
+        date = re.match(r"(\d{4}-\d{2}-\d{2})", path.name)
+        try:
+            text = pdf_text(path.read_bytes(), max_pages=40)
+        except Exception as exc:
+            ev.miss(f"Dropped file {path.name}", f"could not be read ({type(exc).__name__})")
+            continue
+
+        if not text.strip():
+            ev.miss(f"Dropped file {path.name}",
+                    "no extractable text -- it may be a scan rather than a text PDF")
+            continue
+
+        about_lake = is_about_lake(text)
+        ev.add(
+            "upcoming",
+            kind="council_document",
+            body="Mattoon City Council",
+            document=path.name,
+            meeting_date=date.group(1) if date else None,
+            mentions_lake=about_lake,
+            excerpts=excerpts(text, limit=6) if about_lake else [],
+            note=("Downloaded by hand and added to data/minutes/. This is the only "
+                  "way the City's agenda contents reach the brief."),
+        )
+
+
 COUNTIES = [
     ("Coles County Board", "https://www.colesco.illinois.gov/board/agendas/"),
     ("Shelby County Board", "https://shelbycounty-il.gov/cominutes.aspx"),
@@ -612,6 +658,7 @@ def main() -> int:
     gather_water_quality(ev, state)
     gather_city(ev, state)
     gather_council_meetings(ev)
+    gather_dropped_minutes(ev)
     gather_watershed_committee(ev)
     gather_counties(ev)
 
