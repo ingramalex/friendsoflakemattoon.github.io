@@ -121,55 +121,6 @@ nav.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,
 .drawer-donate{background:var(--gold);color:#fff;text-align:center;padding:.75rem;border-radius:var(--r);margin-top:.75rem;border:none;font-weight:600;font-family:var(--body);width:100%;cursor:pointer;letter-spacing:.06em;text-transform:uppercase}
 .drawer-donate:hover{background:var(--gold-dk)}
 
-/* ── RAFFLE CALLOUT ─────────────────────────────────── */
-.hero-raffle-callout{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.35);border-radius:var(--r);padding:.65rem 1.1rem;margin-bottom:1.75rem;text-decoration:none;transition:all var(--t);cursor:pointer}
-.hero-raffle-callout:hover{background:rgba(196,154,42,.2);border-color:var(--gold)}
-.hero-raffle-pulse{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
-.hero-raffle-label{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
-.hero-raffle-text{font-family:var(--serif);font-style:italic;font-size:.95rem;color:rgba(255,255,255,.9)}
-.hero-raffle-arrow{color:var(--gold);font-size:.8rem;flex-shrink:0}
-
-/* ── RAFFLE SECTION ──────────────────────────────────── */
-.raffle{padding:6rem 2rem;background:linear-gradient(160deg,#0d2e1a 0%,#0f2d2d 40%,#0d2e3f 100%);position:relative;overflow:hidden}
-.raffle::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(196,154,42,.03) 60px,rgba(196,154,42,.03) 61px)}
-.raffle-inner{position:relative;z-index:1;max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.raffle-inner.raffle-inner--single{grid-template-columns:1fr;max-width:680px;text-align:center}
-.raffle-inner--single .raffle-date-box{margin-left:auto;margin-right:auto}
-.raffle-inner--single .raffle-divider{margin-left:auto;margin-right:auto}
-.raffle-inner--single .raffle-prize-list{text-align:left;display:inline-block}
-.raffle-inner--single .raffle-ticket-box{margin-left:auto;margin-right:auto;max-width:280px}
-.raffle-inner--single .raffle-contact-links{justify-content:center}
-.raffle-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(196,154,42,.7);font-weight:600;margin-bottom:.5rem}
-.raffle-title{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;color:#fff;line-height:1.1;margin-bottom:.75rem}
-.raffle-title em{font-style:italic;color:#f5d78e}
-.raffle-subtitle{font-family:var(--serif);font-style:italic;font-size:1rem;color:rgba(196,154,42,.65);margin-bottom:1.5rem}
-.raffle-divider{width:48px;height:1px;background:var(--gold);opacity:.6;margin-bottom:1.5rem}
-.raffle-date-box{display:inline-flex;align-items:center;gap:.75rem;background:rgba(196,154,42,.12);border:1px solid rgba(196,154,42,.3);border-radius:var(--r);padding:.6rem 1.1rem;margin-bottom:1.5rem}
-.raffle-date-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(196,154,42,.6);font-weight:600}
-.raffle-date-val{font-family:var(--serif);font-size:1.1rem;color:#f5d78e}
-.raffle-prizes-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.875rem}
-.raffle-prize-list{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.75rem}
-.raffle-prize{display:flex;align-items:flex-start;gap:.75rem}
-.raffle-prize-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.45rem;opacity:.8}
-.raffle-prize-text{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;line-height:1.5}
-.raffle-prize-text strong{color:#f5d78e;font-weight:600}
-.raffle-ticket-box{background:rgba(196,154,42,.1);border:1px solid rgba(196,154,42,.25);border-radius:var(--r);padding:1.1rem 1.25rem;margin-bottom:1.5rem}
-.raffle-ticket-price{font-family:var(--serif);font-size:2rem;color:var(--gold);line-height:1;margin-bottom:.2rem}
-.raffle-ticket-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase;font-weight:300}
-.raffle-contact-title{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:.6rem}
-.raffle-contact-links{display:flex;gap:.75rem;flex-wrap:wrap}
-.raffle-contact-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1rem;border-radius:var(--r);text-decoration:none;transition:all var(--t);border:1px solid}
-.raffle-contact-btn.email{color:#f5d78e;border-color:rgba(196,154,42,.4);background:rgba(196,154,42,.1)}
-.raffle-contact-btn.email:hover{background:rgba(196,154,42,.2);border-color:var(--gold)}
-.raffle-contact-btn.fb{color:#7ab3f5;border-color:rgba(24,119,242,.4);background:rgba(24,119,242,.1)}
-.raffle-contact-btn.fb:hover{background:rgba(24,119,242,.2);border-color:#1877f2}
-.raffle-photo-wrap{position:relative;border-radius:6px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5),12px 12px 0 rgba(196,154,42,.15)}
-.raffle-photo-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,6,6,.15) 0%,transparent 30%,transparent 55%,rgba(13,6,6,.65) 100%),linear-gradient(90deg,rgba(13,6,6,.25) 0%,transparent 20%,transparent 80%,rgba(13,6,6,.15) 100%);pointer-events:none}
-.raffle-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
-.raffle-photo-wrap:hover img{transform:scale(1.03)}
-.raffle-photo-caption{position:absolute;bottom:0;left:0;right:0;padding:1rem 1.25rem .875rem;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,transparent 100%);font-family:var(--serif);font-style:italic;font-size:.82rem;color:rgba(255,255,255,.8);z-index:1}
-
 /* ── HERO ───────────────────────────────────────────── */
 .hero{min-height:100vh;background:linear-gradient(175deg,#0d2e3f 0%,#1a5068 40%,#2d7a90 70%,#3a8fa8 100%);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:6rem 2rem 4rem}
 .hero-bg{position:absolute;bottom:0;left:0;right:0;height:55%;opacity:.18;background:repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(184,220,232,.4) 28px,rgba(184,220,232,.4) 30px);animation:ripple 8s ease-in-out infinite alternate}
@@ -629,9 +580,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   .stats-strip{flex-direction:column;align-items:center;padding:1.5rem}
   .stat-item{border-right:none;border-bottom:1px solid rgba(58,143,168,.2);padding:1rem 2rem;width:100%;max-width:280px}
   .stat-item:last-child{border-bottom:none}
-  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact,.news,.raffle{padding:4rem 1.5rem}
-  .raffle-inner{grid-template-columns:1fr;gap:2.5rem}
-  .raffle-photo-wrap{order:-1}
+  .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact,.news{padding:4rem 1.5rem}
   .news-grid{grid-template-columns:1fr}
   .impact-card-body{grid-template-columns:1fr;gap:1.5rem}
   .two-col{grid-template-columns:1fr;gap:2.5rem}
@@ -736,12 +685,6 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <div class="hero-slogan">Clean Water, Strong Economy</div>
     <div class="hero-divider"></div>
     <p class="hero-mission">Dedicated to promoting the preservation, conservation, and responsible recreation of Lake Mattoon &mdash; a vital water source serving the communities of Central Illinois.</p>
-    <a href="#raffle" class="hero-raffle-callout">
-      <div class="hero-raffle-pulse"></div>
-      <span class="hero-raffle-label">Now Raffling</span>
-      <span class="hero-raffle-text">The Captain's Kit &mdash; Enter to Win</span>
-      <span class="hero-raffle-arrow">&#8594;</span>
-    </a>
     <div class="hero-cta-group">
       <button onclick="openDonateModal()" class="btn-primary">Support Our Mission</button>
       <a href="#about" class="btn-outline">Learn More</a>
@@ -755,57 +698,6 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <span class="slogan-phrase">Clean Water</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Strong Economy</span><span class="slogan-dot">&middot;</span><span class="slogan-phrase">Healthy Communities</span>
   </p>
 </div>
-
-<!-- RAFFLE -->
-<section class="raffle" id="raffle">
-  <div class="raffle-inner">
-    <div>
-      <p class="raffle-tag">Raffle &nbsp;&middot;&nbsp; Support the Lake</p>
-      <h2 class="raffle-title">The <em>Captain's Kit</em></h2>
-      <p class="raffle-subtitle">Every item in the basket was generously donated by our community</p>
-      <div class="raffle-divider"></div>
-      <div class="raffle-date-box">
-        <div>
-          <p class="raffle-date-label">Drawing</p>
-          <p class="raffle-date-val">Saturday, August 1st &nbsp;&middot;&nbsp; End of Summer Cookout, Lake Mattoon Marina</p>
-        </div>
-      </div>
-      <p class="raffle-prizes-title">The basket includes</p>
-      <div class="raffle-prize-list">
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Owala FreeSip</strong> insulated water bottle</span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Gydoty boat trash bag can</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>First Alert Marine1</strong> fire extinguisher</span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>RTIC Ultra-Light 32 Qt</strong> hard cooler</span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>HEETA waterproof dry bag</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>VRIEXSD premium first aid kit</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>SeaSense air horn</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Orange boat safety flag</strong> with suction cup</span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Perwin 17-in-1 multitool</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>Inflatable cooler raft</strong></span></div>
-        <div class="raffle-prize"><div class="raffle-prize-dot"></div><span class="raffle-prize-text"><strong>$20 gift card</strong> to Lake Mattoon Marina</span></div>
-      </div>
-      <div class="raffle-ticket-box">
-        <div class="raffle-ticket-price">$5</div>
-        <div class="raffle-ticket-label">per ticket &nbsp;&middot;&nbsp; winner need not be present</div>
-      </div>
-      <p class="raffle-contact-title">Purchase tickets from an officer or message us</p>
-      <div class="raffle-contact-links">
-        <a id="raffleEmailLink" href="#raffle" class="raffle-contact-btn email">
-          <svg width="13" height="13" viewBox="0 0 18 18" fill="none"><path d="M3 4H15C15.55 4 16 4.45 16 5V13C16 13.55 15.55 14 15 14H3C2.45 14 2 13.55 2 13V5C2 4.45 2.45 4 3 4Z" stroke="currentColor" stroke-width="1.2"/><path d="M2 5L9 9.5L16 5" stroke="currentColor" stroke-width="1.2"/></svg>
-          Email Us
-        </a>
-        <a href="https://www.facebook.com/profile.php?id=61588298083140" target="_blank" rel="noopener" class="raffle-contact-btn fb">
-          <svg width="13" height="13" viewBox="0 0 32 32" fill="none"><path d="M24 4H8C5.79 4 4 5.79 4 8V24C4 26.21 5.79 28 8 28H16.5V19.5H14V16.5H16.5V14.25C16.5 11.74 18.02 10 20.75 10H23V13H21.25C20.28 13 20 13.42 20 14.25V16.5H23L22.5 19.5H20V28H24C26.21 28 28 26.21 28 24V8C28 5.79 26.21 4 24 4Z" fill="currentColor"/></svg>
-          Message on Facebook
-        </a>
-      </div>
-    </div>
-    <div class="raffle-photo-wrap">
-      <img src="images/captains-kit-raffle.jpg" alt="Captain's Kit raffle prize basket — cooler, dry bag, raft, and boating gear" loading="lazy">
-      <div class="raffle-photo-caption">The Captain's Kit &nbsp;&middot;&nbsp; Every item donated by our community</div>
-    </div>
-  </div>
-</section>
 
 <!-- STATS -->
 <div class="stats-strip">
@@ -1860,16 +1752,12 @@ document.addEventListener('DOMContentLoaded', function() {
   var d = 'gmail.com';
   var emailDisplay = document.getElementById('contactEmailDisplay');
   var emailBtn     = document.getElementById('contactEmailBtn');
-  var raffleEmail  = document.getElementById('raffleEmailLink');
   if (emailDisplay) {
     emailDisplay.href        = 'mailto:' + u + '@' + d;
     emailDisplay.textContent = u + '@' + d;
   }
   if (emailBtn) {
     emailBtn.href = 'mailto:' + u + '@' + d + '?subject=Friends%20of%20Lake%20Mattoon%20Inquiry';
-  }
-  if (raffleEmail) {
-    raffleEmail.href = 'mailto:' + u + '@' + d + '?subject=Captain%27s%20Kit%20Raffle%20Ticket';
   }
 
   /* OFFICER PHOTO FALLBACKS */
