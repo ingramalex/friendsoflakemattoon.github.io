@@ -364,6 +364,201 @@ def gather_watershed_committee(ev: Evidence) -> None:
 
 
 MINUTES_DIR = DATA / "minutes"
+TRANSCRIPTS_DIR = DATA / "transcripts"
+CHANNEL = "https://www.youtube.com/channel/UCBeLTACy8mSykKnlOzvClsQ/videos"
+
+# "0:00 text", or a bare "0:00" line followed by its text on the next line --
+# YouTube's Show transcript panel produces both shapes depending on how it is
+# copied, so accept either.
+TS_INLINE = re.compile(r"^(\d{1,2}:\d{2}(?::\d{2})?)\s+(.*\S)\s*$")
+TS_ALONE = re.compile(r"^(\d{1,2}:\d{2}(?::\d{2})?)\s*$")
+
+
+def seconds(stamp: str) -> int:
+    parts = [int(p) for p in stamp.split(":")]
+    return parts[0] * 60 + parts[1] if len(parts) == 2 else \
+        parts[0] * 3600 + parts[1] * 60 + parts[2]
+
+
+def gather_meeting_videos(ev: Evidence) -> None:
+    """Index the City's meeting recordings from its YouTube channel.
+
+    Only the channel page is read, which YouTube's robots.txt permits. The
+    captions live under /api/timedtext, which it disallows, so transcripts are
+    never fetched here -- see gather_transcripts() for how their contents get
+    in.
+    """
+    try:
+        raw = fetch_text(CHANNEL, timeout=45)
+    except Exception as exc:
+        ev.miss("City of Mattoon YouTube channel", f"unreachable ({type(exc).__name__})")
+        return
+
+    m = re.search(r"var ytInitialData = (\{.*?\});</script>", raw, re.S)
+    if not m:
+        ev.miss("City of Mattoon YouTube channel",
+                f"page fetched ({len(raw)} bytes) but the video list could not be read")
+        return
+
+    lockups: list[dict] = []
+
+    def walk(o):
+        if isinstance(o, dict):
+            if "lockupViewModel" in o:
+                lockups.append(o["lockupViewModel"])
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+
+    def first_content(o):
+        if isinstance(o, dict):
+            if isinstance(o.get("content"), str):
+                return o["content"]
+            for v in o.values():
+                if (r := first_content(v)):
+                    return r
+        elif isinstance(o, list):
+            for v in o:
+                if (r := first_content(v)):
+                    return r
+        return ""
+
+    try:
+        walk(json.loads(m.group(1)))
+    except Exception as exc:
+        ev.miss("City of Mattoon YouTube channel", f"could not parse ({type(exc).__name__})")
+        return
+
+    meetings = []
+    for lk in lockups:
+        vid = lk.get("contentId", "")
+        title = first_content(
+            lk.get("metadata", {}).get("lockupMetadataViewModel", {}).get("title", {}))
+        if not vid or not title:
+            continue
+        # Titles carry the date, e.g. "Regular City Council Meeting 08/04/26".
+        d = re.search(r"(\d{1,2})/(\d{1,2})/(\d{2,4})", title)
+        iso = None
+        if d:
+            mm, dd, yy = int(d.group(1)), int(d.group(2)), int(d.group(3))
+            try:
+                iso = dt.date(yy + 2000 if yy < 100 else yy, mm, dd).isoformat()
+            except ValueError:
+                iso = None
+        meetings.append({
+            "date": iso,
+            "title": title,
+            "video_id": vid,
+            "url": f"https://www.youtube.com/watch?v={vid}",
+        })
+
+    meetings.sort(key=lambda x: x["date"] or "", reverse=True)
+    if meetings:
+        ev.add(
+            "upcoming",
+            kind="meeting_videos",
+            body="Mattoon City Council",
+            count=len(meetings),
+            recent=meetings[:10],
+            note=("Recordings of past meetings. Captions exist but are auto-generated "
+                  "and sit behind a robots-disallowed endpoint, so their contents only "
+                  "enter this brief when a person adds a transcript to data/transcripts/."),
+        )
+
+
+def gather_transcripts(ev: Evidence) -> None:
+    """Read meeting transcripts a person saved from YouTube's own panel.
+
+    YouTube's robots.txt disallows /api/ and /youtubei/, which is where every
+    automated caption route lives, so this project does not fetch transcripts.
+    A person using the "Show transcript" button in the player is ordinary use
+    of the site, and the file they save is what gets read here.
+
+    Filenames carry the meeting date and the video id so each excerpt can link
+    to the exact second it was said:
+
+        data/transcripts/2026-08-04_PV7CejNeCpo.txt
+    """
+    if not TRANSCRIPTS_DIR.exists():
+        return
+
+    for path in sorted(TRANSCRIPTS_DIR.glob("*.txt")):
+        name = re.match(r"(\d{4}-\d{2}-\d{2})[_-]([A-Za-z0-9_-]{11})", path.name)
+        date = name.group(1) if name else None
+        vid = name.group(2) if name else None
+
+        try:
+            lines = path.read_text(encoding="utf-8", errors="replace").splitlines()
+        except Exception as exc:
+            ev.miss(f"Transcript {path.name}", f"could not be read ({type(exc).__name__})")
+            continue
+
+        # Flatten to (seconds, text) cues.
+        cues: list[tuple[int, str]] = []
+        pending: str | None = None
+        for line in lines:
+            line = line.strip()
+            if not line:
+                continue
+            if (m := TS_INLINE.match(line)):
+                cues.append((seconds(m.group(1)), m.group(2)))
+                pending = None
+            elif (m := TS_ALONE.match(line)):
+                pending = m.group(1)
+            elif pending:
+                cues.append((seconds(pending), line))
+                pending = None
+            elif cues:
+                cues[-1] = (cues[-1][0], cues[-1][1] + " " + line)
+
+        if not cues:
+            ev.miss(f"Transcript {path.name}",
+                    "no timestamped lines found -- copy it from YouTube's "
+                    "'Show transcript' panel, which includes timestamps")
+            continue
+
+        # Group cues into passages so a mention keeps its surrounding sentences.
+        # Context is bounded by TIME, not by cue count: agenda items are minutes
+        # apart, so a fixed lookback can span a twenty-minute gap and produce a
+        # link that lands nowhere near what it quotes. The timestamp always
+        # points at the cue that actually mentioned the lake.
+        LOOKBACK, LOOKAHEAD = 25, 75  # seconds
+        segments = []
+        for i, (sec, text) in enumerate(cues):
+            if not LAKE_STRONG.search(text):
+                continue
+            if segments and sec - segments[-1]["at_seconds"] < 90:
+                continue  # same stretch of discussion, already captured
+
+            lo = i
+            while lo > 0 and sec - cues[lo - 1][0] <= LOOKBACK:
+                lo -= 1
+            hi = i + 1
+            while hi < len(cues) and cues[hi][0] - sec <= LOOKAHEAD:
+                hi += 1
+
+            segments.append({
+                "at_seconds": sec,
+                "at": f"{sec // 60}:{sec % 60:02d}",
+                "passage": " ".join(c[1] for c in cues[lo:hi])[:900],
+                "link": (f"https://www.youtube.com/watch?v={vid}&t={sec}s" if vid else None),
+            })
+
+        ev.add(
+            "upcoming",
+            kind="meeting_transcript",
+            body="Mattoon City Council",
+            meeting_date=date,
+            video_id=vid,
+            source_file=path.name,
+            cue_count=len(cues),
+            lake_segments=segments[:12],
+            note=("Transcript saved by hand from YouTube's Show transcript panel. "
+                  "Auto-generated captions, so names and figures may be misheard -- "
+                  "verify anything specific against the recording before repeating it."),
+        )
 
 
 def gather_dropped_minutes(ev: Evidence) -> None:
@@ -589,6 +784,12 @@ notices call it. If you quote their wording, note the discrepancy once.
 not vote for the council that governs the lake. Write for them.
 6. Be plain and calm. No alarm when readings are low; no reassurance when they \
 are not. Say what the numbers are and let them speak.
+7. Meeting transcripts are AUTO-GENERATED captions and mishear names, numbers, \
+and technical terms constantly. Never present a transcript passage as a direct \
+quotation and never attribute a specific figure to one. Describe what was \
+discussed, link the timestamp so a reader can hear it themselves, and say the \
+captions are automatic. Public comment from residents is the most valuable \
+thing in them -- lead with it when it concerns the lake.
 
 Length: 350-600 words. Lead with whatever actually matters most this week — \
 often that is an upcoming meeting, not a water reading that has not moved."""
@@ -600,6 +801,9 @@ Cover these beats, in whatever order the news justifies:
 - WATERSHED PLANNING: the Watershed Committee, TMDL work, funding, erosion.
 - COMING UP: meetings residents could attend, with dates, and any agenda item \
 touching the lake. This is the most actionable section — do not bury it.
+- WHAT WAS SAID: if transcript evidence is present, what came up about the lake \
+at recent meetings — especially resident public comment and any follow-up staff \
+promised. Link each point to its timestamp so readers can hear it themselves.
 
 Formatting:
 - Start with an H1 title. Make it specific to this week, not evergreen.
@@ -659,6 +863,8 @@ def main() -> int:
     gather_city(ev, state)
     gather_council_meetings(ev)
     gather_dropped_minutes(ev)
+    gather_meeting_videos(ev)
+    gather_transcripts(ev)
     gather_watershed_committee(ev)
     gather_counties(ev)
 
