@@ -81,6 +81,19 @@ h2.sec{font-family:var(--serif);font-size:clamp(1.4rem,2.6vw,2rem);font-weight:4
 .callout p{font-size:.92rem;color:var(--muted);font-weight:300}
 .callout p+p{margin-top:.6rem}
 
+/* ── Threads ────────────────────────────────────────── */
+.thread{background:#fff;border:1px solid var(--rule);border-left:3px solid var(--rule);border-radius:0 var(--r) var(--r) 0;padding:1.1rem 1.3rem;margin-bottom:.85rem}
+.thread.flagged{border-left-color:var(--flag);background:linear-gradient(90deg,#fdf6f4 0%,#fff 45%)}
+.thread-head{display:flex;flex-wrap:wrap;gap:.6rem;align-items:baseline;justify-content:space-between}
+.thread-name{font-family:var(--serif);font-size:1.1rem;color:var(--navy)}
+.thread-gap{font-size:.8rem;color:var(--muted);white-space:nowrap}
+.thread-gap strong{color:var(--flag)}
+.thread-sum{font-size:.9rem;color:var(--muted);font-weight:300;margin-top:.35rem}
+.thread-commit{font-size:.9rem;margin-top:.55rem;padding:.55rem .75rem;background:var(--sand);border-radius:var(--r);color:#2b3a3d}
+.thread-commit b{color:var(--navy)}
+.thread-src{margin-top:.55rem;display:flex;flex-wrap:wrap;gap:.45rem}
+.thread-src a{font-size:.78rem;color:var(--mid);text-decoration:none;border-bottom:1px solid rgba(26,80,104,.25)}
+.fineprint{font-size:.82rem;color:var(--muted);font-weight:300;margin-top:1rem;max-width:70ch}
 .loading,.empty{color:var(--muted);font-weight:300;padding:1.25rem 0}
 footer{padding:2.5rem 0 3.5rem;font-size:.85rem;color:var(--muted);font-weight:300}
 footer a{color:var(--mid)}
@@ -110,6 +123,15 @@ footer a{color:var(--mid)}
     <h2 class="sec">Coming up around the lake</h2>
     <p class="lede">Meetings you can attend. Highlighted items are ones where the lake is specifically on the table &mdash; either the body exists for it, or its posted documents mention it.</p>
     <div class="events" id="events"><p class="loading">Loading meetings&hellip;</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec">Raised, then quiet</h2>
+    <p class="lede">Subjects the Council took up about the lake, and how long since each was last mentioned. Highlighted rows are ones where an official undertook to do something.</p>
+    <div id="threads"><p class="loading">Loading&hellip;</p></div>
+    <p class="fineprint" id="threadsNote"></p>
   </div>
 </section>
 
@@ -264,6 +286,60 @@ footer a{color:var(--mid)}
       (stamp ? '<p class="article-date">' + stamp + '</p>' : '') +
       md(brief.markdown) + '</div>';
   }
+
+  function renderThreads(d) {
+    var host = document.getElementById('threads');
+    var threads = (d && d.threads) || [];
+    if (!threads.length) {
+      host.innerHTML = '<p class="empty">No meeting findings yet.</p>';
+      return;
+    }
+
+    host.innerHTML = threads.map(function (t) {
+      var gap = t.meetings_since_last_mention;
+      var gapText = gap === 0
+        ? 'raised at the most recent meeting'
+        : '<strong>' + gap + '</strong> meeting' + (gap === 1 ? '' : 's') +
+          ' since, ' + t.days_since_last_mention + ' days';
+
+      var commit = t.has_commitment && t.commitment
+        ? '<p class="thread-commit"><b>Undertaken:</b> ' + esc(t.commitment) + '</p>'
+        : '';
+
+      var src = (t.sources || []).map(function (s) {
+        var u = safeUrl(s.link);
+        var label = s.meeting_date + (s.timestamp ? ' @ ' + s.timestamp : '');
+        return u ? '<a href="' + u + '" target="_blank" rel="noopener">' +
+                   esc(label) + '</a>' : '<span>' + esc(label) + '</span>';
+      }).join('');
+
+      return '<article class="thread ' + (t.needs_follow_up ? 'flagged' : '') + '">' +
+               '<div class="thread-head">' +
+                 '<span class="thread-name">' + esc(t.thread) + '</span>' +
+                 '<span class="thread-gap">' + gapText + '</span>' +
+               '</div>' +
+               '<p class="thread-sum">' + esc(t.summary) + '</p>' +
+               commit +
+               '<div class="thread-src">' + src + '</div>' +
+             '</article>';
+    }).join('');
+
+    // The caveat is not decoration. "No further mention" is a statement about
+    // our records, and the page has to say so where the claim is made.
+    document.getElementById('threadsNote').textContent =
+      'Covers ' + d.meeting_count + ' recorded meetings, ' +
+      d.meetings_reviewed[0] + ' to ' +
+      d.meetings_reviewed[d.meetings_reviewed.length - 1] + '. ' + d.caveat;
+  }
+
+  fetch('data/commitments.json')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(renderThreads)
+    .catch(function () {
+      document.getElementById('threads').innerHTML =
+        '<p class="empty">Meeting findings have not been published yet — they are ' +
+        'awaiting review on the <code>lake-watch/meetings</code> branch.</p>';
+    });
 
   fetch('data/latest-brief.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
