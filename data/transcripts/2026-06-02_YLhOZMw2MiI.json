@@ -1,0 +1,38 @@
+{
+  "meeting_date": "2026-06-02",
+  "title": "Regular City Council Meeting 06/02/26",
+  "video_id": "YLhOZMw2MiI",
+  "url": "https://www.youtube.com/watch?v=YLhOZMw2MiI",
+  "extracted": "2026-08-16T21:23:24+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council addressed several ordinance approvals including marina boat slip rental contracts, property re-platting, TIF grant agreements, and street paving bids. During council comments, Commissioner Clawson announced the upcoming initial meeting of the watershed management group to develop a multi-year plan for the city's water supply.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "03:26",
+        "topic": "Marina Boat Slip Ownership Assignment",
+        "what_happened": "The council considered Special Ordinance No. 2026-2011 to approve the assignment of ownership from G&H Services LLC-2 to G&H Services LLC-3 for boat slip construction and rentals at the marina. Staff clarified that this internal entity transfer does not change the actual owners operating the marina facilities.",
+        "speakers": "Mayor, City Staff, Commissioners",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "14:38",
+        "topic": "Watershed Management Group Meeting",
+        "what_happened": "Commissioner Clawson announced the initial meeting of the watershed management group with their consultant, scheduled to take place at the water treatment plant. He commended staff for their effort in advancing the initiative to create a multi-year plan for the city's water supply.",
+        "speakers": "Commissioner Clawson",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": [
+      {
+        "timestamp": "04:34",
+        "measure": "Special Ordinance No. 2026-2011 approving assignment of ownership for boat slip construction and rentals at the marina to G&H Services LLC-3",
+        "outcome": "Passed 5-0"
+      }
+    ]
+  }
+}

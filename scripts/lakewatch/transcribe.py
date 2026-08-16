@@ -115,19 +115,36 @@ def gemini_call(parts: list[dict], api_key: str, poll_for: int = 1500) -> dict:
     submit, then poll the interaction by id until it reports a terminal state.
     """
     body = json.dumps({"model": GEMINI_MODEL, "input": parts}).encode()
-    req = urllib.request.Request(
-        GEMINI_ENDPOINT, data=body,
-        headers={"Content-Type": "application/json", "x-goog-api-key": api_key},
-        method="POST")
 
-    try:
-        with urllib.request.urlopen(req, timeout=180) as r:
-            payload = json.loads(r.read())
-    except urllib.error.HTTPError as exc:
-        detail = exc.read().decode("utf-8", errors="replace")[:600]
-        raise RuntimeError(f"Gemini returned HTTP {exc.code}: {detail}") from exc
-    except Exception as exc:
-        raise RuntimeError(f"Gemini submit failed: {type(exc).__name__}: {exc}") from exc
+    # Submitting is the flaky step: a ten-meeting backfill hit one "high demand"
+    # 500 and two read timeouts. Both are transient and cost nothing to retry,
+    # whereas losing a meeting means noticing and re-running it by hand.
+    payload = None
+    last = ""
+    for attempt in range(4):
+        if attempt:
+            wait = 20 * (2 ** (attempt - 1))
+            print(f"    retry {attempt}/3 in {wait}s after {last}", flush=True)
+            time.sleep(wait)
+        req = urllib.request.Request(
+            GEMINI_ENDPOINT, data=body,
+            headers={"Content-Type": "application/json", "x-goog-api-key": api_key},
+            method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                payload = json.loads(r.read())
+            break
+        except urllib.error.HTTPError as exc:
+            detail = exc.read().decode("utf-8", errors="replace")[:400]
+            last = f"HTTP {exc.code}"
+            # 4xx other than rate limiting is a bad request; retrying won't help.
+            if exc.code < 500 and exc.code != 429:
+                raise RuntimeError(f"Gemini returned HTTP {exc.code}: {detail}") from exc
+        except Exception as exc:
+            last = f"{type(exc).__name__}"
+
+    if payload is None:
+        raise RuntimeError(f"Gemini submit failed after 4 attempts ({last})")
 
     interaction_id = payload.get("id")
     status = str(payload.get("status", "")).lower()
