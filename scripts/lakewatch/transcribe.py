@@ -140,6 +140,19 @@ def gemini_call(parts: list[dict], api_key: str, poll_for: int = 1500) -> dict:
             # 4xx other than rate limiting is a bad request; retrying won't help.
             if exc.code < 500 and exc.code != 429:
                 raise RuntimeError(f"Gemini returned HTTP {exc.code}: {detail}") from exc
+            if exc.code == 429:
+                # A per-minute spike is worth one short wait; a daily quota is
+                # not, and on the free tier a backfill of hour-long videos hits
+                # the daily cap long before it hits a per-minute one. Say so
+                # rather than burning minutes and reporting a vague failure.
+                if attempt >= 1:
+                    raise RuntimeError(
+                        "Gemini rate limit (HTTP 429) after a retry. On the free "
+                        "tier this is usually the 8 hours/day of YouTube video "
+                        "cap rather than a momentary spike — roughly ten "
+                        "hour-long meetings. Re-run after the daily quota "
+                        f"resets, or move to a paid tier. Detail: {detail}"
+                    ) from exc
         except Exception as exc:
             last = f"{type(exc).__name__}"
 
