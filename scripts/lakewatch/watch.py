@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Parse the City of Mattoon water quality log into data/water-quality.json.
+"""Parse the City of Mattoon water quality log into data/lake-watch/water-quality.json.
 
 The most recent "Water Quality Update" public notice is a cumulative archive of
 every microcystin reading the city has published, so one fetch rebuilds the
@@ -24,7 +24,7 @@ import sys
 import urllib.request
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
-OUT_PATH = REPO_ROOT / "data" / "water-quality.json"
+OUT_PATH = REPO_ROOT / "data" / "lake-watch" / "water-quality.json"
 
 # The public-notices index renders notices inline without linking each post, so
 # the sitemap is the discovery path. robots.txt permits it (only /wp-json/ and
@@ -178,6 +178,7 @@ def main() -> int:
     values = [r["ppb"] for r in readings]
 
     payload = {
+        "schema": {"name": "water-quality", "version": 1},
         "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "source_url": update_url,
         "source_lastmod": lastmod,

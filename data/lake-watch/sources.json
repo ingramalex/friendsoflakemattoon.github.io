@@ -1,19 +1,23 @@
 {
+  "schema": {
+    "name": "sources",
+    "version": 1
+  },
   "_comment": "Verified source registry for Lake Mattoon watershed monitoring. Every entry here was tested by fetching it. 'access' records HOW it can be retrieved; 'blocked' entries are documented so we don't re-attempt them. New sources are proposed by scripts/lakewatch/discover.py and added here only after human review.",
   "updated": "2026-08-11",
   "sources": [
     {
       "id": "mattoon-water-quality-log",
-      "name": "City of Mattoon — Water Quality Update (cumulative log)",
+      "name": "City of Mattoon \u2014 Water Quality Update (cumulative log)",
       "url": "https://mattoon.illinois.gov/public-notices/",
       "access": "html",
       "priority": 1,
       "cadence": "biweekly",
-      "notes": "The most recent 'Water Quality Update' post is a cumulative archive of EVERY microcystin reading, not just the latest. One fetch gets the full time series (75 readings as of 2026-08-11). Find the newest post by matching the title text 'Water Quality Update' — date slugs are inconsistent (july21, august-25-2025, july-30-2026)."
+      "notes": "The most recent 'Water Quality Update' post is a cumulative archive of EVERY microcystin reading, not just the latest. One fetch gets the full time series (75 readings as of 2026-08-11). Find the newest post by matching the title text 'Water Quality Update' \u2014 date slugs are inconsistent (july21, august-25-2025, july-30-2026)."
     },
     {
       "id": "mattoon-public-notices",
-      "name": "City of Mattoon — Public Notices index",
+      "name": "City of Mattoon \u2014 Public Notices index",
       "url": "https://mattoon.illinois.gov/public-notices/",
       "access": "html",
       "priority": 1,
@@ -22,35 +26,35 @@
     },
     {
       "id": "mattoon-council-meetings",
-      "name": "City of Mattoon — City Council meeting index",
+      "name": "City of Mattoon \u2014 City Council meeting index",
       "url": "https://mattoon.illinois.gov/government/citycouncil/upcomingmeetings/",
       "access": "html-metadata-only",
       "priority": 1,
       "cadence": "weekly",
-      "notes": "Meeting DATES and document TITLES are scrapable from /download/city-council-meeting-YYYY-MM-DD/ pages. The PDFs themselves are NOT — see 'blocked' below. Regular meetings are 1st and 3rd Tuesdays."
+      "notes": "Meeting DATES and document TITLES are scrapable from /download/city-council-meeting-YYYY-MM-DD/ pages. The PDFs themselves are NOT \u2014 see 'blocked' below. Regular meetings are 1st and 3rd Tuesdays."
     },
     {
       "id": "swcd-watershed-committee",
-      "name": "Coles County SWCD — Lake Mattoon/Paradise Watershed Committee",
+      "name": "Coles County SWCD \u2014 Lake Mattoon/Paradise Watershed Committee",
       "url": "http://www.colescountyswcd.org/resources/watersheds/lake-mattoon-lake-paradise-watershed-committee/",
       "access": "html+wp-json",
       "priority": 1,
       "cadence": "weekly",
-      "notes": "Best-access source found. robots.txt allows /wp-json/ (only /wp-admin/ is disallowed), so the WP REST API is usable. Agendas are plain .docx under /wp-content/uploads/YYYY/MM/, no CAPTCHA. Committee is open to anyone; mailing list at mattoonandparadisewatershed@gmail.com. WARNING: site is HTTP-only, no HTTPS — do not submit any form here.",
+      "notes": "Best-access source found. robots.txt allows /wp-json/ (only /wp-admin/ is disallowed), so the WP REST API is usable. Agendas are plain .docx under /wp-content/uploads/YYYY/MM/, no CAPTCHA. Committee is open to anyone; mailing list at mattoonandparadisewatershed@gmail.com. WARNING: site is HTTP-only, no HTTPS \u2014 do not submit any form here.",
       "api": "http://www.colescountyswcd.org/wp-json/wp/v2/posts"
     },
     {
       "id": "coles-county-agendas",
-      "name": "Coles County Board — agenda archive",
+      "name": "Coles County Board \u2014 agenda archive",
       "url": "https://www.colesco.illinois.gov/board/agendas/",
       "access": "html+pdf",
       "priority": 2,
       "cadence": "weekly",
-      "notes": "PDFs are unlocked and directly fetchable. Filenames carry random suffixes (ARPA_Agenda_zolEFLm.pdf) so URLs must be scraped, not constructed. TLS chain is incomplete — some clients fail cert verification where curl succeeds."
+      "notes": "PDFs are unlocked and directly fetchable. Filenames carry random suffixes (ARPA_Agenda_zolEFLm.pdf) so URLs must be scraped, not constructed. TLS chain is incomplete \u2014 some clients fail cert verification where curl succeeds."
     },
     {
       "id": "coles-county-minutes",
-      "name": "Coles County Board — minutes archive",
+      "name": "Coles County Board \u2014 minutes archive",
       "url": "https://www.colesco.illinois.gov/board/minutes/",
       "access": "html+pdf",
       "priority": 2,
@@ -59,7 +63,7 @@
     },
     {
       "id": "shelby-county-board",
-      "name": "Shelby County Board — agendas and minutes",
+      "name": "Shelby County Board \u2014 agendas and minutes",
       "url": "https://shelbycounty-il.gov/cominutes.aspx",
       "access": "html+pdf",
       "priority": 2,
@@ -68,7 +72,7 @@
     },
     {
       "id": "cumberland-county-board",
-      "name": "Cumberland County Board — agendas and minutes",
+      "name": "Cumberland County Board \u2014 agendas and minutes",
       "url": "https://cumberlandcoil.gov/county-board-agendas-minutes/",
       "access": "html+pdf",
       "priority": 2,
@@ -77,7 +81,7 @@
     },
     {
       "id": "iepa-hab-program",
-      "name": "Illinois EPA — Harmful Algal Bloom program",
+      "name": "Illinois EPA \u2014 Harmful Algal Bloom program",
       "url": "https://epa.illinois.gov/topics/water-quality/monitoring/algal-bloom/2026-harmful-algal-bloom-program.html",
       "access": "html",
       "priority": 2,
@@ -86,7 +90,7 @@
     },
     {
       "id": "mattoon-city-news",
-      "name": "City of Mattoon — news feed",
+      "name": "City of Mattoon \u2014 news feed",
       "url": "https://mattoon.illinois.gov/news/",
       "access": "html",
       "priority": 2,
@@ -100,11 +104,11 @@
       "access": "pdf",
       "priority": 3,
       "cadence": "on-change",
-      "notes": "37-page reference doc. Establishes that Lake Paradise is the PRIMARY water source and Lake Mattoon is a CONTINGENCY source. 'Lessons Learned' and 'Next Steps' sections were published blank pending a debrief — watch for a revised version."
+      "notes": "37-page reference doc. Establishes that Lake Paradise is the PRIMARY water source and Lake Mattoon is a CONTINGENCY source. 'Lessons Learned' and 'Next Steps' sections were published blank pending a debrief \u2014 watch for a revised version."
     },
     {
       "id": "iepa-tmdl",
-      "name": "Illinois EPA — Lake Mattoon & Lake Paradise TMDL report",
+      "name": "Illinois EPA \u2014 Lake Mattoon & Lake Paradise TMDL report",
       "url": "https://epa.illinois.gov/content/dam/soi/en/web/epa/documents/water-quality/watershed-management/tmdls/reports/mattoon/mattoon-approved-tmdl.pdf",
       "access": "pdf",
       "priority": 3,
@@ -115,21 +119,21 @@
   "blocked": [
     {
       "id": "mattoon-council-pdfs",
-      "name": "City of Mattoon — council agendas, packets, minutes (PDFs)",
+      "name": "City of Mattoon \u2014 council agendas, packets, minutes (PDFs)",
       "reason": "captcha",
-      "detail": "WP Download Manager 7.5.3 marks these 'wpdm-download-locked'. Direct fetch returns 'You are not allowed to download.' The unlock flow (/?__wpdmlo=<pkg>&__wpdmfl=<file>) serves a page reading 'Verify CAPTCHA to Download'. Verified blocked via plain curl, curl with cookie jar + referer + browser UA, and same-origin fetch() from a real browser session. DO NOT attempt to bypass — this is the city's explicit signal against automated retrieval, and defeating bot detection is off-limits for this project regardless of how public the records are.",
+      "detail": "WP Download Manager 7.5.3 marks these 'wpdm-download-locked'. Direct fetch returns 'You are not allowed to download.' The unlock flow (/?__wpdmlo=<pkg>&__wpdmfl=<file>) serves a page reading 'Verify CAPTCHA to Download'. Verified blocked via plain curl, curl with cookie jar + referer + browser UA, and same-origin fetch() from a real browser session. DO NOT attempt to bypass \u2014 this is the city's explicit signal against automated retrieval, and defeating bot detection is off-limits for this project regardless of how public the records are.",
       "workarounds": [
         "Manual drop: a person downloads the PDF and saves it to data/minutes/ named with the meeting date. brief.py reads it from there. This is the only path by which agenda CONTENTS reach the brief. See data/minutes/README.md.",
-        "Records request to the City Clerk (Susan J. O'Brien, 217-235-5655, City Hall 2nd floor, 208 N 19th St). Verified 2026-08-11: the Clerk's office issues certified copies of Council minutes, ordinances, and resolutions. Illinois FOIA does not require using an agency's own form — a plain written request suffices, which matters here because the City's own FOIA request form sits behind the same CAPTCHA as the records.",
+        "Records request to the City Clerk (Susan J. O'Brien, 217-235-5655, City Hall 2nd floor, 208 N 19th St). Verified 2026-08-11: the Clerk's office issues certified copies of Council minutes, ordinances, and resolutions. Illinois FOIA does not require using an agency's own form \u2014 a plain written request suffices, which matters here because the City's own FOIA request form sits behind the same CAPTCHA as the records.",
         "Illinois OMA 5 ILCS 120/2.06 requires approved minutes to be posted to the website within 10 days of approval and to stay up at least 60 days. Asking to be added to a distribution list is a reasonable request to make of the Clerk."
       ],
       "verified": "2026-08-11"
     },
     {
       "id": "mattoon-wp-json",
-      "name": "City of Mattoon — WordPress REST API",
+      "name": "City of Mattoon \u2014 WordPress REST API",
       "reason": "robots-disallow",
-      "detail": "The API is live and would be the ideal ingestion path, but mattoon.illinois.gov/robots.txt contains 'Disallow: /wp-json/'. Off-limits. Use the sanctioned HTML pages instead. Note the sitemap index only covers posts and pages (46 posts) — downloads are not listed.",
+      "detail": "The API is live and would be the ideal ingestion path, but mattoon.illinois.gov/robots.txt contains 'Disallow: /wp-json/'. Off-limits. Use the sanctioned HTML pages instead. Note the sitemap index only covers posts and pages (46 posts) \u2014 downloads are not listed.",
       "verified": "2026-08-11"
     },
     {

@@ -332,7 +332,7 @@ footer a{color:var(--mid)}
       d.meetings_reviewed[d.meetings_reviewed.length - 1] + '. ' + d.caveat;
   }
 
-  fetch('data/commitments.json')
+  fetch('data/lake-watch/commitments.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(renderThreads)
     .catch(function () {
@@ -341,7 +341,7 @@ footer a{color:var(--mid)}
         'awaiting review on the <code>lake-watch/meetings</code> branch.</p>';
     });
 
-  fetch('data/latest-brief.json')
+  fetch('data/lake-watch/brief.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (brief) { renderEvents(brief.events); renderArticle(brief); })
     .catch(function () {

@@ -391,14 +391,14 @@ footer a{color:var(--mid)}
     document.getElementById(id).innerHTML = '<p class="error">' + msg + '</p>';
   }
 
-  fetch('data/water-quality.json')
+  fetch('data/lake-watch/water-quality.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(function (d) { renderStatus(d); renderChart(d); renderTable(d); })
     .catch(function () {
       fail('status', 'Could not load the readings. The data file may not have been generated yet.');
     });
 
-  fetch('data/sources.json')
+  fetch('data/lake-watch/sources.json')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
     .then(renderSources)
     .catch(function () { fail('sources', 'Could not load the source registry.'); });

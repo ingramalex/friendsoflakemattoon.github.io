@@ -15,7 +15,7 @@ Division of labour, on purpose:
   Claude  turns those findings into the article, so meeting write-ups read in
           the same voice as the weekly brief.
 
-Findings are saved permanently under data/transcripts/ so action items and
+Findings are saved permanently under data/lake-watch/meetings/ so action items
 resident concerns can be tracked across meetings rather than re-derived.
 
 Usage:
@@ -40,7 +40,7 @@ import urllib.request
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA = REPO_ROOT / "data"
-TRANSCRIPTS = DATA / "transcripts"
+MEETINGS = DATA / "lake-watch" / "meetings"
 NEWS = REPO_ROOT / "content" / "news"
 
 GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/interactions"
@@ -404,13 +404,13 @@ def main() -> int:
     else:
         ap.error("pass --latest N or --video ID")
 
-    TRANSCRIPTS.mkdir(parents=True, exist_ok=True)
+    MEETINGS.mkdir(parents=True, exist_ok=True)
     NEWS.mkdir(parents=True, exist_ok=True)
     processed = failed = 0
 
     for m in meetings:
         date, vid = m.get("date") or "undated", m["video_id"]
-        out = TRANSCRIPTS / f"{date}_{vid}.json"
+        out = MEETINGS / f"{date}_{vid}.json"
 
         if out.exists() and not args.force:
             print(f"· {date} already saved, skipping ({out.name})")
@@ -425,6 +425,7 @@ def main() -> int:
             continue
 
         record = {
+            "schema": {"name": "meeting-findings", "version": 1},
             "meeting_date": date,
             "title": m["title"],
             "video_id": vid,

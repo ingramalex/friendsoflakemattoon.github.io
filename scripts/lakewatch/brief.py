@@ -37,9 +37,10 @@ import urllib.request
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA = REPO_ROOT / "data"
+PUBLISHED = DATA / "lake-watch"
 NEWS = REPO_ROOT / "content" / "news"
-STATE_PATH = DATA / "brief-state.json"
-BRIEF_PATH = DATA / "latest-brief.json"
+STATE_PATH = DATA / "state" / "brief-state.json"
+BRIEF_PATH = PUBLISHED / "brief.json"
 
 MODEL = "claude-opus-5"
 UA = "FriendsOfLakeMattoon-LakeWatch/1.0 (+https://friendsoflakemattoon.org)"
@@ -180,9 +181,9 @@ class Evidence:
 
 
 def gather_water_quality(ev: Evidence, state: dict) -> None:
-    path = DATA / "water-quality.json"
+    path = PUBLISHED / "water-quality.json"
     if not path.exists():
-        ev.miss("Water quality series", "data/water-quality.json has not been generated")
+        ev.miss("Water quality series", "data/lake-watch/water-quality.json has not been generated")
         return
 
     d = json.loads(path.read_text())
@@ -252,7 +253,7 @@ def gather_city(ev: Evidence, state: dict) -> None:
 def gather_council_meetings(ev: Evidence) -> None:
     """Meeting dates and document titles.
 
-    The agenda PDFs themselves are CAPTCHA-gated (see data/sources.json), so we
+    The agenda PDFs themselves are CAPTCHA-gated (see data/lake-watch/sources.json), so we
     surface when the meeting is and what documents exist, and link out. That is
     still the thing a resident needs in order to show up.
     """
@@ -363,8 +364,9 @@ def gather_watershed_committee(ev: Evidence) -> None:
     )
 
 
-MINUTES_DIR = DATA / "minutes"
-TRANSCRIPTS_DIR = DATA / "transcripts"
+MINUTES_DIR = DATA / "inputs" / "minutes"
+TRANSCRIPTS_DIR = DATA / "inputs" / "transcripts"
+MEETINGS_DIR = PUBLISHED / "meetings"
 CHANNEL = "https://www.youtube.com/channel/UCBeLTACy8mSykKnlOzvClsQ/videos"
 
 # "0:00 text", or a bare "0:00" line followed by its text on the next line --
@@ -464,7 +466,7 @@ def gather_meeting_videos(ev: Evidence) -> None:
             recent=meetings[:10],
             note=("Recordings of past meetings. Captions exist but are auto-generated "
                   "and sit behind a robots-disallowed endpoint, so their contents only "
-                  "enter this brief when a person adds a transcript to data/transcripts/."),
+                  "enter this brief when a person adds a transcript to data/inputs/transcripts/."),
         )
 
 
@@ -479,15 +481,15 @@ def gather_transcripts(ev: Evidence) -> None:
     Filenames carry the meeting date and the video id so each excerpt can link
     to the exact second it was said:
 
-        data/transcripts/2026-08-04_PV7CejNeCpo.txt
+        data/inputs/transcripts/2026-08-04_PV7CejNeCpo.txt
     """
-    if not TRANSCRIPTS_DIR.exists():
+    if not (TRANSCRIPTS_DIR.exists() or MEETINGS_DIR.exists()):
         return
 
     # Structured findings produced by scripts/lakewatch/transcribe.py, which
     # reviews the recording through Gemini. These carry action items and
     # resident concerns that no document source contains.
-    for path in sorted(TRANSCRIPTS_DIR.glob("*.json"), reverse=True)[:6]:
+    for path in sorted(MEETINGS_DIR.glob("*.json"), reverse=True)[:6]:
         try:
             rec = json.loads(path.read_text())
         except Exception as exc:
@@ -604,7 +606,7 @@ def gather_dropped_minutes(ev: Evidence) -> None:
     person clicking through it is exactly its intended use -- so the manual step
     stays manual, and everything after it is automated.
 
-    Drop a PDF into data/minutes/ named with its meeting date, e.g.
+    Drop a PDF into data/inputs/minutes/ named with its meeting date, e.g.
     2026-08-04-council-minutes.pdf, and it becomes evidence for the brief.
     This is the only path by which actual agenda contents enter the pipeline.
     """
@@ -633,7 +635,7 @@ def gather_dropped_minutes(ev: Evidence) -> None:
             meeting_date=date.group(1) if date else None,
             mentions_lake=about_lake,
             excerpts=excerpts(text, limit=6) if about_lake else [],
-            note=("Downloaded by hand and added to data/minutes/. This is the only "
+            note=("Downloaded by hand and added to data/inputs/minutes/. This is the only "
                   "way the City's agenda contents reach the brief."),
         )
 
@@ -929,6 +931,7 @@ def main() -> int:
     )
 
     BRIEF_PATH.write_text(json.dumps({
+        "schema": {"name": "brief", "version": 1},
         "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "date": today,
         "title": title,

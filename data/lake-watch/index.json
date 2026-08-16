@@ -1,0 +1,62 @@
+{
+  "schema": {
+    "name": "lake-watch-index",
+    "version": 1
+  },
+  "project": "Lake Watch",
+  "description": "A public record of how Lake Mattoon and its watershed are governed: drinking water readings, the meetings where decisions are made, and what officials undertook to do. Assembled from government sources and recorded public meetings.",
+  "generated": "2026-08-16T22:56:12+00:00",
+  "provenance": "Readings and documents come from government sources directly. Meeting findings come from AI review of auto-captioned recordings and are reviewed by a person before publication. Anything derived from captions should be verified against the linked recording before being quoted.",
+  "datasets": [
+    {
+      "id": "water-quality",
+      "path": "water-quality.json",
+      "schema_version": 1,
+      "description": "Every microcystin reading the City of Mattoon has published for treated drinking water, with the EPA advisory thresholds.",
+      "available": true,
+      "bytes": 8354,
+      "updated": "2026-08-11T14:12:27+00:00"
+    },
+    {
+      "id": "sources",
+      "path": "sources.json",
+      "schema_version": 1,
+      "description": "Government and institutional sources this project monitors, each recording how it can actually be retrieved, plus those that are known to be blocked.",
+      "available": true,
+      "bytes": 8924
+    },
+    {
+      "id": "brief",
+      "path": "brief.json",
+      "schema_version": 1,
+      "description": "The most recent weekly brief: the article text plus structured upcoming meetings.",
+      "available": true,
+      "bytes": 5609,
+      "updated": "2026-08-11T14:13:47+00:00"
+    },
+    {
+      "id": "commitments",
+      "path": "commitments.json",
+      "schema_version": 1,
+      "description": "Lake subjects tracked across recorded meetings, with what was undertaken and how long since each was last mentioned.",
+      "available": false
+    },
+    {
+      "id": "meetings",
+      "path": "meetings/",
+      "schema_version": 1,
+      "description": "Per-meeting findings from recorded City Council sessions: lake topics, resident concerns, commitments, and votes, each timestamped to the recording. One file per meeting, named <meeting-date>_<youtube-video-id>.json.",
+      "available": true,
+      "count": 7,
+      "files": [
+        "2026-03-17_MeLS8_EUWHI.json",
+        "2026-05-05_e4JVXrEoar8.json",
+        "2026-06-02_YLhOZMw2MiI.json",
+        "2026-06-16_f5KRH9IXbeA.json",
+        "2026-07-07_IkW22GlJH3Y.json",
+        "2026-07-21_9sq2_ZeawL4.json",
+        "2026-08-04_PV7CejNeCpo.json"
+      ]
+    }
+  ]
+}

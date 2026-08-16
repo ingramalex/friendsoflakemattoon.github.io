@@ -47,8 +47,8 @@ jobs:
         if: inputs.findings_from != ''
         run: |
           git fetch origin "${{ inputs.findings_from }}"
-          git checkout "origin/${{ inputs.findings_from }}" -- data/transcripts || true
-          echo "Findings present: $(ls data/transcripts/*.json 2>/dev/null | wc -l)"
+          git checkout "origin/${{ inputs.findings_from }}" -- data/lake-watch/meetings || true
+          echo "Findings present: $(ls data/lake-watch/meetings/*.json 2>/dev/null | wc -l)"
 
       - uses: actions/setup-python@v6
         with:
@@ -103,8 +103,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add -A data/transcripts data/commitments.json content/news 2>/dev/null || \
-            git add -A data/transcripts content/news
+          # -f is required and intentional: these paths are gitignored so they
+          # cannot reach main by accident. This is the one place that publishes
+          # them, and it publishes to the review branch.
+          git add -A -f data/lake-watch content/news
           if git diff --cached --quiet; then
             echo "No new findings." >> $GITHUB_STEP_SUMMARY
             exit 0

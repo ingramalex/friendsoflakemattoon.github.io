@@ -13,3 +13,12 @@ __pycache__/
 *.key
 credentials.json
 service-account.json
+
+# Meeting findings, anything derived from them, and the drafted write-ups are
+# published through the review branch, never committed straight to main. Twice
+# in one session a stray `git add -A` swept them onto main, once while the
+# commit message claimed the opposite. The workflow that is meant to publish
+# them passes `-f` deliberately; nothing else picks them up by accident.
+data/lake-watch/meetings/*.json
+data/lake-watch/commitments.json
+content/news/*-council-meeting.md

@@ -3,13 +3,13 @@
 
 Asks Claude to search the web for government and institutional sources that
 publish information about Lake Mattoon, Lake Paradise, or the surrounding
-watershed, then reports anything not already in data/sources.json.
+watershed, then reports anything not already in data/lake-watch/sources.json.
 
 Candidates are written to stdout as Markdown for a GitHub issue. Nothing is
 added to the registry automatically -- a source that turns out to be a content
 farm, a stale mirror, or a hallucinated URL would undermine the credibility
 this whole project exists to build. A human promotes candidates by editing
-data/sources.json.
+data/lake-watch/sources.json.
 
 Usage:
     ANTHROPIC_API_KEY=... python3 scripts/lakewatch/discover.py
@@ -29,7 +29,7 @@ from typing import Any
 import anthropic
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
-SOURCES_PATH = REPO_ROOT / "data" / "sources.json"
+SOURCES_PATH = REPO_ROOT / "data" / "lake-watch" / "sources.json"
 
 MODEL = "claude-opus-5"
 
@@ -215,7 +215,7 @@ def main() -> int:
 
     lines = [
         "Claude's weekly sweep turned up sources not in "
-        "[`data/sources.json`](../blob/main/data/sources.json).",
+        "[`data/lake-watch/sources.json`](../blob/main/data/lake-watch/sources.json).",
         "",
         "Every URL below was fetched to confirm it resolves — but **reachable is not "
         "the same as trustworthy**. Open each one before promoting it into the "
@@ -248,7 +248,7 @@ def main() -> int:
     lines += [
         "---",
         "",
-        "To accept a source, add it to `data/sources.json` with an `access` field "
+        "To accept a source, add it to `data/lake-watch/sources.json` with an `access` field "
         "describing how it can actually be retrieved. If it turns out to be behind "
         "a CAPTCHA or disallowed by robots.txt, record it under `blocked` instead "
         "so we don't re-test it every week.",

@@ -37,8 +37,8 @@ import sys
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parents[2]
 DATA = REPO_ROOT / "data"
-TRANSCRIPTS = DATA / "transcripts"
-OUT = DATA / "commitments.json"
+MEETINGS = DATA / "lake-watch" / "meetings"
+OUT = DATA / "lake-watch" / "commitments.json"
 
 MODEL = "claude-opus-5"
 
@@ -85,7 +85,7 @@ def load_items() -> tuple[list[dict], list[str]]:
     items: list[dict] = []
     meeting_dates: list[str] = []
 
-    for path in sorted(TRANSCRIPTS.glob("*.json")):
+    for path in sorted(MEETINGS.glob("*.json")):
         try:
             rec = json.loads(path.read_text())
         except Exception:
@@ -238,7 +238,7 @@ def main() -> int:
 
     items, meetings = load_items()
     if not items:
-        print("No findings in data/transcripts/. Run transcribe.py first.",
+        print("No findings in data/lake-watch/meetings/. Run transcribe.py first.",
               file=sys.stderr)
         return 1
 
@@ -257,6 +257,7 @@ def main() -> int:
     threads = enrich(group_threads(items), items, meetings)
 
     OUT.write_text(json.dumps({
+        "schema": {"name": "commitments", "version": 1},
         "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "meetings_reviewed": meetings,
         "meeting_count": len(meetings),

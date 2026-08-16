@@ -109,7 +109,7 @@ jobs:
 
       - name: Flag any advisory exceedance
         run: |
-          EX=$(python3 -c "import json;print(json.load(open('data/water-quality.json'))['exceedances'])")
+          EX=$(python3 -c "import json;print(json.load(open('data/lake-watch/water-quality.json'))['exceedances'])")
           if [ "$EX" -gt 0 ]; then
             echo "::warning::$EX reading(s) above the 0.30 ppb advisory — review before publishing."
           fi
