@@ -236,7 +236,51 @@ def main() -> int:
                     help="save findings without writing articles (no Anthropic key needed)")
     ap.add_argument("--force", action="store_true",
                     help="re-process meetings already saved")
+    ap.add_argument("--probe", action="store_true",
+                    help="one cheap call to check auth, model name, and that "
+                         "YouTube URLs are accepted, before spending on a backfill")
     args = ap.parse_args()
+
+    if args.probe:
+        key = os.environ.get("GEMINI_API_KEY")
+        if not key:
+            print("GEMINI_API_KEY is not set.", file=sys.stderr)
+            return 1
+        url = "https://www.youtube.com/watch?v=" + (args.video or "PV7CejNeCpo")
+        print(f"Probing {GEMINI_MODEL} with {url}")
+        body = json.dumps({
+            "model": GEMINI_MODEL,
+            "input": [
+                {"type": "text",
+                 "text": "In one sentence: what kind of meeting is this, and "
+                         "roughly how long does it run?"},
+                {"type": "video", "uri": url},
+            ],
+        }).encode()
+        req = urllib.request.Request(
+            GEMINI_ENDPOINT, data=body,
+            headers={"Content-Type": "application/json", "x-goog-api-key": key},
+            method="POST")
+        try:
+            with urllib.request.urlopen(req, timeout=600) as r:
+                payload = json.loads(r.read())
+        except urllib.error.HTTPError as exc:
+            print(f"HTTP {exc.code}: {exc.read().decode('utf-8', 'replace')[:900]}",
+                  file=sys.stderr)
+            return 1
+        except Exception as exc:
+            print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
+            return 1
+
+        text = find_text(payload)
+        print(f"\nModel replied:\n  {text[:500]}\n")
+        print("Top-level response keys:", list(payload)[:12])
+        if not text:
+            print("No text found — the response envelope differs from what "
+                  "find_text() walks.", file=sys.stderr)
+            return 1
+        print("PROBE OK — auth, model name, and YouTube input all work.")
+        return 0
 
     gemini_key = os.environ.get("GEMINI_API_KEY")
     if not gemini_key:

@@ -1,0 +1,103 @@
+name: Transcribe meetings
+
+# Manual only. Reviews recorded Council meetings through Gemini and saves the
+# findings, then opens a PR. Kept separate from the weekly brief because it is
+# a backfill tool run on demand, and because it spends a different API budget.
+#
+# Start with mode "probe" — one cheap call that checks auth, model name, and
+# that YouTube URLs are accepted, before committing to a run of ten meetings.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'What to run'
+        required: true
+        default: 'probe'
+        type: choice
+        options: [probe, extract-only, extract-and-write]
+      latest:
+        description: 'How many recent meetings (ignored for probe / single video)'
+        required: false
+        default: '1'
+      video:
+        description: 'Single YouTube video id (optional; overrides "latest")'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  transcribe:
+    name: Review meetings
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install --quiet anthropic certifi pypdf
+
+      - name: Run
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          set -o pipefail
+          ARGS=""
+          case "${{ inputs.mode }}" in
+            probe)              ARGS="--probe" ;;
+            extract-only)       ARGS="--extract-only" ;;
+            extract-and-write)  ARGS="" ;;
+          esac
+
+          if [ -n "${{ inputs.video }}" ]; then
+            ARGS="$ARGS --video ${{ inputs.video }}"
+          elif [ "${{ inputs.mode }}" != "probe" ]; then
+            ARGS="$ARGS --latest ${{ inputs.latest }}"
+          fi
+
+          echo "Running: transcribe.py $ARGS"
+          python3 scripts/lakewatch/transcribe.py $ARGS 2>&1 | tee "$RUNNER_TEMP/out.txt"
+
+          {
+            echo "## transcribe.py $ARGS"
+            echo '```'
+            cat "$RUNNER_TEMP/out.txt"
+            echo '```'
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: Open or update the findings PR
+        if: inputs.mode != 'probe'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add -A data/transcripts content/news
+          if git diff --cached --quiet; then
+            echo "No new findings." >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
+          BRANCH=lake-watch/meetings
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin "$BRANCH" 2>/dev/null || true
+          git checkout -B "$BRANCH"
+          git commit -q -m "Meeting findings from recorded sessions"
+          git push --force-with-lease origin "$BRANCH"
+
+          BODY=$(printf 'Automated review of recorded Council meetings.\n\n```\n%s\n```\n\nFindings are from an AI review of auto-captioned video — verify specifics against the recording before publishing.' "$(cat "$RUNNER_TEMP/out.txt")")
+
+          if gh pr view "$BRANCH" --json number >/dev/null 2>&1; then
+            gh pr comment "$BRANCH" --body "$BODY"
+          elif ! gh pr create --base main --head "$BRANCH" \
+                 --title "Meeting findings" --body "$BODY"; then
+            COMPARE="https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}?expand=1"
+            echo "::warning::Branch pushed but PR not opened. Open it here: $COMPARE"
+            echo "Branch pushed; open the PR manually: $COMPARE" >> $GITHUB_STEP_SUMMARY
+          fi
