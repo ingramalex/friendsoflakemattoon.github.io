@@ -34,6 +34,7 @@ import os
 import pathlib
 import re
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -101,29 +102,66 @@ Rules that matter more than completeness:
 - Prefer omitting an item to guessing at one."""
 
 
-def gemini_extract(video_url: str, api_key: str, timeout: int = 900) -> dict:
-    """Ask Gemini to watch the meeting and return structured findings."""
-    body = json.dumps({
-        "model": GEMINI_MODEL,
-        "input": [
-            {"type": "text", "text": EXTRACTION_PROMPT},
-            {"type": "video", "uri": video_url},
-        ],
-    }).encode()
+DONE_STATES = {"completed", "succeeded", "done", "finished"}
+FAIL_STATES = {"failed", "errored", "cancelled", "canceled"}
 
+
+def gemini_call(parts: list[dict], api_key: str, poll_for: int = 1500) -> dict:
+    """Submit an interaction and wait for it to finish.
+
+    Reviewing a 46-minute meeting takes minutes, and the endpoint returns an
+    interaction resource rather than a finished answer -- a synchronous read
+    either comes back still-running or dies at the gateway with a 504. So
+    submit, then poll the interaction by id until it reports a terminal state.
+    """
+    body = json.dumps({"model": GEMINI_MODEL, "input": parts}).encode()
     req = urllib.request.Request(
-        GEMINI_ENDPOINT,
-        data=body,
+        GEMINI_ENDPOINT, data=body,
         headers={"Content-Type": "application/json", "x-goog-api-key": api_key},
-        method="POST",
-    )
+        method="POST")
 
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
+        with urllib.request.urlopen(req, timeout=180) as r:
             payload = json.loads(r.read())
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:600]
         raise RuntimeError(f"Gemini returned HTTP {exc.code}: {detail}") from exc
+    except Exception as exc:
+        raise RuntimeError(f"Gemini submit failed: {type(exc).__name__}: {exc}") from exc
+
+    interaction_id = payload.get("id")
+    status = str(payload.get("status", "")).lower()
+    waited = 0
+
+    while interaction_id and status and status not in DONE_STATES | FAIL_STATES:
+        if waited >= poll_for:
+            raise RuntimeError(
+                f"Interaction {interaction_id} still '{status}' after {waited}s")
+        time.sleep(15)
+        waited += 15
+        poll = urllib.request.Request(
+            f"{GEMINI_ENDPOINT}/{interaction_id}",
+            headers={"x-goog-api-key": api_key}, method="GET")
+        try:
+            with urllib.request.urlopen(poll, timeout=120) as r:
+                payload = json.loads(r.read())
+        except Exception as exc:
+            raise RuntimeError(f"Polling failed after {waited}s: "
+                               f"{type(exc).__name__}: {exc}") from exc
+        status = str(payload.get("status", "")).lower()
+        print(f"    …{waited}s, status={status}", flush=True)
+
+    if status in FAIL_STATES:
+        raise RuntimeError(f"Interaction ended '{status}': {json.dumps(payload)[:500]}")
+    return payload
+
+
+def gemini_extract(video_url: str, api_key: str, timeout: int = 900) -> dict:
+    """Ask Gemini to watch the meeting and return structured findings."""
+    payload = gemini_call([
+        {"type": "text", "text": EXTRACTION_PROMPT},
+        {"type": "video", "uri": video_url},
+    ], api_key)
 
     text = find_text(payload)
     if not text:
@@ -271,30 +309,18 @@ def main() -> int:
             print("GEMINI_API_KEY is not set.", file=sys.stderr)
             return 1
         url = "https://www.youtube.com/watch?v=" + (args.video or "PV7CejNeCpo")
-        print(f"Probing {GEMINI_MODEL} with {url}")
-        body = json.dumps({
-            "model": GEMINI_MODEL,
-            "input": [
+        print(f"Probing {GEMINI_MODEL} with {url}", flush=True)
+        try:
+            payload = gemini_call([
                 {"type": "text",
                  "text": "In one sentence: what kind of meeting is this, and "
                          "roughly how long does it run?"},
                 {"type": "video", "uri": url},
-            ],
-        }).encode()
-        req = urllib.request.Request(
-            GEMINI_ENDPOINT, data=body,
-            headers={"Content-Type": "application/json", "x-goog-api-key": key},
-            method="POST")
-        try:
-            with urllib.request.urlopen(req, timeout=600) as r:
-                payload = json.loads(r.read())
-        except urllib.error.HTTPError as exc:
-            print(f"HTTP {exc.code}: {exc.read().decode('utf-8', 'replace')[:900]}",
-                  file=sys.stderr)
-            return 1
+            ], key)
         except Exception as exc:
-            print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
+            print(f"{exc}", file=sys.stderr)
             return 1
+        print(f"final status: {payload.get('status')}")
 
         print("\n--- response outline ---")
         print("\n".join(outline(payload)[:60]))
