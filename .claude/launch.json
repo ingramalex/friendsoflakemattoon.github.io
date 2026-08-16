@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8765"],
+      "port": 8765
+    },
+    {
+      "name": "jukebox-site",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8771", "--directory", "/Users/alexanderingram/Documents/GitHub/livenudejukebox/website"],
+      "port": 8771
+    }
+  ]
+}
