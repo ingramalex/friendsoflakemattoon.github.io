@@ -136,32 +136,56 @@ def gemini_extract(video_url: str, api_key: str, timeout: int = 900) -> dict:
 
 
 def find_text(payload) -> str:
-    """Pull the model's text out of the response without assuming its shape.
+    """Pull the model's text out of the response.
 
-    The response envelope has moved between API versions; the findings matter
-    more than the wrapper, so walk for the longest string rather than hard-code
-    a path that a version bump would silently break.
+    An earlier version took the longest string anywhere in the payload. That
+    silently returned an encrypted reasoning signature -- a long opaque blob --
+    and reported success, which is worse than failing. Only fields actually
+    named as text now count, and blobs that do not look like prose are rejected.
     """
-    best = ""
+    found: list[str] = []
+
+    def looks_like_prose(s: str) -> bool:
+        if len(s) < 2 or " " not in s:
+            return False
+        # Base64-ish signatures are long, spaceless-ish, and punctuation-heavy.
+        letters = sum(c.isalpha() or c.isspace() for c in s)
+        return letters / len(s) > 0.75
 
     def walk(o):
-        nonlocal best
-        if isinstance(o, str):
-            if len(o) > len(best):
-                best = o
-        elif isinstance(o, dict):
+        if isinstance(o, dict):
             for k, v in o.items():
-                if k in {"text", "content", "output", "parts", "candidates",
-                         "message", "outputs", "input"}:
+                if k == "text" and isinstance(v, str) and looks_like_prose(v):
+                    found.append(v)
+                else:
                     walk(v)
-            for v in o.values():
-                walk(v)
         elif isinstance(o, list):
             for v in o:
                 walk(v)
 
     walk(payload)
-    return best
+    return "\n".join(found).strip()
+
+
+def outline(o, depth: int = 0, path: str = "") -> list[str]:
+    """A compact map of a response so its shape can be read at a glance."""
+    out: list[str] = []
+    pad = "  " * depth
+    if isinstance(o, dict):
+        for k, v in list(o.items())[:14]:
+            if isinstance(v, (dict, list)):
+                out.append(f"{pad}{k}: {type(v).__name__}")
+                if depth < 4:
+                    out += outline(v, depth + 1, f"{path}/{k}")
+            else:
+                s = str(v)
+                out.append(f"{pad}{k}: {type(v).__name__} = "
+                           f"{s[:70]}{'…' if len(s) > 70 else ''}")
+    elif isinstance(o, list):
+        out.append(f"{pad}[{len(o)} items]")
+        if o and depth < 4:
+            out += outline(o[0], depth + 1, f"{path}[0]")
+    return out
 
 
 ARTICLE_SYSTEM = """You write short meeting write-ups for Friends of Lake Mattoon, \
@@ -272,14 +296,18 @@ def main() -> int:
             print(f"{type(exc).__name__}: {exc}", file=sys.stderr)
             return 1
 
+        print("\n--- response outline ---")
+        print("\n".join(outline(payload)[:60]))
+
         text = find_text(payload)
-        print(f"\nModel replied:\n  {text[:500]}\n")
-        print("Top-level response keys:", list(payload)[:12])
+        print(f"\n--- extracted text ---\n{text[:600] or '(none)'}\n")
+
         if not text:
-            print("No text found — the response envelope differs from what "
-                  "find_text() walks.", file=sys.stderr)
+            print("PROBE FAILED: the call succeeded but no prose was extracted. "
+                  "Use the outline above to correct find_text().", file=sys.stderr)
             return 1
-        print("PROBE OK — auth, model name, and YouTube input all work.")
+        print("PROBE OK — auth, model name, YouTube input, and text extraction "
+              "all work.")
         return 0
 
     gemini_key = os.environ.get("GEMINI_API_KEY")
