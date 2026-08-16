@@ -1,0 +1,49 @@
+{
+  "meeting_date": "2026-08-16",
+  "title": "Meeting",
+  "video_id": "PV7CejNeCpo",
+  "url": "https://www.youtube.com/watch?v=PV7CejNeCpo",
+  "extracted": "2026-08-16T21:12:04+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council addressed public comments on municipal pet ordinances and neighborhood stormwater flooding before moving to regular agenda business. The council subsequently approved several measures including administrative positions, property acquisitions, urban forestry grants, water treatment plant upgrades, street striping, and drainage infrastructure projects.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "33:23",
+        "topic": "Water Treatment Plant Equipment Replacement",
+        "what_happened": "The council considered a proposal to approve $74,868 for Hydro-Kinetics to replace modulating electric actuators on Filter #2 at the Water Treatment Plant. City staff explained that the new actuators replace 25-year-old equipment and match previously updated filters to allow standardized maintenance and repair parts.",
+        "speakers": "city council, city manager",
+        "importance": "high"
+      },
+      {
+        "timestamp": "35:28",
+        "topic": "Little Wabash Drainage Project & Water Quality",
+        "what_happened": "The council reviewed plans and specifications to authorize bidding for Phase 1 piping of the Little Wabash Drainage Project. A council member shared an email from a downstream resident raising concerns that increased drainage flow could exacerbate flooding and transport chemical runoff into the city's water supply.",
+        "speakers": "city council, city manager, resident",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "39:46",
+        "concern": "A downstream resident on Lake Road submitted an email expressing concern that faster drainage from the new 60-inch storm sewer pipe would increase downstream flooding and carry chemical runoff into Mattoon's municipal water supply.",
+        "response": "City staff explained that planned future phases of the project incorporate detention basins near Circle Drive to slow water flow and mitigate downstream flooding."
+      }
+    ],
+    "action_items": [],
+    "votes": [
+      {
+        "timestamp": "34:34",
+        "measure": "Approval of Council Decision Request 2026-2715 approving proposal from Hydro-Kinetics for $74,868 for replacement of modulating electric actuators on Filter #2 at the Water Treatment Plant",
+        "outcome": "approved"
+      },
+      {
+        "timestamp": "43:17",
+        "measure": "Approval of Council Decision Request 2026-2717 approving plans/specifications and authorizing solicitation of bids for Little Wabash Drainage Project - Phase 1 Piping",
+        "outcome": "approved"
+      }
+    ]
+  }
+}
