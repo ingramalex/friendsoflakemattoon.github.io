@@ -484,6 +484,40 @@ def gather_transcripts(ev: Evidence) -> None:
     if not TRANSCRIPTS_DIR.exists():
         return
 
+    # Structured findings produced by scripts/lakewatch/transcribe.py, which
+    # reviews the recording through Gemini. These carry action items and
+    # resident concerns that no document source contains.
+    for path in sorted(TRANSCRIPTS_DIR.glob("*.json"), reverse=True)[:6]:
+        try:
+            rec = json.loads(path.read_text())
+        except Exception as exc:
+            ev.miss(f"Meeting findings {path.name}", f"unreadable ({type(exc).__name__})")
+            continue
+
+        f = rec.get("findings", {})
+        if not f.get("lake_discussed"):
+            ev.add("upcoming", kind="meeting_review", body="Mattoon City Council",
+                   meeting_date=rec.get("meeting_date"), url=rec.get("url"),
+                   lake_discussed=False,
+                   summary=f.get("meeting_summary", ""),
+                   note="Reviewed; nothing about the lake came up.")
+            continue
+
+        ev.add(
+            "upcoming",
+            kind="meeting_review",
+            body="Mattoon City Council",
+            meeting_date=rec.get("meeting_date"),
+            url=rec.get("url"),
+            lake_discussed=True,
+            summary=f.get("meeting_summary", ""),
+            topics=f.get("topics", [])[:8],
+            citizen_concerns=f.get("citizen_concerns", [])[:6],
+            action_items=f.get("action_items", [])[:8],
+            votes=f.get("votes", [])[:6],
+            caveat=rec.get("caveat", ""),
+        )
+
     for path in sorted(TRANSCRIPTS_DIR.glob("*.txt")):
         name = re.match(r"(\d{4}-\d{2}-\d{2})[_-]([A-Za-z0-9_-]{11})", path.name)
         date = name.group(1) if name else None
@@ -608,6 +642,9 @@ COUNTIES = [
     ("Coles County Board", "https://www.colesco.illinois.gov/board/agendas/"),
     ("Shelby County Board", "https://shelbycounty-il.gov/cominutes.aspx"),
     ("Cumberland County Board", "https://cumberlandcoil.gov/county-board-agendas-minutes/"),
+    # Neoga sits at the south end of the lake and its robots.txt permits
+    # everything; minutes and agendas are plain PDFs with no gate at all.
+    ("City of Neoga", "https://neoga.org/city-council/"),
 ]
 
 
