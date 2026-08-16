@@ -1,0 +1,341 @@
+{
+  "generated": "2026-08-16T21:56:07+00:00",
+  "meetings_reviewed": [
+    "2026-03-17",
+    "2026-05-05",
+    "2026-05-19",
+    "2026-06-02",
+    "2026-06-16",
+    "2026-07-07",
+    "2026-07-21",
+    "2026-08-04"
+  ],
+  "meeting_count": 8,
+  "item_count": 23,
+  "thread_count": 10,
+  "needs_follow_up": 5,
+  "caveat": "Built from AI review of auto-captioned recordings. 'No further mention' describes the meetings we have reviewed, not what the City did \u2014 action may have been taken outside a council meeting. Verify against the linked recording before repeating anything.",
+  "threads": [
+    {
+      "thread": "Marina boat slip ownership assignment",
+      "summary": "The council took up Special Ordinance No. 2026-2011 assigning ownership of boat slip construction and rental operations at the marina from G&H Services LLC-2 to G&H Services LLC-3. Staff described it as an internal entity transfer that does not change the operators. The ordinance passed 5-0.",
+      "category": "recreation",
+      "has_commitment": true,
+      "commitment": "Council approved Special Ordinance No. 2026-2011 assigning boat slip construction and rental ownership to G&H Services LLC-3.",
+      "first_raised": "2026-06-02",
+      "last_mentioned": "2026-06-02",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 4,
+      "days_since_last_mention": 75,
+      "status": "no further mention in the 4 meetings we have reviewed since",
+      "needs_follow_up": true,
+      "sources": [
+        {
+          "meeting_date": "2026-06-02",
+          "kind": "topic",
+          "timestamp": "03:26",
+          "text": "Marina Boat Slip Ownership Assignment: The council considered Special Ordinance No. 2026-2011 to approve the assignment of ownership from G&H Services LLC-2 to G&H Services LLC-3 for boat slip construction and rentals at the marina. Staff clarified that this internal entity transfer does not change the actual owners operating the marina facilities.",
+          "link": "https://www.youtube.com/watch?v=YLhOZMw2MiI&t=206s"
+        },
+        {
+          "meeting_date": "2026-06-02",
+          "kind": "vote",
+          "timestamp": "04:34",
+          "text": "Special Ordinance No. 2026-2011 approving assignment of ownership for boat slip construction and rentals at the marina to G&H Services LLC-3 \u2014 Passed 5-0",
+          "link": "https://www.youtube.com/watch?v=YLhOZMw2MiI&t=274s"
+        }
+      ]
+    },
+    {
+      "thread": "Water system planning and hydraulic modeling study RFP",
+      "summary": "The council discussed Council Decision Request 2026-2700 to solicit an RFP for a water system planning and hydraulic modeling study covering citywide water delivery and treatment plant needs, including filters, lime systems, aeration, and dredging. The request was approved.",
+      "category": "infrastructure",
+      "has_commitment": true,
+      "commitment": "Council approved solicitation of an RFP for a water system planning and hydraulic modeling study.",
+      "first_raised": "2026-06-16",
+      "last_mentioned": "2026-06-16",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 3,
+      "days_since_last_mention": 61,
+      "status": "no further mention in the 3 meetings we have reviewed since",
+      "needs_follow_up": true,
+      "sources": [
+        {
+          "meeting_date": "2026-06-16",
+          "kind": "topic",
+          "timestamp": "43:38",
+          "text": "Water System Planning & Hydraulic Modeling Study: The council discussed Council Decision Request 2026-2700 to issue an RFP for a water system planning and hydraulic modeling study. Officials noted the study will evaluate citywide water delivery and treatment plant needs, including potential improvements to filters, lime systems, aeration, and dredging.",
+          "link": "https://www.youtube.com/watch?v=f5KRH9IXbeA&t=2618s"
+        },
+        {
+          "meeting_date": "2026-06-16",
+          "kind": "vote",
+          "timestamp": "45:48",
+          "text": "Approval of Council Decision Request 2026-2700 for RFP solicitation for Water System Planning and Hydraulic Modeling Study \u2014 Passed",
+          "link": "https://www.youtube.com/watch?v=f5KRH9IXbeA&t=2748s"
+        }
+      ]
+    },
+    {
+      "thread": "Watershed management planning for Lake Mattoon and Lake Paradise",
+      "summary": "Commissioner Clawson announced the first meeting of the watershed management group with its consultant at the water treatment plant, then reported back on that meeting, describing a two-year plan with data collection in year one and strategy implementation in year two. A subsequent public watershed planning meeting for both lakes was announced to review findings and set goals for long-term water supply protection.",
+      "category": "watershed",
+      "has_commitment": true,
+      "commitment": "City is proceeding with a multi-year watershed management plan with a consultant and holding a public watershed planning meeting on Lake Paradise and Lake Mattoon.",
+      "first_raised": "2026-06-02",
+      "last_mentioned": "2026-07-07",
+      "meetings_mentioned": 3,
+      "meetings_since_last_mention": 2,
+      "days_since_last_mention": 40,
+      "status": "no further mention in the 2 meetings we have reviewed since",
+      "needs_follow_up": true,
+      "sources": [
+        {
+          "meeting_date": "2026-06-02",
+          "kind": "topic",
+          "timestamp": "14:38",
+          "text": "Watershed Management Group Meeting: Commissioner Clawson announced the initial meeting of the watershed management group with their consultant, scheduled to take place at the water treatment plant. He commended staff for their effort in advancing the initiative to create a multi-year plan for the city's water supply.",
+          "link": "https://www.youtube.com/watch?v=YLhOZMw2MiI&t=878s"
+        },
+        {
+          "meeting_date": "2026-06-16",
+          "kind": "topic",
+          "timestamp": "57:12",
+          "text": "Watershed Management & Lake Preservation Update: Commissioner Clawson reported on attending the initial Watershed Management meeting focused on preserving Lake Mattoon and Lake Paradise. He outlined a two-year plan with the consultant, focusing on data collection in the first year and strategy implementation in the second year.",
+          "link": "https://www.youtube.com/watch?v=f5KRH9IXbeA&t=3432s"
+        },
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "topic",
+          "timestamp": "17:43",
+          "text": "Lake Watershed Planning Meeting: Commissioner Clawson announced a public watershed planning meeting for Lake Paradise and Lake Mattoon scheduled at the water treatment plant. The meeting will review previous findings and establish goals and initiatives for long-term water supply protection.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=1063s"
+        }
+      ]
+    },
+    {
+      "thread": "Septic systems around Lake Paradise and Lake Mattoon",
+      "summary": "A resident raised concerns that older, grandfathered, or uninspected private septic systems around both lakes may be leaking effluent into the water supply. Officials said they are working with the Coles County Health Department to begin inspections around Lake Paradise, and discussed that public health departments rather than the EPA hold jurisdiction, with Coles County inspections to precede coordination with Cumberland and Shelby counties.",
+      "category": "water quality",
+      "has_commitment": true,
+      "commitment": "City is working with the Coles County Health Department to begin inspecting private sewage systems around Lake Paradise, with later coordination with Cumberland and Shelby counties.",
+      "first_raised": "2026-07-07",
+      "last_mentioned": "2026-07-07",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 2,
+      "days_since_last_mention": 40,
+      "status": "no further mention in the 2 meetings we have reviewed since",
+      "needs_follow_up": true,
+      "sources": [
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "topic",
+          "timestamp": "03:41",
+          "text": "Septic System Inspections near Lakes: A resident raised concerns regarding older or non-compliant septic systems around Lake Paradise and Lake Mattoon that could be overflowing into the water supply. City officials responded that they are working with the Coles County Health Department to begin inspecting private sewage systems around Lake Paradise.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=221s"
+        },
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "topic",
+          "timestamp": "20:15",
+          "text": "Septic System Jurisdiction & Inter-County Coordination: Council members discussed regulatory oversight of septic systems around the lakes, clarifying that public health departments hold jurisdiction rather than the EPA. Staff noted plans to start inspections in Coles County before coordinating with Cumberland and Shelby counties.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=1215s"
+        },
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "concern",
+          "timestamp": "04:15",
+          "text": "Resident expressed concern that grandfathered or uninspected septic systems around Lake Paradise and Lake Mattoon are leaking effluent into the lakes.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=255s"
+        }
+      ]
+    },
+    {
+      "thread": "Bowfishing ordinance for invasive carp on Lake Mattoon",
+      "summary": "Resident Roy Birch asked the city to revise its ordinances to allow bowfishing for invasive carp on Lake Mattoon in line with Illinois state law, citing carp stirring up lakebed sediment and nutrients that contribute to algal blooms and affect native fish. Officials undertook to review the city ordinance against state regulations.",
+      "category": "recreation",
+      "has_commitment": true,
+      "commitment": "Review the city ordinance on bowfishing on Lake Mattoon to check alignment with state regulations.",
+      "first_raised": "2026-07-07",
+      "last_mentioned": "2026-07-07",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 2,
+      "days_since_last_mention": 40,
+      "status": "no further mention in the 2 meetings we have reviewed since",
+      "needs_follow_up": true,
+      "sources": [
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "topic",
+          "timestamp": "06:25",
+          "text": "Bowfishing Ordinance for Invasive Carp: Resident Roy Birch requested that the city revise its ordinances to allow bowfishing for invasive carp on Lake Mattoon to align with Illinois state law. He explained that invasive carp churn up lakebed nutrients contributing to harmful algal blooms and impact native fish populations.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=385s"
+        },
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "concern",
+          "timestamp": "06:25",
+          "text": "Resident Roy Birch requested changing city ordinances to permit bowfishing for invasive carp on Lake Mattoon, noting carp churn up lakebed sediment and exacerbate algal blooms.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=385s"
+        },
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "commitment",
+          "timestamp": "07:58",
+          "text": "Review city ordinance regarding bowfishing on Lake Mattoon to check alignment with state regulations.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=478s"
+        }
+      ]
+    },
+    {
+      "thread": "Lake Paradise revitalization and environmental conditions",
+      "summary": "Commissioner Phipps reported on a discussion held at Lake Paradise with city staff. The report covered efforts to revitalize community activities at the lake alongside environmental and water quality issues.",
+      "category": "water quality",
+      "has_commitment": false,
+      "commitment": null,
+      "first_raised": "2026-05-19",
+      "last_mentioned": "2026-05-19",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 5,
+      "days_since_last_mention": 89,
+      "status": "no further mention in the 5 meetings we have reviewed since",
+      "needs_follow_up": false,
+      "sources": [
+        {
+          "meeting_date": "2026-05-19",
+          "kind": "topic",
+          "timestamp": "36:34",
+          "text": "Lake Paradise Environment & Water Quality: Commissioner Phipps reported attending a discussion at Lake Paradise the previous week with city staff members. He mentioned ongoing efforts to revitalize community activities at Lake Paradise while addressing environmental and water quality issues.",
+          "link": "https://www.youtube.com/watch?v=p-pm6VnbZ1M&t=2194s"
+        }
+      ]
+    },
+    {
+      "thread": "Blue-green algal bloom mitigation at the water treatment plant",
+      "summary": "Commissioner Butler asked what proactive steps were being taken to prevent blue-green algal blooms like those of the previous year. Staff reported that powdered activated carbon dosing had begun, testing was active, and algaecide treatments had recently been applied on Lake Mattoon.",
+      "category": "water quality",
+      "has_commitment": false,
+      "commitment": null,
+      "first_raised": "2026-07-07",
+      "last_mentioned": "2026-07-07",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 2,
+      "days_since_last_mention": 40,
+      "status": "no further mention in the 2 meetings we have reviewed since",
+      "needs_follow_up": false,
+      "sources": [
+        {
+          "meeting_date": "2026-07-07",
+          "kind": "topic",
+          "timestamp": "18:31",
+          "text": "Algal Bloom Mitigation & Water Treatment: Commissioner Butler inquired about proactive steps to prevent blue-green algal blooms similar to the previous year. City staff reported that powdered activated carbon dosing has begun, testing is active, and algaecide treatments were recently applied on Lake Mattoon.",
+          "link": "https://www.youtube.com/watch?v=IkW22GlJH3Y&t=1111s"
+        }
+      ]
+    },
+    {
+      "thread": "Water treatment plant ozone treatment trial",
+      "summary": "The council considered Council Decision Request 2026-2709, a lease agreement with Water Tech Solutions, Inc. for equipment to run a six-month ozone treatment trial at the Water Treatment Plant. Officials said the pilot is required under IEPA regulations to verify performance before engineering plans for a full ozone system are finalized. The lease was approved.",
+      "category": "infrastructure",
+      "has_commitment": true,
+      "commitment": "Council approved the lease agreement with Water Tech Solutions, Inc. for six-month ozone treatment trial equipment.",
+      "first_raised": "2026-07-21",
+      "last_mentioned": "2026-07-21",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 1,
+      "days_since_last_mention": 26,
+      "status": "no further mention in the 1 meeting we have reviewed since",
+      "needs_follow_up": false,
+      "sources": [
+        {
+          "meeting_date": "2026-07-21",
+          "kind": "topic",
+          "timestamp": "08:40",
+          "text": "Water Treatment Plant Ozone Trial: The Council considered Council Decision Request 2026-2709 to accept a lease agreement with Water Tech Solutions, Inc. for equipment to conduct a six-month ozone treatment trial at the Water Treatment Plant. Officials explained that the pilot trial is required under IEPA regulations to evaluate system performance and verify results before finalizing engineering pl",
+          "link": "https://www.youtube.com/watch?v=9sq2_ZeawL4&t=520s"
+        },
+        {
+          "meeting_date": "2026-07-21",
+          "kind": "vote",
+          "timestamp": "09:35",
+          "text": "Council Decision Request 2026-2709: Accepting lease agreement with Water Tech Solutions, Inc. for Ozone Treatment Trial equipment at the Water Treatment Plant \u2014 Approved",
+          "link": "https://www.youtube.com/watch?v=9sq2_ZeawL4&t=575s"
+        }
+      ]
+    },
+    {
+      "thread": "Filter #2 actuator replacement at the water treatment plant",
+      "summary": "The council considered a $74,868 proposal from Hydro-Kinetics to replace five 25-year-old modulating electric actuators on Filter #2 at the water treatment plant, which staff said keeps equipment consistent across plant filters and eases maintenance. The proposal passed.",
+      "category": "infrastructure",
+      "has_commitment": true,
+      "commitment": "Council approved $74,868 to Hydro-Kinetics for replacement of modulating electric actuators on Filter #2.",
+      "first_raised": "2026-08-04",
+      "last_mentioned": "2026-08-04",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 0,
+      "days_since_last_mention": 12,
+      "status": "active",
+      "needs_follow_up": false,
+      "sources": [
+        {
+          "meeting_date": "2026-08-04",
+          "kind": "topic",
+          "timestamp": "33:24",
+          "text": "Water Treatment Plant Equipment Replacement: The council considered approving a $74,868 proposal from Hydro-Kinetics to replace 25-year-old modulating electric actuators on Filter #2 at the water treatment plant. City staff explained that replacing these five actuators maintains equipment consistency across all plant filters and ensures ease of maintenance.",
+          "link": "https://www.youtube.com/watch?v=PV7CejNeCpo&t=2004s"
+        },
+        {
+          "meeting_date": "2026-08-04",
+          "kind": "vote",
+          "timestamp": "33:24",
+          "text": "Approve $74,868 proposal from Hydro-Kinetics for replacement of modulating electric actuators on Filter #2 at the Water Treatment Plant \u2014 passed",
+          "link": "https://www.youtube.com/watch?v=PV7CejNeCpo&t=2004s"
+        }
+      ]
+    },
+    {
+      "thread": "Little Wabash Drainage Project Phase 1 piping",
+      "summary": "The council reviewed plans and specifications for Phase 1 piping of the Little Wabash Drainage Project and authorized bid solicitation, which passed. Resident Diane Lathrop submitted an email raising concerns that faster runoff through the new 60-inch storm sewer would worsen downstream flooding on Lake Road properties and add chemical runoff to the water supply watershed; officials undertook to meet with her about the plans and possible design changes.",
+      "category": "infrastructure",
+      "has_commitment": true,
+      "commitment": "Approved plans, specifications, and bid solicitation for Phase 1 piping, and agreed to meet with downstream resident Diane Lathrop to review the plans and evaluate potential change orders or design amendments.",
+      "first_raised": "2026-08-04",
+      "last_mentioned": "2026-08-04",
+      "meetings_mentioned": 1,
+      "meetings_since_last_mention": 0,
+      "days_since_last_mention": 12,
+      "status": "active",
+      "needs_follow_up": false,
+      "sources": [
+        {
+          "meeting_date": "2026-08-04",
+          "kind": "topic",
+          "timestamp": "35:29",
+          "text": "Little Wabash Drainage Project Phase 1: The council reviewed plans and specifications for Phase 1 piping of the Little Wabash Drainage Project and authorized soliciting bids. Discussion included resident feedback concerning downstream flood risks along Little Wabash Creek and potential runoff impacts on watershed water quality.",
+          "link": "https://www.youtube.com/watch?v=PV7CejNeCpo&t=2129s"
+        },
+        {
+          "meeting_date": "2026-08-04",
+          "kind": "concern",
+          "timestamp": "40:07",
+          "text": "Resident Diane Lathrop submitted an email expressing concern that faster runoff through the new 60-inch storm sewer pipe in the Little Wabash Drainage Project would exacerbate downstream flooding on Lake Road properties and introduce more chemical runoff into Mattoon's water supply watershed.",
+          "link": "https://www.youtube.com/watch?v=PV7CejNeCpo&t=2407s"
+        },
+        {
+          "meeting_date": "2026-08-04",
+          "kind": "commitment",
+          "timestamp": "39:22",
+          "text": "Set up a meeting with downstream resident Diane Lathrop to review Little Wabash Drainage Project plans and evaluate potential change orders or design amendments.",
+          "link": "https://www.youtube.com/watch?v=PV7CejNeCpo&t=2362s"
+        },
+        {
+          "meeting_date": "2026-08-04",
+          "kind": "vote",
+          "timestamp": "35:29",
+          "text": "Approve plans and specifications for Little Wabash Drainage Project - Phase 1 Piping and authorize solicitation of bids \u2014 passed",
+          "link": "https://www.youtube.com/watch?v=PV7CejNeCpo&t=2129s"
+        }
+      ]
+    }
+  ]
+}
