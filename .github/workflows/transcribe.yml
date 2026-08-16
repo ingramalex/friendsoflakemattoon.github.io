@@ -15,7 +15,11 @@ on:
         required: true
         default: 'probe'
         type: choice
-        options: [probe, extract-only, extract-and-write]
+        options: [probe, extract-only, extract-and-write, commitments]
+      ref:
+        description: 'Branch to run against (findings live on lake-watch/meetings until merged)'
+        required: false
+        default: ''
       latest:
         description: 'How many recent meetings (ignored for probe / single video)'
         required: false
@@ -35,6 +39,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          # The commitment tracker reads the findings files, which sit on the
+          # review branch until that PR is merged.
+          ref: ${{ inputs.ref }}
 
       - uses: actions/setup-python@v6
         with:
@@ -49,6 +57,18 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
           set -o pipefail
+          if [ "${{ inputs.mode }}" = "commitments" ]; then
+            echo "Running: commitments.py"
+            python3 scripts/lakewatch/commitments.py 2>&1 | tee "$RUNNER_TEMP/out.txt"
+            {
+              echo "## commitments.py"
+              echo '```'
+              cat "$RUNNER_TEMP/out.txt"
+              echo '```'
+            } >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+
           ARGS=""
           case "${{ inputs.mode }}" in
             probe)              ARGS="--probe" ;;
@@ -77,7 +97,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git add -A data/transcripts content/news
+          git add -A data/transcripts data/commitments.json content/news 2>/dev/null || \
+            git add -A data/transcripts content/news
           if git diff --cached --quiet; then
             echo "No new findings." >> $GITHUB_STEP_SUMMARY
             exit 0
