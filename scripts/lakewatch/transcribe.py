@@ -346,12 +346,26 @@ def main() -> int:
         return 1
 
     if args.video:
-        meetings = [{
-            "video_id": args.video,
-            "date": args.date or dt.date.today().isoformat(),
-            "title": f"Meeting {args.date or ''}".strip(),
-            "url": f"https://www.youtube.com/watch?v={args.video}",
-        }]
+        # Look the meeting up in the channel index rather than stamping today's
+        # date on it. Findings are filed by meeting date and tracked across
+        # meetings, so a wrong date quietly misfiles the record -- an August
+        # meeting's findings would sit under the day it happened to be reviewed.
+        known = {m["video_id"]: m for m in load_meeting_index()}
+        found = known.get(args.video)
+        if found:
+            meetings = [found]
+            print(f"Matched {args.video} to {found['date']} — {found['title']}")
+        elif args.date:
+            meetings = [{
+                "video_id": args.video,
+                "date": args.date,
+                "title": f"Meeting {args.date}",
+                "url": f"https://www.youtube.com/watch?v={args.video}",
+            }]
+        else:
+            print(f"{args.video} is not in the channel index; pass --date "
+                  "explicitly so the findings are filed correctly.", file=sys.stderr)
+            return 1
     elif args.latest:
         meetings = load_meeting_index()[:args.latest]
         if not meetings:
