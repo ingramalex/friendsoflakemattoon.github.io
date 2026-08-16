@@ -16,8 +16,8 @@ on:
         default: 'probe'
         type: choice
         options: [probe, extract-only, extract-and-write, commitments]
-      ref:
-        description: 'Branch to run against (findings live on lake-watch/meetings until merged)'
+      findings_from:
+        description: 'Branch to pull existing findings from (e.g. lake-watch/meetings, until that PR is merged)'
         required: false
         default: ''
       latest:
@@ -38,11 +38,17 @@ jobs:
     name: Review meetings
     runs-on: ubuntu-latest
     steps:
+      # Always run the code from the default branch. Checking out the review
+      # branch instead would run whatever code existed when it was cut, which
+      # is how a run of a brand-new script found no such file.
       - uses: actions/checkout@v5
-        with:
-          # The commitment tracker reads the findings files, which sit on the
-          # review branch until that PR is merged.
-          ref: ${{ inputs.ref }}
+
+      - name: Pull findings from the review branch
+        if: inputs.findings_from != ''
+        run: |
+          git fetch origin "${{ inputs.findings_from }}"
+          git checkout "origin/${{ inputs.findings_from }}" -- data/transcripts || true
+          echo "Findings present: $(ls data/transcripts/*.json 2>/dev/null | wc -l)"
 
       - uses: actions/setup-python@v6
         with:
