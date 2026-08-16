@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Internal review tool. Unlisted and noindex: it exists to check drafts
+     before they are published, not to publish them. -->
+<meta name="robots" content="noindex,nofollow">
+<title>Lake Watch — review queue</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2e3f;--mid:#1a5068;--teal:#3a8fa8;--sky:#b8dce8;
+  --sand:#f5f0e8;--cream:#faf7f2;--dark:#1a2628;--muted:#3d5a60;
+  --gold:#c49a2a;--rule:#dfd8cc;--flag:#a8452a;--ok:#2d5a27;
+  --serif:'Playfair Display',Georgia,serif;
+  --body:'Source Serif 4',Georgia,serif;--r:4px;
+}
+body{font-family:var(--body);background:var(--cream);color:var(--dark);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bar{background:var(--navy);color:var(--sky);padding:.7rem 1.5rem;display:flex;flex-wrap:wrap;gap:.9rem;align-items:center;justify-content:space-between}
+.bar-title{font-family:var(--serif);font-size:1.05rem;color:#fff}
+.bar-title span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-left:.6rem}
+.bar a{color:var(--sky);font-size:.82rem}
+.bar-meta{font-size:.78rem;color:rgba(184,220,232,.75)}
+
+.layout{display:grid;grid-template-columns:290px 1fr;gap:0;min-height:calc(100vh - 52px)}
+.queue{border-right:1px solid var(--rule);background:#fff;overflow-y:auto;max-height:calc(100vh - 52px)}
+.queue h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:1rem 1.1rem .5rem}
+.q-item{display:block;width:100%;text-align:left;border:none;background:none;font-family:var(--body);cursor:pointer;padding:.8rem 1.1rem;border-bottom:1px solid var(--rule);border-left:3px solid transparent}
+.q-item:hover{background:var(--cream)}
+.q-item.on{background:var(--sand);border-left-color:var(--gold)}
+.q-date{font-family:var(--serif);font-size:1rem;color:var(--navy)}
+.q-sub{font-size:.78rem;color:var(--muted)}
+.q-pill{display:inline-block;font-size:9px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;padding:.12rem .4rem;border-radius:2px;margin-top:.3rem}
+.q-pill.has{background:#f7edd6;color:#8a6a12}
+.q-pill.none{background:#e8eef0;color:var(--mid)}
+.q-pill.done{background:#e4f0e3;color:var(--ok);margin-left:.25rem}
+
+.main{padding:1.5rem 1.75rem 4rem;overflow-y:auto;max-height:calc(100vh - 52px)}
+.player{position:relative;padding-bottom:52%;height:0;background:#000;border-radius:var(--r);overflow:hidden;margin-bottom:.5rem}
+.player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player-hint{font-size:.8rem;color:var(--muted);margin-bottom:1.25rem}
+
+h1.mtitle{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);margin-bottom:.2rem}
+.msum{font-size:.92rem;color:var(--muted);font-weight:300;margin-bottom:1.25rem;max-width:76ch}
+h3.grp{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--navy);margin:1.5rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--rule)}
+
+.find{display:grid;grid-template-columns:auto 62px 1fr;gap:.7rem;align-items:start;padding:.7rem .8rem;border:1px solid var(--rule);border-radius:var(--r);margin-bottom:.5rem;background:#fff}
+.find.checked{background:#f6faf5;border-color:#cfe3cb}
+.find input{margin-top:.35rem;cursor:pointer;width:16px;height:16px;accent-color:var(--ok)}
+.seek{font-family:var(--body);font-size:.82rem;font-weight:600;color:var(--mid);background:var(--sand);border:1px solid var(--rule);border-radius:var(--r);padding:.2rem .3rem;cursor:pointer;white-space:nowrap}
+.seek:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.f-label{font-weight:600;color:var(--navy);font-size:.93rem}
+.f-text{font-size:.9rem;color:#2b3a3d;margin-top:.15rem}
+.f-meta{font-size:.78rem;color:var(--muted);margin-top:.25rem}
+
+.article{background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:1.5rem 1.75rem;max-width:74ch;margin-top:.75rem}
+.article h1{font-family:var(--serif);font-size:1.4rem;font-weight:400;color:var(--navy);margin-bottom:1rem}
+.article h2{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--navy);margin:1.4rem 0 .5rem}
+.article p{margin-bottom:.9rem}
+.article a{color:var(--mid)}
+.article strong{font-weight:600;color:var(--navy)}
+.article ul{margin:0 0 .9rem 1.2rem}
+
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--rule)}
+.btn{font-family:var(--body);font-size:.85rem;font-weight:600;padding:.55rem 1.1rem;border-radius:var(--r);border:1px solid var(--rule);background:#fff;color:var(--navy);cursor:pointer;text-decoration:none;display:inline-block}
+.btn.primary{background:var(--gold);color:#fff;border-color:var(--gold)}
+.btn:hover{border-color:var(--mid)}
+.progress{font-size:.83rem;color:var(--muted);margin-top:.6rem}
+
+.note{background:var(--sand);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0;padding:.9rem 1.1rem;font-size:.87rem;color:var(--muted);margin-bottom:1.25rem}
+.loading,.empty{color:var(--muted);padding:2rem 0}
+.err{color:var(--flag);padding:1rem 0;font-size:.9rem}
+textarea{width:100%;min-height:150px;font-family:ui-monospace,Menlo,monospace;font-size:.78rem;padding:.75rem;border:1px solid var(--rule);border-radius:var(--r);margin-top:.75rem;background:#fff}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.queue{max-height:none;border-right:none;border-bottom:1px solid var(--rule)}.main{max-height:none}}
+</style>
+
+<div class="bar">
+  <div class="bar-title">Lake Watch <span>Review queue</span></div>
+  <div class="bar-meta" id="src">reading the review branch&hellip;</div>
+  <div><a id="prLink" href="#" target="_blank" rel="noopener">Open on GitHub &rarr;</a></div>
+</div>
+
+<div class="layout">
+  <nav class="queue">
+    <h2>Meetings</h2>
+    <div id="queue"><p class="loading" style="padding:0 1.1rem">Loading&hellip;</p></div>
+  </nav>
+  <main class="main" id="main">
+    <p class="loading">Select a meeting.</p>
+  </main>
+</div>
+
+<script>
+(function () {
+  // The content under review deliberately does not live on this site. It sits on
+  // the review branch until a person approves it, and this page reads it from
+  // there — so reviewing something never requires publishing it first.
+  var REPO   = 'ingramalex/friendsoflakemattoon.github.io';
+  var BRANCH = 'lake-watch/meetings';
+  var API    = 'https://api.github.com/repos/' + REPO + '/contents/';
+  var RAW    = 'https://raw.githubusercontent.com/' + REPO + '/' + BRANCH + '/';
+
+  var state = { meetings: [], current: null, articles: {} };
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function safeUrl(u){ return /^https?:\/\//i.test(u||'') ? u : ''; }
+  function secs(t){
+    if(!t) return 0;
+    var p = String(t).split(':').map(Number);
+    if (p.some(isNaN)) return 0;
+    return p.length===2 ? p[0]*60+p[1] : p.length===3 ? p[0]*3600+p[1]*60+p[2] : 0;
+  }
+  function md(src){
+    var out=[], list=false;
+    esc(src).split('\n').forEach(function(raw){
+      var l=raw.trim();
+      if(!l){ if(list){out.push('</ul>');list=false;} return; }
+      var m;
+      if((m=l.match(/^(#{1,3})\s+(.*)$/))){ if(list){out.push('</ul>');list=false;}
+        var n=Math.min(m[1].length,3); out.push('<h'+n+'>'+inline(m[2])+'</h'+n+'>'); return; }
+      if((m=l.match(/^[-*]\s+(.*)$/))){ if(!list){out.push('<ul>');list=true;}
+        out.push('<li>'+inline(m[1])+'</li>'); return; }
+      if(list){out.push('</ul>');list=false;}
+      out.push('<p>'+inline(l)+'</p>');
+    });
+    if(list) out.push('</ul>');
+    return out.join('');
+  }
+  function inline(t){
+    return t.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,function(_,a,h){
+        var u=safeUrl(h); return u?'<a href="'+u+'" target="_blank" rel="noopener">'+a+'</a>':a; })
+      .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+      .replace(/(^|[^*])\*([^*]+)\*/g,'$1<em>$2</em>');
+  }
+
+  /* Review progress is kept in this browser only. It is a reading aid, not a
+     record — approving still happens by merging on GitHub. */
+  function key(id){ return 'lakereview:' + id; }
+  function getChecks(id){ try{ return JSON.parse(localStorage.getItem(key(id))||'{}'); }catch(e){ return {}; } }
+  function setCheck(id, f, v){
+    var c=getChecks(id); if(v) c[f]=1; else delete c[f];
+    try{ localStorage.setItem(key(id), JSON.stringify(c)); }catch(e){}
+  }
+
+  function flatten(f){
+    var out=[];
+    (f.topics||[]).forEach(function(t,i){ out.push({g:'Topics discussed',id:'t'+i,ts:t.timestamp,
+      label:t.topic, text:t.what_happened, meta:[t.speakers,t.importance].filter(Boolean).join(' · ')}); });
+    (f.citizen_concerns||[]).forEach(function(c,i){ out.push({g:'Resident concerns',id:'c'+i,ts:c.timestamp,
+      label:'Concern raised', text:c.concern, meta:c.response?('Response: '+c.response):''}); });
+    (f.action_items||[]).forEach(function(a,i){ out.push({g:'Commitments',id:'a'+i,ts:a.timestamp,
+      label:a.status||'commitment', text:a.action, meta:a.owner?('Owner: '+a.owner):''}); });
+    (f.votes||[]).forEach(function(v,i){ out.push({g:'Votes',id:'v'+i,ts:v.timestamp,
+      label:'Vote', text:v.measure, meta:v.outcome||''}); });
+    return out;
+  }
+
+  function seek(vid, s){
+    var p = document.getElementById('player');
+    if (p) p.src = 'https://www.youtube.com/embed/' + vid + '?start=' + s + '&autoplay=1&rel=0';
+  }
+
+  function renderQueue(){
+    document.getElementById('queue').innerHTML = state.meetings.map(function(m){
+      var f=m.rec.findings||{}, n=flatten(f).length, done=Object.keys(getChecks(m.id)).length;
+      return '<button class="q-item'+(state.current===m.id?' on':'')+'" data-id="'+esc(m.id)+'">'+
+        '<div class="q-date">'+esc(m.rec.meeting_date||m.id)+'</div>'+
+        '<div class="q-sub">'+n+' item'+(n===1?'':'s')+'</div>'+
+        '<span class="q-pill '+(f.lake_discussed?'has':'none')+'">'+
+          (f.lake_discussed?'lake discussed':'no lake content')+'</span>'+
+        (n&&done>=n?'<span class="q-pill done">checked</span>':'')+
+      '</button>';
+    }).join('');
+    [].forEach.call(document.querySelectorAll('.q-item'), function(b){
+      b.addEventListener('click', function(){ show(b.dataset.id); });
+    });
+  }
+
+  function show(id){
+    state.current = id;
+    renderQueue();
+    var m = state.meetings.filter(function(x){ return x.id===id; })[0];
+    if(!m) return;
+    var rec = m.rec, f = rec.findings||{}, items = flatten(f), checks = getChecks(id);
+    var vid = rec.video_id || '';
+
+    var groups = {};
+    items.forEach(function(it){ (groups[it.g] = groups[it.g]||[]).push(it); });
+
+    var body = '';
+    ['Resident concerns','Commitments','Topics discussed','Votes'].forEach(function(g){
+      if(!groups[g]) return;
+      body += '<h3 class="grp">'+g+'</h3>' + groups[g].map(function(it){
+        var on = checks[it.id] ? ' checked' : '';
+        return '<div class="find'+(on?' checked':'')+'" data-f="'+esc(it.id)+'">'+
+          '<input type="checkbox"'+on+' data-f="'+esc(it.id)+'">'+
+          '<button class="seek" data-s="'+secs(it.ts)+'">'+esc(it.ts||'—')+'</button>'+
+          '<div><div class="f-label">'+esc(it.label)+'</div>'+
+            '<div class="f-text">'+esc(it.text)+'</div>'+
+            (it.meta?'<div class="f-meta">'+esc(it.meta)+'</div>':'')+
+          '</div></div>';
+      }).join('');
+    });
+    if(!items.length) body = '<p class="empty">Nothing about the lake came up in this meeting. '+
+      'That is a finding, not a gap.</p>';
+
+    var art = state.articles[id];
+    var artHtml = art === undefined
+      ? '<p class="loading">Loading draft…</p>'
+      : art === null
+        ? '<p class="empty">No article was drafted for this meeting.</p>'
+        : '<div class="article">' + md(art) + '</div>';
+
+    document.getElementById('main').innerHTML =
+      (vid ? '<div class="player"><iframe id="player" allow="autoplay" '+
+             'src="https://www.youtube.com/embed/'+esc(vid)+'?rel=0"></iframe></div>'+
+             '<p class="player-hint">Click any timestamp to jump the recording to that moment. '+
+             'These findings come from automatic captions — check anything specific against what you hear.</p>' : '') +
+      '<h1 class="mtitle">'+esc(rec.title || rec.meeting_date)+'</h1>' +
+      '<p class="msum">'+esc(f.meeting_summary||'')+'</p>' +
+      '<div class="note">Tick an item once you have heard it in the recording and it matches. '+
+      'Ticks are saved in this browser only — approving means merging on GitHub.</div>' +
+      body +
+      '<h3 class="grp">Drafted article</h3>' + artHtml +
+      '<div class="actions">'+
+        '<button class="btn primary" id="copy">Copy review notes</button>'+
+        '<a class="btn" target="_blank" rel="noopener" href="https://github.com/'+REPO+
+          '/blob/'+BRANCH+'/content/news/'+esc(rec.meeting_date)+'-council-meeting.md">Draft on GitHub</a>'+
+        '<a class="btn" target="_blank" rel="noopener" href="'+esc(safeUrl(rec.url))+'">Full recording</a>'+
+      '</div>'+
+      '<p class="progress" id="prog"></p>'+
+      '<textarea id="notes" placeholder="Notes for the PR — anything that did not match the recording…"></textarea>';
+
+    [].forEach.call(document.querySelectorAll('.seek'), function(b){
+      b.addEventListener('click', function(){ seek(vid, b.dataset.s); });
+    });
+    [].forEach.call(document.querySelectorAll('.find input'), function(cb){
+      cb.addEventListener('change', function(){
+        setCheck(id, cb.dataset.f, cb.checked);
+        cb.closest('.find').classList.toggle('checked', cb.checked);
+        progress(id, items.length); renderQueue();
+      });
+    });
+    document.getElementById('copy').addEventListener('click', function(){
+      var c=getChecks(id), lines=['## Review — '+rec.meeting_date,'',
+        'Verified '+Object.keys(c).length+' of '+items.length+' findings against the recording.',''];
+      items.forEach(function(it){
+        lines.push('- ['+(c[it.id]?'x':' ')+'] `'+(it.ts||'—')+'` '+it.label+' — '+it.text);
+      });
+      var n=document.getElementById('notes').value.trim();
+      if(n) lines.push('', '### Notes', n);
+      navigator.clipboard.writeText(lines.join('\n')).then(function(){
+        var b=document.getElementById('copy'); b.textContent='Copied';
+        setTimeout(function(){ b.textContent='Copy review notes'; }, 1400);
+      });
+    });
+    progress(id, items.length);
+
+    if (art === undefined) loadArticle(m);
+  }
+
+  function progress(id, total){
+    var done = Object.keys(getChecks(id)).length;
+    var el = document.getElementById('prog');
+    if (el) el.textContent = total ? (done + ' of ' + total + ' findings checked') : '';
+  }
+
+  function loadArticle(m){
+    var file = 'content/news/' + m.rec.meeting_date + '-council-meeting.md';
+    fetch(RAW + file)
+      .then(function(r){ if(!r.ok) throw 0; return r.text(); })
+      .then(function(t){ state.articles[m.id] = t.replace(/^---[\s\S]*?---\s*/, ''); })
+      .catch(function(){ state.articles[m.id] = null; })
+      .then(function(){ if(state.current===m.id) show(m.id); });
+  }
+
+  document.getElementById('prLink').href =
+    'https://github.com/' + REPO + '/compare/main...' + BRANCH + '?expand=1';
+
+  fetch(API + 'data/lake-watch/meetings?ref=' + encodeURIComponent(BRANCH))
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(list){
+      var files = list.filter(function(f){ return /\.json$/.test(f.name); });
+      document.getElementById('src').textContent =
+        files.length + ' meetings on ' + BRANCH;
+      return Promise.all(files.map(function(f){
+        return fetch(RAW + 'data/lake-watch/meetings/' + f.name)
+          .then(function(r){ return r.json(); })
+          .then(function(rec){ return { id: f.name.replace(/\.json$/,''), rec: rec }; });
+      }));
+    })
+    .then(function(ms){
+      state.meetings = ms.sort(function(a,b){
+        return (b.rec.meeting_date||'').localeCompare(a.rec.meeting_date||''); });
+      renderQueue();
+      if(state.meetings.length) show(state.meetings[0].id);
+    })
+    .catch(function(e){
+      document.getElementById('queue').innerHTML =
+        '<p class="err" style="padding:0 1.1rem">Could not read the review branch (' + esc(e.message) + ').</p>';
+      document.getElementById('main').innerHTML =
+        '<p class="err">Nothing to review, or GitHub rate-limited this browser. ' +
+        'Unauthenticated requests are capped at 60 an hour per address; wait a few minutes and reload.</p>';
+    });
+})();
+</script>
