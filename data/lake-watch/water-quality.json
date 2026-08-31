@@ -1,16 +1,20 @@
 {
-  "generated": "2026-08-11T14:12:27+00:00",
-  "source_url": "https://mattoon.illinois.gov/public-notices/water-quality-update-july-30-2026/",
-  "source_lastmod": "2026-07-30T14:16:12+00:00",
+  "schema": {
+    "name": "water-quality",
+    "version": 1
+  },
+  "generated": "2026-08-31T19:44:13+00:00",
+  "source_url": "https://mattoon.illinois.gov/public-notices/water-quality-update-august-28-2026/",
+  "source_lastmod": "2026-08-31T19:03:18+00:00",
   "toxin": "microcystin",
   "toxin_note": "Microcystin is a cyanotoxin produced by blue-green algae. It is primarily a liver toxin. The City of Mattoon's notices describe it as a 'neurological toxin', which is imprecise.",
   "sampling_note": "Readings are of finished (treated) drinking water. Illinois EPA recommends sampling every two weeks. Lake Paradise is Mattoon's primary water source; Lake Mattoon is a contingency source.",
   "advisory_sensitive_ppb": 0.3,
   "advisory_general_ppb": 1.6,
-  "count": 75,
+  "count": 77,
   "latest": {
-    "date": "2026-07-26",
-    "ppb": 0.071,
+    "date": "2026-08-24",
+    "ppb": 0.053,
     "over_sensitive_advisory": false
   },
   "max_ppb": 0.14,
@@ -390,6 +394,16 @@
     {
       "date": "2026-07-26",
       "ppb": 0.071,
+      "over_sensitive_advisory": false
+    },
+    {
+      "date": "2026-08-10",
+      "ppb": 0.009,
+      "over_sensitive_advisory": false
+    },
+    {
+      "date": "2026-08-24",
+      "ppb": 0.053,
       "over_sensitive_advisory": false
     }
   ]
