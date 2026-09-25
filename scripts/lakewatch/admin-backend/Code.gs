@@ -15,6 +15,8 @@
  *   PUBLISHER_EMAILS  comma-separated; these people's stories go live directly
  *   EDITOR_EMAILS     optional, comma-separated; these people's stories wait
  *                     as a pull request until a publisher merges it
+ *   SESSION_DAYS      optional; how long a sign-in lasts (default 30)
+ *   SESSION_SECRET    created automatically. Delete it to sign everyone out.
  *   FINDINGS_REPO     optional; where the meeting findings live, if they are
  *                     ever moved to a private repository (owner/name)
  *
@@ -41,7 +43,7 @@ function doPost(e) {
   var out;
   try {
     var req = JSON.parse((e && e.postData && e.postData.contents) || '{}');
-    var user = verify_(req.idToken);
+    var user = req.session ? checkSession_(req.session) : verify_(req.idToken);
     out = route_(user, req);
     out.ok = true;
   } catch (err) {
@@ -54,7 +56,10 @@ function doPost(e) {
 function route_(user, req) {
   switch (req.action) {
     case 'session':
-      return { user: user };
+      // Signing in with Google earns a pass for SESSION_DAYS, so editors are
+      // not sent back to Google every hour. The pass is re-checked against the
+      // editor lists on every request, so removing an email takes effect at once.
+      return req.idToken ? { user: user, session: makeSession_(user) } : { user: user };
     case 'load':
       return { stories: readLive_().doc.stories || [], meetings: readMeetings_() };
     case 'publish':
@@ -93,8 +98,7 @@ function verify_(idToken) {
   if (Number(t.exp) * 1000 < Date.now()) fail_('signin', 'Your sign-in has expired. Sign in again.');
 
   var email = String(t.email || '').toLowerCase();
-  var role = inList_(props.getProperty('PUBLISHER_EMAILS'), email) ? 'publisher'
-    : inList_(props.getProperty('EDITOR_EMAILS'), email) ? 'editor' : null;
+  var role = roleFor_(email);
   if (!role) {
     console.warn('Refused sign-in from ' + email);
     fail_('forbidden', email + ' is not on the Lake Watch editor list. Ask the site owner to add you.');
@@ -102,8 +106,55 @@ function verify_(idToken) {
   return { email: email, name: t.name || email, picture: t.picture || '', role: role };
 }
 
+function roleFor_(email) {
+  var props = PropertiesService.getScriptProperties();
+  return inList_(props.getProperty('PUBLISHER_EMAILS'), email) ? 'publisher'
+    : inList_(props.getProperty('EDITOR_EMAILS'), email) ? 'editor' : null;
+}
+
 function inList_(csv, email) {
   return String(csv || '').toLowerCase().split(/[\s,;]+/).filter(String).indexOf(email) >= 0;
+}
+
+/* ── the 30-day pass: payload.signature, signed with a secret only this script knows ── */
+
+function secret_() {
+  var props = PropertiesService.getScriptProperties();
+  var k = props.getProperty('SESSION_SECRET');
+  if (!k) {
+    k = Utilities.getUuid() + Utilities.getUuid();
+    props.setProperty('SESSION_SECRET', k);
+  }
+  return k;
+}
+
+function sign_(payload) {
+  return Utilities.base64EncodeWebSafe(Utilities.computeHmacSha256Signature(payload, secret_())).replace(/=+$/, '');
+}
+
+function makeSession_(user) {
+  var days = Number(PropertiesService.getScriptProperties().getProperty('SESSION_DAYS')) || 30;
+  var exp = Date.now() + days * 86400000;
+  var payload = Utilities.base64EncodeWebSafe(JSON.stringify({ e: user.email, n: user.name, x: exp }),
+    Utilities.Charset.UTF_8).replace(/=+$/, '');
+  return { token: payload + '.' + sign_(payload), expires: exp };
+}
+
+function checkSession_(token) {
+  var parts = String(token).split('.');
+  if (parts.length !== 2) fail_('signin', 'Please sign in again.');
+  var expected = sign_(parts[0]), given = parts[1], diff = expected.length ^ given.length;
+  for (var i = 0; i < expected.length && i < given.length; i++) diff |= expected.charCodeAt(i) ^ given.charCodeAt(i);
+  if (diff) fail_('signin', 'Please sign in again.');
+  var p;
+  try {
+    var b64 = parts[0] + '==='.slice((parts[0].length + 3) % 4);
+    p = JSON.parse(Utilities.newBlob(Utilities.base64DecodeWebSafe(b64)).getDataAsString('UTF-8'));
+  } catch (e) { fail_('signin', 'Please sign in again.'); }
+  if (!p.x || p.x < Date.now()) fail_('signin', 'Your sign-in has expired. Sign in again.');
+  var role = roleFor_(p.e);
+  if (!role) fail_('forbidden', p.e + ' is no longer on the Lake Watch editor list.');
+  return { email: p.e, name: p.n || p.e, picture: '', role: role };
 }
 
 /* ── the story itself: never trust what the browser sends ──────────────── */

@@ -110,6 +110,8 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
     <p class="help">This page is for Friends of Lake Mattoon editors. Sign in with the Google
     account the site owner added to the editor list.</p>
     <div id="gbtn" class="gbtn"></div>
+    <label class="check"><input type="checkbox" id="keep" checked> Keep me signed in on this device for 30 days
+      (untick on a shared or public computer)</label>
     <p class="msg" id="authMsg"></p>
     <p class="help small">Your Google password never reaches this site. Google tells the
     publishing service which email you signed in with, and it checks that against its list.</p>
@@ -141,7 +143,7 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
   var RAW = 'https://raw.githubusercontent.com/' + REPO + '/';
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-  var idToken = null, user = null, candidates = [], live = [], meetings = [], current = null;
+  var idToken = null, pass = null, user = null, candidates = [], live = [], meetings = [], current = null;
 
   function $(id) { return document.getElementById(id); }
   function esc(s) {
@@ -156,13 +158,29 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
   }
   function slug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50); }
 
-  /* ── Google sign-in ── the ID token lasts an hour and lives only in this tab ── */
-  var KEY = 'lakewatch:id-token';
+  /* ── sign-in ── Google's ID token lasts an hour and is used once, to earn a
+     pass from the backend. The pass lasts 30 days on this device if the box is
+     ticked, otherwise until the tab closes. ── */
+  var KEY = 'lakewatch:pass';
   function tokenExp(t) {
     try { return JSON.parse(atob(t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).exp * 1000; } catch (e) { return 0; }
   }
   function fresh(t) { return !!t && tokenExp(t) - Date.now() > 60000; }
-  function forget() { idToken = null; try { sessionStorage.removeItem(KEY); } catch (e) {} }
+  function validPass(p) { return !!p && !!p.token && p.expires - Date.now() > 60000; }
+  function loadPass() {
+    try { return JSON.parse(localStorage.getItem(KEY) || sessionStorage.getItem(KEY) || 'null'); } catch (e) { return null; }
+  }
+  function savePass(p) {
+    try {
+      var keep = !$('keep') || $('keep').checked;
+      (keep ? localStorage : sessionStorage).setItem(KEY, JSON.stringify(p));
+      (keep ? sessionStorage : localStorage).removeItem(KEY);
+    } catch (e) {}
+  }
+  function forget() {
+    idToken = null; pass = null;
+    try { localStorage.removeItem(KEY); sessionStorage.removeItem(KEY); localStorage.removeItem('lakewatch:id-token'); sessionStorage.removeItem('lakewatch:id-token'); } catch (e) {}
+  }
 
   function authMsg(text, err) { $('authMsg').className = 'msg' + (err ? ' err' : ''); $('authMsg').textContent = text; }
 
@@ -178,16 +196,15 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
       google.accounts.id.initialize({ client_id: GOOGLE_CLIENT_ID, callback: onCredential,
         auto_select: true, cancel_on_tap_outside: false, use_fedcm_for_prompt: true });
       google.accounts.id.renderButton($('gbtn'), { theme: 'outline', size: 'large', text: 'signin_with' });
-      if (!idToken) google.accounts.id.prompt();
+      if (!idToken && !pass) google.accounts.id.prompt();
     };
     document.head.appendChild(sc);
   }
 
   function onCredential(resp) {
-    idToken = resp.credential;
-    try { sessionStorage.setItem(KEY, idToken); } catch (e) {}
+    idToken = resp.credential; pass = null;
     $('barSignin').innerHTML = '';
-    if (user) return;          // signed in again mid-session: carry on where they were
+    if (user) { api('session').catch(function () {}); return; }   // signed in again mid-session: carry on
     start();
   }
 
@@ -213,12 +230,13 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
   }
 
   async function api(action, payload) {
-    if (!fresh(idToken)) {
+    if (!validPass(pass) && !fresh(idToken)) {
       needSignIn('Your sign-in has expired. Sign in again.');
       var ex = new Error('Your sign-in expired. Use the Sign in button at the top — what you wrote is still here.');
       ex.code = 'signin'; throw ex;
     }
-    var body = JSON.stringify(Object.assign({ action: action, idToken: idToken }, payload || {}));
+    var cred = validPass(pass) ? { session: pass.token } : { idToken: idToken };
+    var body = JSON.stringify(Object.assign({ action: action }, cred, payload || {}));
     var data = null, status = 0;
     // Reads may retry; publish and remove never do, so nothing can go out twice.
     for (var attempt = 0; attempt < (action === 'publish' || action === 'remove' ? 1 : 2) && !data; attempt++) {
@@ -237,6 +255,7 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
       if (data.code === 'signin') needSignIn(err.message);
       throw err;
     }
+    if (data.session) { pass = data.session; savePass(pass); idToken = null; }
     return data;
   }
 
@@ -475,7 +494,8 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
     }
   }
 
-  try { var saved = sessionStorage.getItem(KEY); if (fresh(saved)) { idToken = saved; start(); } } catch (e) {}
+  var saved = loadPass();
+  if (validPass(saved)) { pass = saved; start(); } else if (saved) forget();
   initGoogle();
 })();
 </script>
