@@ -69,6 +69,10 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
 .col-head{padding:1rem 1.1rem .5rem;display:flex;justify-content:space-between;align-items:center}
 .list-item{display:block;width:100%;text-align:left;border:none;background:none;font-family:var(--body);cursor:pointer;padding:.7rem 1.1rem;border-bottom:1px solid var(--rule);border-left:3px solid transparent}
 .list-item:hover{background:#fff}
+.live-row{display:flex;align-items:stretch;border-bottom:1px solid var(--rule)}
+.live-row .list-item{border-bottom:none;flex:1;min-width:0}
+.rm{flex:none;align-self:center;margin-right:.8rem;font-family:var(--body);font-size:.74rem;font-weight:600;color:var(--flag);background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:.3rem .55rem;cursor:pointer}
+.rm:hover{border-color:var(--flag);background:#fbeeea}
 .list-item.on{background:var(--sand);border-left-color:var(--gold)}
 .li-t{font-size:.9rem;color:var(--navy);font-weight:600;line-height:1.3}
 .li-s{font-size:.76rem;color:var(--muted);margin-top:.15rem}
@@ -293,13 +297,21 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
     if (!live.length) { $('live').innerHTML = '<p class="empty">Nothing published yet. The homepage section stays hidden until the first story goes live.</p>'; return; }
     $('live').innerHTML = live.slice().sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); })
       .map(function (s) {
-        return '<button class="list-item" data-live="' + esc(s.id) + '"><div class="li-t">' + esc(s.title) + '</div>' +
-          '<div class="li-s"><span class="tag live">live</span>' + (s.featured ? '<span class="tag">featured</span>' : '') + esc(fmt(s.date)) + '</div></button>';
+        return '<div class="live-row"><button class="list-item" data-live="' + esc(s.id) + '" title="Edit this story"><div class="li-t">' + esc(s.title) + '</div>' +
+          '<div class="li-s"><span class="tag live">live</span>' + (s.featured ? '<span class="tag">featured</span>' : '') + esc(fmt(s.date)) + '</div></button>' +
+          '<button class="rm" data-remove="' + esc(s.id) + '" title="Remove from homepage" aria-label="Remove “' + esc(s.title) + '” from the homepage">Remove</button></div>';
       }).join('');
+    function find(id) { var s = live.filter(function (x) { return x.id === id; })[0]; return s && JSON.parse(JSON.stringify(s)); }
     [].forEach.call(document.querySelectorAll('[data-live]'), function (b) {
+      b.addEventListener('click', function () { var s = find(b.dataset.live); if (s) openEditor(s, { existing: true }); });
+    });
+    // Removing opens the story in the editor first, so you can see exactly what
+    // is coming down and follow the progress in its log.
+    [].forEach.call(document.querySelectorAll('[data-remove]'), function (b) {
       b.addEventListener('click', function () {
-        var s = live.filter(function (x) { return x.id === b.dataset.live; })[0];
-        if (s) openEditor(JSON.parse(JSON.stringify(s)), { existing: true });
+        var s = find(b.dataset.remove); if (!s) return;
+        openEditor(s, { existing: true });
+        removeStory(s);
       });
     });
   }
@@ -464,10 +476,12 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
       if (cand) d.derived_from = cand.origin + (isVideo ? ' in AI review of meeting recording' : '');
       commit('publish', { story: d, existing: !!ctx.existing });
     });
-    if (ctx.existing) $('unpublish').addEventListener('click', function () {
-      if (!confirm('Remove “' + s.title + '” from the homepage?')) return;
-      commit('remove', { id: s.id });
-    });
+    if (ctx.existing) $('unpublish').addEventListener('click', function () { removeStory(s); });
+  }
+
+  function removeStory(s) {
+    if (!confirm('Remove “' + s.title + '” from the homepage?\n\nIt comes off the site in about a minute. You can publish it again later from its candidate.')) return;
+    commit('remove', { id: s.id });
   }
 
   /* ── publish: the backend does branch → commit → PR → merge ── */
