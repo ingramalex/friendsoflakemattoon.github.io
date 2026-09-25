@@ -3,7 +3,7 @@
     "name": "stories",
     "version": 1
   },
-  "updated": "2026-09-25T13:14:25.227Z",
+  "updated": "2026-09-25T13:21:32.925Z",
   "stories": [
     {
       "id": "2026-09-15-shoreline-stabilization-grant-application",
@@ -19,6 +19,23 @@
         "timestamp": "22:04"
       },
       "published": "2026-09-25T13:14:24.930Z",
+      "verified_by_reader": true,
+      "derived_from": "topic in AI review of meeting recording"
+    },
+    {
+      "id": "2026-09-15-lake-mattoon-dam-patching-project",
+      "date": "2026-09-15",
+      "title": "Lake Mattoon Dam Patching Project",
+      "summary": "The council reviewed plans and specifications for patching deteriorating concrete flume joints and exposed rebar at the Lake Mattoon Dam spillway. The council voted to approve the plans and authorized soliciting competitive bids for the repair work.",
+      "category": "",
+      "featured": false,
+      "source": {
+        "kind": "video",
+        "label": "Council meeting",
+        "url": "https://www.youtube.com/watch?v=yqd1TsPJM2o&t=2772s",
+        "timestamp": "46:12"
+      },
+      "published": "2026-09-25T13:21:32.211Z",
       "verified_by_reader": true,
       "derived_from": "topic in AI review of meeting recording"
     }
