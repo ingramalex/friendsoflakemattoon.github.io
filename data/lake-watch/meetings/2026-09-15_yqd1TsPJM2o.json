@@ -1,0 +1,67 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-09-15",
+  "title": "Regular City Council Meeting 09/15/26",
+  "video_id": "yqd1TsPJM2o",
+  "url": "https://www.youtube.com/watch?v=yqd1TsPJM2o",
+  "extracted": "2026-09-25T12:10:55+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council held a regular meeting covering public comments, municipal grant applications, ordinance updates, and city infrastructure projects. Key items discussed included shoreline stabilization grant applications for Lake Paradise and Lake Mattoon, dam patching repairs, and property easement concerns raised by lake residents.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "22:04",
+        "topic": "Shoreline Stabilization Grant Application",
+        "what_happened": "The council considered Resolution No. 2024-3352 to apply for an Illinois EPA Section 319(h) Nonpoint Source Pollution Control Grant to fund shoreline stabilization at Lake Paradise and Lake Mattoon. The total project cost is $260,000, with $156,000 requested from state grant funds and $104,000 provided in local matching funds.",
+        "speakers": "city staff, mayor, council members",
+        "importance": "high"
+      },
+      {
+        "timestamp": "46:12",
+        "topic": "Lake Mattoon Dam Patching Project",
+        "what_happened": "The council reviewed plans and specifications for patching deteriorating concrete flume joints and exposed rebar at the Lake Mattoon Dam spillway. The council voted to approve the plans and authorized soliciting competitive bids for the repair work.",
+        "speakers": "city manager, mayor, council members",
+        "importance": "high"
+      },
+      {
+        "timestamp": "49:44",
+        "topic": "Watershed Management Planning Update",
+        "what_happened": "Council Member Cox reported on attending the third meeting of the watershed management group on September 9th. He noted significant progress in data collection that will inform future watershed planning and support upcoming grant applications.",
+        "speakers": "council member",
+        "importance": "normal"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "15:43",
+        "concern": "Jason Little, a Lake Mattoon property owner residing in Neoga, presented concerns regarding historical 1956 flowage easements and severe sediment accumulation that has reduced water depth behind properties from 15 feet to under 3 feet. He noted that the city generates approximately $4.3 million annually from the lakes while surrounding non-resident communities bear environmental costs.",
+        "response": "Mayor Hall acknowledged the issue and stated that city officials would need to gather as a group or establish a small committee to review the legal documents and meet with property owners."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "17:55",
+        "action": "Form a committee or small group meeting to discuss Lake Mattoon easement rights and sedimentation concerns with property owners.",
+        "owner": "Mayor Hall / City Council",
+        "status": "proposed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "26:56",
+        "measure": "Resolution No. 2024-3352 approving Section 319(h) grant application and local matching funds for shoreline stabilization at Lake Paradise and Lake Mattoon",
+        "outcome": "Approved (4-0)"
+      },
+      {
+        "timestamp": "46:54",
+        "measure": "Council Decision Request 2026-2728 approving plans and specifications for Lake Mattoon Dam Patching project and authorizing bid solicitation",
+        "outcome": "Approved (4-0)"
+      }
+    ]
+  }
+}
