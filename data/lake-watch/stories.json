@@ -1,5 +1,26 @@
 {
-  "schema": {"name": "stories", "version": 1},
-  "updated": null,
-  "stories": []
+  "schema": {
+    "name": "stories",
+    "version": 1
+  },
+  "updated": "2026-09-25T13:14:25.227Z",
+  "stories": [
+    {
+      "id": "2026-09-15-shoreline-stabilization-grant-application",
+      "date": "2026-09-15",
+      "title": "Shoreline Stabilization Grant Application",
+      "summary": "The council considered Resolution No. 2024-3352 to apply for an Illinois EPA Section 319(h) Nonpoint Source Pollution Control Grant to fund shoreline stabilization at Lake Paradise and Lake Mattoon. The total project cost is $260,000, with $156,000 requested from state grant funds and $104,000 provided in local matching funds.",
+      "category": "",
+      "featured": true,
+      "source": {
+        "kind": "video",
+        "label": "Council meeting",
+        "url": "https://www.youtube.com/watch?v=yqd1TsPJM2o&t=1324s",
+        "timestamp": "22:04"
+      },
+      "published": "2026-09-25T13:14:24.930Z",
+      "verified_by_reader": true,
+      "derived_from": "topic in AI review of meeting recording"
+    }
+  ]
 }
