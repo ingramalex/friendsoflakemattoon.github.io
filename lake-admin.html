@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Admin tool: public URL, but it can do nothing without a GitHub token that
+     has write access to this repository. Unlisted and noindex. -->
+<meta name="robots" content="noindex,nofollow">
+<title>Lake Watch — publish stories</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0d2e3f;--mid:#1a5068;--teal:#3a8fa8;--sky:#b8dce8;
+  --sand:#f5f0e8;--cream:#faf7f2;--dark:#1a2628;--muted:#3d5a60;
+  --gold:#c49a2a;--rule:#dfd8cc;--flag:#a8452a;--ok:#2d5a27;
+  --serif:'Playfair Display',Georgia,serif;--body:'Source Serif 4',Georgia,serif;--r:4px;
+}
+body{font-family:var(--body);background:var(--cream);color:var(--dark);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bar{background:var(--navy);color:var(--sky);padding:.7rem 1.5rem;display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;justify-content:space-between}
+.bar-title{font-family:var(--serif);font-size:1.05rem;color:#fff}
+.bar-title span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-left:.6rem}
+.bar a{color:var(--sky);font-size:.82rem}
+.who{font-size:.8rem}
+.who b{color:#fff}
+
+.auth{max-width:620px;margin:3rem auto;padding:0 1.5rem}
+.card{background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:1.5rem}
+h1{font-family:var(--serif);font-weight:400;color:var(--navy);font-size:1.5rem;margin-bottom:.6rem}
+h2{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.6rem}
+p.help{font-size:.88rem;color:var(--muted);margin-bottom:.9rem}
+ol.help{font-size:.86rem;color:var(--muted);margin:0 0 1rem 1.2rem}
+ol.help li{margin-bottom:.3rem}
+label{display:block;font-size:.8rem;font-weight:600;color:var(--navy);margin:.8rem 0 .25rem}
+input[type=text],input[type=password],input[type=url],input[type=date],textarea,select{width:100%;font-family:var(--body);font-size:.92rem;padding:.5rem .6rem;border:1px solid var(--rule);border-radius:var(--r);background:#fff;color:var(--dark)}
+textarea{min-height:110px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.check{display:flex;gap:.5rem;align-items:flex-start;font-size:.86rem;color:var(--dark);margin-top:.7rem;font-weight:400}
+.check input{margin-top:.25rem;accent-color:var(--ok)}
+.btn{font-family:var(--body);font-size:.86rem;font-weight:600;padding:.55rem 1.1rem;border-radius:var(--r);border:1px solid var(--rule);background:#fff;color:var(--navy);cursor:pointer}
+.btn:hover{border-color:var(--mid)}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn.danger{color:var(--flag)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.msg{font-size:.86rem;margin-top:.8rem}
+.msg.err{color:var(--flag)}
+.msg.ok{color:var(--ok)}
+
+.layout{display:grid;grid-template-columns:300px 1fr 300px;min-height:calc(100vh - 50px)}
+.col{border-right:1px solid var(--rule);overflow-y:auto;max-height:calc(100vh - 50px)}
+.col:last-child{border-right:none;border-left:1px solid var(--rule)}
+.col-head{padding:1rem 1.1rem .5rem;display:flex;justify-content:space-between;align-items:center}
+.list-item{display:block;width:100%;text-align:left;border:none;background:none;font-family:var(--body);cursor:pointer;padding:.7rem 1.1rem;border-bottom:1px solid var(--rule);border-left:3px solid transparent}
+.list-item:hover{background:#fff}
+.list-item.on{background:var(--sand);border-left-color:var(--gold)}
+.li-t{font-size:.9rem;color:var(--navy);font-weight:600;line-height:1.3}
+.li-s{font-size:.76rem;color:var(--muted);margin-top:.15rem}
+.tag{display:inline-block;font-size:9px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.1rem .35rem;border-radius:2px;margin-right:.25rem;background:#e8eef0;color:var(--mid)}
+.tag.warn{background:#f6e5e0;color:var(--flag)}
+.tag.live{background:#e4f0e3;color:var(--ok)}
+.group{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:.9rem 1.1rem .3rem;background:var(--cream)}
+.edit{padding:1.5rem 1.75rem 3rem;overflow-y:auto;max-height:calc(100vh - 50px)}
+.warnbox{background:#fbeeea;border-left:3px solid var(--flag);padding:.7rem .9rem;font-size:.85rem;color:#5a2a1c;border-radius:0 var(--r) var(--r) 0;margin:.8rem 0}
+.src-quote{background:var(--sand);border-radius:var(--r);padding:.7rem .9rem;font-size:.85rem;color:var(--muted);margin:.6rem 0 0}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.log{font-family:ui-monospace,Menlo,monospace;font-size:.76rem;background:#fff;border:1px solid var(--rule);border-radius:var(--r);padding:.6rem .8rem;margin-top:.9rem;white-space:pre-wrap;max-height:180px;overflow:auto}
+.empty{color:var(--muted);font-size:.86rem;padding:.8rem 1.1rem}
+
+/* Preview uses the homepage card styles verbatim, so what you see is what ships. */
+.preview-wrap{background:var(--cream);border:1px dashed var(--rule);border-radius:var(--r);padding:1.2rem;margin-top:1rem}
+.lw-card{background:#fff;border:1px solid rgba(26,80,104,.12);border-top:3px solid var(--teal);border-radius:var(--r);padding:1.6rem 1.6rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;text-decoration:none;color:inherit;max-width:440px}
+.lw-card.featured{max-width:none;border-top-color:var(--gold)}
+.lw-card.featured .lw-title{font-size:1.35rem}
+.lw-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--teal)}
+.lw-kind{display:inline-flex;align-items:center;gap:5px;background:rgba(58,143,168,.1);color:var(--mid);padding:.2rem .5rem;border-radius:2px}
+.lw-cat{color:var(--muted);font-weight:400}
+.lw-title{font-family:var(--serif);font-size:1.1rem;color:var(--navy);line-height:1.35;font-weight:400}
+.lw-text{font-size:.88rem;line-height:1.75;color:var(--muted);font-weight:300}
+.lw-go{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600}
+@media(max-width:1000px){.layout{grid-template-columns:1fr}.col,.edit{max-height:none;border:none;border-bottom:1px solid var(--rule)}}
+</style>
+
+<div class="bar">
+  <div class="bar-title">Lake Watch <span>Publish stories</span></div>
+  <div class="who" id="who">not signed in</div>
+  <div><a href="lake-review.html" target="_blank" rel="noopener">Review recordings</a> &nbsp;·&nbsp; <a href="index.html#lake-watch" target="_blank" rel="noopener">Homepage section &rarr;</a></div>
+</div>
+
+<!-- ── Sign in ─────────────────────────────────────────── -->
+<div class="auth" id="auth">
+  <div class="card">
+    <h1>Sign in with a GitHub token</h1>
+    <p class="help">Publishing commits a change to the website's repository, so this page needs a
+    GitHub token with write access to it. The token is sent only to <code>api.github.com</code> and
+    is kept in this browser — nowhere else.</p>
+    <ol class="help">
+      <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub &rarr; Fine-grained tokens &rarr; Generate new token</a>.</li>
+      <li>Repository access: <b>Only select repositories</b> &rarr; <code>friendsoflakemattoon.github.io</code>.</li>
+      <li>Permissions: <b>Contents: Read and write</b> and <b>Pull requests: Read and write</b>. Nothing else.</li>
+      <li>Set an expiration (90 days is sensible), generate, and paste it below.</li>
+    </ol>
+    <label for="tok">Token</label>
+    <input type="password" id="tok" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+    <label class="check"><input type="checkbox" id="remember"> Remember on this device
+      (otherwise it is forgotten when this tab closes)</label>
+    <div class="actions"><button class="btn primary" id="signin">Sign in</button></div>
+    <p class="msg" id="authMsg"></p>
+  </div>
+</div>
+
+<!-- ── Workspace ───────────────────────────────────────── -->
+<div class="layout" id="app" hidden>
+  <nav class="col">
+    <div class="col-head"><h2>Candidates</h2><button class="btn" id="newStory">+ New</button></div>
+    <div id="cands"><p class="empty">Loading…</p></div>
+  </nav>
+  <main class="edit" id="editor"><p class="empty">Pick a candidate on the left, or start a new story.</p></main>
+  <aside class="col">
+    <div class="col-head"><h2>On the homepage</h2><button class="btn" id="reload">Refresh</button></div>
+    <div id="live"><p class="empty">Loading…</p></div>
+  </aside>
+</div>
+
+<script>
+(function () {
+  var REPO = 'ingramalex/friendsoflakemattoon.github.io';
+  var BASE = 'main';
+  var REVIEW_BRANCH = 'lake-watch/meetings';
+  var STORIES = 'data/lake-watch/stories.json';
+  var API = 'https://api.github.com';
+  var RAW = 'https://raw.githubusercontent.com/' + REPO + '/';
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  var token = null, candidates = [], live = [], current = null;
+
+  function $(id) { return document.getElementById(id); }
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function fmt(d) { var p = String(d||'').split('-'); return p.length===3 ? MON[+p[1]-1]+' '+(+p[2])+', '+p[0] : ''; }
+  function secs(t) {
+    var p = String(t||'').split(':').map(Number);
+    if (!t || p.some(isNaN)) return 0;
+    return p.length===2 ? p[0]*60+p[1] : p.length===3 ? p[0]*3600+p[1]*60+p[2] : 0;
+  }
+  function slug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,50); }
+  // GitHub's contents API speaks base64 of bytes, so round-trip through UTF-8.
+  function b64enc(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function b64dec(b64) { return decodeURIComponent(escape(atob(b64.replace(/\n/g,'')))); }
+
+  /* ── token storage ── session by default; local only if asked ── */
+  var KEY = 'lakewatch:gh-token';
+  function loadToken() {
+    try { return sessionStorage.getItem(KEY) || localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function saveToken(t, remember) {
+    try {
+      sessionStorage.setItem(KEY, t);
+      if (remember) localStorage.setItem(KEY, t); else localStorage.removeItem(KEY);
+    } catch (e) {}
+  }
+  function forgetToken() { try { sessionStorage.removeItem(KEY); localStorage.removeItem(KEY); } catch (e) {} }
+
+  async function gh(path, opts) {
+    opts = opts || {};
+    var r = await fetch(API + path, {
+      method: opts.method || 'GET',
+      headers: Object.assign({
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      }, token ? { 'Authorization': 'Bearer ' + token } : {},
+         opts.body ? { 'Content-Type': 'application/json' } : {}),
+      body: opts.body ? JSON.stringify(opts.body) : undefined
+    });
+    var data = null;
+    try { data = await r.json(); } catch (e) {}
+    if (!r.ok && !(opts.allow404 && r.status === 404)) {
+      var err = new Error((data && data.message) || ('HTTP ' + r.status));
+      err.status = r.status; throw err;
+    }
+    return r.status === 404 ? null : data;
+  }
+
+  /* ── sign in ── */
+  async function signIn(t, remember) {
+    token = t;
+    var user = await gh('/user');
+    var repo = await gh('/repos/' + REPO);
+    if (!repo.permissions || !repo.permissions.push) {
+      throw new Error('This token can read the repository but cannot write to it. It needs Contents: Read and write.');
+    }
+    saveToken(t, remember);
+    $('who').innerHTML = 'signed in as <b>' + esc(user.login) + '</b> &middot; <a href="#" id="signout">sign out</a>';
+    $('signout').addEventListener('click', function (e) { e.preventDefault(); forgetToken(); location.reload(); });
+    $('auth').hidden = true; $('app').hidden = false;
+    await Promise.all([loadCandidates(), loadLive()]);
+  }
+
+  $('signin').addEventListener('click', function () {
+    var t = $('tok').value.trim(), m = $('authMsg');
+    if (!t) { m.className = 'msg err'; m.textContent = 'Paste a token first.'; return; }
+    m.className = 'msg'; m.textContent = 'Checking…';
+    signIn(t, $('remember').checked).catch(function (e) {
+      token = null; m.className = 'msg err';
+      m.textContent = e.status === 401 ? 'GitHub rejected that token. Check it was copied in full and has not expired.' : e.message;
+    });
+  });
+
+  /* ── what is live now ── */
+  async function readLive() {
+    var f = await gh('/repos/' + REPO + '/contents/' + STORIES + '?ref=' + BASE, { allow404: true });
+    if (!f) return { sha: null, doc: { schema: { name: 'stories', version: 1 }, updated: null, stories: [] } };
+    return { sha: f.sha, doc: JSON.parse(b64dec(f.content)) };
+  }
+  async function loadLive() {
+    $('live').innerHTML = '<p class="empty">Loading…</p>';
+    try {
+      live = (await readLive()).doc.stories || [];
+      renderLive();
+    } catch (e) { $('live').innerHTML = '<p class="empty">Could not read: ' + esc(e.message) + '</p>'; }
+  }
+  function renderLive() {
+    if (!live.length) { $('live').innerHTML = '<p class="empty">Nothing published yet. The homepage section stays hidden until the first story goes live.</p>'; return; }
+    $('live').innerHTML = live.slice().sort(function (a, b) { return String(b.date).localeCompare(String(a.date)); })
+      .map(function (s) {
+        return '<button class="list-item" data-live="' + esc(s.id) + '"><div class="li-t">' + esc(s.title) + '</div>' +
+          '<div class="li-s"><span class="tag live">live</span>' + (s.featured ? '<span class="tag">featured</span>' : '') + esc(fmt(s.date)) + '</div></button>';
+      }).join('');
+    [].forEach.call(document.querySelectorAll('[data-live]'), function (b) {
+      b.addEventListener('click', function () {
+        var s = live.filter(function (x) { return x.id === b.dataset.live; })[0];
+        if (s) openEditor(JSON.parse(JSON.stringify(s)), { existing: true });
+      });
+    });
+  }
+
+  /* ── candidates: meeting findings on the review branch, plus official data ── */
+  async function loadCandidates() {
+    candidates = [];
+    try {
+      var list = await gh('/repos/' + REPO + '/contents/data/lake-watch/meetings?ref=' + encodeURIComponent(REVIEW_BRANCH), { allow404: true }) || [];
+      var files = list.filter(function (f) { return /\.json$/.test(f.name); });
+      var recs = await Promise.all(files.map(function (f) {
+        return fetch(RAW + REVIEW_BRANCH + '/data/lake-watch/meetings/' + f.name).then(function (r) { return r.json(); });
+      }));
+      recs.forEach(function (rec) {
+        var f = rec.findings || {}, vid = rec.video_id, date = rec.meeting_date;
+        if (!vid || !f.lake_discussed) return;
+        function add(kind, i, title, text, ts, extra) {
+          if (!title && !text) return;
+          candidates.push(Object.assign({
+            key: date + '-' + kind + '-' + i, group: date, origin: kind,
+            story: {
+              id: date + '-' + slug(title || text),
+              date: date,
+              title: title || '',
+              summary: text || '',
+              category: '',
+              featured: false,
+              source: {
+                kind: 'video', label: 'Council meeting', timestamp: ts || '',
+                url: 'https://www.youtube.com/watch?v=' + vid + (ts ? '&t=' + secs(ts) + 's' : '')
+              }
+            }
+          }, extra || {}));
+        }
+        (f.topics || []).forEach(function (t, i) { add('topic', i, t.topic, t.what_happened, t.timestamp, { hot: t.importance === 'high' }); });
+        (f.action_items || []).forEach(function (a, i) { add('commitment', i, 'Commitment: ' + a.action, a.action + (a.owner ? ' (' + a.owner + ')' : ''), a.timestamp, { hot: true }); });
+        (f.votes || []).forEach(function (v, i) { add('vote', i, v.measure, v.measure + (v.outcome ? ' — ' + v.outcome : ''), v.timestamp); });
+        (f.citizen_concerns || []).forEach(function (c, i) {
+          add('concern', i, 'Resident concern', c.concern + (c.response ? ' Response: ' + c.response : ''), c.timestamp, { names: true, hot: true });
+        });
+      });
+    } catch (e) { /* review branch unavailable; official candidates still load */ }
+
+    try {
+      var wq = await fetch(RAW + BASE + '/data/lake-watch/water-quality.json').then(function (r) { return r.json(); });
+      if (wq && wq.latest) {
+        var pct = Math.round(wq.latest.ppb / wq.advisory_sensitive_ppb * 100);
+        candidates.push({
+          key: 'wq-' + wq.latest.date, group: 'Official data', origin: 'water',
+          story: {
+            id: 'water-quality-' + wq.latest.date, date: wq.latest.date,
+            title: 'Tap water microcystin: ' + wq.latest.ppb + ' ppb',
+            summary: 'The City\'s most recent test of treated drinking water measured ' + wq.latest.ppb +
+              ' ppb of microcystin, ' + pct + '% of the EPA advisory level for sensitive groups. ' +
+              wq.exceedances + ' of ' + wq.count + ' readings since July 2025 have exceeded it.',
+            category: 'water quality', featured: false,
+            source: { kind: 'document', label: 'City notice', timestamp: '', url: wq.source_url }
+          }
+        });
+      }
+    } catch (e) {}
+    renderCandidates();
+  }
+
+  function renderCandidates() {
+    if (!candidates.length) { $('cands').innerHTML = '<p class="empty">No candidates found. Use “+ New” to write one from scratch.</p>'; return; }
+    var liveIds = {}; live.forEach(function (s) { liveIds[s.id] = 1; });
+    var groups = {}, order = [];
+    candidates.forEach(function (c) { if (!groups[c.group]) { groups[c.group] = []; order.push(c.group); } groups[c.group].push(c); });
+    order.sort(function (a, b) { return a === 'Official data' ? -1 : b === 'Official data' ? 1 : b.localeCompare(a); });
+    $('cands').innerHTML = order.map(function (g) {
+      return '<div class="group">' + esc(g === 'Official data' ? g : 'Meeting · ' + fmt(g)) + '</div>' +
+        groups[g].map(function (c) {
+          return '<button class="list-item' + (current && current.key === c.key ? ' on' : '') + '" data-key="' + esc(c.key) + '">' +
+            '<div class="li-t">' + esc(c.story.title) + '</div><div class="li-s">' +
+            '<span class="tag">' + esc(c.origin) + '</span>' +
+            (c.names ? '<span class="tag warn">names a resident?</span>' : '') +
+            (liveIds[c.story.id] ? '<span class="tag live">live</span>' : '') +
+            esc(c.story.source.timestamp || '') + '</div></button>';
+        }).join('');
+    }).join('');
+    [].forEach.call(document.querySelectorAll('[data-key]'), function (b) {
+      b.addEventListener('click', function () {
+        var c = candidates.filter(function (x) { return x.key === b.dataset.key; })[0];
+        if (c) { current = c; renderCandidates(); openEditor(JSON.parse(JSON.stringify(c.story)), { candidate: c }); }
+      });
+    });
+  }
+
+  $('newStory').addEventListener('click', function () {
+    current = null; renderCandidates();
+    openEditor({ id: '', date: new Date().toISOString().slice(0, 10), title: '', summary: '', category: '', featured: false,
+      source: { kind: 'article', label: '', timestamp: '', url: '' } }, {});
+  });
+  $('reload').addEventListener('click', function () { loadLive().then(renderCandidates); });
+
+  /* ── editor ── */
+  function card(s) {
+    var k = s.source || {};
+    var go = k.kind === 'video' ? 'Watch' + (k.timestamp ? ' at ' + esc(k.timestamp) : '') : k.kind === 'document' ? 'Open document' : 'Read more';
+    return '<div class="lw-card' + (s.featured ? ' featured' : '') + '">' +
+      '<div class="lw-meta"><span class="lw-kind">' + esc(k.label || k.kind) + '</span><span>' + esc(fmt(s.date)) + '</span>' +
+      (s.category ? '<span class="lw-cat">' + esc(s.category) + '</span>' : '') + '</div>' +
+      '<h3 class="lw-title">' + esc(s.title || 'Untitled') + '</h3>' +
+      '<p class="lw-text">' + esc(s.summary) + '</p><span class="lw-go">' + go + ' &rarr;</span></div>';
+  }
+
+  function openEditor(s, ctx) {
+    var cand = ctx.candidate, isVideo = s.source.kind === 'video';
+    $('editor').innerHTML =
+      '<h1>' + (ctx.existing ? 'Edit live story' : 'Prepare a story') + '</h1>' +
+      (cand && cand.names ? '<div class="warnbox"><b>This came from a resident’s public comment.</b> The homepage is public and permanent. Describe the concern without naming the person unless they have agreed to be named — “a lake resident raised…” carries the same weight.</div>' : '') +
+      (cand ? '<p class="src-quote"><b>From the findings:</b> ' + esc(cand.story.summary) + '</p>' : '') +
+      '<label>Headline</label><input type="text" id="f-title" value="' + esc(s.title) + '">' +
+      '<label>Summary <span style="font-weight:300;color:var(--muted)">— two or three plain sentences</span></label><textarea id="f-sum">' + esc(s.summary) + '</textarea>' +
+      '<div class="row"><div><label>Date</label><input type="date" id="f-date" value="' + esc(s.date) + '"></div>' +
+      '<div><label>Category</label><select id="f-cat">' +
+        ['', 'water quality', 'watershed', 'infrastructure', 'recreation', 'governance'].map(function (c) {
+          return '<option' + (c === s.category ? ' selected' : '') + ' value="' + c + '">' + (c || '—') + '</option>'; }).join('') +
+      '</select></div></div>' +
+      '<div class="row"><div><label>Link type</label><select id="f-kind">' +
+        [['video','Video (YouTube)'],['article','Article / web page'],['document','Document / notice']].map(function (o) {
+          return '<option value="' + o[0] + '"' + (o[0] === s.source.kind ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') +
+      '</select></div><div><label>Link label</label><input type="text" id="f-label" value="' + esc(s.source.label) + '" placeholder="Council meeting, JG-TC, City notice…"></div></div>' +
+      '<div class="row"><div><label>Link URL</label><input type="url" id="f-url" value="' + esc(s.source.url) + '"></div>' +
+      '<div><label>Timestamp (video)</label><input type="text" id="f-ts" value="' + esc(s.source.timestamp) + '" placeholder="33:24"></div></div>' +
+      '<label class="check"><input type="checkbox" id="f-feat"' + (s.featured ? ' checked' : '') + '> Feature this story (shown larger, first)</label>' +
+      '<label class="check" id="verifyRow"><input type="checkbox" id="f-verified"><span>I opened the link' +
+        '<span id="verifyVideo">, listened to that moment in the recording,</span> and the headline and summary match what is there.</span></label>' +
+      '<h2 style="margin-top:1.4rem">Preview</h2><div class="preview-wrap" id="preview"></div>' +
+      '<div class="actions"><button class="btn primary" id="publish" disabled>' + (ctx.existing ? 'Publish changes' : 'Publish to homepage') + '</button>' +
+      '<a class="btn" id="openSrc" target="_blank" rel="noopener">Open source link</a>' +
+      (ctx.existing ? '<button class="btn danger" id="unpublish">Remove from homepage</button>' : '') + '</div>' +
+      '<div class="log" id="log" hidden></div>';
+
+    function read() {
+      var kind = $('f-kind').value, url = $('f-url').value.trim(), ts = $('f-ts').value.trim();
+      // Keep a YouTube link's &t= in step with the timestamp field, so editing
+      // one cannot leave the card pointing at a different moment from the label.
+      if (kind === 'video' && /youtube\.com\/watch\?v=/.test(url)) {
+        url = url.replace(/([?&])t=\d+s?/, '$1').replace(/[?&]$/, '').replace(/&&/, '&');
+        if (ts) url += '&t=' + secs(ts) + 's';
+      }
+      return {
+        id: s.id || ($('f-date').value + '-' + slug($('f-title').value)),
+        date: $('f-date').value, title: $('f-title').value.trim(), summary: $('f-sum').value.trim(),
+        category: $('f-cat').value, featured: $('f-feat').checked,
+        source: { kind: kind, label: $('f-label').value.trim(), url: url, timestamp: kind === 'video' ? ts : '' }
+      };
+    }
+    function refresh() {
+      var d = read();
+      $('preview').innerHTML = card(d);
+      $('verifyVideo').style.display = d.source.kind === 'video' ? '' : 'none';
+      $('openSrc').href = /^https?:\/\//.test(d.source.url) ? d.source.url : '#';
+      var ok = d.title && d.summary && d.date && /^https?:\/\//.test(d.source.url) && $('f-verified').checked;
+      $('publish').disabled = !ok;
+    }
+    [].forEach.call($('editor').querySelectorAll('input,textarea,select'), function (el) {
+      el.addEventListener('input', refresh); el.addEventListener('change', refresh);
+    });
+    refresh();
+
+    $('publish').addEventListener('click', function () {
+      var d = read();
+      d.published = new Date().toISOString();
+      d.verified_by_reader = true;
+      if (cand) d.derived_from = cand.origin + (isVideo ? ' in AI review of meeting recording' : '');
+      commit(function (stories) {
+        var i = stories.map(function (x) { return x.id; }).indexOf(d.id);
+        if (i >= 0) stories[i] = d; else stories.push(d);
+        return stories;
+      }, (ctx.existing ? 'Update' : 'Publish') + ' story: ' + d.title);
+    });
+    if (ctx.existing) $('unpublish').addEventListener('click', function () {
+      if (!confirm('Remove “' + s.title + '” from the homepage?')) return;
+      commit(function (stories) { return stories.filter(function (x) { return x.id !== s.id; }); }, 'Remove story: ' + s.title);
+    });
+  }
+
+  /* ── publish: branch → commit → PR → merge. main only changes through a PR. ── */
+  async function commit(mutate, message) {
+    var log = $('log'); log.hidden = false; log.textContent = '';
+    function step(t) { log.textContent += t + '\n'; log.scrollTop = log.scrollHeight; }
+    [].forEach.call($('editor').querySelectorAll('button'), function (b) { b.disabled = true; });
+    var branch = 'stories/' + Date.now();
+    try {
+      step('Reading what is live now…');
+      var cur = await readLive();            // re-read at publish time so we never overwrite someone else's change
+      var doc = cur.doc;
+      doc.stories = mutate(doc.stories || []);
+      doc.updated = new Date().toISOString();
+
+      step('Creating a branch…');
+      var head = await gh('/repos/' + REPO + '/git/ref/heads/' + BASE);
+      await gh('/repos/' + REPO + '/git/refs', { method: 'POST', body: { ref: 'refs/heads/' + branch, sha: head.object.sha } });
+
+      step('Committing the change…');
+      var body = { message: message, content: b64enc(JSON.stringify(doc, null, 2) + '\n'), branch: branch };
+      if (cur.sha) body.sha = cur.sha;
+      await gh('/repos/' + REPO + '/contents/' + STORIES, { method: 'PUT', body: body });
+
+      step('Opening a pull request…');
+      var pr = await gh('/repos/' + REPO + '/pulls', { method: 'POST', body: {
+        title: message, head: branch, base: BASE,
+        body: 'Published from the Lake Watch admin page.\n\nThe publisher confirmed they checked the source link and that the story matches it.'
+      } });
+
+      step('Merging #' + pr.number + '…');
+      try {
+        await gh('/repos/' + REPO + '/pulls/' + pr.number + '/merge', { method: 'PUT', body: { merge_method: 'squash' } });
+      } catch (e) {
+        step('Could not merge automatically: ' + e.message);
+        step('The change is waiting as a pull request — merge it on GitHub:');
+        step(pr.html_url);
+        return;
+      }
+      try { await gh('/repos/' + REPO + '/git/refs/heads/' + branch, { method: 'DELETE' }); } catch (e) {}
+
+      step('Done. The homepage updates in about a minute, once GitHub Pages rebuilds.');
+      step(pr.html_url);
+      await loadLive(); renderCandidates();
+    } catch (e) {
+      step('Failed: ' + e.message);
+      if (e.status === 403) step('The token may be missing the Pull requests permission.');
+    } finally {
+      [].forEach.call($('editor').querySelectorAll('button'), function (b) { b.disabled = false; });
+      var pub = $('publish'); if (pub) pub.disabled = !$('f-verified').checked;
+    }
+  }
+
+  var saved = loadToken();
+  if (saved) {
+    $('authMsg').textContent = 'Signing in…';
+    signIn(saved, !!(function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } })())
+      .catch(function () { forgetToken(); token = null; $('authMsg').className = 'msg err';
+        $('authMsg').textContent = 'The saved token no longer works. Paste a new one.'; });
+  }
+})();
+</script>

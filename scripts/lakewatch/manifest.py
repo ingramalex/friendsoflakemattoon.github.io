@@ -36,6 +36,10 @@ DATASETS = [
     ("brief", "brief.json", 1,
      "The most recent weekly brief: the article text plus structured upcoming "
      "meetings."),
+    ("stories", "stories.json", 1,
+     "Stories a person has approved for the homepage, each linking to its "
+     "source — often a timestamp in a meeting recording. Published only "
+     "through lake-admin.html, which commits via pull request."),
     ("commitments", "commitments.json", 1,
      "Lake subjects tracked across recorded meetings, with what was undertaken "
      "and how long since each was last mentioned."),

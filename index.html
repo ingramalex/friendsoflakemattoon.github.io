@@ -558,6 +558,25 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .news-cta{text-align:center;margin-top:2rem}
 .news-cta a{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:#1877f2;padding:.6rem 1.25rem;border-radius:var(--r);text-decoration:none;transition:background var(--t)}
 .news-cta a:hover{background:#1464d0}
+/* Lake Watch — stories a person has approved in lake-admin.html. The section
+   stays hidden until the first one is published, so publishing is the switch. */
+.lw{padding:6rem 2rem;background:var(--cream);border-top:1px solid rgba(26,80,104,.08)}
+.lw[hidden]{display:none}
+.lw-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:2.5rem}
+.lw-card{background:#fff;border:1px solid rgba(26,80,104,.12);border-top:3px solid var(--teal);border-radius:var(--r);padding:1.6rem 1.6rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;text-decoration:none;color:inherit;transition:box-shadow .25s,transform .25s}
+.lw-card:hover{box-shadow:0 6px 24px rgba(26,80,104,.12);transform:translateY(-3px)}
+.lw-card.featured{grid-column:span 2;border-top-color:var(--gold)}
+.lw-card.featured .lw-title{font-size:1.35rem}
+.lw-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--teal)}
+.lw-kind{display:inline-flex;align-items:center;gap:5px;background:rgba(58,143,168,.1);color:var(--mid);padding:.2rem .5rem;border-radius:2px}
+.lw-kind svg{flex-shrink:0}
+.lw-cat{color:var(--muted);font-weight:400}
+.lw-title{font-family:var(--serif);font-size:1.1rem;color:var(--navy);line-height:1.35;font-weight:400}
+.lw-text{font-size:.88rem;line-height:1.75;color:var(--muted);font-weight:300;flex:1}
+.lw-go{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-top:.35rem;transition:color var(--t)}
+.lw-card:hover .lw-go{color:var(--navy)}
+.lw-note{font-size:.8rem;color:var(--muted);font-weight:300;margin-top:1.75rem;max-width:70ch}
+.lw-note a{color:var(--teal)}
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
 @media(max-width:860px){
@@ -582,6 +601,9 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   .stat-item:last-child{border-bottom:none}
   .about,.involved,.pillars,.cleanup,.highlights,.events,.officers,.socials,.impact,.news{padding:4rem 1.5rem}
   .news-grid{grid-template-columns:1fr}
+  .lw{padding:4rem 1.5rem}
+  .lw-grid{grid-template-columns:1fr}
+  .lw-card.featured{grid-column:auto}
   .impact-card-body{grid-template-columns:1fr;gap:1.5rem}
   .two-col{grid-template-columns:1fr;gap:2.5rem}
   .lake-illustration{box-shadow:4px 4px 0 var(--sky)}
@@ -1025,6 +1047,17 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   </div>
 </section>
 
+<!-- LAKE WATCH -->
+<section class="lw" id="lake-watch" hidden>
+  <div class="section-inner">
+    <p class="section-tag">Lake Watch</p>
+    <h2 class="section-title">What's happening <em>at City Hall</em></h2>
+    <p class="body-text">Decisions about Lake Mattoon are made in public meetings most lake residents never see. Each story links to the source &mdash; often the exact moment in the meeting recording &mdash; so you can hear it for yourself.</p>
+    <div class="lw-grid" id="lwGrid"></div>
+    <p class="lw-note">Meeting items are drawn from recorded City Council sessions and checked against the recording by a Friends of Lake Mattoon volunteer before they appear here.</p>
+  </div>
+</section>
+
 <!-- SOCIALS -->
 <section class="socials" id="socials">
   <div class="section-inner">
@@ -1433,6 +1466,62 @@ function buildNewsPlaceholders() {
 }
 
 loadNewsFeed();
+
+/* ── LAKE WATCH STORIES ───────────────────────────────── */
+function loadLakeWatch() {
+  var section = document.getElementById('lake-watch');
+  var grid = document.getElementById('lwGrid');
+  if (!section || !grid) return;
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+  function fmt(d) {
+    var p = String(d || '').split('-');
+    return p.length === 3 ? MON[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0] : '';
+  }
+  var ICON = {
+    video: '<svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7.5-4.5z"/></svg>',
+    article: '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="1.5" width="8" height="9" rx="1"/><path d="M4 4.5h4M4 6.5h4M4 8.5h2.5"/></svg>',
+    document: '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 1.5h4l2.5 2.5v6.5h-6.5z"/><path d="M7 1.5v2.5h2.5"/></svg>'
+  };
+  var ARROW = '<svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  fetch('data/lake-watch/stories.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
+    .then(function (data) {
+      var stories = (data.stories || []).filter(function (s) {
+        return s.title && s.source && /^https?:\/\//i.test(s.source.url || '');
+      });
+      if (!stories.length) return;   // nothing approved yet: section stays hidden
+      stories.sort(function (a, b) {
+        if (!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
+        return String(b.date).localeCompare(String(a.date));
+      });
+      var featuredUsed = false;
+      // A featured card takes two slots, so five stories fill a three-column grid.
+      var max = stories[0].featured ? 5 : 6;
+      grid.innerHTML = stories.slice(0, max).map(function (s) {
+        var src = s.source, kind = ICON[src.kind] ? src.kind : 'article';
+        var feat = s.featured && !featuredUsed; if (feat) featuredUsed = true;
+        var go = kind === 'video'
+          ? 'Watch' + (src.timestamp ? ' at ' + esc(src.timestamp) : '')
+          : kind === 'document' ? 'Open document' : 'Read more';
+        return '<a class="lw-card' + (feat ? ' featured' : '') + '" href="' + esc(src.url) +
+               '" target="_blank" rel="noopener">' +
+          '<div class="lw-meta"><span class="lw-kind">' + ICON[kind] + esc(src.label || kind) + '</span>' +
+            '<span>' + esc(fmt(s.date)) + '</span>' +
+            (s.category ? '<span class="lw-cat">' + esc(s.category) + '</span>' : '') + '</div>' +
+          '<h3 class="lw-title">' + esc(s.title) + '</h3>' +
+          '<p class="lw-text">' + esc(s.summary) + '</p>' +
+          '<span class="lw-go">' + go + ' ' + ARROW + '</span></a>';
+      }).join('');
+      section.hidden = false;
+    })
+    .catch(function () { /* feed unavailable: keep the section hidden */ });
+}
+loadLakeWatch();
 
 var CAL_ID  = '8ef2f0f4ccb0b54dfdcc03cf6c0a43499e076819d7649740c8e89439fdde8a31@group.calendar.google.com';
 var CAL_KEY = 'AIzaSyBfFDmPcN9gjLzcJOG-vAqqRmrzAW1V9dQ';
