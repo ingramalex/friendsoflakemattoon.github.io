@@ -3,7 +3,7 @@
     "name": "stories",
     "version": 1
   },
-  "updated": "2026-09-25T18:41:47.389Z",
+  "updated": "2026-09-25T18:42:01.025Z",
   "stories": [
     {
       "id": "2026-09-15-shoreline-stabilization-grant-application",
@@ -42,7 +42,7 @@
       "date": "2026-09-15",
       "title": "Watershed Management Planning Update",
       "summary": "Council Member Cox reported on attending the third meeting of the watershed management group on September 9th. He noted significant progress in data collection that will inform future watershed planning and support upcoming grant applications.",
-      "category": "",
+      "category": "watershed",
       "featured": false,
       "source": {
         "kind": "video",
@@ -50,9 +50,8 @@
         "url": "https://www.youtube.com/watch?v=yqd1TsPJM2o&t=2984s",
         "timestamp": "49:44"
       },
-      "published": "2026-09-25T13:28:13.146Z",
-      "verified_by_reader": true,
-      "derived_from": "topic in AI review of meeting recording"
+      "published": "2026-09-25T18:42:00.653Z",
+      "verified_by_reader": true
     }
   ]
 }
