@@ -133,8 +133,8 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
 (function () {
   // Both values are public by design. A client ID only tells Google which site
   // is asking; the backend refuses anyone who is not on its own list.
-  var GOOGLE_CLIENT_ID = '';
-  var BACKEND_URL = '';   // the Apps Script web app address, ending in /exec
+  var GOOGLE_CLIENT_ID = '1089308930914-i49cq61vl2p45ujqevvirn2cp6qhfjos.apps.googleusercontent.com';
+  var BACKEND_URL = 'https://script.google.com/macros/s/AKfycbw8SY54Vj3spi5wL_BAs2LforB0hD7zt2MSClqiY7kFgacgsAvM_YOUeHs6rEP6Gd2A/exec';
 
   var REPO = 'ingramalex/friendsoflakemattoon.github.io';
   var BASE = 'main';
@@ -200,19 +200,38 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
     if (window.google) google.accounts.id.renderButton($('barSignin'), { theme: 'filled_blue', size: 'small', text: 'signin' });
   }
 
+  // Apps Script sometimes delivers a JSON reply wrapped in an HTML page. The
+  // JSON is the page's only visible text, so unwrap it rather than fail.
+  function parseReply(text) {
+    try { return JSON.parse(text); } catch (e) {}
+    try {
+      var doc = new DOMParser().parseFromString(text, 'text/html');
+      [].forEach.call(doc.querySelectorAll('script,style,noscript'), function (n) { n.remove(); });
+      var d = JSON.parse(doc.body.textContent.trim());
+      return d && typeof d.ok === 'boolean' ? d : null;
+    } catch (e) { return null; }
+  }
+
   async function api(action, payload) {
     if (!fresh(idToken)) {
       needSignIn('Your sign-in has expired. Sign in again.');
       var ex = new Error('Your sign-in expired. Use the Sign in button at the top — what you wrote is still here.');
       ex.code = 'signin'; throw ex;
     }
-    var r = await fetch(BACKEND_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },   // no preflight; Apps Script cannot answer one
-      body: JSON.stringify(Object.assign({ action: action, idToken: idToken }, payload || {}))
-    });
-    var data;
-    try { data = await r.json(); } catch (e) { throw new Error('The publishing service did not answer properly (HTTP ' + r.status + ').'); }
+    var body = JSON.stringify(Object.assign({ action: action, idToken: idToken }, payload || {}));
+    var data = null, status = 0;
+    // Reads may retry; publish and remove never do, so nothing can go out twice.
+    for (var attempt = 0; attempt < (action === 'publish' || action === 'remove' ? 1 : 2) && !data; attempt++) {
+      var r = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },   // no preflight; Apps Script cannot answer one
+        body: body
+      });
+      status = r.status;
+      data = parseReply(await r.text());
+    }
+    if (!data) throw new Error('The publishing service did not answer properly (HTTP ' + status + ').' +
+      (action === 'publish' || action === 'remove' ? ' Refresh the lists before trying again — it may have gone through.' : ''));
     if (!data.ok) {
       var err = new Error(data.error || 'Something went wrong.'); err.code = data.code;
       if (data.code === 'signin') needSignIn(err.message);
@@ -438,7 +457,7 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
     function step(t) { log.textContent += t + '\n'; log.scrollTop = log.scrollHeight; }
     [].forEach.call($('editor').querySelectorAll('button'), function (b) { b.disabled = true; });
     try {
-      step(action === 'remove' ? 'Removing…' : 'Publishing…');
+      step((action === 'remove' ? 'Removing' : 'Publishing') + '… this can take up to half a minute.');
       var r = await api(action, payload);
       (r.steps || []).forEach(step);
       if (r.merged) {
