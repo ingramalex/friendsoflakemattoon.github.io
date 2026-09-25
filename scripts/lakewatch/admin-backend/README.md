@@ -69,6 +69,18 @@ Then delete the token you made for the old sign-in page.
 In `lake-admin.html`, set `GOOGLE_CLIENT_ID` and `BACKEND_URL` near the top
 of the script. Both are public by design.
 
+## How long sign-in lasts
+
+Signing in with Google earns a pass from this script. The pass lasts 30 days
+if **Keep me signed in** is ticked, and only until the tab closes if it isn't.
+
+The script signs every pass with `SESSION_SECRET`, which it creates the first
+time it's needed. On every request the script also checks the email against
+the editor lists, so removing someone locks them out at their next click.
+
+- To sign everyone out, delete `SESSION_SECRET`.
+- To change the length, set `SESSION_DAYS`.
+
 ## Changing who can publish
 
 Edit `PUBLISHER_EMAILS` or `EDITOR_EMAILS` in Script Properties. The change
