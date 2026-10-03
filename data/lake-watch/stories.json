@@ -3,7 +3,7 @@
     "name": "stories",
     "version": 1
   },
-  "updated": "2026-09-25T18:42:01.025Z",
+  "updated": "2026-10-03T16:07:21.605Z",
   "stories": [
     {
       "id": "2026-09-15-shoreline-stabilization-grant-application",
@@ -52,6 +52,23 @@
       },
       "published": "2026-09-25T18:42:00.653Z",
       "verified_by_reader": true
+    },
+    {
+      "id": "2026-09-15-resident-concern",
+      "date": "2026-09-15",
+      "title": "Resident concern",
+      "summary": "Jason Little, a Lake Mattoon property owner residing in Neoga, presented concerns regarding historical 1956 flowage easements and severe sediment accumulation that has reduced water depth behind properties from 15 feet to under 3 feet. He noted that the city generates approximately $4.3 million annually from the lakes while surrounding non-resident communities bear environmental costs. Response: Mayor Hall acknowledged the issue and stated that city officials would need to gather as a group or establish a small committee to review the legal documents and meet with property owners.",
+      "category": "governance",
+      "featured": true,
+      "source": {
+        "kind": "video",
+        "label": "Council meeting",
+        "url": "https://www.youtube.com/watch?v=yqd1TsPJM2o&t=943s",
+        "timestamp": "15:43"
+      },
+      "published": "2026-10-03T16:07:21.154Z",
+      "verified_by_reader": true,
+      "derived_from": "concern in AI review of meeting recording"
     }
   ]
 }
