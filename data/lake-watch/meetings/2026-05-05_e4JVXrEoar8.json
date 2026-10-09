@@ -1,0 +1,17 @@
+{
+  "meeting_date": "2026-05-05",
+  "title": "Regular City Council Meeting 05/05/26",
+  "video_id": "e4JVXrEoar8",
+  "url": "https://www.youtube.com/watch?v=e4JVXrEoar8",
+  "extracted": "2026-08-16T21:28:00+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council conducted routine municipal business, approving various bids for street maintenance, sidewalk improvements, local records disposal, and mausoleum repairs. Council members also engaged in discussions regarding council candidate recruitment and upcoming road work on Route 16.",
+    "lake_discussed": false,
+    "topics": [],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}

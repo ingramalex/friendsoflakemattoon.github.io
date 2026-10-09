@@ -1,0 +1,17 @@
+{
+  "meeting_date": "2026-03-17",
+  "title": "TIF Public Hearing & Regular City Council Meeting 03/17/26",
+  "video_id": "MeLS8_EUWHI",
+  "url": "https://www.youtube.com/watch?v=MeLS8_EUWHI",
+  "extracted": "2026-08-16T21:35:48+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council held a special public hearing and regular meeting focused on proposed changes to TIF District #5 and local housing development. The council also conducted routine city business, including approval of consent agenda items, zoning updates, revolving loan funds, and a police union agreement.",
+    "lake_discussed": false,
+    "topics": [],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}
