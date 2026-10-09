@@ -28,6 +28,10 @@ on:
         description: 'Single YouTube video id (optional; overrides "latest")'
         required: false
         default: ''
+      model:
+        description: 'Gemini model (optional; blank uses the GEMINI_MODEL repo variable, then the script default)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -61,6 +65,9 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # A free-tier quota can vanish for one model while another still has
+          # room, so the model is switchable without a code change.
+          GEMINI_MODEL: ${{ inputs.model || vars.GEMINI_MODEL }}
         run: |
           set -o pipefail
           if [ "${{ inputs.mode }}" = "commitments" ]; then

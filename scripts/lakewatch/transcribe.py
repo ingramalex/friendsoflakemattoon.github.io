@@ -44,7 +44,7 @@ MEETINGS = DATA / "lake-watch" / "meetings"
 NEWS = REPO_ROOT / "content" / "news"
 
 GEMINI_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/interactions"
-GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
+GEMINI_MODEL = os.environ.get("GEMINI_MODEL") or "gemini-3.8-flash"   # blank env means default
 CLAUDE_MODEL = "claude-opus-5"
 
 EXTRACTION_PROMPT = """You are reviewing a recorded public meeting of the Mattoon \
