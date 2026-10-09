@@ -3,7 +3,7 @@
     "name": "stories",
     "version": 1
   },
-  "updated": "2026-10-03T16:07:21.605Z",
+  "updated": "2026-10-09T12:27:39.173Z",
   "stories": [
     {
       "id": "2026-09-15-shoreline-stabilization-grant-application",
@@ -69,6 +69,23 @@
       "published": "2026-10-03T16:07:21.154Z",
       "verified_by_reader": true,
       "derived_from": "concern in AI review of meeting recording"
+    },
+    {
+      "id": "2026-10-06-lake-mattoon-dam-repairs",
+      "date": "2026-10-06",
+      "title": "Dam repairs are coming! Council Decision Request 2026-2732 awarding $74,200 bid to Fuller-Wente, Inc. for Lake Mattoon Dam repairs and authorizing IDOT contract execution",
+      "summary": "The council considered Council Decision Request 2026-2732 to award a $74,200 contract to Fuller-Wente, Inc. for repairs to the Lake Mattoon Dam. Commissioner Clawson reported that the project involves patching the spillway flume, which required waiting until lake water levels receded below the spillway crest. The bid came in below the city's expected cost estimate.",
+      "category": "infrastructure",
+      "featured": true,
+      "source": {
+        "kind": "video",
+        "label": "Council meeting",
+        "url": "https://www.youtube.com/watch?v=_2ux8VDItcI&t=1045s",
+        "timestamp": "17:25"
+      },
+      "published": "2026-10-09T12:27:38.398Z",
+      "verified_by_reader": true,
+      "derived_from": "topic in AI review of meeting recording"
     }
   ]
 }
