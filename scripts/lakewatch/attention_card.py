@@ -47,6 +47,7 @@ def card(doc: dict) -> str:
 
     t = doc["totals"]
     reviewed, with_lake = t["meetings_reviewed"], t["meetings_with_lake"]
+    agenda_meetings = sum(1 for m in doc["meetings"] if m["agenda"])
     agenda, organic = t["agenda"], t["public_comment"] + t["council_or_staff"]
     first, last = rows[0]["date"], rows[-1]["date"]
 
@@ -134,11 +135,11 @@ h1 em{{font-style:italic;color:#1b7ea8}}
   <div class="band"></div>
   <div class="eyebrow">Friends of Lake Mattoon · Lake Watch</div>
   <h1>How often does the lake come up <em>at City Hall?</em></h1>
-  <p class="sub">Every lake-related moment in {reviewed} recorded Mattoon City Council meetings, {span}.</p>
+  <p class="sub">Every time Lake Mattoon, Lake Paradise or the City’s water quality came up in {reviewed} recorded City Council meetings, {span}.</p>
   <div class="stats">
-    <div class="stat"><b>{with_lake}<small style="font-size:34px;color:#3d5a60"> of {reviewed}</small></b><span>meetings where the lake came up at all</span></div>
-    <div class="stat"><b>{agenda}</b><span><i style="background:{AGENDA}"></i>times it was on the agenda</span></div>
-    <div class="stat"><b>{organic}</b><span><i style="background:{ORGANIC}"></i>times someone raised it without an agenda item</span></div>
+    <div class="stat"><b>{with_lake}<small style="font-size:34px;color:#3d5a60"> of {reviewed}</small></b><span>meetings where the lakes or water quality came up</span></div>
+    <div class="stat"><b>{agenda}</b><span><i style="background:{AGENDA}"></i>agenda items, spread across {agenda_meetings} meetings</span></div>
+    <div class="stat"><b>{organic}</b><span><i style="background:{ORGANIC}"></i>times residents or officials raised it without an agenda item</span></div>
   </div>
   <div class="keys">
     <span class="key"><i class="sw" style="background:{AGENDA}"></i>On the agenda</span>
@@ -148,7 +149,7 @@ h1 em{{font-style:italic;color:#1b7ea8}}
   {''.join(svg)}
   <div class="foot">
     <div class="cta">Staying informed is good.<br><em>Getting involved is better.</em><small>friendsoflakemattoon.org/#lake-watch</small></div>
-    <div class="fine">Lake topics counted from AI reviews of the City’s YouTube recordings; how each came up is an AI judgment from its description. Counts as of {dt.date.today():%b %-d, %Y}.</div>
+    <div class="fine">Source: City of Mattoon Council meeting recordings. Counts as of {dt.date.today():%b %-d, %Y}. Council meets the 1st and 3rd Tuesday, 6:30 p.m.</div>
   </div>
 </div>
 """
