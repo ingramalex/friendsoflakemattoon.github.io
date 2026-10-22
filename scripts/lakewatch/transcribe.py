@@ -421,6 +421,11 @@ def main() -> int:
         except Exception as exc:
             print(f"  FAILED: {exc}", file=sys.stderr)
             failed += 1
+            # A daily cap will refuse every remaining meeting too; stop rather
+            # than spend the rest of the run collecting the same refusal.
+            if "per day" in str(exc):
+                print("  Daily Gemini limit reached; the rest wait for the next run.")
+                break
             continue
 
         record = {

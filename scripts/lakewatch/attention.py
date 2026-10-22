@@ -190,7 +190,7 @@ def main() -> int:
     totals["meetings_reviewed"] = len(meetings)
     totals["meetings_with_lake"] = sum(1 for m in meetings if m["topics"])
 
-    OUT.write_text(json.dumps({
+    doc = {
         "schema": {"name": "attention", "version": 1},
         "generated": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "caveat": ("Counts of lake topics in AI reviews of recorded Council meetings. "
@@ -200,7 +200,18 @@ def main() -> int:
         "meetings": meetings,
         "pending": pending,
         "labels": labels,
-    }, indent=2) + "\n")
+    }
+    # Only rewrite when something other than the timestamp changed, so a
+    # quiet scheduled run leaves nothing to commit.
+    try:
+        prev = json.loads(OUT.read_text())
+        prev.pop("generated", None)
+    except Exception:
+        prev = None
+    if prev == {k: v for k, v in doc.items() if k != "generated"}:
+        print("Counts unchanged.")
+        return 0
+    OUT.write_text(json.dumps(doc, indent=2) + "\n")
 
     print(f"Wrote {OUT.relative_to(REPO_ROOT)}")
     print(f"  {totals['meetings_with_lake']}/{totals['meetings_reviewed']} meetings mentioned the lake; "
