@@ -18,6 +18,11 @@ Division of work, as in commitments.py:
             is a judgment.
   This code does all the counting. The model never produces a number.
 
+A resident concern is usually also a topic. When it is not (no topic within
+90 seconds of it), it is counted as one more public comment, so a resident who
+spoke without the review filing it as a topic is still counted. That match is
+by timestamp, in code.
+
 Meetings on the City's channel that have not been reviewed yet are listed as
 pending, never counted as zero. "We have not checked" and "the lake did not
 come up" are different claims, and the chart has to keep them apart.
@@ -67,6 +72,29 @@ contract, and otherwise the origin the text best supports.
 
 Return ONLY a JSON array of objects {"id": "<id>", "origin": "<origin>"}, one \
 per topic, in any order."""
+
+
+def seconds(stamp: str | None) -> int | None:
+    try:
+        parts = [int(x) for x in str(stamp).split(":")]
+    except ValueError:
+        return None
+    if len(parts) == 2:
+        return parts[0] * 60 + parts[1]
+    if len(parts) == 3:
+        return parts[0] * 3600 + parts[1] * 60 + parts[2]
+    return None
+
+
+def unmatched_concerns(findings: dict) -> int:
+    """Resident concerns with no topic within 90 seconds of them."""
+    topic_secs = [s for s in (seconds(t.get("timestamp")) for t in findings.get("topics") or []) if s is not None]
+    n = 0
+    for c in findings.get("citizen_concerns") or []:
+        cs = seconds(c.get("timestamp"))
+        if cs is None or not any(abs(cs - ts) <= 90 for ts in topic_secs):
+            n += 1
+    return n
 
 
 def meeting_files() -> list[dict]:
@@ -174,11 +202,14 @@ def main() -> int:
         counts["unlabelled"] = 0
         for i in range(n):
             counts[labels.get(f"{rec['_file']}#{i}", "unlabelled")] += 1
+        extra = unmatched_concerns(rec.get("findings") or {})
+        counts["public_comment"] += extra
         meetings.append({
             "date": rec["meeting_date"],
             "video_id": rec.get("video_id"),
             "lake_discussed": bool((rec.get("findings") or {}).get("lake_discussed")),
-            "topics": n,
+            "topics": n + extra,
+            "concerns_counted_separately": extra,
             **counts,
             "resident_concerns": len((rec.get("findings") or {}).get("citizen_concerns") or []),
             "votes": len((rec.get("findings") or {}).get("votes") or []),
