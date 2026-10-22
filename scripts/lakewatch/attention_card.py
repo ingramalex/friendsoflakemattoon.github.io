@@ -126,6 +126,7 @@ h1 em{{font-style:italic;color:#1b7ea8}}
 .ax{{font-family:'Source Serif 4',Georgia,serif;font-size:17px;fill:#52514e}}
 .foot{{margin-top:auto;background:#0d2e3f;color:#b8dce8;margin-left:-72px;margin-right:-72px;padding:34px 72px 38px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}}
 .foot .cta{{font-family:'Playfair Display',Georgia,serif;font-size:34px;color:#fff;line-height:1.2}}
+.foot .cta em{{color:#e2b85a}}
 .foot .cta small{{display:block;font-family:'Source Serif 4',Georgia,serif;font-size:22px;color:#c49a2a;letter-spacing:.04em;margin-top:8px}}
 .foot .fine{{font-size:15px;line-height:1.45;max-width:380px;text-align:right;color:#9cc3d0}}
 </style>
@@ -146,7 +147,7 @@ h1 em{{font-style:italic;color:#1b7ea8}}
   </div>
   {''.join(svg)}
   <div class="foot">
-    <div class="cta">See what was said, at the moment it was said.<small>friendsoflakemattoon.org/#lake-watch</small></div>
+    <div class="cta">Staying informed is good.<br><em>Getting involved is better.</em><small>friendsoflakemattoon.org/#lake-watch</small></div>
     <div class="fine">Lake topics counted from AI reviews of the City’s YouTube recordings; how each came up is an AI judgment from its description. Counts as of {dt.date.today():%b %-d, %Y}.</div>
   </div>
 </div>
