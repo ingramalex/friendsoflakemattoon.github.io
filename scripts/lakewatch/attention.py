@@ -18,10 +18,13 @@ Division of work, as in commitments.py:
             is a judgment.
   This code does all the counting. The model never produces a number.
 
-A resident concern is usually also a topic. When it is not (no topic within
-90 seconds of it), it is counted as one more public comment, so a resident who
-spoke without the review filing it as a topic is still counted. That match is
-by timestamp, in code.
+A resident concern usually belongs to a topic: it falls in that topic's stretch
+of the recording, from 90 seconds before the topic starts until the next topic
+(or 30 minutes, for the last one). That is how ten residents speaking at one
+wake-boat hearing stay one agenda item rather than ten organic mentions. A
+concern outside every topic's stretch is counted as one more public comment,
+so a resident the review never filed as a topic is still counted. The
+matching is by timestamp, in code.
 
 Meetings on the City's channel that have not been reviewed yet are listed as
 pending, never counted as zero. "We have not checked" and "the lake did not
@@ -87,12 +90,13 @@ def seconds(stamp: str | None) -> int | None:
 
 
 def unmatched_concerns(findings: dict) -> int:
-    """Resident concerns with no topic within 90 seconds of them."""
-    topic_secs = [s for s in (seconds(t.get("timestamp")) for t in findings.get("topics") or []) if s is not None]
+    """Resident concerns that fall outside every topic's stretch of the recording."""
+    starts = sorted(s for s in (seconds(t.get("timestamp")) for t in findings.get("topics") or []) if s is not None)
+    spans = [(st - 90, starts[i + 1] if i + 1 < len(starts) else st + 1800) for i, st in enumerate(starts)]
     n = 0
     for c in findings.get("citizen_concerns") or []:
         cs = seconds(c.get("timestamp"))
-        if cs is None or not any(abs(cs - ts) <= 90 for ts in topic_secs):
+        if cs is None or not any(lo <= cs < hi for lo, hi in spans):
             n += 1
     return n
 
