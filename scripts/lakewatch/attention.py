@@ -130,14 +130,9 @@ def channel_meetings() -> list[dict]:
     try:
         sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
         import brief  # noqa: E402
-        ev = brief.Evidence()
-        brief.gather_meeting_videos(ev)
-        for item in ev.items:
-            if item.get("kind") == "meeting_videos":
-                return item["recent"]
+        return brief.channel_index()
     except Exception:
-        pass
-    return []
+        return []
 
 
 def main() -> int:

@@ -310,12 +310,11 @@ def load_meeting_index() -> list[dict]:
     sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
     import brief  # noqa: E402
 
-    ev = brief.Evidence()
-    brief.gather_meeting_videos(ev)
-    for item in ev.items:
-        if item.get("kind") == "meeting_videos":
-            return item["recent"]
-    return []
+    try:
+        return brief.channel_index()
+    except RuntimeError as exc:
+        print(f"Channel index: {exc}", file=sys.stderr)
+        return []
 
 
 def main() -> int:
