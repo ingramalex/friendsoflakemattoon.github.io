@@ -21,4 +21,5 @@ service-account.json
 # them passes `-f` deliberately; nothing else picks them up by accident.
 data/lake-watch/meetings/*.json
 data/lake-watch/commitments.json
+data/lake-watch/attention.json
 content/news/*-council-meeting.md
