@@ -1,13 +1,21 @@
 name: Transcribe meetings
 
-# Manual only. Reviews recorded Council meetings through Gemini and saves the
-# findings, then opens a PR. Kept separate from the weekly brief because it is
-# a backfill tool run on demand, and because it spends a different API budget.
+# Reviews recorded Council meetings through Gemini and saves the findings to
+# the review branch. Kept separate from the weekly brief because it spends a
+# different API budget.
+#
+# Daily at 08:30 UTC (just after Gemini's free quota resets at midnight
+# Pacific) it picks up new meetings with articles, continues any backfill
+# without articles, and refreshes the lake-topic counts. Meetings already
+# saved are skipped without calling Gemini, so a quiet day costs nothing.
+# Manual runs use the inputs below.
 #
 # Start with mode "probe" — one cheap call that checks auth, model name, and
 # that YouTube URLs are accepted, before committing to a run of ten meetings.
 
 on:
+  schedule:
+    - cron: '30 8 * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -15,7 +23,7 @@ on:
         required: true
         default: 'probe'
         type: choice
-        options: [probe, extract-only, extract-and-write, commitments]
+        options: [probe, extract-only, extract-and-write, commitments, attention]
       findings_from:
         description: 'Branch to pull existing findings from (e.g. lake-watch/meetings, until that PR is merged)'
         required: false
@@ -47,11 +55,16 @@ jobs:
       # is how a run of a brand-new script found no such file.
       - uses: actions/checkout@v5
 
+      # Scheduled runs always build on the review branch; without it every
+      # meeting would look new and be reviewed again.
       - name: Pull findings from the review branch
-        if: inputs.findings_from != ''
+        if: inputs.findings_from != '' || github.event_name == 'schedule'
+        env:
+          FROM: ${{ inputs.findings_from || 'lake-watch/meetings' }}
         run: |
-          git fetch origin "${{ inputs.findings_from }}"
-          git checkout "origin/${{ inputs.findings_from }}" -- data/lake-watch/meetings || true
+          git fetch origin "$FROM"
+          git checkout "origin/$FROM" -- data/lake-watch/meetings || true
+          git checkout "origin/$FROM" -- data/lake-watch/attention.json 2>/dev/null || true
           echo "Findings present: $(ls data/lake-watch/meetings/*.json 2>/dev/null | wc -l)"
 
       - uses: actions/setup-python@v6
@@ -70,11 +83,29 @@ jobs:
           GEMINI_MODEL: ${{ inputs.model || vars.GEMINI_MODEL }}
         run: |
           set -o pipefail
-          if [ "${{ inputs.mode }}" = "commitments" ]; then
-            echo "Running: commitments.py"
-            python3 scripts/lakewatch/commitments.py 2>&1 | tee "$RUNNER_TEMP/out.txt"
+          if [ "${{ github.event_name }}" = "schedule" ]; then
             {
-              echo "## commitments.py"
+              echo "== new meetings"
+              python3 scripts/lakewatch/transcribe.py --latest 2 || true
+              echo "== backfill"
+              python3 scripts/lakewatch/transcribe.py --latest 30 --extract-only || true
+              echo "== lake-topic counts"
+              python3 scripts/lakewatch/attention.py || true
+            } 2>&1 | tee "$RUNNER_TEMP/out.txt"
+            {
+              echo "## Scheduled run"
+              echo '```'
+              cat "$RUNNER_TEMP/out.txt"
+              echo '```'
+            } >> $GITHUB_STEP_SUMMARY
+            exit 0
+          fi
+          if [ "${{ inputs.mode }}" = "commitments" ] || [ "${{ inputs.mode }}" = "attention" ]; then
+            SCRIPT="${{ inputs.mode }}.py"
+            echo "Running: $SCRIPT"
+            python3 "scripts/lakewatch/$SCRIPT" 2>&1 | tee "$RUNNER_TEMP/out.txt"
+            {
+              echo "## $SCRIPT"
               echo '```'
               cat "$RUNNER_TEMP/out.txt"
               echo '```'

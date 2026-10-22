@@ -310,12 +310,11 @@ def load_meeting_index() -> list[dict]:
     sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
     import brief  # noqa: E402
 
-    ev = brief.Evidence()
-    brief.gather_meeting_videos(ev)
-    for item in ev.items:
-        if item.get("kind") == "meeting_videos":
-            return item["recent"]
-    return []
+    try:
+        return brief.channel_index()
+    except RuntimeError as exc:
+        print(f"Channel index: {exc}", file=sys.stderr)
+        return []
 
 
 def main() -> int:
@@ -422,6 +421,11 @@ def main() -> int:
         except Exception as exc:
             print(f"  FAILED: {exc}", file=sys.stderr)
             failed += 1
+            # A daily cap will refuse every remaining meeting too; stop rather
+            # than spend the rest of the run collecting the same refusal.
+            if "per day" in str(exc):
+                print("  Daily Gemini limit reached; the rest wait for the next run.")
+                break
             continue
 
         record = {

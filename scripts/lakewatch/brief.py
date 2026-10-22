@@ -382,25 +382,21 @@ def seconds(stamp: str) -> int:
         parts[0] * 3600 + parts[1] * 60 + parts[2]
 
 
-def gather_meeting_videos(ev: Evidence) -> None:
-    """Index the City's meeting recordings from its YouTube channel.
+def channel_index() -> list[dict]:
+    """Every meeting recording on the channel's videos page, newest first.
 
-    Only the channel page is read, which YouTube's robots.txt permits. The
-    captions live under /api/timedtext, which it disallows, so transcripts are
-    never fetched here -- see gather_transcripts() for how their contents get
-    in.
+    That page lists about 30 recordings. Older ones are only reachable through
+    YouTube's paging API, which robots.txt disallows, so this is the reach.
+    Raises RuntimeError with a reason when the page cannot be read.
     """
     try:
         raw = fetch_text(CHANNEL, timeout=45)
     except Exception as exc:
-        ev.miss("City of Mattoon YouTube channel", f"unreachable ({type(exc).__name__})")
-        return
+        raise RuntimeError(f"unreachable ({type(exc).__name__})")
 
     m = re.search(r"var ytInitialData = (\{.*?\});</script>", raw, re.S)
     if not m:
-        ev.miss("City of Mattoon YouTube channel",
-                f"page fetched ({len(raw)} bytes) but the video list could not be read")
-        return
+        raise RuntimeError(f"page fetched ({len(raw)} bytes) but the video list could not be read")
 
     lockups: list[dict] = []
 
@@ -430,8 +426,7 @@ def gather_meeting_videos(ev: Evidence) -> None:
     try:
         walk(json.loads(m.group(1)))
     except Exception as exc:
-        ev.miss("City of Mattoon YouTube channel", f"could not parse ({type(exc).__name__})")
-        return
+        raise RuntimeError(f"could not parse ({type(exc).__name__})")
 
     meetings = []
     for lk in lockups:
@@ -457,6 +452,22 @@ def gather_meeting_videos(ev: Evidence) -> None:
         })
 
     meetings.sort(key=lambda x: x["date"] or "", reverse=True)
+    return meetings
+
+
+def gather_meeting_videos(ev: Evidence) -> None:
+    """Index the City's meeting recordings from its YouTube channel.
+
+    Only the channel page is read, which YouTube's robots.txt permits. The
+    captions live under /api/timedtext, which it disallows, so transcripts are
+    never fetched here -- see gather_transcripts() for how their contents get
+    in.
+    """
+    try:
+        meetings = channel_index()
+    except RuntimeError as exc:
+        ev.miss("City of Mattoon YouTube channel", str(exc))
+        return
     if meetings:
         ev.add(
             "upcoming",
