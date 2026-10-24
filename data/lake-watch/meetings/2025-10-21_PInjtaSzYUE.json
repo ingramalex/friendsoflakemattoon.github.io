@@ -1,0 +1,21 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-10-21",
+  "title": "Regular City Council Meeting 10/21/25",
+  "video_id": "PInjtaSzYUE",
+  "url": "https://www.youtube.com/watch?v=PInjtaSzYUE",
+  "extracted": "2026-10-22T13:41:19+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council recognized a police lieutenant's retirement and conducted routine municipal business, including property variances, administrative agreements, and vehicle purchases. The meeting was largely dominated by public comment and developer presentations regarding a proposed community solar project, which council members ultimately voted to table.",
+    "lake_discussed": false,
+    "topics": [],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}

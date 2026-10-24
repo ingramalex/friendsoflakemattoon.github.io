@@ -1,0 +1,79 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-09-16",
+  "title": "Regular City Council Meeting 09/16/25",
+  "video_id": "8vBJHUyGpHo",
+  "url": "https://www.youtube.com/watch?v=8vBJHUyGpHo",
+  "extracted": "2026-10-22T13:44:31+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council addressed a proposed ban on wake boats and houseboats at Lake Mattoon, hearing extensive public testimony before declining to introduce a motion and opting instead to form a citizen advisory committee. The council also received a presentation on the Glacier Moraine Solar Farm, heard various public comments, and approved routine business including rezoning, fire prevention code amendments, and vehicle purchases.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "03:54",
+        "topic": "Wake Boat and Houseboat Prohibition Ordinance",
+        "what_happened": "The mayor called for a motion to consider Ordinance No. 2025-5499 prohibiting wake boats or houseboats on Lake Mattoon, but no council member made a motion. Mayor Hall announced that the council would postpone any decision and establish an advisory committee of five to seven members representing opposing viewpoints to explore compromise regulations.",
+        "speakers": "Mayor Rick Hall, Commissioner Clawson",
+        "importance": "high"
+      },
+      {
+        "timestamp": "08:20",
+        "topic": "Public Hearing on Lake Mattoon Wake Boats and Water Quality",
+        "what_happened": "Residents and lake property owners gave public comments regarding wake boats on Lake Mattoon, debating the impact of boat wakes on shoreline erosion, water turbidity, sediment disruption, and harmful algal blooms versus recreation and property values. Multiple speakers discussed shoreline protection measures, dredging, and potential regulatory compromises such as speed restrictions, distance requirements, or restricted zones.",
+        "speakers": "Dick Anderson (resident), Catherine Miller (resident), Brian Gear (resident), Roger Walker (resident), Jason Rector (resident), Lisa Rector (resident/realtor), Tyler Walk (resident)",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "08:20",
+        "concern": "Dick Anderson expressed concern that wake boats produce powerful wakes that erode shorelines, destroy natural habitats, stir up sediment, and contribute to algae blooms that degrade Mattoon's drinking water quality.",
+        "response": "The mayor noted these points and encouraged participation in the planned study committee."
+      },
+      {
+        "timestamp": "11:23",
+        "concern": "Catherine Miller noted that the lake is narrow and shallow in many areas without seawalls, meaning wake boats cause significant shoreline erosion and stir up bottom sediment that triggers algae blooms, impacting renters and drinking water.",
+        "response": "The mayor thanked her for the comments and research provided to the council."
+      },
+      {
+        "timestamp": "13:34",
+        "concern": "Brian Gear opposed an outright ban on wake boats, citing substantial homeowner capital investments in boats and lifts, and proposed compromises such as restricted zones, grandfathering existing owners, or evening curfews.",
+        "response": "The mayor acknowledged the suggestions and invited participants to join the advisory committee."
+      },
+      {
+        "timestamp": "17:05",
+        "concern": "Roger Walker stated that wake boats are being unfairly blamed for water quality issues and algae blooms, arguing that agricultural and residential fertilizer runoff, lack of dredging, and shallow conditions at Lake Paradise are the primary causes.",
+        "response": "Officials asked him to conclude as his speaking time elapsed and thanked him for his perspective."
+      },
+      {
+        "timestamp": "20:53",
+        "concern": "Jason Rector supported the mayor's decision to table the ban and suggested compromises based on studies requiring wake sports to remain 200 feet from shorelines and in at least 10 feet of water.",
+        "response": "The mayor thanked him for his input and noted his interest in serving on the committee."
+      },
+      {
+        "timestamp": "23:35",
+        "concern": "Lisa Rector opposed the ban, stating seawall maintenance is homeowner responsibility and that banning wake boats would harm property values, decrease boat sticker revenue, and reduce economic activity in Neoga and Mattoon.",
+        "response": "The mayor thanked her for her perspective and noted her willingness to help."
+      },
+      {
+        "timestamp": "26:50",
+        "concern": "Tyler Walk highlighted that boats travel counter-clockwise and push waves toward the center rather than the shore, argued Lake Paradise is in far worse shape, and recommended the city look into riprap and back-dredging solutions.",
+        "response": "The council recorded his comments and contact information for the upcoming committee."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "05:46",
+        "action": "Form a balanced advisory committee of 5 to 7 residents representing both sides of the wake boat issue to develop compromise regulations for Lake Mattoon.",
+        "owner": "Mayor Rick Hall",
+        "status": "committed"
+      }
+    ],
+    "votes": []
+  }
+}

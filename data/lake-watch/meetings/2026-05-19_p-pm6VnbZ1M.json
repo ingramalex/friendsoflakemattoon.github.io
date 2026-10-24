@@ -1,0 +1,25 @@
+{
+  "meeting_date": "2026-05-19",
+  "title": "Regular City Council Meeting 05/19/26",
+  "video_id": "p-pm6VnbZ1M",
+  "url": "https://www.youtube.com/watch?v=p-pm6VnbZ1M",
+  "extracted": "2026-08-16T21:39:59+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council held a regular meeting covering first responder recognitions, TIF redevelopment ordinances, municipal communication policies, and street maintenance contracts. During commissioner comments, Commissioner Phipps noted recent discussions regarding recreational activities, environmental management, and water quality at Lake Paradise.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "36:34",
+        "topic": "Lake Paradise Environment & Water Quality",
+        "what_happened": "Commissioner Phipps reported attending a discussion at Lake Paradise the previous week with city staff members. He mentioned ongoing efforts to revitalize community activities at Lake Paradise while addressing environmental and water quality issues.",
+        "speakers": "commissioner",
+        "importance": "normal"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-04-21",
+  "title": "Regular City Council Meeting 04/21/26",
+  "video_id": "rOcmBIPwnlE",
+  "url": "https://www.youtube.com/watch?v=rOcmBIPwnlE",
+  "extracted": "2026-10-22T13:25:02+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council conducted an extensive public hearing and debate on an ordinance to regulate wake boats and wake surfing on Lake Mattoon, ultimately voting to approve regulations and a phased ban. In addition, the council approved contracts for a comprehensive Lake Mattoon and Lake Paradise Watershed-Based Management Plan, annual water treatment plant chemical supplies, and an interconnection agreement extension with the City of Charleston.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "03:26",
+        "topic": "Lake Mattoon Wake Boat Ordinance",
+        "what_happened": "The council considered Ordinance 2026-5505 amending municipal code sections 98.060 and 98.064 to regulate wake boat activity on Lake Mattoon, establishing distance (600 feet from shore) and depth (15 feet) operating limits before enacting a full ban on wake surfing after December 31, 2026. Multiple residents, committee members, and lake property owners offered testimony for and against the restrictions, debating erosion studies, economic impact, and property maintenance. After rejecting proposals to amend the language, the council approved the ordinance by a 3-2 vote.",
+        "speakers": "Commissioner Cox, Commissioner Butler, Commissioner Fipps, Commissioner Clauson, Mayor Hall, City Administrator Kyle Gill, various residents",
+        "importance": "high"
+      },
+      {
+        "timestamp": "59:55",
+        "topic": "City Water Quality Initiatives and Strategic Plan",
+        "what_happened": "City Grant Writer Darcy Cather outlined the city's multi-faceted approach to water resource management and watershed health for Lake Mattoon and Lake Paradise. She detailed grant applications through the IEPA, funding from Earthrise, congressional requests for water treatment plant ozone technology upgrades, granular activated carbon (GAC) filter installations, and training completed through the University of Illinois Extension.",
+        "speakers": "Darcy Cather (grant writer)",
+        "importance": "high"
+      },
+      {
+        "timestamp": "127:40",
+        "topic": "2026 Water Treatment Plant Chemicals",
+        "what_happened": "The council considered awarding chemical procurement contracts for the water treatment plant for the 2026 season covering alum, ammonium sulfate, bleach, powdered activated carbon, carbon dioxide, cationic polymer, chlorine, fluoride, permanganate, phosphate blend, and lime. Staff noted price changes across suppliers averaging between 18% and 20% increases overall.",
+        "speakers": "Commissioner Fipps, Commissioner Cox, Mayor Hall",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "129:25",
+        "topic": "Lake Mattoon & Lake Paradise Watershed Management Plan",
+        "what_happened": "The council considered approving a $158,000 contract with Spheros Environmental Services to develop a comprehensive Lake Mattoon and Lake Paradise Watershed-Based Management Plan. Funded via solar settlement proceeds, the plan will satisfy IEPA requirements and make the city eligible to apply for Section 319 implementation grants.",
+        "speakers": "Commissioner Butler, Commissioner Clauson, City Administrator Kyle Gill",
+        "importance": "high"
+      },
+      {
+        "timestamp": "132:03",
+        "topic": "Charleston Water Interconnection Agreement Extension",
+        "what_happened": "The council considered extending the intergovernmental agreement with the City of Charleston through June 30, 2026 regarding the emergency water supply interconnection near Sarah Bush Lincoln Hospital. City officials explained that Charleston's engineering consultant was still reviewing technical data before negotiating a longer-term agreement.",
+        "speakers": "Commissioner Clauson, Commissioner Butler, City Administrator Kyle Gill",
+        "importance": "normal"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "04:13",
+        "concern": "Kathy Miller of Neoga expressed gratitude that the council is addressing lake water quality and preservation, urging officials to protect the municipal water source as past councils had not prioritized it.",
+        "response": "Officials thanked her for her comments and proceeded with the hearing."
+      },
+      {
+        "timestamp": "05:40",
+        "concern": "Ryan Geer argued the proposed rules improperly penalize wakeboarding and ballast systems generally instead of focusing strictly on wake surfing, noting that wakeboard waves are much smaller and other regional lakes like Lake Sara and Governor Bond Lake use less restrictive setback rules.",
+        "response": "City Administrator Kyle Gill clarified that the primary regulatory intent of the ordinance is aimed specifically at wake surfing rather than general skiing or wakeboarding."
+      },
+      {
+        "timestamp": "11:54",
+        "concern": "Tyler Walk presented research indicating natural wind events create wave energy equivalent to wake boats and cited marina contractor expertise stating seawalls engineered properly prevent erosion. He also argued wake boats cannot operate in shallow northern coves where algae blooms occur.",
+        "response": "Commissioner Butler asked clarifying questions regarding lake traffic patterns and boat operations in shallow sections."
+      },
+      {
+        "timestamp": "16:44",
+        "concern": "Brian Hendry stated that out of all registered vessels on Lake Mattoon, only 22 wake boats are registered, operating during limited hours, and argued natural wave action from wind causes far more continuous shoreline damage.",
+        "response": "Council members and staff verified the exact count of registered wake boats on the lake."
+      },
+      {
+        "timestamp": "21:07",
+        "concern": "Roger Walk contended wake boats are unfairly blamed for shoreline erosion, pointed out that the city fails to maintain the shorelines it owns around the lake, and argued failing septic tanks draining into the lake are a far greater threat to water quality.",
+        "response": "City Administrator Kyle Gill acknowledged the city owns shoreline property and stated the city is coordinating with county health departments to locate and monitor septic systems."
+      },
+      {
+        "timestamp": "30:23",
+        "concern": "Jessica Ingram stated that the city owns 52% of the shoreline on Lake Mattoon and leaves it unprotected, argued banning wake boats is a band-aid solution that ignores natural siltation (projected to fill Lake Paradise and Lake Mattoon), and urged council to wait until the 2027 watershed study is finished before enacting restrictions.",
+        "response": "Mayor Hall and council members noted that the city is currently funding studies and working to address shoreline stabilization."
+      },
+      {
+        "timestamp": "35:31",
+        "concern": "Phil Gatton argued wave energy data from the National Weather Service and recent university studies demonstrate wind-generated waves exceed wake boat wave energy on Lake Mattoon, requesting the council delay any permanent ban until upcoming studies are completed.",
+        "response": "Council members listened to the scientific comparison but noted the necessity to take action for the upcoming boating season."
+      },
+      {
+        "timestamp": "38:48",
+        "concern": "Nick White, co-chair of the Wake Boat Committee, argued wake boat owners invest substantial private capital into building seawalls and upgrading septic systems, and urged the council to adopt the 600-foot setback and 15-foot depth restrictions while removing the total ban scheduled for December 31, 2026.",
+        "response": "The council discussed the committee's compromise during their deliberations but did not amend the ordinance."
+      },
+      {
+        "timestamp": "41:12",
+        "concern": "Kenzie, a youth lake resident, testified that wake surfing has been a safe family activity on Lake Mattoon since she was seven years old and asked the council to find a solution that allows surfing to continue.",
+        "response": "Council members commended her presentation."
+      },
+      {
+        "timestamp": "49:56",
+        "concern": "Lisa Rector argued that banning wake surfing is disproportionate compared to regulations nationwide and in neighboring states, which generally use 200-foot setbacks, and proposed adopting a 400-foot shoreline setback and 15-foot depth requirement instead of a ban.",
+        "response": "Council members accepted her written amendment proposal for review during discussions."
+      },
+      {
+        "timestamp": "55:20",
+        "concern": "Ricky Evangelisti emphasized that wake boat owners represent less than 2% of total lake permit holders and urged the board to table the ban and collect lake-specific erosion data.",
+        "response": "Council members noted the points during their review."
+      },
+      {
+        "timestamp": "57:40",
+        "concern": "Jason Rector asked why his Freedom of Information Act (FOIA) request regarding five years of lake erosion and property damage complaints returned no records if multiple resident complaints had been received by the city.",
+        "response": "Commissioner Butler and City Administrator Kyle Gill stated that complaints were voiced verbally during council and committee meetings rather than filed as formal written complaints."
+      },
+      {
+        "timestamp": "64:00",
+        "concern": "Kathy Miller reiterated that while data can support both sides of the wake boat debate, deep wake waves differ from shallow surface wind chop, and emphasized that the city must focus on protecting its water supply.",
+        "response": "The mayor and council thanked her and closed public comment."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "29:36",
+        "action": "Coordinate with county health departments to locate, inspect, and regulate septic tanks and leach fields around Lake Mattoon.",
+        "owner": "City Administrator Kyle Gill",
+        "status": "committed"
+      },
+      {
+        "timestamp": "58:43",
+        "action": "Provide any existing written records or documentation related to lake property erosion complaints to resident Jason Rector.",
+        "owner": "City Administrator Kyle Gill",
+        "status": "committed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "96:22",
+        "measure": "Motion to adopt Ordinance 2026-5505 amending municipal code sections 98.060 and 98.064 to regulate wake boats on Lake Mattoon (imposing 600-foot setback, 15-foot depth limit, and prohibition of wake surfing after December 31, 2026)",
+        "outcome": "Passed (3-2; Ayes: Clauson, Cox, Butler; Nays: Fipps, Hall)"
+      },
+      {
+        "timestamp": "123:28",
+        "measure": "Motion to adopt Ordinance 2026-5504 amending section 51.098 of the municipal code updating water and sewer rates for the City of Mattoon by 5%",
+        "outcome": "Passed (5-0)"
+      },
+      {
+        "timestamp": "124:47",
+        "measure": "Motion to adopt Resolution 2026-3339 authorizing grant application to IEPA Public Water Supply Energy Efficiency Grant Program and committing 20% local matching funds",
+        "outcome": "Passed (5-0)"
+      },
+      {
+        "timestamp": "125:48",
+        "measure": "Motion to approve Council Decision Request 2026-2676 for design services from Clark Dietz for WWTP Phase 1 upgrades up to $495,000",
+        "outcome": "Passed (5-0)"
+      },
+      {
+        "timestamp": "129:17",
+        "measure": "Motion to approve Council Decision Request 2026-2679 awarding 2026 Water Treatment Plant chemical contracts",
+        "outcome": "Passed (5-0)"
+      },
+      {
+        "timestamp": "131:07",
+        "measure": "Motion to approve Council Decision Request 2026-2680 waiving formal bidding and approving $158,000 agreement with Spheros Environmental Services for Lake Mattoon and Lake Paradise Watershed-Based Management Plan",
+        "outcome": "Passed (5-0)"
+      },
+      {
+        "timestamp": "133:08",
+        "measure": "Motion to adopt Resolution 2026-3340 approving second extension through June 30, 2026 of intergovernmental agreement with City of Charleston for water interconnection",
+        "outcome": "Passed (5-0)"
+      }
+    ]
+  }
+}
