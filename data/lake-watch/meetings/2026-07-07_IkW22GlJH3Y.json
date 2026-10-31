@@ -1,0 +1,71 @@
+{
+  "meeting_date": "2026-07-07",
+  "title": "Regular City Council Meeting 07/07/26",
+  "video_id": "IkW22GlJH3Y",
+  "url": "https://www.youtube.com/watch?v=IkW22GlJH3Y",
+  "extracted": "2026-08-16T21:19:02+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council conducted routine city business, board appointments, and municipal purchasing while discussing ongoing water quality and watershed management efforts. Key discussions focused on private septic system inspections, algal bloom mitigation strategies, lake watershed planning, and potential ordinance updates regarding bowfishing on Lake Mattoon.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "03:41",
+        "topic": "Septic System Inspections near Lakes",
+        "what_happened": "A resident raised concerns regarding older or non-compliant septic systems around Lake Paradise and Lake Mattoon that could be overflowing into the water supply. City officials responded that they are working with the Coles County Health Department to begin inspecting private sewage systems around Lake Paradise.",
+        "speakers": "resident, city staff",
+        "importance": "high"
+      },
+      {
+        "timestamp": "06:25",
+        "topic": "Bowfishing Ordinance for Invasive Carp",
+        "what_happened": "Resident Roy Birch requested that the city revise its ordinances to allow bowfishing for invasive carp on Lake Mattoon to align with Illinois state law. He explained that invasive carp churn up lakebed nutrients contributing to harmful algal blooms and impact native fish populations.",
+        "speakers": "resident, mayor, city staff",
+        "importance": "high"
+      },
+      {
+        "timestamp": "17:43",
+        "topic": "Lake Watershed Planning Meeting",
+        "what_happened": "Commissioner Clawson announced a public watershed planning meeting for Lake Paradise and Lake Mattoon scheduled at the water treatment plant. The meeting will review previous findings and establish goals and initiatives for long-term water supply protection.",
+        "speakers": "commissioner",
+        "importance": "high"
+      },
+      {
+        "timestamp": "18:31",
+        "topic": "Algal Bloom Mitigation & Water Treatment",
+        "what_happened": "Commissioner Butler inquired about proactive steps to prevent blue-green algal blooms similar to the previous year. City staff reported that powdered activated carbon dosing has begun, testing is active, and algaecide treatments were recently applied on Lake Mattoon.",
+        "speakers": "commissioner, city staff",
+        "importance": "high"
+      },
+      {
+        "timestamp": "20:15",
+        "topic": "Septic System Jurisdiction & Inter-County Coordination",
+        "what_happened": "Council members discussed regulatory oversight of septic systems around the lakes, clarifying that public health departments hold jurisdiction rather than the EPA. Staff noted plans to start inspections in Coles County before coordinating with Cumberland and Shelby counties.",
+        "speakers": "commissioner, city staff",
+        "importance": "normal"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "04:15",
+        "concern": "Resident expressed concern that grandfathered or uninspected septic systems around Lake Paradise and Lake Mattoon are leaking effluent into the lakes.",
+        "response": "Officials stated they are coordinating with the Coles County Health Department to start inspecting private sewage systems around Lake Paradise a few at a time."
+      },
+      {
+        "timestamp": "06:25",
+        "concern": "Resident Roy Birch requested changing city ordinances to permit bowfishing for invasive carp on Lake Mattoon, noting carp churn up lakebed sediment and exacerbate algal blooms.",
+        "response": "City officials took his contact information and committed to reviewing the existing city ordinance and state regulations."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "07:58",
+        "action": "Review city ordinance regarding bowfishing on Lake Mattoon to check alignment with state regulations.",
+        "owner": "city staff",
+        "status": "committed"
+      }
+    ],
+    "votes": []
+  }
+}

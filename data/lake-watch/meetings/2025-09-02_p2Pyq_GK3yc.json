@@ -1,0 +1,42 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-09-02",
+  "title": "Regular City Council Meeting 09/02/25",
+  "video_id": "p2Pyq_GK3yc",
+  "url": "https://www.youtube.com/watch?v=p2Pyq_GK3yc",
+  "extracted": "2026-10-22T13:45:16+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council held a public hearing on Safe Routes to School grant applications and heard public comments proposing upgrades to the local skate park. In regular business, the council approved grant submissions, sidewalk construction contracts, and the purchase of an ultrasound algae remediation buoy for Lake Paradise.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "25:02",
+        "topic": "Lake Paradise Algae Buoy and Water Treatment Planning",
+        "what_happened": "The council approved the purchase of a $26,244.45 solar-powered ultrasound algae remediation and monitoring buoy from Hydro Bioscience for Lake Paradise. City Administrator Kyle Gill and Commissioner Cox explained that the buoy continuously monitors parameters like dissolved oxygen, temperature, and pH, while also reporting on long-term water quality strategies discussed with Crawford, Murphy & Tilly, including ozone treatment at the water plant, aeration options, watershed projects, and future dredging.",
+        "speakers": "Mayor Rick Hall, Commissioner Cox, City Administrator Kyle Gill",
+        "importance": "high"
+      },
+      {
+        "timestamp": "51:30",
+        "topic": "Proposed Wake Boat Prohibition on Lake Mattoon",
+        "what_happened": "City Administrator Kyle Gill informed the council that he placed a preliminary rough draft ordinance prohibiting wake boats on Lake Mattoon into their mailboxes for review. He explained that staff is working on how to structure the language within the city's reservoir ordinance alongside existing restrictions on large houseboats.",
+        "speakers": "City Administrator Kyle Gill",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": [
+      {
+        "timestamp": "29:27",
+        "measure": "Council Decision Request 2025-2633: Approving the purchase in the amount of $26,244.45 from Hydro Bioscience for an ultrasound algae remediation monitoring and solar-powered buoy at Lake Paradise",
+        "outcome": "approved (5-0)"
+      }
+    ]
+  }
+}
