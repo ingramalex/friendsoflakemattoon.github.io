@@ -1,0 +1,42 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-02-17",
+  "title": "Regular City Council Meeting 02/17/26",
+  "video_id": "wtOpovYBg80",
+  "url": "https://www.youtube.com/watch?v=wtOpovYBg80",
+  "extracted": "2026-10-22T12:39:46+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council conducted regular business approving parade resolutions, enterprise zone amendments, property acquisitions, and development extensions. Notably, the council approved a resolution committing local matching funds for a federal grant application to install an advanced ozone treatment system at the Water Treatment Plant.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "04:48",
+        "topic": "Water Treatment Plant Advanced Ozone Treatment System",
+        "what_happened": "The council considered and unanimously approved Resolution No. 2026-3336 supporting an application for FY27 Community Project Funding for an advanced ozone treatment system at the Water Treatment Plant. City staff explained that Mattoon is seeking a $3 million federal grant with a required 20% local match not to exceed $600,000. Mayor Hall noted that this grant application represents the start of one of the city's major infrastructure projects.",
+        "speakers": "city administrator, mayor, city council members",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [
+      {
+        "timestamp": "04:48",
+        "action": "Commit matching local funds not to exceed $600,000 toward the FY27 Community Project Funding application for the Water Treatment Plant advanced ozone treatment system",
+        "owner": "City of Mattoon",
+        "status": "voted"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "05:37",
+        "measure": "Resolution No. 2026-3336 supporting application for FY27 Community Project Funding and matching local funds up to $600,000 for an advanced ozone treatment system at the Water Treatment Plant",
+        "outcome": "passed"
+      }
+    ]
+  }
+}

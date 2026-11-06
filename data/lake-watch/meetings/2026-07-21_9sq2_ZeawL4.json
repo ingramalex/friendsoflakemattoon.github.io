@@ -1,0 +1,31 @@
+{
+  "meeting_date": "2026-07-21",
+  "title": "Regular City Council Meeting 07/21/26",
+  "video_id": "9sq2_ZeawL4",
+  "url": "https://www.youtube.com/watch?v=9sq2_ZeawL4",
+  "extracted": "2026-08-16T21:16:58+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council held a regular meeting to discuss municipal business including liquor license regulations, employee benefits, surplus property, and grant applications. The Council also approved a lease agreement for equipment to conduct an ozone treatment trial at the city water treatment plant.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "08:40",
+        "topic": "Water Treatment Plant Ozone Trial",
+        "what_happened": "The Council considered Council Decision Request 2026-2709 to accept a lease agreement with Water Tech Solutions, Inc. for equipment to conduct a six-month ozone treatment trial at the Water Treatment Plant. Officials explained that the pilot trial is required under IEPA regulations to evaluate system performance and verify results before finalizing engineering plans for the full ozone system installation.",
+        "speakers": "Mayor, Council Members, City Manager",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": [
+      {
+        "timestamp": "09:35",
+        "measure": "Council Decision Request 2026-2709: Accepting lease agreement with Water Tech Solutions, Inc. for Ozone Treatment Trial equipment at the Water Treatment Plant",
+        "outcome": "Approved"
+      }
+    ]
+  }
+}

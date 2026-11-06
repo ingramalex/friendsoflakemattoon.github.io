@@ -1,0 +1,74 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-09-01",
+  "title": "Regular City Council Meeting 09/01/26",
+  "video_id": "5j8gQoqJEV0",
+  "url": "https://www.youtube.com/watch?v=5j8gQoqJEV0",
+  "extracted": "2026-09-25T12:11:56+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council held a public meeting to hear citizen input regarding a proposed moratorium on large-scale data center developments and municipal water usage concerns. The council subsequently considered and voted on several agenda items, including a data center moratorium, water treatment plant equipment upgrades, and vehicle purchases.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "24:45",
+        "topic": "Water Supply & Lake Sources",
+        "what_happened": "A local resident raised concerns regarding municipal water supply capacity, mentioning that the city draws water from Lake Mattoon and Lake Paradise. He questioned how potential large-scale developments might affect local aquifers and water availability.",
+        "speakers": "resident, city manager, commissioner",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "27:24",
+        "topic": "Public Communication on Water Advisories",
+        "what_happened": "A resident voiced concern over municipal communications regarding water quality issues, noting that notices posted on Facebook failed to reach elderly residents. City officials explained current communication channels and outlined plans to implement direct messaging options.",
+        "speakers": "resident, city manager, mayor",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "30:03",
+        "topic": "Watershed Management Plan & Plant Capacity",
+        "what_happened": "Commissioner Cox discussed Mattoon's current water treatment volume and capacity limits, referencing the city's Watershed Management Plan focused on water quality and preservation. Mayor Hall added that the water treatment plant was originally designed to be scalable for future expansion.",
+        "speakers": "commissioner, mayor",
+        "importance": "high"
+      },
+      {
+        "timestamp": "53:18",
+        "topic": "Water Treatment Plant Equipment Purchase",
+        "what_happened": "The council considered Motion 2 to waive formal bidding and approve the purchase of replacement turbidimeters and chlorine analyzers for the Water Treatment Plant from HACH in the amount of $47,933.50. Officials noted that the IEPA recommended replacing the aging equipment.",
+        "speakers": "mayor, commissioner",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "24:45",
+        "concern": "Resident expressed worry about water availability from Lake Mattoon, Lake Paradise, and local aquifers if industrial developments draw large volumes of water during drought conditions.",
+        "response": "Officials stated that the city is in the early stages of evaluating water resources and referenced ongoing watershed management studies."
+      },
+      {
+        "timestamp": "27:24",
+        "concern": "Resident pointed out that communicating water advisories solely via social media leaves elderly citizens uninformed about drinking water safety.",
+        "response": "Officials responded that they have designated staff to focus on public notifications and are evaluating website and notification system updates."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "28:21",
+        "action": "Assign dedicated staff to improve public notification channels beyond social media for municipal advisories.",
+        "owner": "city manager",
+        "status": "committed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "54:14",
+        "measure": "Council Decision Request 2026-2720: Waiving formal bidding requirement and approving $47,933.50 purchase of replacement turbidimeters and chlorine analyzers for the Water Treatment Plant from HACH",
+        "outcome": "approved"
+      }
+    ]
+  }
+}

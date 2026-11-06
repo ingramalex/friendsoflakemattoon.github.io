@@ -1,0 +1,42 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-10-07",
+  "title": "Regular City Council Meeting 10/07/25",
+  "video_id": "dKjwjP-q6HM",
+  "url": "https://www.youtube.com/watch?v=dKjwjP-q6HM",
+  "extracted": "2026-10-22T13:50:48+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council discussed several municipal business items, including utility-scale solar zoning regulations, public facility settlement repairs, and community solar subscriptions. Significantly for local water resources, the council approved a resolution supporting a grant application for a watershed management plan covering Lake Paradise and Lake Mattoon.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "26:36",
+        "topic": "Watershed Management Plan Grant Support",
+        "what_happened": "The council considered Resolution No. 2025-3321 supporting a grant application to develop a Watershed Management Plan for Lake Paradise and Lake Mattoon in collaboration with the Coles County Soil and Water Conservation District. Staff reported that the application was due the following day and the city was applying on the district's behalf due to system access issues. Officials noted that having an approved watershed management plan will unlock significant future funding opportunities.",
+        "speakers": "city staff, mayor, commissioners",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [
+      {
+        "timestamp": "27:08",
+        "action": "Submit grant application on behalf of Coles County Soil and Water Conservation District for the Lake Paradise and Lake Mattoon Watershed Management Plan",
+        "owner": "city staff",
+        "status": "committed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "27:49",
+        "measure": "Resolution No. 2025-3321 supporting grant application for the development of a Watershed Management Plan for Lake Paradise and Lake Mattoon",
+        "outcome": "passed"
+      }
+    ]
+  }
+}
