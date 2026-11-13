@@ -1,0 +1,21 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-10-20",
+  "title": "Regular City Council Meeting 10/20/26",
+  "video_id": "zuavswYdDlo",
+  "url": "https://www.youtube.com/watch?v=zuavswYdDlo",
+  "extracted": "2026-10-22T12:20:31+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council addressed routine administrative business, including grant applications for economic development infrastructure and law enforcement body and vehicle camera programs. The council also approved technical assistance agreements, funding for downtown community events, the purchase of a police utility vehicle, and scheduled a public hearing for an amended TIF redevelopment area.",
+    "lake_discussed": false,
+    "topics": [],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}

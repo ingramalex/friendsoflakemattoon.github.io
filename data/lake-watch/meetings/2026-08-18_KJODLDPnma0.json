@@ -1,0 +1,36 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-08-18",
+  "title": "Regular City Council Meeting 08/18/26",
+  "video_id": "KJODLDPnma0",
+  "url": "https://www.youtube.com/watch?v=KJODLDPnma0",
+  "extracted": "2026-09-25T12:12:55+00:00",
+  "extracted_by": "gemini-3.6-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council recognized emergency responders and bystanders for a life-saving CPR incident and held a public hearing on an OSLAD grant application for Roundhouse Sports Complex renovations. The council also approved a special use permit for an accessory dwelling unit, park grant support, and municipal bids for parking lot and HVAC repairs.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "19:55",
+        "topic": "OSLAD Grant History - Lake Mattoon",
+        "what_happened": "During a presentation on a new OSLAD grant application for the Roundhouse Sports Complex, city staff referenced previous OSLAD grant funding received for Lake Mattoon. The prior grant supported past capital improvements at Lake Mattoon, including playground and beach renovations.",
+        "speakers": "city staff (Dr. Darci Cather)",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "37:11",
+        "topic": "Water Treatment Plant Operations",
+        "what_happened": "During council comments, Commissioner Fipps commended the staff at the water treatment plant for their ongoing effort managing municipal water operations over the summer. He praised the crew for actively addressing water conditions and maintaining quality performance.",
+        "speakers": "Commissioner Fipps",
+        "importance": "normal"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}

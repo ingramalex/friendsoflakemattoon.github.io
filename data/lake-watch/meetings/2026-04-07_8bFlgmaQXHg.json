@@ -1,0 +1,160 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-04-07",
+  "title": "Regular City Council Meeting 04/07/26",
+  "video_id": "8bFlgmaQXHg",
+  "url": "https://www.youtube.com/watch?v=8bFlgmaQXHg",
+  "extracted": "2026-10-22T13:32:02+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council received a formal report from the Wake Boat Review Group recommending operational depth and shoreline setback restrictions for wake boats on Lake Mattoon, followed by public input on lake erosion, water quality, and septic runoff. The Council also held a comprehensive review of the FY27 municipal budget, including substantial capital expenditures for the water treatment plant, lake maintenance, and regional sewer upgrades.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "03:45",
+        "topic": "Wake Boat Review Group Recommendations",
+        "what_happened": "Brian Leonard presented the recommendations of the volunteer Wake Boat Review Group following three public listening sessions and a review of regional research. The committee voted 4-1 to recommend that wake boats operating in enhanced wake mode maintain a minimum distance of 300 feet from shore and operate in water at least 15 feet deep to mitigate shoreline erosion and sediment disturbance. Outside of wake surfing or enhanced wake mode, boats would abide by normal lake operating regulations.",
+        "speakers": "Brian Leonard (co-chair, Wake Boat Review Group)",
+        "importance": "high"
+      },
+      {
+        "timestamp": "13:37",
+        "topic": "Council Discussion on Wake Boat Report and Lake Regulation",
+        "what_happened": "Mayor Hall and council members discussed the committee's findings, noting that the council will review the recommendations and consider drafting an ordinance amendment for a future vote. Council members inquired about lake depth profiles, current wake boat registration numbers, and public participation across the listening sessions.",
+        "speakers": "Mayor Hall, Commissioner Cox, Commissioner Butler, Commissioner Fipps, Brian Leonard",
+        "importance": "high"
+      },
+      {
+        "timestamp": "22:18",
+        "topic": "Lake Mattoon Shoreline Erosion and Riprap Costs",
+        "what_happened": "Public Works staff discussed severe shoreline erosion and loss of shoreline vegetation on Lake Mattoon. Staff estimated that between 5,000 and 6,000 feet of city-owned shoreline requires riprap or breakwalls, with contractor costs estimated at approximately $85 per linear foot, totaling over $500,000.",
+        "speakers": "Brian Leonard, John Myers (Public Works staff)",
+        "importance": "high"
+      },
+      {
+        "timestamp": "24:42",
+        "topic": "Water Treatment Operations, Microcystin, and Lake Levels",
+        "what_happened": "Heather McFarland reported that an October 30, 2025 water sample from Lake Paradise at a 16-foot depth showed a microcystin level of 2.06 ppb, explaining that cold-water cyanobacteria persist year-round. She emphasized that wake boat turbulence in shallow areas suspends nutrients (nitrogen, phosphorus, ammonia) that feed algal blooms, and noted that during drought conditions the city must pump up to 3 million gallons per day from Lake Mattoon to Lake Paradise, which lowered Lake Mattoon by two feet.",
+        "speakers": "Heather McFarland (Superintendent, Water Treatment Plant)",
+        "importance": "high"
+      },
+      {
+        "timestamp": "30:10",
+        "topic": "IDNR Grant Opportunities for Lake Preservation",
+        "what_happened": "Kathy Miller shared insights from discussions with lake officials at Lake Sara and Lake Carlyle regarding wake boat impacts and state funding. She recommended that the city contact leadership at the Illinois Department of Natural Resources (IDNR) to seek grant funding for shoreline protection, riprap, and water quality improvements.",
+        "speakers": "Kathy Miller (resident)",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "44:00",
+        "topic": "Parks, Lakes, and Public Works Budget Allocation",
+        "what_happened": "City Manager Kyle Gill presented the general fund allocations, explaining that Public Works personnel and operational expenses are divided among the General Fund (40%), Water Fund (30%), and Sewer Fund (30%). Parks, lakes, and cemetery maintenance operations were also outlined.",
+        "speakers": "Kyle Gill (City Manager), Commissioner Fipps",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "64:45",
+        "topic": "FY27 Water Fund Budget and Plant Upgrades",
+        "what_happened": "City Manager Kyle Gill detailed the Water Fund budget, projecting $4.51 million in revenues, $5.1 million in debt issuance, and $10.96 million in expenditures. Major capital projects include $4.05 million for a lime slaker system, $1.1 million for granular activated carbon (GAC) filters, $600,000 for ozone engineering, $300,000 for lake algaecide treatments, and $100,000 for Lake Mattoon dam repairs.",
+        "speakers": "Kyle Gill (City Manager), Commissioner Fipps, Mayor Hall, Heather McFarland",
+        "importance": "high"
+      },
+      {
+        "timestamp": "70:55",
+        "topic": "FY27 Sewer Fund Budget and Nutrient Removal Mandate",
+        "what_happened": "City Manager Kyle Gill outlined the Sewer Fund budget, which includes $500,000 budgeted for engineering toward an EPA-mandated nutrient removal project at the wastewater treatment plant. The overall nutrient removal project is estimated to cost $53 million by 2035 and will likely be financed through bonds and water/sewer rate adjustments.",
+        "speakers": "Kyle Gill (City Manager), Mayor Hall",
+        "importance": "high"
+      },
+      {
+        "timestamp": "104:33",
+        "topic": "Septic System Runoff and Watershed Inspection Initiative",
+        "what_happened": "Commissioner Butler raised concerns regarding failing private septic systems draining into Lake Paradise and Lake Mattoon. Officials stated they are coordinating with the Coles County Health Department to contact Lake Paradise residents, hold an informational meeting, and conduct septic dye testing, with plans to later coordinate with Shelby and Cumberland counties for Lake Mattoon.",
+        "speakers": "Commissioner Butler, Kyle Gill (City Manager), John Myers (Public Works staff)",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "20:53",
+        "concern": "Bill Miller, a Lake Mattoon resident since 1977, expressed concern that existing no-wake buoys in coves are frequently ignored by speeding boaters without any enforcement. He stated that wakes cause severe bank erosion, dropping trees and natural vegetation that normally filter agricultural nutrient runoff into the lake.",
+        "response": "Mayor Hall acknowledged that lake police patrols are no longer present as they were in past decades and noted that enforcement logistics and costs must be addressed."
+      },
+      {
+        "timestamp": "32:18",
+        "concern": "Alex Ingram, a resident of Lockpark Drive in Neoga living on Lake Mattoon, questioned the lack of shoreline maintenance and riprap installation on the lake despite budget surpluses, and voiced concern that recurring harmful algal blooms damage the lake's reputation and property values.",
+        "response": "City Manager Kyle Gill and Mayor Hall clarified that recreational lake revenues are modest, but water quality is the city's top priority, and substantial funds are being directed toward treatment and capital improvements."
+      },
+      {
+        "timestamp": "35:36",
+        "concern": "Jason Little, a resident of 31 Lockpark Drive in Neoga, argued that officials should not treat the lake as generating only small recreational revenue. Because Lake Mattoon generates over $4 million through raw drinking water supply, he contended a dedicated portion of water revenues should be reinvested directly into lake riprap and shoreline stabilization.",
+        "response": "City Manager Kyle Gill noted that the city budgets funds annually toward riprap and maintenance, and that further breakdown of spending would be presented in the Water Fund budget."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "15:04",
+        "action": "Review the Wake Boat Review Group report and draft proposed ordinance language regarding lake restrictions for Council consideration.",
+        "owner": "City Council / City Administration",
+        "status": "proposed"
+      },
+      {
+        "timestamp": "105:13",
+        "action": "Send letters to Lake Paradise property owners, convene a public meeting, and partner with the Coles County Health Department to test private septic systems for lake contamination.",
+        "owner": "Public Works / City Administration",
+        "status": "committed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "02:22",
+        "measure": "Approval of Consent Agenda (Minutes of March 17, 2026 meeting; bills and payroll for late March 2026; Council Decision Request 2026-2668 reappointing Joe Tillman to the Electrical Commission).",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "85:37",
+        "measure": "Adoption of Ordinance No. 2026-5583 amending Section 114 (Liquor Control) to clarify alcoholic beverage service and create a Mobile Bar Unit Special Event License.",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "86:55",
+        "measure": "Adoption of Resolution No. 2026-3337 approving a joint purchasing agreement with the State of Illinois Central Management Services (CMS) for road salt.",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "99:28",
+        "measure": "Approval of Council Decision Request 2026-2670 granting a water and sewer billing adjustment of $1,297.41 for Martha Waggle due to an underground leak.",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "100:37",
+        "measure": "Approval of Council Decision Request 2026-2671 approving plans and specifications and authorizing bid solicitation for the 2026 Annual Sidewalk Improvement Project on 21st Street.",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "101:49",
+        "measure": "Approval of Council Decision Request 2026-2672 approving plans and specifications and authorizing bid solicitation for concrete patching on Forth Worth Way from Swords Drive East.",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "103:31",
+        "measure": "Approval of Council Decision Request 2026-2673 waiving formal bidding and approving a $54,849.49 contract with Heart Technologies for door access control system replacement at City Hall and the Police Department.",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "104:24",
+        "measure": "Approval of Council Decision Request 2026-2674 approving plans and specifications and authorizing bid solicitation for the 2026 MFT General Street Maintenance (Oil & Chip) contract.",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "107:51",
+        "measure": "Motion to adjourn the meeting.",
+        "outcome": "passed"
+      }
+    ]
+  }
+}
