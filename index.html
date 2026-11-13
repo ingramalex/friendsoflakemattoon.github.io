@@ -562,6 +562,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
    stays hidden until the first one is published, so publishing is the switch. */
 .lw{padding:6rem 2rem;background:var(--cream);border-top:1px solid rgba(26,80,104,.08)}
 .lw[hidden]{display:none}
+[data-lw-link][hidden]{display:none}
 .lw-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;margin-top:2.5rem}
 .lw-card{background:#fff;border:1px solid rgba(26,80,104,.12);border-top:3px solid var(--teal);border-radius:var(--r);padding:1.6rem 1.6rem 1.4rem;display:flex;flex-direction:column;gap:.6rem;text-decoration:none;color:inherit;transition:box-shadow .25s,transform .25s}
 .lw-card:hover{box-shadow:0 6px 24px rgba(26,80,104,.12);transform:translateY(-3px)}
@@ -575,11 +576,44 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
 .lw-text{font-size:.88rem;line-height:1.75;color:var(--muted);font-weight:300;flex:1}
 .lw-go{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-top:.35rem;transition:color var(--t)}
 .lw-card:hover .lw-go{color:var(--navy)}
+.lw-tally{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:rgba(184,220,232,.18);border-radius:var(--r);overflow:hidden;margin-top:2rem}
+.lw-tally[hidden],.lw-threads[hidden]{display:none}
+.lw-tally-item{background:var(--navy);padding:1.25rem 1.25rem 1.1rem}
+.lw-tally-num{font-family:var(--serif);font-size:1.9rem;line-height:1.1;color:#fff}
+.lw-tally-item.money .lw-tally-num{color:#e3bd55}
+.lw-tally-lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);margin-top:.4rem;line-height:1.5}
+.lw-threads{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:1.75rem}
+.lw-threads-lbl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-right:.25rem}
+.lw-thread-btn{font-family:var(--body);font-size:12px;color:var(--mid);background:#fff;border:1px solid rgba(26,80,104,.25);border-radius:999px;padding:.4rem .9rem;cursor:pointer;transition:all var(--t)}
+.lw-thread-btn:hover{border-color:var(--teal)}
+.lw-thread-btn[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.lw-threads + .lw-grid{margin-top:1.25rem}
+.lw-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.28rem .6rem;border-radius:2px}
+.lw-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.lw-chip.ok{background:rgba(74,140,63,.14);color:#2d5a27}
+.lw-chip.bad,.lw-chip.urgent{background:rgba(192,80,74,.13);color:#9c342e}
+.lw-chip.wait{background:rgba(196,154,42,.18);color:#7a5c0e}
+.lw-chip.note{background:rgba(58,143,168,.1);color:var(--mid)}
+.lw-card.is-urgent{border-top-color:#c0504a}
+.lw-card.is-wait{border-top-color:var(--gold)}
+.lw-thread{font-size:12px;color:var(--muted);font-style:italic}
+.lw-empty{grid-column:1/-1;background:#fff;border:1px dashed rgba(26,80,104,.25);border-radius:var(--r);padding:1.6rem;font-size:.92rem;line-height:1.75;color:var(--muted);font-weight:300}
+.lw-act{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 2rem;margin-top:2rem;padding:1.4rem 1.6rem;background:var(--sand);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0}
+.lw-act-text{flex:1 1 320px;font-size:.92rem;line-height:1.7;color:var(--muted);font-weight:300}
+.lw-act-text strong{display:block;font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--navy);margin-bottom:.2rem}
+.lw-act-btns{display:flex;flex-wrap:wrap;gap:.6rem}
+.lw-act-btns a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;text-decoration:none;padding:.7rem 1.1rem;border-radius:var(--r);transition:all var(--t)}
+.lw-act-primary{background:var(--navy);color:#fff}
+.lw-act-primary:hover{background:var(--mid)}
+.lw-act-secondary{color:var(--mid);border:1px solid rgba(26,80,104,.3)}
+.lw-act-secondary:hover{border-color:var(--mid)}
 
 /* ── RESPONSIVE ─────────────────────────────────────── */
-@media(max-width:860px){
+@media(max-width:1200px){
   .site-nav .nav-center{display:none}
   .nav-hamburger{display:flex}
+}
+@media(max-width:860px){
   .nav-utility{gap:.35rem}
   .nav-donate-btn{font-size:11px;padding:.4rem .85rem}
 }
@@ -638,6 +672,12 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   .member-frame-wrap iframe{height:90vh}
   .member-footer-note{display:none}
 }
+
+/* ── REDUCED MOTION ────────────────────────────────── */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
 </style>
 </head>
 <body>
@@ -657,6 +697,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     </a>
     <ul class="nav-center">
       <li><a href="#about">About</a></li>
+      <li data-lw-link hidden><a href="#lake-watch">Lake Watch</a></li>
       <li><a href="#highlights">Recreation</a></li>
       <li><a href="#events">Events</a></li>
       <li><a href="#officers">Leadership</a></li>
@@ -681,6 +722,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   </div>
   <div class="nav-drawer" id="nav-drawer">
     <a href="#about">About</a>
+    <a href="#lake-watch" data-lw-link hidden>Lake Watch</a>
     <a href="#highlights">Recreation</a>
     <a href="#events">Events</a>
     <a href="#officers">Leadership</a>
@@ -803,6 +845,19 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
   </div>
 </section>
 
+<!-- LAKE WATCH -->
+<section class="lw" id="lake-watch" hidden>
+  <div class="section-inner">
+    <p class="section-tag">Lake Watch</p>
+    <h2 class="section-title">What's happening <em>at City Hall</em></h2>
+    <p class="body-text">Decisions about Lake Mattoon are made in public meetings most lake residents never see. Each story links to the source &mdash; often the exact moment in the meeting recording &mdash; so you can hear it for yourself.</p>
+    <div class="lw-tally" id="lwTally" hidden></div>
+    <div class="lw-threads" id="lwThreads" hidden></div>
+    <div class="lw-grid" id="lwGrid" aria-live="polite"></div>
+    <div class="lw-act" id="lwAct"></div>
+  </div>
+</section>
+
 <!-- HIGHLIGHTS -->
 <section class="highlights" id="highlights">
   <div class="section-inner">
@@ -811,32 +866,32 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <p class="body-text">Lake Mattoon is more than a water source — it's the heart of our community. From dazzling fireworks over the water to beloved annual traditions, the lake brings people together in ways that make life in Central Illinois truly special.</p>
     <div class="highlights-grid">
       <div class="highlight-card">
-        <img src="images/fireworks.jpg" alt="Annual Labor Day Weekend Fireworks over Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <img src="images/fireworks.jpg" loading="lazy" decoding="async" alt="Annual Labor Day Weekend Fireworks over Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M18 4 L18 14 M18 4 L14 10 M18 4 L22 10" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M4 18 L14 18 M4 18 L10 14 M4 18 L10 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M32 18 L22 18 M32 18 L26 14 M32 18 L26 22" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M18 32 L18 22 M18 32 L14 26 M18 32 L22 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><circle cx="18" cy="18" r="3" fill="#b8dce8" opacity="0.6"/></svg><p>Add fireworks.jpg to images folder</p></div>
         <div class="highlight-overlay"><span class="highlight-tag">Annual Tradition</span><p class="highlight-title">Annual Labor Day Weekend Fireworks</p></div>
       </div>
       <div class="highlight-card">
-        <img src="images/sailboat-races.jpg" alt="Sailboat races on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <img src="images/sailboat-races.jpg" loading="lazy" decoding="async" alt="Sailboat races on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M18 6 L18 26" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M18 8 L8 22 L18 22 Z" fill="#b8dce8" opacity="0.5"/><path d="M18 10 L28 20 L18 20 Z" fill="#b8dce8" opacity="0.3"/><path d="M4 28 Q18 24 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/></svg><p>Add sailboat-races.jpg to images folder</p></div>
         <div class="highlight-overlay"><span class="highlight-tag">On the Water</span><p class="highlight-title">Sailboat Races</p></div>
       </div>
       <div class="highlight-card">
-        <img src="images/wreath-drop.jpg" alt="Annual wreath drop ceremony on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <img src="images/wreath-drop.jpg" loading="lazy" decoding="async" alt="Annual wreath drop ceremony on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="11" stroke="#b8dce8" stroke-width="1.5" fill="none"/><circle cx="18" cy="18" r="6" stroke="#b8dce8" stroke-width="1" fill="none" opacity="0.5"/><path d="M18 7 L18 4 M18 32 L18 29 M7 18 L4 18 M32 18 L29 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/></svg><p>Add wreath-drop.jpg to images folder</p></div>
         <div class="highlight-overlay"><span class="highlight-tag">Holiday Tradition</span><p class="highlight-title">Annual Wreath Drop</p></div>
       </div>
       <div class="highlight-card">
-        <img src="images/community-gathering.jpg" alt="Community gathering at Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <img src="images/community-gathering.jpg" loading="lazy" decoding="async" alt="Community gathering at Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><circle cx="12" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/><circle cx="24" cy="12" r="4" stroke="#b8dce8" stroke-width="1.5"/><path d="M4 28 Q4 22 12 22 Q18 22 18 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/><path d="M18 28 Q18 22 24 22 Q32 22 32 28" stroke="#b8dce8" stroke-width="1.5" fill="none"/></svg><p>Add community-gathering.jpg to images folder</p></div>
         <div class="highlight-overlay"><span class="highlight-tag">Community</span><p class="highlight-title">Community Gatherings</p></div>
       </div>
       <div class="highlight-card">
-        <img src="images/dock-dogs.jpg" alt="Dogs jumping from a dock at Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <img src="images/dock-dogs.jpg" loading="lazy" decoding="async" alt="Dogs jumping from a dock at Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M4 24 L32 24" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M10 24 L10 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M26 24 L26 18" stroke="#b8dce8" stroke-width="1.5" stroke-linecap="round"/><path d="M18 18 Q20 12 24 14 Q22 10 18 12 Q16 8 14 12 Q10 10 12 14 Q16 12 18 18Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/><path d="M16 28 Q18 32 20 28" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg><p>Add dock-dogs.jpg to images folder</p></div>
         <div class="highlight-overlay"><span class="highlight-tag">Lake Life</span><p class="highlight-title">Dock Dogs</p></div>
       </div>
       <div class="highlight-card">
-        <img src="images/dog-on-boat.jpg" alt="Dog enjoying a boat ride on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
+        <img src="images/dog-on-boat.jpg" loading="lazy" decoding="async" alt="Dog enjoying a boat ride on Lake Mattoon" onload="this.nextElementSibling.classList.add('hidden')" onerror="this.style.display='none'">
         <div class="highlight-placeholder"><svg viewBox="0 0 36 36" fill="none"><path d="M4 26 Q18 22 32 26" stroke="#b8dce8" stroke-width="1.5" fill="none"/><path d="M8 26 L6 30 L30 30 L28 26" stroke="#b8dce8" stroke-width="1.2" fill="none"/><path d="M16 20 Q18 14 22 16 Q20 12 16 14 Q14 10 12 14 Q8 12 10 16 Q14 14 16 20Z" stroke="#b8dce8" stroke-width="1.2" fill="none"/></svg><p>Add dog-on-boat.jpg to images folder</p></div>
         <div class="highlight-overlay"><span class="highlight-tag">Lake Life</span><p class="highlight-title">Our Four-Legged Boaters</p></div>
       </div>
@@ -890,19 +945,19 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     <p class="body-text" style="max-width:520px;margin-bottom:3rem;">Dedicated community members committed to preserving Lake Mattoon for generations to come.</p>
     <div class="off-grid-top">
       <div class="off-card">
-        <div class="off-photo"><img src="images/president.jpg" alt="Katie O'Dell" data-initials="KO" class="off-img"></div>
+        <div class="off-photo"><img src="images/president.jpg" alt="Katie O'Dell" loading="lazy" decoding="async" data-initials="KO" class="off-img"></div>
         <p class="off-role">President</p><p class="off-name">Katie O'Dell</p>
         <div class="off-accent"></div>
         <p class="off-bio">Lake-trained since childhood — literally driving boats before cars — Katie's connection to Lake Mattoon runs deep. Her dad was one of the organization's founding fathers, and today she leads with that same legacy in her heart, working to ensure future generations can make the same cherished memories on this lake.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo"><img src="images/vicepresident.jpg" alt="Jessica Ingram" data-initials="JI" class="off-img"></div>
+        <div class="off-photo"><img src="images/vicepresident.jpg" alt="Jessica Ingram" loading="lazy" decoding="async" data-initials="JI" class="off-img"></div>
         <p class="off-role">Vice President</p><p class="off-name">Jessica Ingram</p>
         <div class="off-accent"></div>
         <p class="off-bio">A St. Louis weekender since 2016, Jessica brought her then 3-month-old son to Lake Mattoon seeking water, nature, and a break from city screens. Here's the twist — she has an irrational fear of deep water, yet somehow spends every weekend at the sandbar. Her son has never known life without this lake, and she's determined to keep it that way.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo"><img src="images/secretary.jpg" alt="Krystal Little" data-initials="KL" class="off-img"></div>
+        <div class="off-photo"><img src="images/secretary.jpg" alt="Krystal Little" loading="lazy" decoding="async" data-initials="KL" class="off-img"></div>
         <p class="off-role">Secretary</p><p class="off-name">Krystal Little</p>
         <div class="off-accent"></div>
         <p class="off-bio">When Krystal and her husband found property on Lake Mattoon, they expected a weekend escape — they didn't expect to find their people. The lake quickly became home, and the community became family. She'll admit she has no quirky lake tricks up her sleeve, but what she does have is a deep passion for preserving this place and the friendships it creates for generations to come.</p>
@@ -910,13 +965,13 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
     </div>
     <div class="off-grid-bottom">
       <div class="off-card">
-        <div class="off-photo"><img src="images/treasurer.jpg" alt="Roberta Gingerich" data-initials="RG" class="off-img"></div>
+        <div class="off-photo"><img src="images/treasurer.jpg" alt="Roberta Gingerich" loading="lazy" decoding="async" data-initials="RG" class="off-img"></div>
         <p class="off-role">Treasurer</p><p class="off-name">Roberta Gingerich</p>
         <div class="off-accent"></div>
         <p class="off-bio">Raised just a mile west of the dam, Roberta remembers the campground and beach the way they were — the train, the pavilion dances, the towns that thrived alongside a lake full of life. Times change, but her belief in this place never did. She'll also quietly mention that she nearly drowned here as a five-year-old — technically no lifesaving measures were required, but for a five-year-old, it absolutely counted. Today she keeps the books with the same care she has for the lake itself, and she's convinced the best days are still ahead — measured not in spreadsheets, but in more smiles than frowns.</p>
       </div>
       <div class="off-card">
-        <div class="off-photo"><img src="images/eventscoordinator.jpg" alt="Angie Rawlings" data-initials="AR" class="off-img"></div>
+        <div class="off-photo"><img src="images/eventscoordinator.jpg" alt="Angie Rawlings" loading="lazy" decoding="async" data-initials="AR" class="off-img"></div>
         <p class="off-role">Events Coordinator</p><p class="off-name">Angie Rawlings</p>
         <div class="off-accent"></div>
         <p class="off-bio">Five years ago Angie and her husband Mitch traded their old address for a home on Lake Mattoon — a move she jokes was the only way she'd ever convince him to leave his favorite fishing spot of 54 years. What started as Mitch's lifelong lake is now a place they both proudly call home. If you're out around the lake, there's a good chance you'll spot them cruising by on the golf cart, stopping to chat and hear the stories that make this community so special. As Events Coordinator, Angie channels that same warmth into creating moments that bring people together — and she's just getting started.</p>
@@ -930,7 +985,7 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
       <div class="conservation-card-wrap">
         <div class="off-card conservation">
           <div class="conservation-badge">Conservation Committee</div>
-          <div class="off-photo"><img src="images/conservationchair.jpg" alt="Jason Little" data-initials="JL" class="off-img"></div>
+          <div class="off-photo"><img src="images/conservationchair.jpg" alt="Jason Little" loading="lazy" decoding="async" data-initials="JL" class="off-img"></div>
           <p class="off-role">Conservation Chair &amp; Lead Strategist</p>
           <p class="off-name">Jason Little</p>
           <div class="off-accent"></div>
@@ -1042,16 +1097,6 @@ footer{background:#070f14;padding:3rem 2rem;text-align:center}
         See all posts on Facebook
       </a>
     </div>
-  </div>
-</section>
-
-<!-- LAKE WATCH -->
-<section class="lw" id="lake-watch" hidden>
-  <div class="section-inner">
-    <p class="section-tag">Lake Watch</p>
-    <h2 class="section-title">What's happening <em>at City Hall</em></h2>
-    <p class="body-text">Decisions about Lake Mattoon are made in public meetings most lake residents never see. Each story links to the source &mdash; often the exact moment in the meeting recording &mdash; so you can hear it for yourself.</p>
-    <div class="lw-grid" id="lwGrid"></div>
   </div>
 </section>
 
@@ -1468,8 +1513,13 @@ loadNewsFeed();
 function loadLakeWatch() {
   var section = document.getElementById('lake-watch');
   var grid = document.getElementById('lwGrid');
+  var tally = document.getElementById('lwTally');
+  var threadsEl = document.getElementById('lwThreads');
+  var act = document.getElementById('lwAct');
   if (!section || !grid) return;
   var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var CITY_MEETINGS = 'https://mattoon.illinois.gov/government/citycouncil/upcomingmeetings/';
   function esc(s) {
     return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
       .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -1478,6 +1528,15 @@ function loadLakeWatch() {
     var p = String(d || '').split('-');
     return p.length === 3 ? MON[+p[1] - 1] + ' ' + (+p[2]) + ', ' + p[0] : '';
   }
+  function parseDay(d) {
+    var p = String(d || '').split('-');
+    return p.length === 3 ? new Date(+p[0], +p[1] - 1, +p[2]) : null;
+  }
+  function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+  function money(n) {
+    return n >= 1e6 ? '$' + (n / 1e6).toFixed(n % 1e6 ? 1 : 0) + 'M'
+         : n >= 1e3 ? '$' + Math.round(n / 1e3) + 'K' : '$' + n;
+  }
   var ICON = {
     video: '<svg width="11" height="11" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1.5v9l7.5-4.5z"/></svg>',
     article: '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="1.5" width="8" height="9" rx="1"/><path d="M4 4.5h4M4 6.5h4M4 8.5h2.5"/></svg>',
@@ -1485,38 +1544,151 @@ function loadLakeWatch() {
   };
   var ARROW = '<svg width="11" height="11" viewBox="0 0 14 14" fill="none"><path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
+  // What the Council did with it. An upcoming vote counts down, then goes
+  // quiet once its date has passed: we never claim an outcome nobody recorded.
+  var OUTCOME = { approved: ['Approved', 'ok'], denied: ['Denied', 'bad'],
+                  tabled: ['Tabled', 'wait'], discussed: ['Discussed, no vote', 'note'] };
+  function outcome(s) {
+    if (OUTCOME[s.outcome]) return OUTCOME[s.outcome];
+    if (s.outcome !== 'upcoming') return null;
+    var d = parseDay(s.outcome_date);
+    if (!d) return ['Vote pending', 'wait'];
+    var days = Math.round((d - today()) / 864e5);
+    if (days < 0) return ['Awaiting outcome', 'note'];
+    if (days === 0) return ['Vote today', 'urgent'];
+    if (days <= 7) return ['Vote in ' + days + (days === 1 ? ' day' : ' days'), 'urgent'];
+    return ['Vote ' + MON[d.getMonth()] + ' ' + d.getDate(), 'wait'];
+  }
+
+  function card(s, feat) {
+    var src = s.source, kind = ICON[src.kind] ? src.kind : 'article', o = outcome(s);
+    var go = kind === 'video'
+      ? 'Watch' + (src.timestamp ? ' at ' + esc(src.timestamp) : '')
+      : kind === 'document' ? 'Open document' : 'Read more';
+    var cls = 'lw-card' + (feat ? ' featured' : '') +
+      (o && (o[1] === 'urgent' || o[1] === 'wait') ? ' is-' + o[1] : '');
+    return '<a class="' + cls + '" href="' + esc(src.url) + '" target="_blank" rel="noopener">' +
+      '<div class="lw-meta"><span class="lw-kind">' + ICON[kind] + esc(src.label || kind) + '</span>' +
+        '<span>' + esc(fmt(s.date)) + '</span>' +
+        (s.category ? '<span class="lw-cat">' + esc(s.category) + '</span>' : '') + '</div>' +
+      (o ? '<span class="lw-chip ' + o[1] + '">' + esc(o[0]) + '</span>' : '') +
+      '<h3 class="lw-title">' + esc(s.title) + '</h3>' +
+      '<p class="lw-text">' + esc(s.summary) + '</p>' +
+      (s.thread ? '<span class="lw-thread">Part of: ' + esc(s.thread) + '</span>' : '') +
+      '<span class="lw-go">' + go + ' ' + ARROW + '</span></a>';
+  }
+
+  // The Council's usual schedule is the 1st and 3rd Tuesday. That is a
+  // pattern, not a posted date, so the copy says "should be" and links to
+  // the City's own page to confirm.
+  function nextMeeting() {
+    var d = today();
+    for (var i = 0; i < 45; i++, d.setDate(d.getDate() + 1)) {
+      var n = d.getDate();
+      if (d.getDay() === 2 && (n <= 7 || (n >= 15 && n <= 21))) return d;
+    }
+    return null;
+  }
+  function renderAct() {
+    if (!act) return;
+    var d = nextMeeting(), when = '', cal = '';
+    if (d) {
+      var end = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+      var ymd = function (x) { return '' + x.getFullYear() + ('0' + (x.getMonth() + 1)).slice(-2) + ('0' + x.getDate()).slice(-2); };
+      when = ' The next one should be <b>' + DOW[d.getDay()] + ', ' + MON[d.getMonth()] + ' ' + d.getDate() + '</b>.';
+      cal = '<a class="lw-act-primary" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE' +
+        '&text=' + encodeURIComponent('Mattoon City Council meeting') +
+        '&details=' + encodeURIComponent('Expected date from the usual 1st and 3rd Tuesday schedule. Confirm the date, time and agenda: ' + CITY_MEETINGS) +
+        '&dates=' + ymd(d) + '/' + ymd(end) + '">Add to calendar</a>';
+    }
+    act.innerHTML =
+      '<p class="lw-act-text"><strong>Showing up is the main lever.</strong>' +
+      'Most people who live on the lake are outside city limits and do not vote for the Council that governs it. ' +
+      'The Council usually meets on the 1st and 3rd Tuesday of the month.' + when + '</p>' +
+      '<div class="lw-act-btns">' + cal +
+      '<a class="lw-act-secondary" target="_blank" rel="noopener" href="' + CITY_MEETINGS + '">Confirm date &amp; agenda</a></div>';
+  }
+
+  function renderTally(stories) {
+    if (!tally) return;
+    var meetings = {}, dollars = 0, latest = '';
+    stories.forEach(function (s) {
+      if (s.source.kind === 'video' && s.date) meetings[s.date] = 1;
+      if (s.amount > 0) dollars += +s.amount;
+      if (String(s.date) > latest) latest = String(s.date);
+    });
+    var m = Object.keys(meetings).length, d = parseDay(latest), cells = [];
+    cells.push([stories.length, 'Lake item' + (stories.length === 1 ? '' : 's') + ' tracked, each checked against its source']);
+    if (m) cells.push([m, 'Council meeting' + (m === 1 ? '' : 's') + ' where the lake came up']);
+    if (dollars) cells.push([money(dollars), 'In lake spending before the Council', 'money']);
+    if (d) cells.push([MON[d.getMonth()] + ' ' + d.getDate(), 'Most recent item, ' + d.getFullYear()]);
+    tally.innerHTML = cells.map(function (c) {
+      return '<div class="lw-tally-item' + (c[2] ? ' ' + c[2] : '') + '"><div class="lw-tally-num">' + esc(c[0]) +
+             '</div><div class="lw-tally-lbl">' + esc(c[1]) + '</div></div>';
+    }).join('');
+    tally.hidden = false;
+  }
+
   fetch('data/lake-watch/stories.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(); return r.json(); })
     .then(function (data) {
       var stories = (data.stories || []).filter(function (s) {
         return s.title && s.source && /^https?:\/\//i.test(s.source.url || '');
       });
-      if (!stories.length) return;   // nothing approved yet: section stays hidden
       stories.sort(function (a, b) {
         if (!!b.featured !== !!a.featured) return b.featured ? 1 : -1;
         return String(b.date).localeCompare(String(a.date));
       });
-      var featuredUsed = false;
-      // A featured card takes two slots, so five stories fill a three-column grid.
-      var max = stories[0].featured ? 5 : 6;
-      grid.innerHTML = stories.slice(0, max).map(function (s) {
-        var src = s.source, kind = ICON[src.kind] ? src.kind : 'article';
-        var feat = s.featured && !featuredUsed; if (feat) featuredUsed = true;
-        var go = kind === 'video'
-          ? 'Watch' + (src.timestamp ? ' at ' + esc(src.timestamp) : '')
-          : kind === 'document' ? 'Open document' : 'Read more';
-        return '<a class="lw-card' + (feat ? ' featured' : '') + '" href="' + esc(src.url) +
-               '" target="_blank" rel="noopener">' +
-          '<div class="lw-meta"><span class="lw-kind">' + ICON[kind] + esc(src.label || kind) + '</span>' +
-            '<span>' + esc(fmt(s.date)) + '</span>' +
-            (s.category ? '<span class="lw-cat">' + esc(s.category) + '</span>' : '') + '</div>' +
-          '<h3 class="lw-title">' + esc(s.title) + '</h3>' +
-          '<p class="lw-text">' + esc(s.summary) + '</p>' +
-          '<span class="lw-go">' + go + ' ' + ARROW + '</span></a>';
-      }).join('');
+
+      function renderGrid(thread) {
+        if (thread) {
+          // One issue, oldest first, so it reads as a timeline.
+          grid.innerHTML = stories.filter(function (s) { return s.thread === thread; })
+            .sort(function (a, b) { return String(a.date).localeCompare(String(b.date)); })
+            .map(function (s) { return card(s, false); }).join('');
+          return;
+        }
+        // A featured card takes two slots, so five stories fill a three-column grid.
+        var max = stories[0].featured ? 5 : 6, featuredUsed = false;
+        grid.innerHTML = stories.slice(0, max).map(function (s) {
+          var feat = s.featured && !featuredUsed; if (feat) featuredUsed = true;
+          return card(s, feat);
+        }).join('');
+      }
+
+      if (stories.length) {
+        renderTally(stories);
+        renderGrid('');
+        // Offer a filter only for issues that have more than one story to follow.
+        var counts = {};
+        stories.forEach(function (s) { if (s.thread) counts[s.thread] = (counts[s.thread] || 0) + 1; });
+        var names = Object.keys(counts).filter(function (t) { return counts[t] > 1; }).sort();
+        if (threadsEl && names.length) {
+          threadsEl.innerHTML = '<span class="lw-threads-lbl">Follow an issue</span>' +
+            [''].concat(names).map(function (t) {
+              return '<button type="button" class="lw-thread-btn" data-thread="' + esc(t) + '" aria-pressed="' + (t ? 'false' : 'true') + '">' +
+                     (t ? esc(t) + ' (' + counts[t] + ')' : 'Latest') + '</button>';
+            }).join('');
+          threadsEl.hidden = false;
+          threadsEl.addEventListener('click', function (e) {
+            var btn = e.target.closest('.lw-thread-btn');
+            if (!btn) return;
+            [].forEach.call(threadsEl.querySelectorAll('.lw-thread-btn'), function (b) {
+              b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+            });
+            renderGrid(btn.getAttribute('data-thread'));
+          });
+        }
+      } else {
+        // Nothing approved yet. Say so rather than vanish: being here every
+        // week is the point of the section.
+        grid.innerHTML = '<p class="lw-empty">No lake items are posted right now. As Council meetings are reviewed, anything that touches the lake appears here with a link to the source.</p>';
+      }
+      renderAct();
       section.hidden = false;
+      [].forEach.call(document.querySelectorAll('[data-lw-link]'), function (el) { el.hidden = false; });
     })
-    .catch(function () { /* feed unavailable: keep the section hidden */ });
+    .catch(function () { /* feed unavailable: keep the section and its nav link hidden */ });
 }
 loadLakeWatch();
 

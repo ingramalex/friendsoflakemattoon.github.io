@@ -95,6 +95,15 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
 .lw-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--teal)}
 .lw-kind{display:inline-flex;align-items:center;gap:5px;background:rgba(58,143,168,.1);color:var(--mid);padding:.2rem .5rem;border-radius:2px}
 .lw-cat{color:var(--muted);font-weight:400}
+.lw-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:.28rem .6rem;border-radius:2px}
+.lw-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.lw-chip.ok{background:rgba(74,140,63,.14);color:#2d5a27}
+.lw-chip.bad,.lw-chip.urgent{background:rgba(192,80,74,.13);color:#9c342e}
+.lw-chip.wait{background:rgba(196,154,42,.18);color:#7a5c0e}
+.lw-chip.note{background:rgba(58,143,168,.1);color:var(--mid)}
+.lw-card.is-urgent{border-top-color:#c0504a}
+.lw-card.is-wait{border-top-color:var(--gold)}
+.lw-thread{font-size:12px;color:var(--muted);font-style:italic}
 .lw-title{font-family:var(--serif);font-size:1.1rem;color:var(--navy);line-height:1.35;font-weight:400}
 .lw-text{font-size:.88rem;line-height:1.75;color:var(--muted);font-weight:300}
 .lw-go{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);font-weight:600}
@@ -404,14 +413,39 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
   $('reload').addEventListener('click', function () { loadAll(); });
 
   /* ── editor ── */
+  function threadNames() {
+    var seen = {};
+    live.forEach(function (x) { if (x.thread) seen[x.thread] = 1; });
+    return Object.keys(seen).sort();
+  }
+
+  // Same wording and colours as the homepage, so the preview is what ships.
+  var OUTCOME = { approved: ['Approved', 'ok'], denied: ['Denied', 'bad'],
+                  tabled: ['Tabled', 'wait'], discussed: ['Discussed, no vote', 'note'] };
+  var MON3 = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  function outcome(s) {
+    if (OUTCOME[s.outcome]) return OUTCOME[s.outcome];
+    if (s.outcome !== 'upcoming') return null;
+    var p = String(s.outcome_date || '').split('-');
+    if (p.length !== 3) return ['Vote pending', 'wait'];
+    var d = new Date(+p[0], +p[1] - 1, +p[2]), n = new Date();
+    var days = Math.round((d - new Date(n.getFullYear(), n.getMonth(), n.getDate())) / 864e5);
+    if (days < 0) return ['Awaiting outcome', 'note'];
+    if (days === 0) return ['Vote today', 'urgent'];
+    if (days <= 7) return ['Vote in ' + days + (days === 1 ? ' day' : ' days'), 'urgent'];
+    return ['Vote ' + MON3[d.getMonth()] + ' ' + d.getDate(), 'wait'];
+  }
+
   function card(s) {
-    var k = s.source || {};
+    var k = s.source || {}, o = outcome(s);
     var go = k.kind === 'video' ? 'Watch' + (k.timestamp ? ' at ' + esc(k.timestamp) : '') : k.kind === 'document' ? 'Open document' : 'Read more';
-    return '<div class="lw-card' + (s.featured ? ' featured' : '') + '">' +
+    return '<div class="lw-card' + (s.featured ? ' featured' : '') + (o && (o[1] === 'urgent' || o[1] === 'wait') ? ' is-' + o[1] : '') + '">' +
       '<div class="lw-meta"><span class="lw-kind">' + esc(k.label || k.kind) + '</span><span>' + esc(fmt(s.date)) + '</span>' +
       (s.category ? '<span class="lw-cat">' + esc(s.category) + '</span>' : '') + '</div>' +
+      (o ? '<span class="lw-chip ' + o[1] + '">' + esc(o[0]) + '</span>' : '') +
       '<h3 class="lw-title">' + esc(s.title || 'Untitled') + '</h3>' +
-      '<p class="lw-text">' + esc(s.summary) + '</p><span class="lw-go">' + go + ' &rarr;</span></div>';
+      '<p class="lw-text">' + esc(s.summary) + '</p>' +
+      (s.thread ? '<span class="lw-thread">Part of: ' + esc(s.thread) + '</span>' : '') + '<span class="lw-go">' + go + ' &rarr;</span></div>';
   }
 
   function openEditor(s, ctx) {
@@ -420,7 +454,7 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
       '<h1>' + (ctx.existing ? 'Edit live story' : 'Prepare a story') + '</h1>' +
       (cand && cand.names ? '<div class="warnbox"><b>This came from a resident’s public comment.</b> The homepage is public and permanent. Describe the concern without naming the person unless they have agreed to be named — “a lake resident raised…” carries the same weight.</div>' : '') +
       (cand ? '<p class="src-quote"><b>From the findings:</b> ' + esc(cand.story.summary) + '</p>' : '') +
-      '<label>Headline</label><input type="text" id="f-title" value="' + esc(s.title) + '">' +
+      '<label>Headline <span style="font-weight:300;color:var(--muted)">— what it means for the lake, in plain words; resolution numbers belong in the summary</span></label><input type="text" id="f-title" value="' + esc(s.title) + '" placeholder="City seeks $260K to stabilize eroding shoreline">' +
       '<label>Summary <span style="font-weight:300;color:var(--muted)">— two or three plain sentences</span></label><textarea id="f-sum">' + esc(s.summary) + '</textarea>' +
       '<div class="row"><div><label>Date</label><input type="date" id="f-date" value="' + esc(s.date) + '"></div>' +
       '<div><label>Category</label><select id="f-cat">' +
@@ -433,6 +467,13 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
       '</select></div><div><label>Link label</label><input type="text" id="f-label" value="' + esc(s.source.label) + '" placeholder="Council meeting, JG-TC, City notice…"></div></div>' +
       '<div class="row"><div><label>Link URL</label><input type="url" id="f-url" value="' + esc(s.source.url) + '"></div>' +
       '<div><label>Timestamp (video)</label><input type="text" id="f-ts" value="' + esc(s.source.timestamp) + '" placeholder="33:24"></div></div>' +
+      '<div class="row"><div><label>Outcome <span style="font-weight:300;color:var(--muted)">— shown as a coloured chip</span></label><select id="f-out">' +
+        [['','— none'],['approved','Approved'],['denied','Denied'],['tabled','Tabled'],['discussed','Discussed, no vote'],['upcoming','Vote still to come']].map(function (o) {
+          return '<option value="' + o[0] + '"' + (o[0] === (s.outcome || '') ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') +
+      '</select></div><div id="voteDateWrap"><label>Vote date</label><input type="date" id="f-outdate" value="' + esc(s.outcome_date || '') + '"></div></div>' +
+      '<div class="row"><div><label>Ongoing issue <span style="font-weight:300;color:var(--muted)">— links stories on the same issue</span></label><input type="text" id="f-thread" list="threadList" maxlength="60" value="' + esc(s.thread || '') + '" placeholder="Shoreline stabilization">' +
+        '<datalist id="threadList">' + threadNames().map(function (t) { return '<option value="' + esc(t) + '">'; }).join('') + '</datalist></div>' +
+      '<div><label>Dollars involved <span style="font-weight:300;color:var(--muted)">— whole dollars, added to the homepage total</span></label><input type="number" id="f-amt" min="0" step="1" value="' + esc(s.amount || '') + '" placeholder="260000"></div></div>' +
       '<label class="check"><input type="checkbox" id="f-feat"' + (s.featured ? ' checked' : '') + '> Feature this story (shown larger, first)</label>' +
       '<label class="check" id="verifyRow"><input type="checkbox" id="f-verified"><span>I opened the link' +
         '<span id="verifyVideo">, listened to that moment in the recording,</span> and the headline and summary match what is there.</span></label>' +
@@ -450,17 +491,25 @@ p.help.small{font-size:.78rem;margin:1.1rem 0 0}
         url = url.replace(/([?&])t=\d+s?/, '$1').replace(/[?&]$/, '').replace(/&&/, '&');
         if (ts) url += '&t=' + secs(ts) + 's';
       }
-      return {
+      var d = {
         id: s.id || ($('f-date').value + '-' + slug($('f-title').value)),
         date: $('f-date').value, title: $('f-title').value.trim(), summary: $('f-sum').value.trim(),
         category: $('f-cat').value, featured: $('f-feat').checked,
         source: { kind: kind, label: $('f-label').value.trim(), url: url, timestamp: kind === 'video' ? ts : '' }
       };
+      // Optional fields are left off entirely when blank, so older stories keep their shape.
+      var out = $('f-out').value, thread = $('f-thread').value.trim().replace(/\s+/g, ' '), amt = Math.floor(+$('f-amt').value);
+      if (out) d.outcome = out;
+      if (out === 'upcoming' && $('f-outdate').value) d.outcome_date = $('f-outdate').value;
+      if (thread) d.thread = thread;
+      if (amt > 0) d.amount = amt;
+      return d;
     }
     function refresh() {
       var d = read();
       $('preview').innerHTML = card(d);
       $('verifyVideo').style.display = d.source.kind === 'video' ? '' : 'none';
+      $('voteDateWrap').style.visibility = $('f-out').value === 'upcoming' ? '' : 'hidden';
       $('openSrc').href = /^https?:\/\//.test(d.source.url) ? d.source.url : '#';
       var ok = d.title && d.summary && d.date && /^https?:\/\//.test(d.source.url) && $('f-verified').checked;
       $('publish').disabled = !ok;

@@ -31,6 +31,7 @@ var REVIEW_BRANCH = 'lake-watch/meetings';
 var STORIES = 'data/lake-watch/stories.json';
 var MEETINGS_DIR = 'data/lake-watch/meetings';
 var CATEGORIES = ['', 'water quality', 'watershed', 'infrastructure', 'recreation', 'governance'];
+var OUTCOMES = ['approved', 'denied', 'tabled', 'discussed', 'upcoming'];
 var KINDS = ['video', 'article', 'document'];
 
 function doGet() {
@@ -196,6 +197,21 @@ function clean_(s) {
   story.published = new Date().toISOString();
   story.verified_by_reader = true;
   if (s.derived_from) story.derived_from = str(s.derived_from, 120, 'Origin');
+  // Optional: what the Council did, the issue it belongs to, the money involved.
+  if (s.outcome) {
+    story.outcome = str(s.outcome, 20, 'Outcome');
+    if (OUTCOMES.indexOf(story.outcome) < 0) fail_('invalid', 'Unknown outcome.');
+    if (story.outcome === 'upcoming' && s.outcome_date) {
+      story.outcome_date = str(s.outcome_date, 10, 'Vote date');
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(story.outcome_date)) fail_('invalid', 'The vote date is malformed.');
+    }
+  }
+  if (s.thread) story.thread = str(s.thread, 60, 'Ongoing issue');
+  if (s.amount) {
+    var amt = Math.floor(Number(s.amount));
+    if (!(amt > 0) || amt > 1e9) fail_('invalid', 'Dollars involved must be a whole number.');
+    story.amount = amt;
+  }
   return story;
 }
 
