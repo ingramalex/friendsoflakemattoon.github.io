@@ -1,0 +1,151 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-08-05",
+  "title": "Regular City Council Meeting 08/05/25",
+  "video_id": "TWxJDY0X8BI",
+  "url": "https://www.youtube.com/watch?v=TWxJDY0X8BI",
+  "extracted": "2026-10-22T13:49:08+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "During the August 5, 2025 meeting, the Mattoon City Council heard public comments regarding local solar installations, development, and lake water quality following recent harmful algal blooms. The council approved emergency contracts for algaecide spraying and pump replacements for Lake Mattoon and Lake Paradise, while discussing ongoing water monitoring and emergency alert systems.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "06:06",
+        "topic": "Algal Blooms and Lake Management",
+        "what_happened": "Resident Jenny Lee presented comprehensive recommendations for managing harmful algal blooms in local lakes, including Lake Mattoon. She advocated for watershed management, wetland restoration, vegetative buffer zones, shoreline stabilization, dredging to remove internal nutrient loads, and caution regarding added boat slips and wake-induced erosion rather than relying solely on repeated algaecide treatments.",
+        "speakers": "Jenny Lee (resident), Mayor Hall",
+        "importance": "high"
+      },
+      {
+        "timestamp": "19:25",
+        "topic": "Drinking Water Safety and Algal Toxin Testing",
+        "what_happened": "Resident Sarah Hopgood expressed concern about the safety of city drinking water, the testing schedule for microcystin toxins, and the communication of health risks such as Guillain-Barr\u00e9 syndrome. City Administrator Kyle Gill and Mayor Hall explained that daily in-house testing and routine IEPA testing occur, carbon feed rates had been increased to treat water, and an incident review report was being drafted.",
+        "speakers": "Sarah Hopgood (resident), Kyle Gill (city administrator), Mayor Hall, Commissioner Butler",
+        "importance": "high"
+      },
+      {
+        "timestamp": "29:01",
+        "topic": "Gravel Pit Aquifer North of Lake Paradise",
+        "what_happened": "A citizen raised a suggestion about utilizing a gravel pit located north of Lake Paradise as a potential source of clean water. City Administrator Kyle Gill clarified that the area is an active gravel pit overlaying an aquifer rather than an open reservoir.",
+        "speakers": "Resident, Kyle Gill (city administrator), Mayor Hall",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "35:41",
+        "topic": "Lake Mattoon Dredging and Watershed Inflow",
+        "what_happened": "Resident Jason Lowe asked about future dredging plans for Lake Mattoon and shared historical context regarding water and sediment flow easements onto his property. Kyle Gill discussed upcoming Lake Paradise dam repairs, potential timing for dredging, watershed conservation practices, and committed to reviewing the property easements.",
+        "speakers": "Jason Lowe (resident), Kyle Gill (city administrator), Mayor Hall, Commissioner Cox",
+        "importance": "high"
+      },
+      {
+        "timestamp": "47:34",
+        "topic": "Temporary Pump Rental for Lake Mattoon",
+        "what_happened": "The council considered authorizing the rental of a temporary pump from Velocity-Cogent Companies at up to $21,204 per month for Lake Mattoon. Officials explained the current intake pump had malfunctioned repeatedly and the rental is needed to maintain pumping capacity to Lake Paradise and the water treatment plant.",
+        "speakers": "Commissioner Clawson, Kyle Gill (city administrator), Commissioner Butler, Mayor Hall",
+        "importance": "high"
+      },
+      {
+        "timestamp": "51:51",
+        "topic": "Replacement Turbine Pump Purchase for Lake Mattoon",
+        "what_happened": "The council discussed waiving bidding requirements to purchase a new vertical turbine pump for Lake Mattoon from Vandevanter Engineering for $183,356.21. Kyle Gill explained that repeated mechanical failures over several years necessitated full replacement rather than continued repairs.",
+        "speakers": "Commissioner Clawson, Kyle Gill (city administrator), Commissioner Butler, Commissioner Cox, Mayor Hall",
+        "importance": "high"
+      },
+      {
+        "timestamp": "56:09",
+        "topic": "Emergency Algaecide Treatment for Lake Mattoon",
+        "what_happened": "The council reviewed an emergency contract with Aquatic Control for $68,224 ($34,112 per application for two applications) to treat approximately one-fifth of Lake Mattoon with algaecide. Gill and council members detailed that treating sections gradually protects dissolved oxygen levels to avoid fish kills, and recreational users will be notified to steer clear of active spray zones.",
+        "speakers": "Commissioner Fipps, Kyle Gill (city administrator), Commissioner Butler, Commissioner Cox, Mayor Hall",
+        "importance": "high"
+      },
+      {
+        "timestamp": "60:14",
+        "topic": "Emergency Algaecide Treatment for Lake Paradise",
+        "what_happened": "The council reviewed an emergency contract with Aquatic Control totaling $13,966 ($6,983 per application for two applications) to treat approximately one-sixth of Lake Paradise. Officials explained the treatment sequencing between Lake Mattoon and Lake Paradise to ensure raw water delivery to the treatment plant remains uninterrupted.",
+        "speakers": "Commissioner Butler, Kyle Gill (city administrator), Mayor Hall",
+        "importance": "high"
+      },
+      {
+        "timestamp": "62:36",
+        "topic": "Emergency Public Notification and IPAWS Alert System",
+        "what_happened": "Commissioner Butler and city staff reviewed the notification timeline during the recent microcystin water advisory, including challenges with the county's IPAWS system and delay in state verification. Officials emphasized the need for streamlined interagency protocols and multi-channel outreach including website, social media, TV, and radio.",
+        "speakers": "Commissioner Butler, Kyle Gill (city administrator), Mayor Hall, Commissioner Cox",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "06:16",
+        "concern": "Jenny Lee warned that harmful algal blooms are worsening due to nutrient runoff and failing septics, and urged the city to invest in wetlands, vegetative buffers, dredging, and shoreline protection rather than solely relying on chemical algaecides. She also raised concerns about adding more boat slips on Lake Mattoon, noting boat traffic worsens shoreline erosion.",
+        "response": "Officials asked Jenny Lee to provide a written copy of her presentation and recommendations for council review."
+      },
+      {
+        "timestamp": "19:25",
+        "concern": "Sarah Hopgood asked for clarity regarding how often and for what contaminants drinking water is tested, citing health concerns over cyanotoxins and public confusion regarding conflicting statements about testing frequency.",
+        "response": "Kyle Gill explained the testing process, noting routine testing intervals through the IEPA, the use of field test strips, increased carbon application at the water plant, and ongoing work with state and emergency management agencies to formalize an updated emergency action and recovery plan."
+      },
+      {
+        "timestamp": "29:01",
+        "concern": "A resident suggested investigating an abandoned gravel pit north of Lake Paradise as a possible clean water reservoir.",
+        "response": "Kyle Gill clarified that the area is an active gravel pit overlying an aquifer, and the mayor acknowledged the suggestion."
+      },
+      {
+        "timestamp": "35:41",
+        "concern": "Jason Lowe asked about dredging plans for Lake Mattoon and raised issues concerning lake water and silt entering his property across city drainage easements.",
+        "response": "Kyle Gill explained that dredging Lake Paradise is planned in conjunction with upcoming dam repairs, while watershed and dredging options for Lake Mattoon are being evaluated, and agreed to look into the resident's specific property easements."
+      },
+      {
+        "timestamp": "39:01",
+        "concern": "Carolyn Floyd thanked community members, volunteers, and neighboring towns for providing bottled water and ice during the drinking water advisory.",
+        "response": "Mayor Hall and council members echoed her appreciation for the community support."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "26:01",
+        "action": "Compile and publish a public report documenting the water quality crisis, lessons learned, and future mitigation plans.",
+        "owner": "Mayor Hall and city administration",
+        "status": "committed"
+      },
+      {
+        "timestamp": "38:46",
+        "action": "Investigate drainage and flowage easement records and meet regarding property impact near Lake Mattoon.",
+        "owner": "Kyle Gill (city administrator)",
+        "status": "committed"
+      },
+      {
+        "timestamp": "58:31",
+        "action": "Coordinate with Friends of Lake Mattoon and lake marina to post public notices prior to algaecide spraying operations.",
+        "owner": "Kyle Gill (city administrator)",
+        "status": "committed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "51:43",
+        "measure": "Council Decision Request 2025-2625: Authorizing rental of a temporary pump for Lake Mattoon up to $21,204 per month from Velocity-Cogent Companies",
+        "outcome": "Passed unanimously (5-0)"
+      },
+      {
+        "timestamp": "56:02",
+        "measure": "Council Decision Request 2025-2626: Waiving bidding requirements and authorizing purchase of a new vertical turbine pump for Lake Mattoon for $183,356.21 from Vandevanter Engineering",
+        "outcome": "Passed unanimously (5-0)"
+      },
+      {
+        "timestamp": "60:07",
+        "measure": "Council Decision Request 2025-2627: Approving algaecide spraying contract with Aquatic Control for up to $68,224 to treat approximately 1/5 of Lake Mattoon under emergency situation",
+        "outcome": "Passed unanimously (5-0)"
+      },
+      {
+        "timestamp": "60:57",
+        "measure": "Council Decision Request 2025-2628: Approving algaecide spraying contract with Aquatic Control for up to $13,966 to treat approximately 1/6 of Lake Paradise under emergency situation",
+        "outcome": "Passed unanimously (5-0)"
+      }
+    ]
+  }
+}

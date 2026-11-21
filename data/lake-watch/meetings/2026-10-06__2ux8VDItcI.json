@@ -1,0 +1,42 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-10-06",
+  "title": "Regular City Council Meeting 10/06/26",
+  "video_id": "_2ux8VDItcI",
+  "url": "https://www.youtube.com/watch?v=_2ux8VDItcI",
+  "extracted": "2026-10-09T12:20:14+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council addressed routine business, received public presentations regarding Camp New Hope funding and employee air ambulance benefits, and approved annexation and zoning variances. The council also approved municipal contracts including spillway repairs at Lake Mattoon Dam and roadway construction before adjourning to executive session.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "17:25",
+        "topic": "Lake Mattoon Dam Repairs",
+        "what_happened": "The council considered Council Decision Request 2026-2732 to award a $74,200 contract to Fuller-Wente, Inc. for repairs to the Lake Mattoon Dam. Commissioner Clawson reported that the project involves patching the spillway flume, which required waiting until lake water levels receded below the spillway crest. The bid came in below the city's expected cost estimate.",
+        "speakers": "Commissioner Clawson, Mayor Hall",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [
+      {
+        "timestamp": "18:18",
+        "action": "Sign the IDOT Local Public Agency Formal Contract with Fuller-Wente, Inc. for Lake Mattoon Dam repairs",
+        "owner": "Mayor Hall",
+        "status": "voted"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "18:18",
+        "measure": "Council Decision Request 2026-2732 awarding $74,200 bid to Fuller-Wente, Inc. for Lake Mattoon Dam repairs and authorizing IDOT contract execution",
+        "outcome": "Passed unanimously (5-0)"
+      }
+    ]
+  }
+}

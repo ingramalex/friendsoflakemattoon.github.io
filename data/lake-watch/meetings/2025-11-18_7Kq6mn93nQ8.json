@@ -1,0 +1,43 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-11-18",
+  "title": "Regular City Council Meeting 11/18/25",
+  "video_id": "7Kq6mn93nQ8",
+  "url": "https://www.youtube.com/watch?v=7Kq6mn93nQ8",
+  "extracted": "2026-10-22T13:36:28+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council reviewed the annual municipal audit report, approved a special use permit for telecommunications equipment, and approved engineering services for the Swords Drive extension. The council also extensively discussed and approved a rezoning and special use request with conditions for a solar farm north of Evergreen Court.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "27:58",
+        "topic": "SBA Disaster Assistance for Water Crisis",
+        "what_happened": "A city official reported that following the late summer water crisis, the city collaborated with the Chamber of Commerce and the Illinois Emergency Management Agency to secure federal SBA assistance for affected small businesses. Low-interest and interest-free loans are being offered to impacted businesses through an SBA center set up at Elevate through Saturday.",
+        "speakers": "city official",
+        "importance": "normal"
+      },
+      {
+        "timestamp": "46:31",
+        "topic": "Water Treatment Plant Update and Public Hearing Request",
+        "what_happened": "Commissioner Cox requested that the city schedule a public hearing in late March or April to provide an update on the water situation and water treatment plant improvements. He emphasized the importance of updating the public on ongoing progress and projects before the weather warms up in the summer.",
+        "speakers": "Commissioner Cox, city administrator Kyle Gill",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [
+      {
+        "timestamp": "47:12",
+        "action": "Schedule a public hearing in late March or April to provide an update on the city's water situation and water treatment plant projects.",
+        "owner": "Kyle Gill",
+        "status": "committed"
+      }
+    ],
+    "votes": []
+  }
+}

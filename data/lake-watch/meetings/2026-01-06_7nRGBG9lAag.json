@@ -1,0 +1,60 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-01-06",
+  "title": "Regular City Council Meeting 01/06/26",
+  "video_id": "7nRGBG9lAag",
+  "url": "https://www.youtube.com/watch?v=7nRGBG9lAag",
+  "extracted": "2026-10-22T13:33:36+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council addressed routine municipal business, including snow route regulations, economic development site readiness grants, and setting a TIF public hearing. Crucially for water quality, the council approved engineering design contracts to replace water treatment plant filters with biological granular activated carbon filters to remove blue-green algae and to design an upgraded lime treatment system.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "09:14",
+        "topic": "Water Treatment Plant Filter Upgrades for Algae Treatment",
+        "what_happened": "The council considered and approved a $20,000 contract with Crawford, Murphy & Tilly to design Granular Activated Carbon (GAC) media filters to replace existing 25-year-old sand and anthracite filters at the water treatment plant. Staff explained that biological GAC filters contain organisms that consume blue-green algae and other algae to treat the water more effectively, working toward future integration with an ozone system. Mayor Hall emphasized that this filter replacement is one component of multiple ongoing efforts to improve city water quality.",
+        "speakers": "commissioner, staff member, mayor",
+        "importance": "high"
+      },
+      {
+        "timestamp": "11:10",
+        "topic": "Water Treatment Plant Lime System Engineering",
+        "what_happened": "The council considered and approved a $100,000 proposal from Crawford, Murphy & Tilly to complete final design engineering for an upgraded lime system at the water treatment plant, pending IEPA loan approval. Staff explained that the upgrade converts the facility to a liquid lime injection system to improve performance, noting increased likelihood of securing state loan funding following ongoing water quality concerns.",
+        "speakers": "commissioner, staff member, mayor",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [
+      {
+        "timestamp": "09:35",
+        "action": "Sign proposal with Crawford, Murphy & Tilly for GAC media filter design",
+        "owner": "city manager",
+        "status": "voted"
+      },
+      {
+        "timestamp": "11:29",
+        "action": "Sign proposal with Crawford, Murphy & Tilly for final design engineering of lime system pending IEPA loan approval",
+        "owner": "city manager",
+        "status": "voted"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "11:02",
+        "measure": "Council Decision Request 2026-2654: Approve $20,000 to Crawford, Murphy & Tilly to design Granular Activated Carbon media filters at the Water Treatment Plant",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "12:18",
+        "measure": "Council Decision Request 2026-2655: Approve $100,000 to Crawford, Murphy & Tilly for final design engineering of the upgraded lime system at the Water Treatment Plant pending IEPA loan approval",
+        "outcome": "passed"
+      }
+    ]
+  }
+}

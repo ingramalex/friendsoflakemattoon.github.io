@@ -1,0 +1,79 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-08-19",
+  "title": "Regular City Council Meeting 08/19/25",
+  "video_id": "U8dpGdz1oc4",
+  "url": "https://www.youtube.com/watch?v=U8dpGdz1oc4",
+  "extracted": "2026-10-22T13:46:41+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council held public hearings on grant applications for recreation projects, including Phase II improvements at Lake Mattoon and a kayak launch at Lake Paradise, alongside a presentation on municipal solar energy credits. During public comments and council discussion, officials and residents addressed tap water quality, algae concerns, and communication following a recent drinking water crisis.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "04:14",
+        "topic": "OSLAD Grant Phase II Lake Mattoon Marina Proposal",
+        "what_happened": "City staff presented two options for an IDNR OSLAD grant application, including Phase II upgrades to the Lake Mattoon marina and campground involving riprap erosion control, sewer system work, and road paving. Staff clarified that OSLAD grant funds cannot be applied toward drinking water quality improvements outside of erosion control measures. Commissioner Cox questioned the 40 percent cap on infrastructure spending under the grant guidelines.",
+        "speakers": "city staff (Alex), Commissioner Cox",
+        "importance": "high"
+      },
+      {
+        "timestamp": "10:45",
+        "topic": "Lake Paradise BAAD Grant Application for Kayak Launch",
+        "what_happened": "Grant writer Dr. Darci Cather and Lake Superintendent John Wurtsbaugh presented a proposal to apply for an IDNR Boat Access Area Development (BAAD) grant for up to $80,000 with a 17 percent city match ($16,281). The project would install an ADA-accessible kayak launch and pave and stripe the adjacent gravel parking lot at Lake Paradise. Staff reiterated that the grant is strictly for boat access development and cannot fund water quality remediation.",
+        "speakers": "grant writer (Dr. Darci Cather), Lake Superintendent (John Wurtsbaugh), Mayor Hall",
+        "importance": "high"
+      },
+      {
+        "timestamp": "41:10",
+        "topic": "Drinking Water Quality, Algae, and Reservoir Management",
+        "what_happened": "A resident expressed frustration with tap water taste, odor, and lack of transparency during the recent water quality crisis, questioning why Lake Mattoon was treated when the water plant pulls from Lake Paradise. City Administrator Kyle Gill and Mayor Hall explained that Lake Mattoon was treated first so water could be pumped over to Lake Paradise, noted ongoing IEPA testing for microcystin and blue-green algae, and discussed the treatment challenges associated with agricultural runoff in the watershed. Council members acknowledged the city's communication during the event had been insufficient.",
+        "speakers": "resident (Denise Sparks), city administrator (Kyle Gill), Mayor Hall, Commissioner Butler",
+        "importance": "high"
+      },
+      {
+        "timestamp": "65:38",
+        "topic": "Lake Paradise Shoreline Stabilization",
+        "what_happened": "In response to an online citizen inquiry, City Administrator Kyle Gill explained the function of a metal retaining wall installed near the Lake Paradise pump house. He clarified that steel sea walls are a standard shoreline stabilization method used across the lakes to prevent bank erosion and keep soil from washing into the water.",
+        "speakers": "resident (Valerie Kincaid), city administrator (Kyle Gill)",
+        "importance": "normal"
+      }
+    ],
+    "citizen_concerns": [
+      {
+        "timestamp": "41:20",
+        "concern": "Denise Sparks questioned why the city was not transparent about the recent tap water issues, why Lake Mattoon was treated instead of Lake Paradise, and raised the burden of having to purchase bottled drinking water.",
+        "response": "City Administrator Kyle Gill explained that IEPA algae test results are published online and that Lake Mattoon was treated first to allow clean water to be pumped into Lake Paradise. Mayor Hall discussed watershed runoff factors, and Commissioner Butler acknowledged that the city failed to communicate effectively."
+      },
+      {
+        "timestamp": "65:03",
+        "concern": "Valerie Kincaid asked online when the draft after-incident report regarding the recent water crisis would be released to the public.",
+        "response": "City Administrator Kyle Gill stated that minor revisions were being completed and the report would be published on the city website by the end of the week."
+      },
+      {
+        "timestamp": "65:38",
+        "concern": "Valerie Kincaid inquired about the purpose of a buried metal retaining wall located along the Lake Paradise shoreline near the pump house.",
+        "response": "City Administrator Kyle Gill explained that the wall provides shoreline stabilization to control erosion and prevent shoreline soil from washing into the lake."
+      }
+    ],
+    "action_items": [
+      {
+        "timestamp": "65:17",
+        "action": "Publish the draft water incident report on the city website for public review by the end of the week.",
+        "owner": "City Administrator Kyle Gill",
+        "status": "committed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "73:14",
+        "measure": "Resolution No. 2025-3316 supporting and approving an IDNR BAAD grant application with a 17 percent city match ($16,281) for an ADA-accessible kayak launch and parking lot resurfacing at Lake Paradise.",
+        "outcome": "passed unanimously (5-0)"
+      }
+    ]
+  }
+}
