@@ -1,0 +1,21 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-11-17",
+  "title": "Regular City Council Meeting 11/17/26",
+  "video_id": "HhgHLRVpz5k",
+  "url": "https://www.youtube.com/watch?v=HhgHLRVpz5k",
+  "extracted": "2026-11-19T17:28:21+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council approved the routine consent agenda, authorized the renewal of annual municipal property, casualty, and workers' compensation insurance coverage, and approved the purchase of a replacement police squad car. Council members also shared brief announcements regarding an upcoming public library fundraiser and the community Lightworks walkthrough event before adjourning.",
+    "lake_discussed": false,
+    "topics": [],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}

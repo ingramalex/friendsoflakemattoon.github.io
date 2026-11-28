@@ -1,0 +1,79 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2025-12-16",
+  "title": "Regular City Council Meeting 12/16/25",
+  "video_id": "92_uTX_ZEAM",
+  "url": "https://www.youtube.com/watch?v=92_uTX_ZEAM",
+  "extracted": "2026-10-22T13:34:53+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council addressed routine business, intergovernmental agreements, and tree management before approving lake maintenance contracts. Council members also discussed winter storm emergency response and received an update on a citizen-led wake boat committee.",
+    "lake_discussed": true,
+    "topics": [
+      {
+        "timestamp": "13:00",
+        "topic": "Lake Mattoon Algaecide Spraying Contract",
+        "what_happened": "The council approved a contract with Aquatic Control for two algaecide applications covering approximately one-third of Lake Mattoon, totaling $111,348. Officials noted dissolved oxygen levels are currently favorable and higher than earlier in the fall, allowing for treatment over a larger section of the lake compared to the previous contract. Funding for the treatments will come out of the water/reservoir fund.",
+        "speakers": "commissioner, city manager, mayor",
+        "importance": "high"
+      },
+      {
+        "timestamp": "16:02",
+        "topic": "Lake Paradise Algaecide Spraying Contract",
+        "what_happened": "The council approved an algaecide spraying contract with Aquatic Control for $13,300 per application, totaling $26,600, to treat approximately one-half of Lake Paradise. Staff confirmed this contract utilizes the same pricing rate and vendor as Lake Mattoon to address algae across an expanded treatment area.",
+        "speakers": "commissioner, mayor",
+        "importance": "high"
+      },
+      {
+        "timestamp": "16:40",
+        "topic": "Lake Mattoon & Lake Paradise Bathymetric Survey",
+        "what_happened": "The council approved a $36,000 contract with Sphero to perform a bathymetric survey and watershed study of both Lake Mattoon and Lake Paradise. Officials explained that IEPA recommended the survey to measure siltation and actual water storage capacity, which will help evaluate future dredging needs and assist in qualifying for Section 319 watershed grants.",
+        "speakers": "commissioner, city manager, mayor",
+        "importance": "high"
+      },
+      {
+        "timestamp": "26:15",
+        "topic": "Wake Boat Committee Update",
+        "what_happened": "The mayor provided a report from the newly formed citizen wake boat committee, which is independently co-chaired by two neutral residents at Lake Mattoon. The committee aims to seat seven members representing balanced viewpoints, hold public meetings, and submit draft recommendations around late March ahead of the April 1 lake opening.",
+        "speakers": "mayor, commissioner, city manager",
+        "importance": "high"
+      }
+    ],
+    "citizen_concerns": [],
+    "action_items": [
+      {
+        "timestamp": "30:35",
+        "action": "Prepare and distribute informational handouts about the status of wake boat regulation discussions to individuals purchasing lake boat licenses",
+        "owner": "Mayor / City Staff",
+        "status": "committed"
+      },
+      {
+        "timestamp": "31:07",
+        "action": "Provide the wake boat committee report and meeting details to Lake Superintendent John",
+        "owner": "Mayor",
+        "status": "committed"
+      }
+    ],
+    "votes": [
+      {
+        "timestamp": "15:55",
+        "measure": "Council Decision Request 2025-2651: Approving algaecide spraying contract with Aquatic Control for Lake Mattoon for $111,348",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "16:33",
+        "measure": "Council Decision Request 2025-2652: Approving algaecide spraying contract with Aquatic Control for Lake Paradise for $26,600",
+        "outcome": "passed"
+      },
+      {
+        "timestamp": "20:35",
+        "measure": "Council Decision Request 2025-2653: Approving $36,000 proposal by Sphero for bathymetric survey of Lake Mattoon and Lake Paradise",
+        "outcome": "passed"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema": {
+    "name": "meeting-findings",
+    "version": 1
+  },
+  "meeting_date": "2026-11-04",
+  "title": "Regular City Council Meeting 11/04/26",
+  "video_id": "u77_tU6RBh0",
+  "url": "https://www.youtube.com/watch?v=u77_tU6RBh0",
+  "extracted": "2026-11-06T16:04:12+00:00",
+  "extracted_by": "gemini-3.8-flash",
+  "caveat": "Findings from an automated review of an auto-captioned recording. Verify specifics against the video before repeating them.",
+  "findings": {
+    "meeting_summary": "The Mattoon City Council approved employee insurance plans, a TIF grant for structural building repairs, and a firefighting equipment grant application. They also voted to establish a public hearing date for the Project Millennia STAR Bond District before adjourning.",
+    "lake_discussed": false,
+    "topics": [],
+    "citizen_concerns": [],
+    "action_items": [],
+    "votes": []
+  }
+}
